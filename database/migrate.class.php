@@ -59,6 +59,8 @@
 					'deprecated' => 'int',
 					'public' => 'int',
 					'visable' => 'int',
+					'meta_tags' => 'string',
+					'meta_description' => 'string',
 					'created_at' => 'timestamp',
 					'updated_at' => 'timestamp',
 				)
