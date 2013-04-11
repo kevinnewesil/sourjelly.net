@@ -36,11 +36,10 @@
 				$parentId = $parentContent[0];
 			}
 
-			if(\api\Api::insertInto('table_content',
-					array('title','content','has_parent','parent_id','menu_order','deprecated','public','visable','created_at'),
-					array($title,$content,$has_parent,$parentId , '0','0','1',$visable,date('Y-m-d H:i:s')),
-					'ssiiiiiis')
-				)
+			$rows   = array('title','content','has_parent','parent_id','menu_order','deprecated','public','visable','meta_tags','meta_description','created_at');
+			$values = array($title,$content,$has_parent,$parentId , '0','0','1',$visable,$metaTags,$metaDescription,strtotime("now"));
+
+			if(\api\Api::insertInto('table_content',$rows,$values,'ssiiiiiisss'))
 				return true;
 			else
 				return false;		

@@ -21,12 +21,12 @@
 	{
 		function removeMagicQoutes()
 		{
-			//if(get_magic_quotes_gpc())
-			//{
-			//	$_GET	 = stripSlashesDeep($_GET	);
-			//	$_POST	 = stripSlashesDeep($_POST	);
-			//	$_COOKIE = stripSlashesDeep($_COOKIE);
-			//}
+			// if(get_magic_quotes_gpc())
+			// {
+			// 	$_GET	 = stripSlashesDeep($_GET	);
+			// 	$_POST	 = stripSlashesDeep($_POST	);
+			// 	$_COOKIE = stripSlashesDeep($_COOKIE);
+			// }
 		}
 	}
 
@@ -56,7 +56,10 @@
 		function setTimezone($timezone = NULL)
 		{
 			//without this rule the error message about timezone appears
-			date_default_timezone_set('UTC');
+			if (! ini_get('date.timezone') && function_exists('date_default_timezone_set')) {
+				date_default_timezone_set('UTC');
+			}
+			
 			$timezone = ($timezone === NULL) ? date_default_timezone_get() : $timezone;
 			date_default_timezone_set($timezone);
 		}
