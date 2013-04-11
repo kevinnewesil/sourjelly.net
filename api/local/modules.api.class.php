@@ -33,8 +33,12 @@
 			$query = "SELECT `title`,`description`,`created_at`,`pages`,`position`,`active`,`id` FROM `table_modules` WHERE `deprecated` != '1'";
 			$array  = array();
 
+			if(!\api\Api::checkQuery($query))
+					\core\access\Redirect::Home('Something went wrong with the query.');
+
 			if($stmt = self::$_link->query($query))
 			{
+
 				if($stmt -> num_rows !== 0)
 				{
 					while($row = $stmt -> fetch_array())
@@ -69,6 +73,9 @@
 
 			$query = "SELECT `title`,`description`,`created_at`,`pages`,`position`,`active`,`id` FROM `table_modules` WHERE `deprecated` != '1' AND `id` = '" . $id . "'";
 			$array  = array();
+
+			if(!\api\Api::checkQuery($query))
+					\core\access\Redirect::Home('Something went wrong with the query.');
 
 			if($stmt = self::$_link -> query($query))
 			{
@@ -105,11 +112,14 @@
 		 */
 		public function getAllDeprecatedModules($type = 'array')
 		{
-			$pagesQuery = "SELECT `title`,`description`,`created_at`,`pages`,`position`,`active`,`id` FROM `table_modules` WHERE `deprecated` = '1'";
+			$query = "SELECT `title`,`description`,`created_at`,`pages`,`position`,`active`,`id` FROM `table_modules` WHERE `deprecated` = '1'";
 			$pageArray  = array();
 
-			if($stmt = self::$_link->prepare($pagesQuery))
-			{
+			if($stmt = self::$_link->prepare($query))
+			{	
+				if(!\api\Api::checkQuery($query))
+					\core\access\Redirect::Home('Something went wrong with the query.');
+
 				$stmt->execute();
 				$stmt -> store_result();
 
@@ -158,6 +168,9 @@
 			}
 
 			$query .= "AND `active` = '1' AND `deprecated` != '1'";
+
+			if(!\api\Api::checkQuery($query))
+					\core\access\Redirect::Home('Something went wrong with the query.');
 
 			if($stmt = self::$_link->query($query))
 			{

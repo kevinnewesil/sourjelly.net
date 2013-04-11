@@ -84,6 +84,8 @@
 
 			if($stmt = self::$_link->prepare($query))
 			{
+				if(!self::checkQuery($query))
+					\core\access\Redirect::Home('Something went wrong with the query.');
 
 				$stmt->execute();
 				$stmt->bind_result($id,$title);
@@ -118,6 +120,9 @@
 
 			if($stmtChildren = self::$_link->prepare($query))
 			{
+				if(!self::checkQuery($query))
+					\core\access\Redirect::Home('Something went wrong with the query.');
+				
 				$stmtChildren->bind_param('i',$menuId);
 				$stmtChildren->execute();
 				$stmtChildren->bind_result($title,$id);
@@ -140,6 +145,9 @@
 		public static function selectRow($query)
 		{
 			$return = array();
+			
+			if(!self::checkQuery($query))
+					\core\access\Redirect::Home('Something went wrong with the query.');
 
 			if($stmt = self::$_link->query($query))
 			{
@@ -188,6 +196,9 @@
 
 			if($stmt = self::$_link->prepare($query))
 			{
+				if(!self::checkQuery($query,'INSERT'))
+					\core\access\Redirect::Home('Something went wrong with the query.');
+				
 				if($types && $values)
 		        {
 		            $bind_names[] = $types;
@@ -257,6 +268,9 @@
 			
 			if($stmt = self::$_link->prepare($query))
 			{
+				if(!self::checkQuery($query,'UPDATE'))
+					\core\access\Redirect::Home('Something went wrong with the query.');
+				
 				$stmt->execute();
 				if($stmt->affected_rows > 0 )
 				{
@@ -271,5 +285,38 @@
 			}
 			else
 				return false;
+		}
+
+		public static function checkQuery($query, $sort = 'SELECT')
+		{
+			if(strpos($query, $sort) === false)
+				return false;
+
+			switch ($sort) {
+				case 'SELECT':
+					if(strpos('UPDATE', $query) || strpos('INSERT', $query) || strpos('DELETE', $query))
+						return false;
+					break;
+				
+				case 'UPDATE':
+					if(strpos('SELECT', $query) || strpos('INSERT', $query) || strpos('DELETE', $query))
+						return false;
+					break;
+				
+				case 'INSERT':
+					if(strpos('SELECT', $query) || strpos('UPDATE', $query) || strpos('DELETE', $query))
+						return false;
+					break;
+				
+				case 'DELETE':
+					return false;
+					break;
+				
+				default:
+					return false;
+					break;
+			}
+
+			return true;
 		}
 	}

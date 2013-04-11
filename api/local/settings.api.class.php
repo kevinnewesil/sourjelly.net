@@ -29,7 +29,12 @@
 		 */
 		public function getSystemSettings()
 		{
-			if($stmt = \core\build\Sourjelly::getConfig('link')->query("SELECT * FROM `table_settings`"))
+			$query = "SELECT * FROM `table_settings`";
+
+			if(!\api\Api::checkQuery($query))
+					\core\access\Redirect::Home('Something went wrong with the query.');
+
+			if($stmt = \core\build\Sourjelly::getConfig('link')->query($query))
 			{
 				$result = $stmt->fetch_assoc();
 				return $result;

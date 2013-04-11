@@ -33,6 +33,9 @@
 			
 			$query = "SELECT `themeName` FROM table_themes WHERE `active` = 1 AND `deprecated` = 0";
 
+			if(!\api\Api::checkQuery($query))
+					\core\access\Redirect::Home('Something went wrong with the query.');
+
 			if($stmt = self::$_link->query($query))
 			{
 				$ret = $stmt->fetch_assoc();
@@ -53,6 +56,9 @@
 			$ret = '';
 			
 			$query = "SELECT `themeName` , `active` ,`id` FROM `table_themes` WHERE `deprecated` = 0";
+
+			if(!\api\Api::checkQuery($query))
+					\core\access\Redirect::Home('Something went wrong with the query.');
 
 			if($stmt = self::$_link->query($query))
 			{
@@ -77,6 +83,10 @@
 			$ret = '';
 			
 			$query = "SELECT * FROM `table_themes` WHERE `id` = '" . $id . "' AND `deprecated` = 0";
+
+			if(!\api\Api::checkQuery($query))
+					\core\access\Redirect::Home('Something went wrong with the query.');
+
 			if($stmt = self::$_link->query($query))
 			{
 				$ret = $stmt -> fetch_assoc();

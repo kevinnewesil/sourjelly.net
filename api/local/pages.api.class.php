@@ -29,11 +29,14 @@
 		 */
 		public function getAllPages()
 		{
-			$pagesQuery = "SELECT `title`,`content`,`created_at`,`updated_at`,`has_parent`,`id` FROM `table_content` WHERE `deprecated` != 1 ORDER BY `menu_order` ASC";
+			$query = "SELECT `title`,`content`,`created_at`,`updated_at`,`has_parent`,`id` FROM `table_content` WHERE `deprecated` != 1 ORDER BY `menu_order` ASC";
 			$pageArray  = array();
 
-			if($stmt = self::$_link->prepare($pagesQuery))
-			{
+			if($stmt = self::$_link->prepare($query))
+			{	
+				if(!\api\Api::checkQuery($query))
+					\core\access\Redirect::Home('Something went wrong with the query.');
+
 				$stmt->execute();
 				$stmt -> store_result();
 
@@ -71,6 +74,9 @@
 
 			if($stmt = self::$_link->prepare($query))
 			{
+				if(!\api\Api::checkQuery($query))
+					\core\access\Redirect::Home('Something went wrong with the query.');
+
 				if($title == NULL)
 					$stmt->bind_param('s',$id);
 				else
@@ -111,6 +117,9 @@
 
 			if($stmt = self::$_link->prepare($query))
 			{
+				if(!\api\Api::checkQuery($query))
+					\core\access\Redirect::Home('Something went wrong with the query.');
+
 				$stmt->bind_param('s',$title);
 				$stmt->execute();
 				$stmt->bind_result($id);
@@ -132,6 +141,9 @@
 		{
 			$return = array();
 			$query  = "SELECT * FROM `table_content` WHERE `deprecated` = 1 ORDER BY `menu_order` ASC";
+
+			if(!\api\Api::checkQuery($query))
+					\core\access\Redirect::Home('Something went wrong with the query.');
 
 			if($res = self::$_link->query($query))
 			{

@@ -32,6 +32,10 @@
 			$user = array();
 
 			$query = "SELECT * FROM `table_users` WHERE 1";
+
+			if(!\api\Api::checkQuery($query))
+					\core\access\Redirect::Home('Something went wrong with the query.');
+
 			if($stmt = self::$_link->query($query))
 			{
 				if($stmt->num_rows != 0)
@@ -73,28 +77,31 @@
 			$query = "SELECT `id`,`firstname`,`lastname`,`username`,`email`,`password`,`DoB`,`registered_at`,`active`,`dev`,`premission`,`lang` FROM `table_users` WHERE CONCAT(firstname, ' ', lastname) = ?";
 			if($stmt = self::$_link->prepare($query))
 			{
+				if(!\api\Api::checkQuery($query))
+					\core\access\Redirect::Home('Something went wrong with the query.');
+
 				$stmt -> bind_param('s',$_SESSION['login']);
 				$stmt -> execute();
 				$stmt -> bind_result($id,$firstname,$lastname,$username,$email,$password,$dob,$registered_at,$active,$dev,$premission,$lang);
 
 				while($row = $stmt -> fetch()){
-                                        $ret = array('id'	     => $id,
-                                                     'firstname'     => $firstname,
-                                                     'lastname'      => $lastname,
-                                                     'username'      => $username,
-                                                     'email'         => $email,
-                                                     'password'      => $password,
-                                                     'DoB'           => $dob,
-                                                     'registered_at' => $registered_at,
-                                                     'active'        => $active,
-                                                     'dev'           => $dev,
-                                                     'premission'    => $premission,
-                                                     'lang'          => $lang
-                                                    );
-                                }
-                                //debug
-                                //die(var_dump($ret));
-                                $stmt->close();
+                        $ret = array('id'	     => $id,
+                                     'firstname'     => $firstname,
+                                     'lastname'      => $lastname,
+                                     'username'      => $username,
+                                     'email'         => $email,
+                                     'password'      => $password,
+                                     'DoB'           => $dob,
+                                     'registered_at' => $registered_at,
+                                     'active'        => $active,
+                                     'dev'           => $dev,
+                                     'premission'    => $premission,
+                                     'lang'          => $lang
+                                    );
+                }
+                //debug
+                //die(var_dump($ret));
+                $stmt->close();
 
 			}
 			return $ret;
@@ -111,6 +118,9 @@
 			$query = "SELECT `id`,`firstname`,`lastname`,`username`,`email`,`password`,`DoB`,`registered_at`,`active`,`dev`,`premission`,`lang` FROM `table_users` WHERE `username` = ? OR `email` = ?";
 			if($stmt = self::$_link->prepare($query))
 			{
+				if(!\api\Api::checkQuery($query))
+					\core\access\Redirect::Home('Something went wrong with the query.');
+
 				$stmt->bind_param('ss',$username,$email);
 				$stmt->execute();
 				$stmt->bind_result($id,$firstname,$lastname,$username,$email,$password,$dob,$registered_at,$active,$dev,$premission,$lang);
@@ -148,6 +158,9 @@
 			
 			if($stmt = self::$_link->prepare($query))
 			{
+				if(!\api\Api::checkQuery($query))
+					\core\access\Redirect::Home('Something went wrong with the query.');
+
 				$stmt->bind_param('s',$_SESSION['login']);
 				$stmt->execute();
 				$stmt->bind_result($premission);
@@ -166,6 +179,9 @@
 		{
 			$query = "SELECT `id` FROM `table_users`'";
 			
+			if(!\api\Api::checkQuery($query))
+					\core\access\Redirect::Home('Something went wrong with the query.');
+
 			if($stmt = self::$_link->query($query))
 			{
 				$stmt->close();
@@ -180,6 +196,9 @@
 		public function getUserLanguageBySession()
 		{
 			$query = "SELECT `lang` FROM `table_users` WHERE CONCAT(firstname , ' ' , lastname) = ?";
+
+			if(!\api\Api::checkQuery($query))
+					\core\access\Redirect::Home('Something went wrong with the query.');
 
 			if($stmt = self::$_link->prepare($query))
 			{
