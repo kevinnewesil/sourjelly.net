@@ -10,6 +10,10 @@
 		{parent}
 	</select>
 	<br><br>
+
+	visable in main menu :  <input type="checkbox" name="visable" {checked_visable}>
+	
+	<br><br>
 	Page created on: {created_at}
 	<br><br>
 	<input type="submit" name="submit" value="update" class="btn btn-primary btn-large" id="update">

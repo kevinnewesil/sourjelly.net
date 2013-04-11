@@ -58,6 +58,7 @@
 					'menu_order' => 'int',
 					'deprecated' => 'int',
 					'public' => 'int',
+					'visable' => 'int',
 					'created_at' => 'timestamp',
 					'updated_at' => 'timestamp',
 				)

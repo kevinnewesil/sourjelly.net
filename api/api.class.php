@@ -80,7 +80,7 @@
 		public static function getMenuItems()
 		{
 			$return = array();
-			$query  = "SELECT `id`,`title` FROM `table_content` WHERE `has_parent` = '0' AND `deprecated` = 0 ORDER BY `menu_order` ASC";
+			$query  = "SELECT `id`,`title` FROM `table_content` WHERE `has_parent` = '0' AND `deprecated` = 0 AND `visable` = 1 ORDER BY `menu_order` ASC";
 
 			if($stmt = self::$_link->prepare($query))
 			{

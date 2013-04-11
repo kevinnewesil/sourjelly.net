@@ -101,8 +101,10 @@
 				$tmp = \core\build\Template::getTemplate('crud/update.html.tpl');
 				$option = \core\build\Template::getSnippet('selectOption.html.tpl');
 
-				$tmp = str_replace(array('{id}','{title}','{content}','{created_at}'),$page,$tmp);
-				$placeholders = array('{optionvalue}','{optionname}','{select}');
+				$visable = $page['visable'] == '1' ? 'checked=checked' : '';
+
+				$tmp = str_replace(array('{id}','{title}','{content}','{created_at}','{checked_visable}'),$page,$tmp);
+				$placeholders = array('{optionvalue}','{optionname}','{select}',$visable);
 
 				$options = str_replace($placeholders,array('-','Geen parent menu',''),$option);
 
@@ -280,16 +282,16 @@
 			\core\build\Sourjelly::getHtml()->assign('{content}',$tmp);
 		}
 
-                public function images()
-                {
+        public function images()
+        {
 
-                }
+        }
 
 
-                public function cropper()
-                {
+        public function cropper()
+        {
 
-                }
+        }
 
 
 		/**

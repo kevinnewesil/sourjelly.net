@@ -18,6 +18,8 @@
 			foreach($create as $name => $value)
 				$$name = $value;
 
+			$visable = isset($visable) && $visable == 'on' ? '1' : '0';
+
 			if(!isset($title) || !isset($content) || !isset($parent))
 				\core\access\Redirect::to(HOME_PATH . '/crud/create/?ns=controllers&path=controller_path','something went wrong setting the variables, Please contact an administrator');
 
@@ -35,9 +37,9 @@
 			}
 
 			if(\api\Api::insertInto('table_content',
-					array('title','content','has_parent','parent_id','menu_order','deprecated','public','created_at'),
-					array($title,$content,$has_parent,$parentId , '0','0','1',date('Y-m-d H:i:s')),
-					'ssiiiiis')
+					array('title','content','has_parent','parent_id','menu_order','deprecated','public','visable','created_at'),
+					array($title,$content,$has_parent,$parentId , '0','0','1',$visable,date('Y-m-d H:i:s')),
+					'ssiiiiiis')
 				)
 				return true;
 			else
@@ -71,10 +73,13 @@
 				array_push($update, $parentId);
 			}
 
+			$visable = isset($visable) && $visable == 'on' ? '1' : '0';
+
+			array_push($update,$visable);
 			array_push($update,date('Y-m-d H:i:s'));
 			
 			if(\api\Api::updateTable('table_content',
-				array('title','content','has_parent','parent_id','updated_at'),
+				array('title','content','has_parent','parent_id','visable','updated_at'),
 				$update,
 				array('id' => $id)
 			))
