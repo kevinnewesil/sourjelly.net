@@ -68,8 +68,7 @@
 				ini_set('post_max_size'			 ,$settings['postMaxSize'] 		 . 'M');
 				ini_set('upload_max_filesize'	 ,$settings['uploadMaxFilesize'] . 'M');
 				ini_set('max_file_uploads'		 ,$settings['maxFileUploads']		  );
-
-				date_default_timezone_set($settings['timezone']);
+				ini_set('timezone'			 	 ,$settings['timezone']				  );
 			}
 		}
 		/**

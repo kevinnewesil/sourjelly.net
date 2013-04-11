@@ -77,9 +77,6 @@
 			self::$_api    = new \api\Api;
 			//self::$_secure = new \core\access\Secure;
 
-			//Change the php.ini settings to the users ini settings
-			self::$_config -> setSystemSettings();
-
 			//Set user language.
 			$_SESSION['user_language'] = \api\Api::getUsers() -> getUserLanguageBySession();
 
@@ -118,6 +115,9 @@
 			\core\removeMagicQoutes();
 			\core\unregisterGlobals();
 			\core\setTimezone();
+
+			//Change the php.ini settings to the users ini settings
+			self::$_config -> setSystemSettings();
 		}
 
 		/**

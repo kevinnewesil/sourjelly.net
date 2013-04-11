@@ -196,7 +196,7 @@
 
 			if($stmt = self::$_link->prepare($query))
 			{
-				if(!self::checkQuery($query,'INSERT',true))
+				if(!self::checkQuery($query,'INSERT'))
 					\core\access\Redirect::Home('Something went wrong with the query.');
 				
 				if($types && $values)
@@ -287,11 +287,8 @@
 				return false;
 		}
 
-		public static function checkQuery($query, $sort = 'SELECT',$debug = false)
+		public static function checkQuery($query, $sort = 'SELECT')
 		{
-			if($debug)
-				var_dump($query);
-
 			if(strpos($query, $sort) === false)
 				return false;
 
