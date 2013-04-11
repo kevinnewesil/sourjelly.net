@@ -1,0 +1,272 @@
+#!/usr/bin/env php
+
+<?php
+	
+	//--------------------------------------------------------------------------------------------------------------------||
+	//Check if Request is made from terminal/command line.
+	//--------------------------------------------------------------------------------------------------------------------||
+
+	if (PHP_SAPI !== 'cli') {
+		die('Only terminal access');
+	}
+
+	$ret = PHP_EOL;
+
+	//--------------------------------------------------------------------------------------------------------------------||
+	//Check if the proper arguement is set, and if it's not empty. 
+	//Check for help request aswell.
+	//--------------------------------------------------------------------------------------------------------------------||
+
+	if(!isset($argv) || !isset($argv[1]) || $argv[1] == '' || $argv[1] == '-h' || $argv[1] == '--h'|| $argv[1] == '-help' || $argv[1] == '--help')
+	{
+		$ret .= "Please provide a method which this bash file should execute. Usage: " . PHP_EOL ." [--path-to-php] [path-to-bash-file] [method] " . PHP_EOL . "Methods: " . PHP_EOL . "\t install " . PHP_EOL. "\t migrate " . PHP_EOL . "\t backupdb" . PHP_EOL . "\t Generate ";
+	}
+	else
+	{
+
+		//--------------------------------------------------------------------------------------------------------------------||
+		//Let the good stuff begin.
+		//Require config files, and Classes.
+		//--------------------------------------------------------------------------------------------------------------------||
+		
+		require_once('core/cron.php');
+
+		//--------------------------------------------------------------------------------------------------------------------||
+		// Check which method a user wants to execute
+		//--------------------------------------------------------------------------------------------------------------------||
+
+		switch($argv[1])
+		{
+			case 'install':
+
+				require_once('core/build/install.class.php');
+				//--------------------------------------------------------------------------------------------------------------------||
+				// Make sure user wanted to use the install function..
+				//--------------------------------------------------------------------------------------------------------------------||
+				
+				$line = result('Are you sure you want to do this? typ "yes" to continue');
+
+				if(trim($line) != 'yes'){
+				    echo "ABORTING! " . PHP_EOL;
+				    exit;
+				}
+
+				echo "Thank you, continuing... " . PHP_EOL;
+				
+				//--------------------------------------------------------------------------------------------------------------------||
+				// Set all variables used in install class...
+				// See @result and @whileres functions for explination.
+				//--------------------------------------------------------------------------------------------------------------------||
+
+				$email     = result('E-mail address:...');
+				$name      = result('First name:...');
+				$lastname  = result('Last name:...');
+				$dob       = result('Date of birth; YYYY-mm-dd:...');
+				$password  = result('password:...');
+				$password2 = result('retype password:...');
+				
+				$tries     = 0;
+
+				//--------------------------------------------------------------------------------------------------------------------||
+				// Check if passwords match, if passwords don't match, retry password match, else retry password fully. else abort.
+				//--------------------------------------------------------------------------------------------------------------------||
+				
+				while($password2 !== $password)
+				{
+					if($tries > 1)
+					{
+						$password  = result('password:...');
+						$password2 = result('retype password:...');
+						$tries     = 0;
+					}
+					else
+					{
+						$password2 = result('passwords don\'t Match please try again:... ');
+						$tries++;
+					}
+
+				}
+
+				//--------------------------------------------------------------------------------------------------------------------||
+				// Check if migration is successfull for up to date Database..
+				// Check if user data is inserted correctly into database..
+				// Check if backup is made from new user data.. 
+				// Note that this file is only used when a new install is been made.., can't install multipul users on same database..
+				//--------------------------------------------------------------------------------------------------------------------||
+				
+				if(\core\autoMigrate())
+					if($install = new \core\build\Install($email,$password,$name,$lastname,$dob))
+						if(\core\databaseBackup())
+							$ret .= "installed succesfully! your app is now intiallised on your system." . PHP_EOL . "Your username is standard your e-mail adress" . PHP_EOL . "An activation e-mail is sent to:" . $email ." please click the link in the e-mail to activate your account." . PHP_EOL;
+						else
+							$ret .= "Couldn't create backup for database.";
+					else
+						$ret .= "Something went wrong saving the user data in the database, please try again";
+				else
+					$ret .= "could not create Database, please run the script again";
+
+				break;
+
+			//--------------------------------------------------------------------------------------------------------------------||
+			// Update database structure
+			//--------------------------------------------------------------------------------------------------------------------||
+
+			case 'migrate':
+				
+				if(\core\autoMigrate())
+					$ret .= "Migration executed succesfully";
+				else
+					$ret .= "Something went wrong migrating to the Database";
+				break;
+
+			//--------------------------------------------------------------------------------------------------------------------||
+			// Backup database with current rows in it in .sql file...
+			//--------------------------------------------------------------------------------------------------------------------||
+			
+			case 'backupdb':
+				if(\core\databaseBackup())
+					$ret .= "Backup made successfully";
+				else
+					$ret .= "Something went wrong createing Database Backup.";
+				break;
+
+			//--------------------------------------------------------------------------------------------------------------------||
+			// create controllers models and and view files with predefined functinos in the controller
+			//--------------------------------------------------------------------------------------------------------------------||
+			
+			case 'generate':
+
+				require_once(BUILD_PATH . 'template.class.php');
+
+				$values      = $argv;
+				$functions   = '';
+				$functionTmp = \core\build\Template::getSnippet('functions.tpl','cli');
+				$classTmp	 = \core\build\Template::getSnippet('class.tpl','cli');
+
+				array_shift($values);
+				array_shift($values);
+
+				$controller = ucfirst($values[0]);
+				$classname  = ucfirst(substr($values[0],0,-1));
+
+				array_shift($values);
+
+				$modelTmp      = str_replace(
+					array('{classname}','{functions}','{namespace}','{extends}'),
+					array($classname,'','models','Model'),
+					$classTmp
+				);
+
+				$controllerTmp = str_replace(
+					array('{classname}','{namespace}','{extends}'),
+					array($controller,'controllers','Controller'),
+					$classTmp
+				);
+				
+				echo 'Writing model..' . PHP_EOL;
+				sleep(1);
+
+				$modelHandle = fopen('models' . DIRECTORY_SEPARATOR . strtolower($classname) . '.class.php','w');
+
+				if(fwrite($modelHandle,$modelTmp))
+					echo 'Model ' . $classname .' created...' . PHP_EOL . 'Writing controller' . PHP_EOL;
+				else
+					die('Something went wrong creating the files.. aborting..');
+				
+				fclose($modelHandle);
+				sleep(1);
+
+				foreach($values as $value)
+					$functions .= str_replace('{functionname}', $value , $functionTmp);
+
+				$controllerTmp    = str_replace('{functions}',$functions,$controllerTmp);
+				
+				$controllerHandle = fopen('controllers' . DIRECTORY_SEPARATOR . strtolower($controller) . '.class.php', 'w');
+
+				if(fwrite($controllerHandle,$controllerTmp))
+					echo 'Controller Created...' . PHP_EOL . 'Creating view folder' . PHP_EOL;
+				else
+					die('Something went wrong creating the files.. aborting..');
+				
+				fclose($controllerHandle);
+				sleep(1);
+
+				if(!is_dir('views' . DIRECTORY_SEPARATOR . 'pages' . DIRECTORY_SEPARATOR . strtolower($classname)))
+					if(mkdir('views' . DIRECTORY_SEPARATOR . 'pages' . DIRECTORY_SEPARATOR . strtolower($classname)))
+						echo 'View folder ' . $classname . ' created..' . PHP_EOL . 'Creating view index' . PHP_EOL;
+					else
+						die('Something went wrong creating the files.. aborting..');
+
+				//--------------------------------------------------------------------------------------------------------------------||
+				// Sleep before Fopen -> Otherwhise code creates a file when the folder is not yet existing.
+				//--------------------------------------------------------------------------------------------------------------------||
+				sleep(1);
+
+				$viewIndex = fopen('views' . DIRECTORY_SEPARATOR . 'pages' . DIRECTORY_SEPARATOR . strtolower($classname) . DIRECTORY_SEPARATOR . 'index.html.tpl','w');
+				fwrite($viewIndex,'');
+				fclose($viewIndex);
+
+				echo 'View file created';
+				sleep(1);
+
+				$ret .= 'Files generated succesfully!';
+
+				break;
+
+			//--------------------------------------------------------------------------------------------------------------------||
+			// If the method does not exists, give error message to the user.
+			//--------------------------------------------------------------------------------------------------------------------||
+			
+			default:
+				$ret .= "Please provide a method which this bash file should execute. Usage: " . PHP_EOL ." [--path-to-php] [path-to-bash-file] [method] " . PHP_EOL . "Methods: " . PHP_EOL . "\t install " . PHP_EOL. "\t migrate " . PHP_EOL . "\t backupdb";
+				break;
+		}
+	}
+
+	$ret .= "\n";
+
+	//--------------------------------------------------------------------------------------------------------------------||
+	// Functions result , opens a handle, and reads input user put into CLI
+	//--------------------------------------------------------------------------------------------------------------------||
+	
+	function result($message)
+	{
+		echo $message . PHP_EOL;
+
+		$handle = fopen ("php://stdin","r");
+		$input  = trim(fgets($handle));
+		return whileRes($input);
+
+	}
+
+	//--------------------------------------------------------------------------------------------------------------------||
+	// Loops result so that you can't have empty result, or stops entire script after to many tries
+	//--------------------------------------------------------------------------------------------------------------------||
+
+	function whileRes($input){
+		$tries = 0;
+
+		while(trim($input) == '')
+		{
+			if($tries > 1)
+			{
+				echo "to many invalid tries.. Aborting" . PHP_EOL;
+				exit();
+			}
+
+			echo 'invalid input try again:..' . PHP_EOL;
+			
+			$handle = fopen ("php://stdin","r");
+			$input  = trim(fgets($handle));
+
+			$tries++;
+		}
+
+		return $input;
+	}
+
+	//--------------------------------------------------------------------------------------------------------------------||
+	//Show the result of the bash to the 'user', end stop the script fully...
+	//--------------------------------------------------------------------------------------------------------------------||
+
+	die($ret);

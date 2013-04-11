@@ -1,0 +1,82 @@
+<?php namespace controllers;
+
+	/** 
+	* @author  Kevin Newesil <newesil.kevin@gmail.com>
+	* @version  1.0 
+	* @package  default
+	* 
+	*/
+	class Settings extends \core\system\Controller
+	{
+		/**
+		 * Calls for the main controller function to be created, so that the controller has al the main attributes and methods.
+		 */
+		public function __construct()
+		{	
+			parent::__construct();
+		}
+
+		/**
+		 * This function renders the html of the settings page, and replaces all the values of the form with the settings the user has allready set.
+		 */
+		public function index()
+		{
+			$page = \core\build\Template::getTemplate('settings/index.html.tpl');
+			$settings = \core\build\Sourjelly::getApi() -> getSettings() -> getSystemSettings();
+
+			$placeholders = array(
+				'{checked_displayErrors}',
+				'{checked_displayStartupErrors}',
+				'{checked_logErrors}',
+				'{checked_trackErrors}',
+				'{checked_htmlErrors}',
+				'{maxExecutionTime}',
+				'{memoryLimit}',
+				'{postMaxSize}',
+				'{uploadMaxFilesize}',
+				'{maxFileUploads}',
+				'{checked_embeddedHtml}',
+				'{checked_ipMonitoring}',
+				'{dataTimezone}',
+			);
+			$replacers = array(
+				$settings['displayErrors'] == 1 ? 'checked="checked"' : '',
+				$settings['displayStartupErrors'] == 1 ? 'checked="checked"' : '',
+				$settings['logErrors'] == 1 ? 'checked="checked"' : '',
+				$settings['trackErrors'] == 1 ? 'checked="checked"' : '',
+				$settings['htmlErrors'] == 1 ? 'checked="checked"' : '',
+				$settings['maxExecutionTime'],
+				$settings['memoryLimit'],
+				$settings['postMaxSize'],
+				$settings['uploadMaxFilesize'],
+				$settings['maxFileUploads'],
+				$settings['embeddedHtml'] == 1 ? 'checked="checked"' : '',
+				$settings['ipMonitoring'] == 1 ? 'checked="checked"' : '',
+				$settings['timezone']
+			);
+
+			$page = str_replace($placeholders, $replacers, $page);
+			\core\build\Sourjelly::getHtml()->assign('{content}',$page);
+		}
+
+		/**
+		 * This function calls for the settings model, and updates the system settings.
+		 */
+		function update()
+		{
+			if(\api\Api::getUsers() -> getUserPremissionBySession() < 2)
+				\core\access\Redirect::Home('No premission to change system settings');
+			
+			if($this->_model -> update())
+				\core\access\Redirect::To(HOME_PATH . '/settings/index/?ns=controllers&path=controller_path' , 'System settings successfully updated','success');
+			else
+				\core\access\Redirect::To(HOME_PATH . '/settings/index/?ns=controllers&path=controller_path' , 'something went wrong updating the system settings.');
+		}
+        
+        public function social()
+        {
+            $tmp = \core\build\Template::getTemplate('settings/socialmedia.html.tpl');
+
+           \core\build\Sourjelly::getHtml()->Assign('{content}',$tmp); 
+        }
+	}

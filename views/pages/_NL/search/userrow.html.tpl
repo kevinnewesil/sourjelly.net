@@ -1,0 +1,9 @@
+<tbody>
+	<tr>
+		<td>{name}</td>
+		<td>{lastname}</td>
+		<td>{email}</td>
+		<td>{registered}</td>
+		<td>{active}</td>
+	</tr>
+</tbody>

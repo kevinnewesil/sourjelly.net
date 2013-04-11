@@ -1,0 +1,59 @@
+.pull{
+	width:40px;
+	height:50px;
+	background-color:black;
+	border-radius:0 0 50px 50px ;
+	position:absolute;
+	margin-left:45%;
+	margin-bottom:50px;
+}
+
+.pull i{
+	position:absolute;
+	bottom:10%;
+	left:35%;
+}
+
+.sortable{
+	font-size:13pt;
+	width:50%;
+	background-color:#F9F9F9;
+}
+
+.sortable li{
+
+	font-weight: bolder;
+	cursor:move;
+	margin-bottom:5px;
+	padding:2px 0;
+
+	border: #E6EEEE 2px solid;
+	border-radius: 5px;
+	z-index: -1px;
+
+	box-shadow: 0 5px 5px #666666;
+}
+
+.sortable li ol{
+
+}
+
+.sortable li ol li{
+	border-right: none;
+
+	box-shadow: 0 5px 5px #888888;
+}
+
+.sortable li ol li:last-child{
+	margin-bottom:10px;
+}
+
+.themeForm input[type="text"]{
+	color : #9d261d;
+}
+.image-upload-box{
+	min-height:300px;
+}
+.navbar-custom{
+	box-shadow: 0 4px 6px -6px #232323;
+}

@@ -1,0 +1,146 @@
+<?php namespace api\local; if(!defined("DS")) die('no direct script access!');
+
+	/**
+	 * @author  Kevin Newesil <newesil.kevin@gmail.com>
+	 * @version  1.0
+	 * @package  default
+	 *
+	 * The Api_pages class is only callable via the \api\Api class. This pages API class , is a local API class that makes calls to the pages table.
+	 * This class is the only class that is allowed to access the pages table.
+	 *
+	 * @var $_link MySQLI resource The link to the database
+	 */
+	class Api_pages
+	{
+		protected static $_link;
+
+		/**
+		 * Sets the link to the database from the Main \api\Api class into this smaller api class.
+		 * @param MySQLI resource $link The link to the database
+		 */
+		public function __construct($link)
+		{
+			self::$_link = $link;
+		}
+
+		/**
+		 * gets all non deprecated pages and their information. I have no idea what the hack that is for, but possibly 'cause I was to lazy to write more queries.
+		 * @return array An array, with arrays with the values of each page.
+		 */
+		public function getAllPages()
+		{
+			$pagesQuery = "SELECT `title`,`content`,`created_at`,`updated_at`,`has_parent`,`id` FROM `table_content` WHERE `deprecated` != 1 ORDER BY `menu_order` ASC";
+			$pageArray  = array();
+
+			if($stmt = self::$_link->prepare($pagesQuery))
+			{
+				$stmt->execute();
+				$stmt -> store_result();
+
+				$stmt->bind_result($title,$content,$created_at,$updated_at,$has_parent,$id);
+
+				while($row = $stmt->fetch())
+					$pageArray[] = array($title,$content,$created_at,$updated_at,$has_parent,$id);
+
+				$stmt->close();
+			}
+			else
+				die(self::$_link->error);
+
+			return $pageArray;
+		}
+
+		/**
+		 * This gets a page via an Id, or via the Title if nessecairy.
+		 * @param  int 		$id    	The id of the page which should be fetched.
+		 * @param  string 	$title 	The title of the page which should be fetched.
+		 * @return array        	An array with the data of the fetched page.
+		 */
+		public function getPage($id , $title = null)
+		{
+			$return = array();
+
+			if($title == NULL)
+			{
+				$query = "SELECT `id`,`title`,`content`,`created_at`,`parent_id` FROM `table_content` WHERE `id` = ? AND `deprecated` != 1 ORDER BY `menu_order` ASC";
+			}
+			else
+			{
+				$query = "SELECT `id`,`title`,`content`,`created_at`,`parent_id` FROM `table_content` WHERE `title` = ? AND `deprecated` != 1  ORDER BY `menu_order` ASC";
+			}
+
+			if($stmt = self::$_link->prepare($query))
+			{
+				if($title == NULL)
+					$stmt->bind_param('s',$id);
+				else
+					$stmt->bind_param('s',$title);
+
+				$stmt->execute();
+				$stmt -> store_result();
+
+				if($stmt -> num_rows !== 0)
+				{
+					$stmt->bind_result($id,$title,$content,$created_at,$parent_id);
+
+					while($stmt->fetch())
+					{
+						$return = array($id,$title,$content,$created_at,'parent' => $parent_id);
+					}
+				}
+				else
+				{
+					$return = array();
+				}
+
+				$stmt->close();
+			}
+
+			return $return;
+		}
+
+		/**
+		 * Gives you a page Id from a page title. Usefull for getting Id's via urls.
+		 * @param  string $title 	The title of the page where you need the ID from.
+		 * @return int        		The id of the page you wanted.
+		 */
+		public function getIdFromTitle($title)
+		{
+			(int)$return = NULL;
+			$query       = "SELECT `id` FROM `table_content` WHERE `deprecated` != 1 AND `title` = ?";
+
+			if($stmt = self::$_link->prepare($query))
+			{
+				$stmt->bind_param('s',$title);
+				$stmt->execute();
+				$stmt->bind_result($id);
+				while($stmt->fetch())
+				{
+					(int)$return = $id;
+				}
+				$stmt->close();
+				return $return;
+			}
+			return false;
+		}
+
+		/**
+		 * Get's all depreacted pages from the database, so you never have data that's lost for people whom don't know how to backup.
+		 * @return array An array with the data of all deleted pages.
+		 */
+		public function getDeletedPages()
+		{
+			$return = array();
+			$query  = "SELECT * FROM `table_content` WHERE `deprecated` = 1 ORDER BY `menu_order` ASC";
+
+			if($res = self::$_link->query($query))
+			{
+				while($row = $res->fetch_assoc())
+					$return[] = $row;
+				
+				$res->close();
+			}
+
+			return $return;
+		}
+	}
