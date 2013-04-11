@@ -1,6 +1,11 @@
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('.redactor').redactor();
+		$('.redactor').redactor({ minHeight: 250 });
+
+		$(".empty-form").click(function(){
+			$("textarea").html('');
+			$(".redactor_editor").html('');
+		});
 	});
 </script>
 
@@ -32,7 +37,7 @@
 				<ul class="nav nav-tabs">
 					<li class="disabled"><a href="#">Extra information</a></li>
 					<li class="active"><a href="#meta-data" data-toggle="tab">Meta data</a></li>
-					<li><a href="#tab2" data-toggle="tab">Section 2</a></li>
+					<li><a href="#contentProbs" data-toggle="tab">Content properties</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="meta-data">
@@ -50,8 +55,20 @@
 							</div>
 						</div>
 					</div>
-					<div class="tab-pane" id="tab2">
-						<p>Howdy, I'm in Section 2.</p>
+					<div class="tab-pane" id="contentProbs">
+						<div class="control-group">
+							<label for="contentId" class="control-label">Id:</label>
+							<div class="controls">
+								<input type="text" name="contentId" value="" id="contentId" placeholder="Id1 Id2 Id3">
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label for="contentClass" class="control-label">Class:</label>
+							<div class="controls">
+								<input type="text" name="contentClass" value="" id="contentClass" placeholder="Class1 class2 class3">
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -75,7 +92,7 @@
 	<div class="control-group">
 		<div class="controls">
 			<button type="submit" name="submit" value="create" class="btn btn-primary btn-large">Create page</button>
-			<button type="reset" class="btn btn-inverse btn-large">Empty form</button>
+			<button type="reset" class="btn btn-inverse btn-large empty-form">Empty form</button>
 		</div>
 	</div>
 </form>
