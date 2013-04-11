@@ -9,6 +9,7 @@
 	//Define paths
 	DEFINE('MAIN_PATH', dirname(__DIR__) . DS);
 
+	//Make sure to re-check this one... fucking failures every fucking where.
 	if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] == 'localhost' && $_SERVER['SCRIPT_NAME'] !== 'index.php')
 	{
 		DEFINE('AJAX_PATH', dirname(dirname($_SERVER['SCRIPT_NAME'])) . DS . 'ajax' . DS);
