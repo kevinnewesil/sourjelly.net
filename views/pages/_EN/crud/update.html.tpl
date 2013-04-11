@@ -1,20 +1,46 @@
-<form action="{base}/crud/update/{id}/?ns=controllers&amp;path=controller_path" method="post" class="form">
-	<label for="title">Title:</label>
-	<input type="text" name="title" value="{title}" id="title">
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.redactor').redactor();
+	});
+</script>
 
-	<label for="content">Content:</label>
-	<textarea name="content" id="content" rows="15" class="span11">{content}</textarea>
+<form action="{base}/crud/update/{id}/?ns=controllers&amp;path=controller_path" method="post" class="form form-horizontal">
 
-	<label for="parent">Submenu of:</label>
-	<select name="parent" id="parent">
-		{parent}
-	</select>
-	<br><br>
+	<div class="control-group">
+		<label class="control-label" for="title">Title:</label>
+		<div class="controls">
+			<input type="text" name="title" value="{title}" id="title">
+		</div>
+	</div>
 
-	visable in main menu :  <input type="checkbox" name="visable" {checked_visable}>
+	<div class="control-group">
+		<label for="content" class="control-label">Content:</label>
+		<div class="controls">
+			<textarea name="content" id="content" rows="15" class="redactor">{content}</textarea>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<label for="parent" class="control-label">Submenu of:</label>
+		<div class="controls">
+			<select name="parent" id="parent">
+				{parent}
+			</select>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<label class="control-label">visable in main menu:</label>
+		<div class="controls">
+			<input type="checkbox" name="visable" {checked_visable}>
+		</div>
+	</div>
 	
-	<br><br>
-	Page created on: {created_at}
-	<br><br>
-	<input type="submit" name="submit" value="update" class="btn btn-primary btn-large" id="update">
+	<!-- Page created on: {created_at} -->
+	
+	<div class="control-group">
+		<div class="controls">
+			<input type="submit" name="submit" value="update" class="btn btn-primary btn-large" id="update">
+		</div>
+	</div>	
 </form>

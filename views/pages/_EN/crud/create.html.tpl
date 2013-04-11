@@ -1,24 +1,47 @@
-<form method="post" action="{base}/crud/create/?ns=controllers&amp;path=controller_path" class="form">
-	<h4>Create page</h4>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.redactor').redactor();
+	});
+</script>
 
-	<label for="title">Page title:</label>
-	<input type="text" name="title" value="" placeholder="pagina title" id="title"/>
-
-	<label for="parent">Belongs to menu item:</label>
-	<select name="parent" id="parent">
-		<option value="-">No submenu item</option>
-		{pagesoptions}
-	</select>
-
-	<label for="content">Page content:</label>
-	<textarea rows="15" name="content" id="content" class="span11" placeholder="De content van Uw nieuwe pagina komt hier."></textarea>
-
-	<br>
-
-	visable in main menu: <input type="checkbox" name="visable" checked="checked">
-
-	<br><br>
+<form method="post" action="{base}/crud/create/?ns=controllers&amp;path=controller_path" class="form form-horizontal">
+	<legend>Create page</legend>
 	
-	<button type="reset" class="btn btn-inverse btn-large">Empty form</button>
-	<button type="submit" name="submit" value="create" class="btn btn-primary btn-large">Create page</button>
+	<div class="control-group">	
+		<label for="title" class="control-label">Page title:</label>
+		<div class="controls">
+			<input type="text" name="title" value="" placeholder="Page title" id="title"/>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<label for="parent" class="control-label">Belongs to menu item:</label>
+		<div class="controls">
+			<select name="parent" id="parent">
+				<option value="-">No submenu item</option>
+				{pagesoptions}
+			</select>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<label for="content" class="control-label">Page content:</label>
+		<div class="controls">
+			<textarea rows="20" cols="30" name="content" id="content" class="redactor" placeholder="Page content"></textarea>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<label for="visable" class="control-label">visable in main menu:</label>
+		<div class="controls">
+			<input type="checkbox" name="visable" checked="checked">
+		</div>
+	</div>
+
+	<div class="control-group">
+		<div class="controls">
+			<button type="submit" name="submit" value="create" class="btn btn-primary btn-large">Create page</button>
+			<button type="reset" class="btn btn-inverse btn-large">Empty form</button>
+		</div>
+	</div>
 </form>

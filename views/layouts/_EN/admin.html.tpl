@@ -11,6 +11,7 @@
 		<link rel="stylesheet" href="{assets}css/bootstrap-responsive.min.css" type="text/css">
 		<link rel="stylesheet/less" href="{assets}css/theme.less" type="text/css">
 		<link rel="stylesheet" href="{assets}css/custom.css" type="text/css">
+		<link rel="stylesheet" href="{assets}css/redactor.css" type="text/css">
 		
 		<!-- Include Javascript files -->
 		
@@ -29,10 +30,12 @@
 		<script type="text/javascript" src="{assets}js/playsound.js" type="application/javascript"></script>
 		<script type="text/javascript" src="{assets}js/functions.js" type="application/javascript"></script>
 		<script type="text/javascript" src="{assets}js/less.js" type="application/javascript"></script>
+		<script type="text/javascript" src="{assets}js/redactor.js" type="application/javascript"></script>
 
 		<!-- Some random javascript -->
 		<script type="text/javascript" type="application/javascript">
 		$(document).ready(function(){
+
 			$("#search_form").submit(function(){
 				if ($("#search").val() == 'hahgay'){
 					$.playSound('{assets}sounds/hahgay.mp3');
