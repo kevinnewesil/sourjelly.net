@@ -38,7 +38,7 @@
 					$_POST['maxFileUploads'],
 					isset($_POST['embeddedHtml']) && $_POST['embeddedHtml'] == 'on' ? 1 : 0,
 					isset($_POST['ipMonitoring']) && $_POST['ipMonitoring'] == 'on' ? 1 : 0,
-					$_POST['dataTimezone'],
+					$_POST['timezone'],
 				),
 				array('id' => '1')
 			))

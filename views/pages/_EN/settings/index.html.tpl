@@ -42,10 +42,10 @@
 					value : inputValue,
 				},
 				success : function(data){
-					if(data.update)
-						alert('yay');
+					if(data.update == true)
+						$('[name="' + inputName + '"]').css({ 'background-color' : '#dff0d8', 'color' : '#468847'});
 					else
-						alert('booo!');
+						$('[name="' + inputName + '"]').css({ 'background-color' : '#f2dede', 'color' : '#b94a48'});
 				}
 			});
 		}
@@ -185,11 +185,11 @@
 		</div>
 
 		<div class="control-group">
-			<label for="dataTimezone" class="control-label">
+			<label for="timezone" class="control-label">
 				<abbr title="The timezone you are currently in: 'Europe/Amsterdam'">Timezone</abbr>
 			</label>
 			<div class="controls">
-				<input type="text" name="dataTimezone" id="dataTimezone" value="{dataTimezone}" placeholder="Europe/Amsterdam">
+				<input type="text" name="timezone" id="timezone" value="{timezone}" placeholder="Europe/Amsterdam">
 			</div>
 		</div>
 

@@ -27,14 +27,21 @@
 		// check if there aren't any harmfull injections being posted. if not, update settings directly.
 		case 'saveInput':
 
-			if(!strpos($_POST['value'], 'script'))
-				if(\api\Api::updateTable('table_settings',array($_POST['name']),array($_POST['value']), array('id' => '1'),true))
+			if($_POST['name'] !== 'lang')
+				if(!strpos($_POST['value'], 'script'))
+					if(\api\Api::updateTable('table_settings',array($_POST['name']),array($_POST['value']), array('id' => '1'),true))
+						$return['update'] = true;
+					else
+						$return['update'] = false;
+				else
+					$return['update'] = false;
+			else if($_POST['name'] == 'lang')
+				if(\api\Api::updateTable('table_users',array('lang'),array($_POST['value']),array("CONCAT(firstname , ' ' , lastname)" => $_SESSION['login']),true))
 					$return['update'] = true;
 				else
-					$return['update'] = 'false2';
+					$return['update'] = false;
 			else
-				$return['update'] = 'false1';
-
+				$return['update'] = false;
 			break;
 	}
 

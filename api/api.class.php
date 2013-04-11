@@ -254,7 +254,7 @@
 
 				$j++;  
 			}
-
+			
 			if($stmt = self::$_link->prepare($query))
 			{
 				$stmt->execute();

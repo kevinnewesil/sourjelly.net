@@ -37,7 +37,7 @@
 				'{maxFileUploads}',
 				'{checked_embeddedHtml}',
 				'{checked_ipMonitoring}',
-				'{dataTimezone}',
+				'{timezone}',
 			);
 			$replacers = array(
 				$settings['displayErrors'] == 1 ? 'checked="checked"' : '',
