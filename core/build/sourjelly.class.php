@@ -76,6 +76,7 @@
 			self::$_db     = new \core\database\DatabaseBase;
 			self::$_api    = new \api\Api;
 			//self::$_secure = new \core\access\Secure;
+			\core\removeMagicQoutes();
 
 			//Set user language.
 			$_SESSION['user_language'] = \api\Api::getUsers() -> getUserLanguageBySession();

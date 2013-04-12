@@ -12,8 +12,7 @@
 	{
 		function stripSlashesDeep($value)
 		{
-			$value = is_array($value) ? array_map('stripSlashesDeep',$value) : stripslashes($value);
-			return $value;
+			return is_array($value) ? array_map('\core\stripSlashesDeep',$value) : stripslashes($value);
 		}
 	}
 
@@ -21,12 +20,12 @@
 	{
 		function removeMagicQoutes()
 		{
-			//if(get_magic_quotes_gpc())
-			//{
-			//	$_GET	 = stripSlashesDeep($_GET	);
-			//	$_POST	 = stripSlashesDeep($_POST	);
-			//	$_COOKIE = stripSlashesDeep($_COOKIE);
-			//}
+			if(get_magic_quotes_gpc())
+			{
+				$_GET	 = stripSlashesDeep($_GET);
+				$_POST	 = stripSlashesDeep($_POST);
+				$_COOKIE = stripSlashesDeep($_COOKIE);
+			}
 		}
 	}
 

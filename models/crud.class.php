@@ -15,14 +15,18 @@
 		 */
 		public function create($create)
 		{
+			// Make sure that each array item is a variable by itself for easier parsing and less hacking as it's sort of hardcoded
 			foreach($create as $name => $value)
 				$$name = $value;
 
+			// Check if the page must be visable in the main menu or not
 			$visable = isset($visable) && $visable == 'on' ? '1' : '0';
 
+			// Check if data exists, if not, redirect home with error message.
 			if(!isset($title) || !isset($content) || !isset($parent))
 				\core\access\Redirect::to(HOME_PATH . '/crud/create/?ns=controllers&path=controller_path','something went wrong setting the variables, Please contact an administrator');
 
+			// Check if it's a submenu item or not. if not set to 0, else set to 1 and get parent id.
 			if($parent == '-')
 			{
 				$has_parent = '0';
@@ -36,11 +40,20 @@
 				$parentId = $parentContent[0];
 			}
 
-			if(\api\Api::insertInto('table_content',
-					array('title','content','has_parent','parent_id','menu_order','deprecated','public','visable','created_at'),
-					array($title,$content,$has_parent,$parentId , '0','0','1',$visable,date('Y-m-d H:i:s')),
-					'ssiiiiiis')
-				)
+			// Check if the user wants a custom id / class / both for their content area for personal styling.
+			if(!empty($create['contentId']) && !empty($create['contentClass']))
+				$content = '<div id="' . $create['contentId'] . '" class="' . $create['contentClass'] . '">' . "\n\r" . $content ."\n\r" . '</div>';
+			elseif(empty($create['contentId']) && !empty($create['contentClass']))
+				$content = '<div class="' . $create['contentClass'] . '">' . "\n\r" . $content ."\n\r" . '</div>';
+			elseif(!empty($create['contentId']) && empty($create['contentClass']))
+				$content = '<div id="' . $create['contentId'] . '">' . "\n\r" . $content ."\n\r" . '</div>';
+
+			// Define the rows of the table that should be inserted into, and set those variables
+			$rows   = array('title','content','has_parent','parent_id','menu_order','deprecated','public','visable','meta_tags','meta_description','created_at');
+			$values = array($title,$content,$has_parent,$parentId , '0','0','1',$visable,$metaTags,$metaDescription,@date('Y-m-d H:i:s'));
+
+			// Make an internal API request for inserting data into the database.
+			if(\api\Api::insertInto('table_content',$rows,$values,'ssiiiiiisss'))
 				return true;
 			else
 				return false;		
