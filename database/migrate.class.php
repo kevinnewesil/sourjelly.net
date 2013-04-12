@@ -15,6 +15,7 @@
 			$this -> table_settings();
 			$this -> table_themes();
 			$this -> table_ip();
+			$this -> table_google_api();
 		}
 
 		protected function table_users()
@@ -134,9 +135,10 @@
 			\core\build\Sourjelly::getDb()->createTable("table_google_api",
 				array(
 					'uId' => 'int',
-					'token' => 'string',
+					'authToken' => 'string',
 					'clientId' => 'string',
 					'clientSecret' => 'string',
+					'refreshToken' => 'string',
 				)
 			);
 		}

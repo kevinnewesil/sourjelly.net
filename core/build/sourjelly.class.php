@@ -81,15 +81,16 @@
 			//Set user language.
 			$_SESSION['user_language'] = \api\Api::getUsers() -> getUserLanguageBySession();
 
-			// Read the url and explode on index.php
-			$url = explode('index.php/',$_SERVER['REQUEST_URI']);
-			
-			// Check if controller is in url
-			if(isset($url[1]) && $url[1] != '')
-				$fun = explode('/',$url[1]);
-
 			if (PHP_SAPI !== 'cli') {
-			//Check the user premission to make sure that only the class is build the visitor has access to.
+
+				// Read the url and explode on index.php
+				$url = explode('index.php/',$_SERVER['REQUEST_URI']);
+				
+				// Check if controller is in url
+				if(isset($url[1]) && $url[1] != '')
+					$fun = explode('/',$url[1]);
+				
+				//Check the user premission to make sure that only the class is build the visitor has access to.
 				if(\api\Api::getUsers() -> getUserPremissionBySession() > 1)
 				{
 					//Check the system for critical requirements

@@ -24,7 +24,7 @@
 			{
 				$function = 'set' .ucfirst($key);
 				$this -> _googleClient -> $function($value);
-				$this->_settings[$key] = $value;
+				$this -> _settings[$key] = $value;
 			}
 		}
 
