@@ -2,12 +2,13 @@
 
 	class Google exents \api\Api
 	{
-
 		protected $_token;
 		protected $_email;
 
-		protected $_google;
+		protected $_googleClient;
 		protected $_settings;
+
+		protected $_timeObject;
 
 		public function __construct($connectData)
 		{
@@ -17,12 +18,12 @@
 				\core\access\Redirect::Home('No google api data provided.');
 
 			require(API_PATH . 'google/client/Google_Client.php');
-			$this -> _google = new Google_Client;
+			$this -> _googleClient = new Google_Client;
 
 			foreach($connectData as $key => $value)
 			{
 				$function = 'set' .ucfirst($key);
-				$this -> _google -> $function($value);
+				$this -> _googleClient -> $function($value);
 				$this->_settings[$key] = $value;
 			}
 		}
@@ -41,5 +42,18 @@
 		public function resetToken()
 		{
 
+		}
+
+		public function getGoogleDateTimeEvent($timestamp, $timezone = 'Europe/London')
+		{
+			$obj = new Google_EventDateTime();
+			$obj -> setDateTime($this -> getGoogleDateFormat($timestamp));
+			$obj -> setTimeZone($timezone);
+			return $obj;
+		}
+
+		public function getGoogleDateFormat($timestamp)
+		{
+			return date("Y-m-d\TH:i:s.000+P",$timestamp);
 		}
 	}

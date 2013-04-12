@@ -129,6 +129,18 @@
 			);
 		}
 
+		protected function table_google_api()
+		{
+			\core\build\Sourjelly::getDb()->createTable("table_google_api",
+				array(
+					'uId' => 'int',
+					'token' => 'string',
+					'clientId' => 'string',
+					'clientSecret' => 'string',
+				)
+			);
+		}
+
 		protected function down()
 		{
 			\core\build\Sourjelly::getDb()->dropTable("table_content");
