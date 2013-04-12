@@ -57,3 +57,7 @@
 .navbar-custom{
 	box-shadow: 0 4px 6px -6px #232323;
 }
+
+.form-search{
+	padding:10px 0;
+}
