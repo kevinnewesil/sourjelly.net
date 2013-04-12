@@ -137,7 +137,7 @@
 		public function modules($pageId)
 		{
 
-			$modules     = \api\Api::getModules() -> getModuleByPageId($pageId);
+			$modules     = \api\Api::getModules() -> getModuleByPageId($pageId);;
 			$moduleClass = new \core\build\Modules($modules);
 			$html        = $moduleClass -> getHtml();
 		}

@@ -2,6 +2,7 @@
     <ul class="nav nav-tabs">
         <li class="active"><a href="#facebook" data-toggle="tab">Facebook</a></li>
         <li><a href="#twitter" data-toggle="tab">Twitter</a></li>
+        <li><a href="#google" data-toggle="tab">Google</a></li>
     </ul>
     <div class="tab-content">
         <div class="tab-pane active" id="facebook">
@@ -37,6 +38,35 @@
                             <input type="text" name="" value="" id="">
                         </div>
                     </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="tab-pane" id="google">
+            <form class="form form-horizontal" method="post" action="#">
+                <fieldset>
+                    <legend>Client data</legend>
+
+                    <div class="control-group">
+                        <label class="control-label" for="gmailAddress">E-mail address</label>
+                        <div class="controls">
+                            <input type="text" name="gmailAddress" value="{gmailAddress}" id="gmailAddress" placeholder="Gmail account">
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="clientId">Client ID</label>
+                        <div class="controls">
+                            <input type="text" name="clientId" value="{clientId}" id="clientId" placeholder="Google client id">
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label" for="clientSecret">Client secret</label>
+                        <div class="controls">
+                            <input type="text" name="clientSecret" value="{clientSecret}" id="clientSecret" placeholder="Google client id">
+                        </div>
+                    </div>
+
                 </fieldset>
             </form>
         </div>

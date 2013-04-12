@@ -7,7 +7,7 @@
 		$config = require(MODULES_PATH . 'contact_form/config/config.php');
 	else
 		//$config = array();
-
+	die(var_dump($_POST));
 	if(isset($_POST['contact_form_submit']) && $_POST['contact_form_submit'] == 'save contact form settings')
 	{
 		$data = $_POST;

@@ -170,7 +170,7 @@
 		 * @return boolean  			Returns true when affected rows is bigger than 0.
 		 * @example 					\api\Api::insert_into('table_name',array('column1','column2'),array('valueForColumn1','valueForColumn2'),'si');
 		 */
-		public static function insertInto($table,$columns,$values,$types) 
+		public static function insertInto($table,$columns,$values,$types,$debug = false) 
 		{
 
 			$query = "INSERT INTO `" . $table . "` (";
@@ -198,7 +198,7 @@
 			{
 				if(!self::checkQuery($query,'INSERT'))
 					\core\access\Redirect::Home('Something went wrong with the query.');
-				
+					
 				if($types && $values)
 		        {
 		            $bind_names[] = $types;
@@ -212,6 +212,9 @@
 		        }
 
 		        $stmt->execute();
+				
+		        if($debug)
+		        	die($stmt->error);
 
 		        if($stmt->affected_rows > 0 )
 		        	return true;

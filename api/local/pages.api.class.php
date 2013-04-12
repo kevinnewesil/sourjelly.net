@@ -65,11 +65,11 @@
 
 			if($title == NULL)
 			{
-				$query = "SELECT `id`,`title`,`content`,`created_at`,`parent_id`,`visable` FROM `table_content` WHERE `id` = ? AND `deprecated` != 1 ORDER BY `menu_order` ASC";
+				$query = "SELECT `id`,`title`,`content`,`created_at`,`parent_id`,`visable`,`meta_tags`,`meta_description`,`content_id`,`content_class` FROM `table_content` WHERE `id` = ? AND `deprecated` != 1 ORDER BY `menu_order` ASC";
 			}
 			else
 			{
-				$query = "SELECT `id`,`title`,`content`,`created_at`,`parent_id`,`visable` FROM `table_content` WHERE `title` = ? AND `deprecated` != 1  ORDER BY `menu_order` ASC";
+				$query = "SELECT `id`,`title`,`content`,`created_at`,`parent_id`,`visable`,`meta_tags`,`meta_description`,`content_id`,`content_class` FROM `table_content` WHERE `title` = ? AND `deprecated` != 1  ORDER BY `menu_order` ASC";
 			}
 
 			if($stmt = self::$_link->prepare($query))
@@ -87,11 +87,11 @@
 
 				if($stmt -> num_rows !== 0)
 				{
-					$stmt->bind_result($id,$title,$content,$created_at,$parent_id,$visable);
+					$stmt->bind_result($id,$title,$content,$created_at,$parent_id,$visable,$meta_tags,$meta_description,$content_id,$content_class);
 
 					while($stmt->fetch())
 					{
-						$return = array($id,$title,$content,$created_at,'parent' => $parent_id,'visable' => $visable);
+						$return = array($id,$title,$content,$created_at,'parent' => $parent_id,'visable' => $visable,$meta_tags,$meta_description,$content_id,$content_class);
 					}
 				}
 				else

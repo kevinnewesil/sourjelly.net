@@ -153,18 +153,18 @@
 				{
 					if(count($pageId)-1 > $i)
 					{
-						$query .= "`pages` LIKE '%" . $id . "%' AND ";
+						$query .= "`pages` = '" . $id . "' AND ";
 					}
 					else
 					{
-						$query .= "`pages` LIKE '%" . $id . "%' ";
+						$query .= "`pages` = '" . $id . "' ";
 					}
 					$i++;
 				}
 			}
 			else
 			{
-				$query .= "`pages` LIKE '%" . $pageId ."%' ";
+				$query .= "`pages` = '" . $pageId ."' ";
 			}
 
 			$query .= "AND `active` = '1' AND `deprecated` != '1'";
