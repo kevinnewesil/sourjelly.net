@@ -19,12 +19,12 @@
 			foreach($create as $name => $value)
 				$$name = $value;
 
-			// Check if the page must be visable in the main menu or not
-			$visable = isset($visable) && $visable == 'on' ? '1' : '0';
-
 			// Check if data exists, if not, redirect home with error message.
 			if(!isset($title) || !isset($content) || !isset($parent))
 				\core\access\Redirect::to(HOME_PATH . '/crud/create/?ns=controllers&path=controller_path','something went wrong setting the variables, Please contact an administrator');
+
+			// Check if the page must be visable in the main menu or not
+			$visable = isset($visable) && $visable == 'on' ? '1' : '0';
 
 			// Check if it's a submenu item or not. if not set to 0, else set to 1 and get parent id.
 			if($parent == '-')
@@ -55,8 +55,10 @@
 		 */
 		public function update($update)
 		{
+			// Set the parent variable for having a weird array order otherwhise
 			$parent = $update['parent'];
 
+			// Check if parent is set, if not leave empty, else change to proper page Id
 			if($parent == '-')
 			{
 				$update['has_parent'] = '0';
@@ -68,16 +70,19 @@
 
 				$parentContent = \api\Api::getPages() -> getPage('',$parent);
 				$update['parent_id'] = $parentContent[0];
-				
 			}
 
+			// Set a check on the visability of a page, if it's set and value is on, set on 1, else set on 0
 			$update['visable']    = isset($visable) && $visable == 'on' ? '1' : '0';
 			$update['updated_at'] = @date('Y-m-d H:i:s');
 
+			// Unset the weird order key for not having to hack into the array..
 			unset($update['parent']);
 			
-			$rows   = array('title','meta_tags','meta_description','content_id','content_class','content','has_parent','parent_id','visable','updated_at');
+			// Set the rows that need to be updated.
+			$rows = array('title','meta_tags','meta_description','content_id','content_class','content','has_parent','parent_id','visable','updated_at');
 
+			// Update the table, and return true on success.
 			return \api\Api::updateTable('table_content',$rows,$update,array('id' => $this->getId()));
 		}
 
@@ -87,6 +92,7 @@
 		 */
 		public function delete()
 		{
+			// Update the table to set a deprecated flag on the right row.
 			return \api\Api::updateTable('table_content',array('deprecated'),array('1'),array('id' => $this -> getId()));
 		}
 
@@ -96,6 +102,7 @@
 		 */
 		public function undoDelete()
 		{
+			// Update the table to remove the deprecated flag from the right row
 			return \api\Api::updateTable('table_content',array('deprecated'),array('0'),array('id' => $this -> getId()));
 		}
 
@@ -105,8 +112,10 @@
 		 */
 		protected function getId()
 		{
+			//Read the url and split it. check if there's an ID on the right place and if it's numeric
 			$rawUrl = explode('/index.php/',$_SERVER['REQUEST_URI']);
 			$parts = explode('/',$rawUrl[1]);
+			
 			if(is_numeric($parts[2]))
 				return $parts[2];
 			else

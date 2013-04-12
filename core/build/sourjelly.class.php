@@ -59,6 +59,7 @@
 		protected function startSourjelly()
 		{
 			//Render core classes and functions
+			$this -> beforeLoad();
 			$this -> callClasses();
 			$this -> callFunctions();
 			return;
@@ -76,7 +77,6 @@
 			self::$_db     = new \core\database\DatabaseBase;
 			self::$_api    = new \api\Api;
 			//self::$_secure = new \core\access\Secure;
-			\core\removeMagicQoutes();
 
 			//Set user language.
 			$_SESSION['user_language'] = \api\Api::getUsers() -> getUserLanguageBySession();
@@ -109,14 +109,17 @@
 		 * callFunctions This function calls the helper file, and executes basis user settings.
 		 * after that it uses the @class -> \config\Config , to set the user's system configuration right.
 		 */
-		protected function callFunctions()
+		protected function beforeLoad()
 		{
 			//Call the /core/helpers.php functions for better code processing.
 			\core\setLogFile();
 			\core\removeMagicQoutes();
 			\core\unregisterGlobals();
 			\core\setTimezone();
+		}
 
+		protected function callFunctions()
+		{
 			//Change the php.ini settings to the users ini settings
 			self::$_config -> setSystemSettings();
 		}
