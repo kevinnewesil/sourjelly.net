@@ -47,6 +47,13 @@
                     <legend>Client data</legend>
 
                     <div class="control-group">
+                        <label class="control-label" for="gmailAddress">E-mail address</label>
+                        <div class="controls">
+                            <input type="text" name="gmailAddress" value="{gmailAddress}" id="gmailAddress" placeholder="Gmail account">
+                        </div>
+                    </div>
+
+                    <div class="control-group">
                         <label class="control-label" for="clientId">Client ID</label>
                         <div class="controls">
                             <input type="text" name="clientId" value="{clientId}" id="clientId" placeholder="Google client id">
