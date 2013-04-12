@@ -40,20 +40,12 @@
 				$parentId = $parentContent[0];
 			}
 
-			// Check if the user wants a custom id / class / both for their content area for personal styling.
-			if(!empty($create['contentId']) && !empty($create['contentClass']))
-				$content = '<div id="' . $create['contentId'] . '" class="' . $create['contentClass'] . '">' . "\n\r" . $content ."\n\r" . '</div>';
-			elseif(empty($create['contentId']) && !empty($create['contentClass']))
-				$content = '<div class="' . $create['contentClass'] . '">' . "\n\r" . $content ."\n\r" . '</div>';
-			elseif(!empty($create['contentId']) && empty($create['contentClass']))
-				$content = '<div id="' . $create['contentId'] . '">' . "\n\r" . $content ."\n\r" . '</div>';
-
 			// Define the rows of the table that should be inserted into, and set those variables
-			$rows   = array('title','content','has_parent','parent_id','menu_order','deprecated','public','visable','meta_tags','meta_description','created_at');
-			$values = array($title,$content,$has_parent,$parentId , '0','0','1',$visable,$metaTags,$metaDescription,@date('Y-m-d H:i:s'));
+			$rows   = array('title','content','has_parent','parent_id','menu_order','deprecated','public','visable','meta_tags','meta_description','content_class','content_id','created_at');
+			$values = array($title,$content,$has_parent,$parentId , '0','0','1',$visable,$metaTags,$metaDescription,$contentClass,$contentId,@date('Y-m-d H:i:s'));
 
 			// Make an internal API request for inserting data into the database.
-			return \api\Api::insertInto('table_content',$rows,$values,'ssiiiiiisss');
+			return \api\Api::insertInto('table_content',$rows,$values,'ssiiiiiisssss');
 		}
 
 		/**
@@ -63,36 +55,30 @@
 		 */
 		public function update($update)
 		{
-			$id = $this->getId();
-
 			$parent = $update['parent'];
-			array_pop($update);
 
 			if($parent == '-')
 			{
-				array_push($update, '0');
-				array_push($update, '0');
+				$update['has_parent'] = '0';
+				$update['parent_id'] = '0';
 			}
 			else
 			{
-				array_push($update, '1');
+				$update['has_parent'] = '1';
 
 				$parentContent = \api\Api::getPages() -> getPage('',$parent);
-				$parentId = $parentContent[0];
-
-				array_push($update, $parentId);
+				$update['parent_id'] = $parentContent[0];
+				
 			}
 
-			$visable = isset($visable) && $visable == 'on' ? '1' : '0';
+			$update['visable']    = isset($visable) && $visable == 'on' ? '1' : '0';
+			$update['updated_at'] = @date('Y-m-d H:i:s');
 
-			array_push($update,$visable);
-			array_push($update,@date('Y-m-d H:i:s'));
+			unset($update['parent']);
 			
-			return \api\Api::updateTable('table_content',
-				array('title','content','has_parent','parent_id','visable','updated_at'),
-				$update,
-				array('id' => $id)
-			);
+			$rows   = array('title','meta_tags','meta_description','content_id','content_class','content','has_parent','parent_id','visable','updated_at');
+
+			return \api\Api::updateTable('table_content',$rows,$update,array('id' => $this->getId()));
 		}
 
 		/**

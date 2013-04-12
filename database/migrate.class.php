@@ -61,6 +61,8 @@
 					'visable' => 'int',
 					'meta_tags' => 'string',
 					'meta_description' => 'string',
+					'content_class' => 'string',
+					'content_id' => 'string',
 					'created_at' => 'timestamp',
 					'updated_at' => 'timestamp',
 				)
