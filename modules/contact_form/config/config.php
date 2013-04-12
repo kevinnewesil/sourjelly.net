@@ -1,10 +1,10 @@
 <?php  
-	 
-	$config['email'] = 'kevin@sourjelly.net';
-	$config['saveMail'] = '10';
-	$config['captcha'] = '1';
-	$config['position'] = 'OutsideRightTop';
-	$config['sticky'] = '1';
-	$config['allPages'] = '1';
 
-	return $config;
+	$config['email'] = 'kevin@sourjelly.net,alain@sourjelly.net';
+	$config['saveMail'] = '10';
+	$config['captcha'] = '0';
+	$config['sticky'] = '0';
+	$config['allPages'] = '0';
+ 
+
+	 return $config;
