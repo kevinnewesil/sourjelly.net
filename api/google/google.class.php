@@ -36,9 +36,6 @@
 		{
 			if(empty($services) or !is_array($services))
 				\core\access\Redirect::Home('no valid services provided','error');
-
-			
-			
 		}
 
 		public function resetToken()

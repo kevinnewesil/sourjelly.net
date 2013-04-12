@@ -26,22 +26,30 @@
 		 */
 		public function __construct()
 		{
-			
+			// Read the url and explode on index.php
 			$url = explode('index.php/',$_SERVER['REQUEST_URI']);
-			
+
+			// Check if controller is in url
 			if(isset($url[1]) && $url[1] != '')
 			{
+				// Here is where the fun begins.
 				$fun = explode('/',$url[1]);
-				if($fun[0] == 'admin' && $fun[1] == '')
+
+				// Check if authentication request is made, and check for shortened url
+				if($fun[0] == 'auth' && !isset($fun[1]) || $fun[1] == '')
 				{
-					header('location:' . HOME_PATH . '/admin/index/?ns=controllers&path=controller_path');
+					header('location:' . HOME_PATH . '/auth/login/?ns=access&path=access_path&login=login');
 					exit();
 				}
+
+				// Explode the parts on / , basically the same as $fun..
 				$this->_parts = explode('/',$url[1]);
+
+				// Start the autoloader.
 				$this->Autoload();
-			}else{
+			}else
+				// Load the index page.
 				$this->buildIndex();
-			}	
 		}
 		
 		/**
@@ -53,6 +61,7 @@
 		 */		
 		private function IncludeClass()
 		{	
+			// Return if file could be included or not.
 			return include(constant(strtoupper($_GET['path'])) . $this->_parts[0] . '.class.php');
 		}
 		
@@ -66,21 +75,24 @@
 		 */
 		public function Autoload()
 		{
+			// Check if everything is actually defined.
 			if($this->_parts == NULL)
-			{
 				\core\access\Redirect::Home('Directory sould be provided!');
-			}
 			
-			// ZOMBIEEEE SESSIONNNNNNS?????!!!!!!!! HELP HEEEEEEELP HEEEEELPPPPPPP MEEEEEE! :( NO ARGGGGGGHHHHHHHHHH 
+			// Check if class could be included, if not redirect with message and render index.
 			if($this->IncludeClass() !== 1) \core\access\Redirect::Home('Class does not exist. check if your link is still valid!');
 
+			// check if namespace could be fetched, if namespace couldn't be fetched fuck the system.
 			if(!isset($_GET['ns']) || $_GET['ns'] == '') \core\access\Redirect::Home('No namespace defined');
 			$this->_ns = constant(strtoupper($_GET['ns']));
 
-			$class = constant(strtoupper($_GET['ns'])) . '\\' . $this->_parts[0];
+			// Define the classname including the namespace.
+			$class = $this -> _ns . '\\' . $this->_parts[0];
 
+			// Load the class.
 			$this->_class[$this->_parts[0]] = new $class;
 
+			// If controller function is set, load the function otherwhise just execute the construct of the function
 			isset($this->_parts[1]) ? $this->AutoFunction(): '';
 		}
 
@@ -92,26 +104,29 @@
 		 * Example url: index.php/auth/register << calls for class Auth function Register.
 		 */
 		public function AutoFunction()
-		{		
+		{	
+			// check if function name is actually defined..
 			!isset($this->_parts[1]) ? \core\access\Redirect::Home('No function found to excute in class.') : '';
+			// Check if a class is defined to call the function in
 			$this->_class == NULL ? \core\access\Redirect::Home('No class defined. Please use the Autoload function before using the Autofunction.') : '' ;
 
+			// get the valid class object
 			$class = $this->_class[$this->_parts[0]];
 			$function = $this->_parts[1];
 
+			// Check if function requires parameters from url such as an ID
 			if(isset($this->_parts[3]))
 			{
+				// Create an array with every parameter
 				foreach($this->_parts as $key => $getElement)
-				{
 					($key != 0 || $key != 1) ? $params[] = $getElement : '';
-				}
 
+				// Call the function within the class with the rights parameters
 				$class->$function($params);
 			}
 			else
-			{
+				// Call the function within the class without parameters.
 				$class->$function();
-			}
 		}
 
 		/**
@@ -120,9 +135,8 @@
 		 */
 		public function buildIndex()
 		{
-			$tmp = \core\build\Template::getTemplate('index.html.tpl');
-			
-			\core\build\Sourjelly::getHtml()->Assign('{content}',$tmp);
+			// Assign the index page to the content area in the html via the html base class.
+			\core\build\Sourjelly::getHtml()->Assign('{content}',\core\build\Template::getTemplate('index.html.tpl'));
 		}
 
 		/**
