@@ -53,10 +53,7 @@
 			$values = array($title,$content,$has_parent,$parentId , '0','0','1',$visable,$metaTags,$metaDescription,@date('Y-m-d H:i:s'));
 
 			// Make an internal API request for inserting data into the database.
-			if(\api\Api::insertInto('table_content',$rows,$values,'ssiiiiiisss'))
-				return true;
-			else
-				return false;		
+			return \api\Api::insertInto('table_content',$rows,$values,'ssiiiiiisss');
 		}
 
 		/**
@@ -89,16 +86,13 @@
 			$visable = isset($visable) && $visable == 'on' ? '1' : '0';
 
 			array_push($update,$visable);
-			array_push($update,date('Y-m-d H:i:s'));
+			array_push($update,@date('Y-m-d H:i:s'));
 			
-			if(\api\Api::updateTable('table_content',
+			return \api\Api::updateTable('table_content',
 				array('title','content','has_parent','parent_id','visable','updated_at'),
 				$update,
 				array('id' => $id)
-			))
-				return true;
-			else
-				return false;
+			);
 		}
 
 		/**
@@ -107,16 +101,7 @@
 		 */
 		public function delete()
 		{
-			$id = $this->getId();
-
-			if(\api\Api::updateTable('table_content',
-				array('deprecated'),
-				array('1'),
-				array('id' => $id)
-			))
-				return true;
-			else
-				return false;
+			return \api\Api::updateTable('table_content',array('deprecated'),array('1'),array('id' => $this -> getId()));
 		}
 
 		/**
@@ -125,16 +110,7 @@
 		 */
 		public function undoDelete()
 		{
-			$id = $this->getId();
-
-			if(\api\Api::updateTable('table_content',
-				array('deprecated'),
-				array('0'),
-				array('id' => $id)
-			))
-				return true;
-			else
-				return false;
+			return \api\Api::updateTable('table_content',array('deprecated'),array('0'),array('id' => $this -> getId()));
 		}
 
 		/**

@@ -49,10 +49,9 @@
 					<!-- Shows page title and content, and the modules connected to the pages. -->
 					<div class="content">
 						<h2>{title}</h2> <!-- The title of the page, dynamically inserted. -->
-						<hr>
-						<p>
-							{content} <!-- The content of the page, dynamically inserted. -->
-						</p>
+					
+						{content} <!-- The content of the page, dynamically inserted. -->
+						
 					</div>
 					{moduleHtml} <!-- The module(s) that belong to an html page, dynamically build. -->
 				</div>
