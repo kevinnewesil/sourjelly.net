@@ -81,12 +81,12 @@
 								{login}
 							</div>
 							<!-- Search bar layout bugs on larger bar -->
-						    <form method="post" action="{base}/search/index/?ns=controllers&amp;path=controller_path" id="search_form" class="navbar-form form-search pull-right">
-							   	 <div class="input-append">
-									<input type="text" class="span2 search-query" name="search" value="" placeholder="Search" id="search">
-									<button type="submit" class="btn">Search</button>
-								</div>
-						    </form>
+							    <form method="post" action="{base}/search/index/?ns=controllers&amp;path=controller_path" id="search_form" class="navbar-form form-search pull-right">
+								   	 <div class="input-append">
+										<input type="text" class="span2 search-query" name="search" value="" placeholder="Search" id="search">
+										<button type="submit" class="btn">Search</button>
+									</div>
+							    </form>
 						</div>
 					</div>
 				</div>

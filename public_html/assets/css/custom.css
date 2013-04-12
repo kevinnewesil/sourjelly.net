@@ -61,3 +61,15 @@
 .form-search{
 	padding:10px 0;
 }
+.dropdowndiv{
+	background-image : url('../img/debut_dark.png');
+	background-repeat: repeat-x;
+	height           :150px;
+	margin           : 60px auto 0 auto;
+	width            :790px;
+	text-align       :center;
+	border-bottom    : 1px solid #B1B1B1;
+	padding          :20px 5%;
+	background-color :#FEFEFE;
+	display          :none;
+	}
