@@ -86,7 +86,7 @@
 			$moduleInfo   = \api\Api::getModules() -> getModuleById(); 
 			$configLayout = \core\build\Template::getSnippet('configLayout.html.tpl');
 			$placeholders = array( '{varname}' , '{varvalue}' );
-			$configFile   = "<?php  \n\r\t " ;
+			$configFile   = "<?php  \n\r\n\r" ;
 
 			//Check the folder premission of the Module
 			//$info = \core\access\System::getPremissions( MODULES_PATH . $moduleInfo[0][0] );
@@ -96,7 +96,7 @@
 				$configFile .= str_replace( $placeholders , array($varname , $varvalue ) , $configLayout );
 
 			// Return the config variable for usage in the system
-			$configFile .= " \n\r\n\r\t " . "return $config";
+			$configFile .= " \n\r\n\r\t " . 'return $config;';
 
 			//Check if the directory config exists in the module, if not crate one.
 			if(!is_dir(MODULES_PATH . $moduleInfo[0][0] . '/config'))
@@ -110,7 +110,7 @@
 
 			//Final checks if everything worked, if the file exists and the update was between a minute ago and a minute later, the file has been updated.
 			if(file_exists(MODULES_PATH . $moduleInfo[0][0] . '/config/config.php'))
-				if( filectime(MODULES_PATH . $moduleInfo[0][0] . '/config/config.php') > (time() - 60 ) && filectime(MODULES_PATH . $modulesInfo[0][0] . '/config/config.php') < (time() + 60))
+				if(@filectime(MODULES_PATH . $moduleInfo[0][0] . '/config/config.php') > (time() - 60 ) && @filectime(MODULES_PATH . $modulesInfo[0][0] . '/config/config.php') < (time() + 60))
 					\core\access\Redirect::Refresh("The config file has been updated", "success");
 				else
 					\core\access\Redirect::Refresh("Config file couldn't not be overwritten");

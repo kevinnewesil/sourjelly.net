@@ -15,6 +15,7 @@
 			$this -> table_settings();
 			$this -> table_themes();
 			$this -> table_ip();
+			$this -> table_google_api();
 		}
 
 		protected function table_users()
@@ -61,6 +62,8 @@
 					'visable' => 'int',
 					'meta_tags' => 'string',
 					'meta_description' => 'string',
+					'content_class' => 'string',
+					'content_id' => 'string',
 					'created_at' => 'timestamp',
 					'updated_at' => 'timestamp',
 				)
@@ -123,6 +126,19 @@
 					'remoteIp' => 'string',
 					'lastOnline' => 'timestamp',
 					'blacklist' => 'int'
+				)
+			);
+		}
+
+		protected function table_google_api()
+		{
+			\core\build\Sourjelly::getDb()->createTable("table_google_api",
+				array(
+					'uId' => 'int',
+					'authToken' => 'string',
+					'clientId' => 'string',
+					'clientSecret' => 'string',
+					'refreshToken' => 'string',
 				)
 			);
 		}

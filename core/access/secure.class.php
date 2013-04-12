@@ -6,23 +6,28 @@
 
 		private $_hash       = array();
 
-		public function createHash($string)
+		public function createHash($string, $salt = 'sourjelly', $pepper = 'SmokeWeedEveryDay')
+		{
+			$hash = sha1($salt . '-' . $string . '-' . $pepper);
+			$this -> _hash[] = $hash;
+			return $hash;
+		}
+
+		public function createRandomHash($string)
 		{
 			$hash['number'] = sha1(rand());
 			$hash['time'] = sha1(time());
 			$hash['delimiter'] = sha1(array_rand(array('-','/','~','+','&')));
 			$hash['hash-string'] = sha1($string);
 
-			$this->_hash = $hash;
+			$this->_hash[] = $hash;
 
 			return (string) sha1(sha1(implode($this->_hash['delimiter'], $hash)) . sha1('SmokeWeedEveryDay'));
 		}
 
-		public function getClientInfo($save = true)
+		public function getClientInfo($save = false)
 		{
-			$this->_remAddress = $_SERVER['REMOTE_ADDR'];
-
-			return array($this->_macAddress, $this->_remAddress);
+			
 		}
 
 		public function banIp()

@@ -24,6 +24,7 @@
 				$return['dev'] = 'true';
 			break;
 
+		// Ajax shit.
 		// check if there aren't any harmfull injections being posted. if not, update settings directly.
 		case 'saveInput':
 
