@@ -35,10 +35,12 @@
 		<div class="span6 offset1">
 			<div class="tabbable tabs-right"> <!-- Only required for left/right tabs -->
 				<ul class="nav nav-tabs">
-					<li class="disabled"><a href="#">Extra information</a></li>
+					<li class="disabled"><a href="#" class="disabled">Extra information</a></li>
 					<li class="active"><a href="#meta-data" data-toggle="tab">Meta data</a></li>
+					<li><a href="#titleProbs" data-toggle="tab">Title properties</a></li>
 					<li><a href="#contentProbs" data-toggle="tab">Content properties</a></li>
 				</ul>
+
 				<div class="tab-content">
 					<div class="tab-pane active" id="meta-data">
 						<div class="control-group">
@@ -55,6 +57,35 @@
 							</div>
 						</div>
 					</div>
+
+					<div class="tab-pane" id="titleProbs">
+						<div class="control-group">
+							<label for="showPagetitle" class="control-label">Show pagetitle:</label>
+							<div class="controls">
+								<input type="checkbox" name="showPagetitle" id="showPagetitle" checked="checked">
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label for="titleTextAlignment" class="control-label">Text alignment:</label>
+							<div class="controls">
+								<select name="titleTextAlignment" id="titleTextAlignment">
+									<option value="left">Left</option>
+									<option value="right">Right</option>
+									<option value="center">Center</option>
+									<option value="justify">Justify</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label for="titleFontSize" class="control-label">Font size:</label>
+							<div class="controls">
+								<input type="text" name="titleFontSize" id="titleFontSize" value="" placeholder="16" class="input-mini">
+							</div>
+						</div>
+					</div>
+
 					<div class="tab-pane" id="contentProbs">
 						<div class="control-group">
 							<label for="contentId" class="control-label">Id:</label>
@@ -67,6 +98,18 @@
 							<label for="contentClass" class="control-label">Class:</label>
 							<div class="controls">
 								<input type="text" name="contentClass" value="" id="contentClass" placeholder="Class1 class2 class3">
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label for="contentTextAlignment" class="control-label">Text alignment:</label>
+							<div class="controls">
+								<select name="contentTextAlignment" id="contentTextAlignment">
+									<option value="left">Left</option>
+									<option value="right">Right</option>
+									<option value="center">Center</option>
+									<option value="justify">Justify</option>
+								</select>
 							</div>
 						</div>
 					</div>

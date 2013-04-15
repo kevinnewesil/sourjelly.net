@@ -621,9 +621,9 @@ include: MODULES_PATH/slider/code/imageSaver.php
 						Properties van de System class: <br>
 						<div class="properties">
 							<p class="muted">
-								<code> protected $_premissions; -> array </code> <br>
+								<code> protected $_permissionss; -> array </code> <br>
 								A 2D array with a path to the folder inside the system, and an array with the type of the file/folder, the written
-								premission -> drwxr--r--, and a decimal number for the premission of a folder -> 744
+								permissions -> drwxr--r--, and a decimal number for the permissions of a folder -> 744
 							</p>
 						</div>
 
@@ -634,30 +634,30 @@ include: MODULES_PATH/slider/code/imageSaver.php
 								things in the system that may cause a problem later on with advanced useage.
 							</p>
 
-						<h6> <a id="setFolderPremissions"> setFolderPremissions </a> </h6>
+						<h6> <a id="setFolderpermissionss"> setFolderpermissionss </a> </h6>
 							<p>
 								<strong>protected</strong><br>
-								This function calls the <a href="#getPremissions"> getPremissions </a> function, and sets the values of the array per folder.
+								This function calls the <a href="#getpermissionss"> getpermissionss </a> function, and sets the values of the array per folder.
 							</p>
 
-						<h6> <a id="getPremissions"> getPremissions </a> </h6>
+						<h6> <a id="getpermissionss"> getpermissionss </a> </h6>
 							<p>
 								<strong>protected</strong><br>
-								This function gets and parses the premissions of a path that is called. and returns the written value of the premission.
+								This function gets and parses the permissionss of a path that is called. and returns the written value of the permissions.
 							</p>
 
-						<h6> <a id="setDecimalPremission"> setDecimalPremission </a> </h6>
+						<h6> <a id="setDecimalpermissions"> setDecimalpermissions </a> </h6>
 							<p>
 								<strong>protected</strong><br>
-								This function converts the written premission values to numeric values, via a 'switch'. From there it edits the Array
+								This function converts the written permissions values to numeric values, via a 'switch'. From there it edits the Array
 								and finally there's an array with userfull data of paths.
 							</p>
 
-						<h6> <a id="checkDecimalPremission"> checkDecimalPremission </a> </h6>
+						<h6> <a id="checkDecimalpermissions"> checkDecimalpermissions </a> </h6>
 							<p>
 								<strong>protected</strong><br>
-								This function looks at the premission of folders/files/paths and gives a message if the premission of a path should
-								possibly be edited to prevend further errors in the system. The Message has a path to the folder, and the current premission.
+								This function looks at the permissions of folders/files/paths and gives a message if the permissions of a path should
+								possibly be edited to prevend further errors in the system. The Message has a path to the folder, and the current permissions.
 								So that when the message is given, the administrator knows exactly which folder should be edited.
 							</p>
 

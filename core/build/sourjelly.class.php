@@ -92,8 +92,8 @@
 				if(isset($url[1]) && $url[1] != '')
 					$fun = explode('/',$url[1]);
 				
-				//Check the user premission to make sure that only the class is build the visitor has access to.
-				if(\api\Api::getUsers() -> getUserPremissionBySession() > 1)
+				//Check the user permissions to make sure that only the class is build the visitor has access to.
+				if(\api\Api::getUsers() -> getUserpermissionsBySession() > 1)
 				{
 					//Check the system for critical requirements
 					if(!isset($_SESSION['system_warning']))
@@ -106,8 +106,8 @@
 					// Set the html object to the main template
 					self::$_html = new HtmlBase('main');
 
-				//Check for premission again so that administrators don't have to be the only users on the website, and login is made possible.
-				if(isset($_SESSION['login']) || isset($_GET['login']) && $_GET['login'] == 'login' || isset($_POST['login']) || \api\Api::getUsers() -> getUserPremissionBySession() > 1 || (isset($fun) && $fun[0] == 'auth' && (!isset($fun[1]) || $fun[1] == '')))
+				//Check for permissions again so that administrators don't have to be the only users on the website, and login is made possible.
+				if(isset($_SESSION['login']) || isset($_GET['login']) && $_GET['login'] == 'login' || isset($_POST['login']) || \api\Api::getUsers() -> getUserpermissionsBySession() > 1 || (isset($fun) && $fun[0] == 'auth' && (!isset($fun[1]) || $fun[1] == '')))
 					self::$_al = new \core\build\autoloader;
 				else
 					self::$_wv = new \core\build\Webview;

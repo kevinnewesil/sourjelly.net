@@ -74,7 +74,7 @@
 		public function getUserBySession()
 		{
 
-			$query = "SELECT `id`,`firstname`,`lastname`,`username`,`email`,`password`,`DoB`,`registered_at`,`active`,`dev`,`premission`,`lang` FROM `table_users` WHERE CONCAT(firstname, ' ', lastname) = ?";
+			$query = "SELECT `id`,`firstname`,`lastname`,`username`,`email`,`password`,`DoB`,`registered_at`,`active`,`dev`,`permissions`,`lang` FROM `table_users` WHERE CONCAT(firstname, ' ', lastname) = ?";
 			if($stmt = self::$_link->prepare($query))
 			{
 				if(!\api\Api::checkQuery($query))
@@ -82,7 +82,7 @@
 
 				$stmt -> bind_param('s',$_SESSION['login']);
 				$stmt -> execute();
-				$stmt -> bind_result($id,$firstname,$lastname,$username,$email,$password,$dob,$registered_at,$active,$dev,$premission,$lang);
+				$stmt -> bind_result($id,$firstname,$lastname,$username,$email,$password,$dob,$registered_at,$active,$dev,$permissions,$lang);
 
 				while($row = $stmt -> fetch()){
                         $ret = array('id'	     => $id,
@@ -95,7 +95,7 @@
                                      'registered_at' => $registered_at,
                                      'active'        => $active,
                                      'dev'           => $dev,
-                                     'premission'    => $premission,
+                                     'permissions'    => $permissions,
                                      'lang'          => $lang
                                     );
                 }
@@ -115,7 +115,7 @@
 		 */
 		public function getUserByUsernameOrEmail($username,$email = NULL)
 		{
-			$query = "SELECT `id`,`firstname`,`lastname`,`username`,`email`,`password`,`DoB`,`registered_at`,`active`,`dev`,`premission`,`lang` FROM `table_users` WHERE `username` = ? OR `email` = ?";
+			$query = "SELECT `id`,`firstname`,`lastname`,`username`,`email`,`password`,`DoB`,`registered_at`,`active`,`dev`,`permissions`,`lang` FROM `table_users` WHERE `username` = ? OR `email` = ?";
 			if($stmt = self::$_link->prepare($query))
 			{
 				if(!\api\Api::checkQuery($query))
@@ -123,7 +123,7 @@
 
 				$stmt->bind_param('ss',$username,$email);
 				$stmt->execute();
-				$stmt->bind_result($id,$firstname,$lastname,$username,$email,$password,$dob,$registered_at,$active,$dev,$premission,$lang);
+				$stmt->bind_result($id,$firstname,$lastname,$username,$email,$password,$dob,$registered_at,$active,$dev,$permissions,$lang);
 				while($row = $stmt -> fetch()){
 					$ret = array($id,
 						     'firstname'     => $firstname,
@@ -132,10 +132,10 @@
 						     'email'         => $email,
 						     'password'      => $password,
 						     'dob'           => $dob,
-     						     'registered_at' => $registered_at,
+     						 'registered_at' => $registered_at,
 						     'active'        => $active,
 						     'dev'           => $dev,
-                                                     'premission'    => $premission,
+                             'permissions'   => $permissions,
 						     'lang'          => $lang
 					            );
 				}
@@ -147,14 +147,14 @@
 		}
 
 		/**
-		 * Get the currently logged in user's premission.
-		 * @return string  the level of premission the user has.
+		 * Get the currently logged in user's permissions.
+		 * @return string  the level of permissions the user has.
 		 */
-		public function getUserPremissionBySession()
+		public function getUserpermissionsBySession()
 		{
-			$premission = '';
+			$permissions = '';
 
-			$query = "SELECT `premission` FROM `table_users` WHERE CONCAT(firstname , ' ' , lastname) = ?";
+			$query = "SELECT `permissions` FROM `table_users` WHERE CONCAT(firstname , ' ' , lastname) = ?";
 			
 			if($stmt = self::$_link->prepare($query))
 			{
@@ -163,11 +163,11 @@
 
 				$stmt->bind_param('s',$_SESSION['login']);
 				$stmt->execute();
-				$stmt->bind_result($premission);
+				$stmt->bind_result($permissions);
 				$stmt->fetch();
 				$stmt->close();
 			}
-			return (string)$premission;
+			return (string)$permissions;
 		}
 
 		/**

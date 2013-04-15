@@ -4,56 +4,56 @@
 	 * @author Kevin Newesil <newesil.kevin@gmail.com>
 	 * @version 1.1.0.0
 	 *
-	 * @param $_premissions an array with all the premissions data of the folders of the system saved in.
+	 * @param $_permissionss an array with all the permissionss data of the folders of the system saved in.
 	 */
 	class System
 	{
-		protected $_premissions = array();
+		protected $_permissionss = array();
 
 		/**
 		 * Calls for all functions within this class, as this class is a sort of before filter for an administrator.
 		 */
 		public function __construct()
 		{
-			//$this -> setFolderPremissions();
-			//$this -> setDecimalPremission();
-			//$this -> checkDecimalPremission();
+			//$this -> setFolderpermissionss();
+			//$this -> setDecimalpermissions();
+			//$this -> checkDecimalpermissions();
 		}
 
 		/**
-		 * A list of all folders, going through the getPremissions function one by one.
+		 * A list of all folders, going through the getpermissionss function one by one.
 		 */
-		protected function setFolderPremissions()
+		protected function setFolderpermissionss()
 		{
-			$this -> _premissions[API_PATH]        = $this -> getPremissions(API_PATH);
-			$this -> _premissions[CONFIG_PATH]     = $this -> getPremissions(CONFIG_PATH);
-			$this -> _premissions[CONTROLLER_PATH] = $this -> getPremissions(CONTROLLER_PATH) ;
-			$this -> _premissions[CORE_PATH]       = $this -> getPremissions(CORE_PATH) ;
-			$this -> _premissions[DB_PATH]         = $this -> getPremissions(DB_PATH) ;
-			$this -> _premissions[MODEL_PATH]      = $this -> getPremissions(MODEL_PATH) ;
-			$this -> _premissions[PUBLIC_PATH]     = $this -> getPremissions(PUBLIC_PATH) ;
-			$this -> _premissions[TMP_PATH]        = $this -> getPremissions(TMP_PATH) ;
-			$this -> _premissions[VIEWS_PATH]      = $this -> getPremissions(VIEWS_PATH) ;
+			$this -> _permissionss[API_PATH]        = $this -> getpermissionss(API_PATH);
+			$this -> _permissionss[CONFIG_PATH]     = $this -> getpermissionss(CONFIG_PATH);
+			$this -> _permissionss[CONTROLLER_PATH] = $this -> getpermissionss(CONTROLLER_PATH) ;
+			$this -> _permissionss[CORE_PATH]       = $this -> getpermissionss(CORE_PATH) ;
+			$this -> _permissionss[DB_PATH]         = $this -> getpermissionss(DB_PATH) ;
+			$this -> _permissionss[MODEL_PATH]      = $this -> getpermissionss(MODEL_PATH) ;
+			$this -> _permissionss[PUBLIC_PATH]     = $this -> getpermissionss(PUBLIC_PATH) ;
+			$this -> _permissionss[TMP_PATH]        = $this -> getpermissionss(TMP_PATH) ;
+			$this -> _permissionss[VIEWS_PATH]      = $this -> getpermissionss(VIEWS_PATH) ;
 
 		}
 
 		/**
-		 * this function gets the premission of the file, and renders it into readable language.
-		 * @param  string $path the path to the file/folder that should be checked for it's premissions.
-		 * @return string       return a string with the folder/file premission data.
+		 * this function gets the permissions of the file, and renders it into readable language.
+		 * @param  string $path the path to the file/folder that should be checked for it's permissionss.
+		 * @return string       return a string with the folder/file permissions data.
 		 */
-		protected function getPremissions($path)
+		protected function getpermissionss($path)
 		{
 
 			if(!is_dir($path) || !file_exists($path))
 			{
 				$_SESSION['system_warning'] = true;
-				\core\access\Redirect::Home("The file or folder you wanted premission for does not exists");
+				\core\access\Redirect::Home("The file or folder you wanted permissions for does not exists");
 			}
 			
 			$perms = fileperms($path);
 
-			// Get the type of which the premission is going to be checked;
+			// Get the type of which the permissions is going to be checked;
 			
 			if (($perms & 0xC000) == 0xC000)
 			    $info = 's';
@@ -98,15 +98,15 @@
 		}
 
 		/**
-		 * Gets the written premissons of a file/folder, and makes them into a numeric premission string.
-		 * This function also checks what type the premission check is for, and extends the premissions array with that data.
+		 * Gets the written premissons of a file/folder, and makes them into a numeric permissions string.
+		 * This function also checks what type the permissions check is for, and extends the permissionss array with that data.
 		 */
-		protected function setDecimalPremission()
+		protected function setDecimalpermissions()
 		{
-			foreach($this -> _premissions as $path => $premission)
+			foreach($this -> _permissionss as $path => $permissions)
 			{
-				$type  = $premission[0];
-				$roles = explode('/' , substr($premission, 2));
+				$type  = $permissions[0];
+				$roles = explode('/' , substr($permissions, 2));
 				$line  = '';
 
 				switch ($type) {
@@ -176,8 +176,8 @@
 					$line .= $dec;
 				}
 
-				$this -> _premissions[$path] = array(
-					'premission' => $type . $roles[0]  . $roles[1] . $roles[2],
+				$this -> _permissionss[$path] = array(
+					'permissions' => $type . $roles[0]  . $roles[1] . $roles[2],
 					'decimal'    => (int)$line,
 					'type'       => $typeDescription,
 				);
@@ -188,13 +188,13 @@
 		/**
 		 * This function checks if the system is compatable with the settings of the files and folders, if not it sends a message to the administrator.
 		 */
-		protected function checkDecimalPremission()
+		protected function checkDecimalpermissions()
 		{
-			foreach($this -> _premissions as $folder => $premission)
-				if($premission['decimal'] < 600 )
+			foreach($this -> _permissionss as $folder => $permissions)
+				if($permissions['decimal'] < 600 )
 				{
 					$_SESSION['system_warning'] = true;
-					\core\access\Redirect::Home("The folder : '" . $folder ."' Doesn't have the right premission to work with. Please adjust it.");
+					\core\access\Redirect::Home("The folder : '" . $folder ."' Doesn't have the right permissions to work with. Please adjust it.");
 				}
 
 		}

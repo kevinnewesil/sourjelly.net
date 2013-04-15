@@ -88,8 +88,8 @@
 			$placeholders = array( '{varname}' , '{varvalue}' );
 			$configFile   = "<?php  \n\r\n\r" ;
 
-			//Check the folder premission of the Module
-			//$info = \core\access\System::getPremissions( MODULES_PATH . $moduleInfo[0][0] );
+			//Check the folder permissions of the Module
+			//$info = \core\access\System::getpermissionss( MODULES_PATH . $moduleInfo[0][0] );
 
 			//Foreach user inputted variables for the config file, make a string with the config variables set in the config layout
 			foreach ($vars as $varname => $varvalue)
