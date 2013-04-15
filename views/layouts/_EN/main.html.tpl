@@ -15,6 +15,27 @@
 		<script type="text/javascript"> less = { rootpath: "{assets}css/" }; </script> <!-- Set the root path of the themes. -->
 		<script type="text/javascript" src="{assets}js/less.js"></script> <!-- Include the less compiler to compile less to css. -->
 		<script type="text/javascript" src="{assets}js/bootstrap.min.js"></script> <!-- Include the twitter bootstrap js for executing bootstrap actions. -->
+		<script>
+		    $(document).ready(function() {
+                 $('#slideleftdiv button').click(function() {
+                    var $lefty = $(this).next();
+                    $lefty.animate({
+                      left: parseInt($lefty.css('left'),10) == 100 ?
+                        -$lefty.outerWidth() :
+                        100
+                    });
+                  });
+                });
+            // the div that folds open
+              $(document).ready(function(){
+                $('#showdiv').click(function() {
+                  $('.dropdowndiv').slideToggle(500, function() {
+                    // Animation complete.
+                  });
+                });
+              });
+              $('#showdiv').tooltip();
+              $('#admin-int').tooltip();</script>
 
 	</head>
 	<body>
@@ -35,11 +56,19 @@
 						<div class="nav-collapse collapse pull-right">
 							<ul class="nav">
 								{pages} <!-- Placeholder with all the page titles for links -->
+								<li>
+		                          <a href="#" id="showdiv" data-toggle="user-tooltip" data-placement="right" title="ajcvhall">
+		                            <i class="icon-user"></i>
+		                          </a>
+		                        </li>
 							</ul>
 						</div>
 					</div>
 				</div>
 			</nav>
+			<div class="dropdowndiv">
+				asd
+			</div>
 
 			<div class="container">
 				<div class="main-content">
