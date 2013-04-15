@@ -64,7 +64,7 @@
 		 */
 		function update()
 		{
-			if(\api\Api::getUsers() -> getUserpermissionsBySession() < 2)
+			if(\api\Api::getUsers() -> getUserpermissionsBySession() <= 2)
 				\core\access\Redirect::Home('No permissions to change system settings');
 			
 			if($this->_model -> update())

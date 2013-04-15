@@ -6,8 +6,17 @@
 	* @package  default
 	* 
 	*/
-	class Crud
+	class Crud extends \core\system\Model
 	{
+
+		/**
+		 * Calls for the Main controller to execute the common functions etc.
+		 */
+		public function __construct()
+		{
+			parent::__construct();
+		}
+
 		/**
 		 * checks if the values are correct and inserts data for a webpage into the database.
 		 * @param  object $create the values of the create request.

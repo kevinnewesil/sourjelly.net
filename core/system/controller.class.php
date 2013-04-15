@@ -18,7 +18,7 @@
 		{
 			$controller_child = explode('\\',get_class($this));
 			$model_name_raw   = $controller_child[count($controller_child)-1];
-			$model_name_clean = substr($model_name_raw, 0, strlen($model_name_raw)-1);
+			$model_name_clean = ($model_name_raw[strlen($model_name_raw)-1] === 's') ? substr($model_name_raw, 0, strlen($model_name_raw)-1) : $model_name_raw;
 			$namespaced_model = MODELS . '\\' . $model_name_clean;
 
 			if(file_exists(MODEL_PATH . strtolower($model_name_clean) . '.class.php'))

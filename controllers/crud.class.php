@@ -5,22 +5,15 @@
 	* @version  1.0
 	* @package  default
 	*
-	* @var $crudmodel @deprecated
-	* @var $link @deprecated
 	*/
-	class Crud
+	class Crud extends \core\system\Controller
 	{
-		protected $crudModel;
-		protected $link;
-
 		/**
-		 * @deprecated from version 1.0 > currently building 1.1
 		 * Created sort of restfull constructor that checkes if there's a post, and redirects to the post_function of this class.
 		 */
 		public function __construct()
 		{
-			require(MODEL_PATH . 'crud.class.php');
-			$this->crudModel = new \models\crud;
+			parent::__construct();
 
 			if(isset($_POST['submit']))
 			{
@@ -34,7 +27,7 @@
 		 */
 		public function create()
 		{
-			$parent = '';
+			$parent    = '';
 			$menuitems = \api\Api::getMenuItems();
 			$selectTmp = \core\build\Template::getSnippet('selectOption.html.tpl');
 
@@ -86,9 +79,7 @@
 		{
 
 			if(!$this->checkId())
-			{
 				$this->retrieve();
-			}
 			else
 			{
 				$rawUrl = explode('/index.php/',$_SERVER['REQUEST_URI']);
@@ -105,30 +96,30 @@
 				$tmp = str_replace(array('{id}','{title}','{content}','{created_at}','','{checked_visible}','{meta_tags}','{meta_description}','{content_id}','{content_class}'),$page,$tmp);
 				$placeholders = array('{optionvalue}','{optionname}','{select}',$visible);
 
+				// Pre define the options variable and set the first option to no parent menu selected.
 				$options = str_replace($placeholders,array('-','Geen parent menu',''),$option);
 
 				foreach($menu as $title => $submenu)
 				{
-					if(is_array($submenu) && !empty($submenu)){
-						foreach($submenu as $subTitle => $submenu)
-						{
-							if($page[0] == $title)
-								$options .= str_replace($placeholders,array($title,$title,'selected="selected"'),$option);
-							else
-								$options .= str_replace($placeholders,array($title,$title,''),$option);
+					if(is_array($submenu) && !empty($submenu))
+					{
+						if(\api\Api::getPages() -> getIdFromTitle($title) == $page['parent'])
+							$options .= str_replace($placeholders, array($title,$title,'selected="selected"'),$option);
+						else
+							$options .= str_replace($placeholders, array($title,$title,''),$option);
 
-							if($page[0] == $subTitle)
-								$options .= str_replace($placeholders,array($title,$title . ' || ' . $subTitle,'selected="selected"'),$option);
+						foreach($submenu as $subtitle => $nothingYet)
+							if(\api\Api::getPages() -> getIdFromTitle($subtitle) == $page['parent'])
+								$options .= str_replace($placeholders, array($subtitle,$subtitle,'selected="selected"'),$option);
 							else
-								$options .= str_replace($placeholders,array($title,$title . ' || ' . $subTitle,''),$option);
-						}
+								$options .= str_replace($placeholders, array($subtitle,$subtitle,''),$option);
 					}
 					else
 					{
-						if($page[0] == $title)
-							$options .= str_replace($placeholders,array($title,$title,'selected="selected"'),$option);
+						if(\api\Api::getPages() -> getIdFromTitle($title) == $page['parent'])
+							$options .= str_replace($placeholders, array($title,$title,'selected="selected"'),$option);
 						else
-							$options .= str_replace($placeholders,array($title,$title,''),$option);
+							$options .= str_replace($placeholders, array($title,$title,''),$option);
 					}
 				}
 
@@ -147,7 +138,7 @@
 			if(!$this->checkId())
 				$this->retrieve();
 			else
-				if($this->crudModel->delete())
+				if($this-> _model -> delete())
 					\core\access\Redirect::to(HOME_PATH . '/crud/retrieve/?ns=controllers&path=controller_path','Page succesfully deleted','success');
 				else
 					\core\access\Redirect::to(HOME_PATH . '/crud/retrieve/?ns=controllers&path=controller_path','Something went wrong deleting the page');
@@ -227,7 +218,7 @@
 			if(!$this->checkId())
 				$this->retrieve();
 			else
-				if($this->crudModel->undoDelete())
+				if($this-> _model ->undoDelete())
 					\core\access\Redirect::to(HOME_PATH . '/crud/deleted/?ns=controllers&path=controller_path','Page succesfully activated','success');
 				else
 					\core\access\Redirect::to(HOME_PATH . '/crud/deleted/?ns=controllers&path=controller_path','Something went wrong activating the page');
@@ -239,7 +230,7 @@
 		 */
 		public function post_create()
 		{
-			if($this->crudModel->create(\core\access\Request::returnGlobalObject('post')))
+			if($this-> _model ->create(\core\access\Request::returnGlobalObject('post')))
 				\core\access\Redirect::to(HOME_PATH . '/crud/create/?ns=controllers&path=controller_path','Page succesfully created!','success');
 			else
 				\core\access\Redirect::to(HOME_PATH . '/crud/create/?ns=controllers&path=controller_path','Something went wrong creating the page');
@@ -261,7 +252,7 @@
 			if(empty($update['title']) || empty($update['content']))
 				\core\access\Redirect::to(HOME_PATH . '/crud/update/' . $parts[2] .'/?ns=controllers&path=controller_path','Title and/or content can not be empty.');
 			
-			if($this->crudModel->update($update))
+			if($this-> _model ->update($update))
 				\core\access\Redirect::to(HOME_PATH . '/crud/update/?ns=controllers&path=controller_path','Page succesfully edited.','success');
 			else
 				\core\access\Redirect::to(HOME_PATH . '/crud/update/?ns=controllers&path=controller_path','Something went wrong updating the page.');
