@@ -61,7 +61,7 @@
 			// 		'menu_order' => 'int',
 			// 		'deprecated' => 'int',
 			// 		'public' => 'int',
-			// 		'visable' => 'int',
+			// 		'visible' => 'int',
 			// 		'meta_tags' => 'string',
 			// 		'meta_description' => 'string',
 			// 		'content_class' => 'string',

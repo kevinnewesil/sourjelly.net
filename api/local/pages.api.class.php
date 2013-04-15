@@ -69,13 +69,23 @@
 
 			if($title == NULL)
 			{
-				$query = "SELECT `id`,`title`,`content`,`created_at`,`parent_id`,`visable`,`meta_tags`,`meta_description`,`content_id`,`content_class` FROM `table_content` WHERE `id` = ? AND `deprecated` != 1 ORDER BY `menu_order` ASC";
+				$query = "SELECT table_content_properties.id,`title`,`content`,`created_at`,`parentId`,`menuVisibility`,`metaTags`,`metaDescription`,`contentId`,`contentClass` 
+						  FROM `table_content_properties` 
+						  LEFT JOIN `table_content` ON table_content.id = table_content_properties.cId
+						  WHERE table_content.id = ? 
+						  	AND `deprecated` != 1 
+						  ORDER BY `menuOrder` ASC";
 			}
 			else
 			{
-				$query = "SELECT `id`,`title`,`content`,`created_at`,`parent_id`,`visable`,`meta_tags`,`meta_description`,`content_id`,`content_class` FROM `table_content` WHERE `title` = ? AND `deprecated` != 1  ORDER BY `menu_order` ASC";
+				$query = "SELECT table_content_properties.id,`title`,`content`,`created_at`,`parentId`,`menuVisibility`,`metaTags`,`metaDescription`,`contentId`,`contentClass` 
+						  FROM `table_content_properties` 
+						  LEFT JOIN `table_content` ON table_content.id = table_content_properties.cId
+						  WHERE table_content_properties.title = ?
+						  	AND `deprecated` != 1  
+						  ORDER BY `menuOrder` ASC";
 			}
-
+			
 			if($stmt = self::$_link->prepare($query))
 			{
 				if(!\api\Api::checkQuery($query))
@@ -91,11 +101,11 @@
 
 				if($stmt -> num_rows !== 0)
 				{
-					$stmt->bind_result($id,$title,$content,$created_at,$parent_id,$visable,$meta_tags,$meta_description,$content_id,$content_class);
+					$stmt->bind_result($id,$title,$content,$created_at,$parent_id,$visible,$meta_tags,$meta_description,$content_id,$content_class);
 
 					while($stmt->fetch())
 					{
-						$return = array($id,$title,$content,$created_at,'parent' => $parent_id,'visable' => $visable,$meta_tags,$meta_description,$content_id,$content_class);
+						$return = array($id,$title,$content,$created_at,'parent' => $parent_id,'visible' => $visible,$meta_tags,$meta_description,$content_id,$content_class);
 					}
 				}
 				else
@@ -105,6 +115,8 @@
 
 				$stmt->close();
 			}
+			else
+				die(self::$_link -> error);
 
 			return $return;
 		}
@@ -117,7 +129,11 @@
 		public function getIdFromTitle($title)
 		{
 			(int)$return = NULL;
-			$query       = "SELECT `id` FROM `table_content` WHERE `deprecated` != 1 AND `title` = ?";
+			$query       = "SELECT `cId` 
+							FROM `table_content_properties`
+							LEFT JOIN `table_content` ON table_content.id = table_content_properties.cId
+							WHERE table_content.deprecated != 1 
+								AND `title` = ?";
 
 			if($stmt = self::$_link->prepare($query))
 			{
@@ -134,6 +150,9 @@
 				$stmt->close();
 				return $return;
 			}
+			else
+				die(self::$_link->error);
+
 			return false;
 		}
 
@@ -144,7 +163,11 @@
 		public function getDeletedPages()
 		{
 			$return = array();
-			$query  = "SELECT * FROM `table_content` WHERE `deprecated` = 1 ORDER BY `menu_order` ASC";
+			$query  = "SELECT * 
+					   FROM `table_content_properties`
+					   LEFT JOIN `table_content` ON table_content.id = table_content_properties.cId
+					   WHERE table_content.deprecated = 1 
+					   ORDER BY `menuOrder` ASC";
 
 			if(!\api\Api::checkQuery($query))
 					\core\access\Redirect::Home('Something went wrong with the query.');
@@ -156,6 +179,8 @@
 				
 				$res->close();
 			}
+			else
+				die(self::$_link->error);
 
 			return $return;
 		}

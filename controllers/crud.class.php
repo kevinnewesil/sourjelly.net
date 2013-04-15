@@ -34,7 +34,6 @@
 		 */
 		public function create()
 		{
-
 			$parent = '';
 			$menuitems = \api\Api::getMenuItems();
 			$selectTmp = \core\build\Template::getSnippet('selectOption.html.tpl');
@@ -101,10 +100,10 @@
 				$tmp = \core\build\Template::getTemplate('crud/update.html.tpl');
 				$option = \core\build\Template::getSnippet('selectOption.html.tpl');
 
-				$visable = $page['visable'] == '1' ? 'checked=checked' : '';
+				$visible = $page['visible'] == '1' ? 'checked=checked' : '';
 
-				$tmp = str_replace(array('{id}','{title}','{content}','{created_at}','','{checked_visable}','{meta_tags}','{meta_description}','{content_id}','{content_class}'),$page,$tmp);
-				$placeholders = array('{optionvalue}','{optionname}','{select}',$visable);
+				$tmp = str_replace(array('{id}','{title}','{content}','{created_at}','','{checked_visible}','{meta_tags}','{meta_description}','{content_id}','{content_class}'),$page,$tmp);
+				$placeholders = array('{optionvalue}','{optionname}','{select}',$visible);
 
 				$options = str_replace($placeholders,array('-','Geen parent menu',''),$option);
 

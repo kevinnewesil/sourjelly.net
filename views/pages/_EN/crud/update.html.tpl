@@ -105,9 +105,9 @@
 	</div>
 
 	<div class="control-group">
-		<label class="control-label">visable in main menu:</label>
+		<label class="control-label">visible in main menu:</label>
 		<div class="controls">
-			<input type="checkbox" name="visable" {checked_visable}>
+			<input type="checkbox" name="visible" {checked_visible}>
 		</div>
 	</div>
 	

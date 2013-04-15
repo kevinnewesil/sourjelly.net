@@ -192,7 +192,7 @@
 		<h3><a id="PaginaVerwijderen">Delete page</a></h3>
 		<p>
 			If one desides to delete a page, the page will be set to non-active. The visitors won't be able to see this page. And in the pages overview, the page will not be
-			visable anymore. This page will then only be available via the 'deleted pages' option found in the navigation under `pages`
+			visible anymore. This page will then only be available via the 'deleted pages' option found in the navigation under `pages`
 		</p>
 
 		<h3><a id="MenuVolgorde">Menu order</a></h3>
@@ -243,8 +243,8 @@
 				<h3><a id="overzicht">Overview</a></h3>
 				<p>
 					In the module overview, is a table with data of all installed modules. from here it's possible to activate/deactive modules, connect modules to pages, 
-					and delete modules. If you delete the module it will just not be visable anymore, but the data of the module will still exists.
-					Keep in mind that if one decides to delete a module, and activates it again, the module will also be visable again on the visitors web interface.
+					and delete modules. If you delete the module it will just not be visible anymore, but the data of the module will still exists.
+					Keep in mind that if one decides to delete a module, and activates it again, the module will also be visible again on the visitors web interface.
 				</p>
 			</span>
 			<hr>
@@ -342,7 +342,7 @@
 
 					<p class="alert alert-info">
 						Make sure that in the php file that calls the module, and has html, always is a <code>$content</code> which renders and has the complete
-						HTML of the module. So that the content will always be visable on the pages that are connected to the module and the visitors can use the module.
+						HTML of the module. So that the content will always be visible on the pages that are connected to the module and the visitors can use the module.
 					</p>
 				</p>
 				<hr>

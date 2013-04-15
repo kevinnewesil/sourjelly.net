@@ -82,7 +82,13 @@
 		public static function getMenuItems()
 		{
 			$return = array();
-			$query  = "SELECT `id`,`title` FROM `table_content` WHERE `has_parent` = '0' AND `deprecated` = 0 AND `visable` = 1 ORDER BY `menu_order` ASC";
+			$query  = "SELECT table_content_properties.id,table_content_properties.title 
+					   FROM `table_content_properties`
+					   LEFT JOIN `table_content` ON table_content.id = table_content_properties.cId 
+					   WHERE table_content_properties.hasParent = 0 
+					   	AND table_content.deprecated = 0 
+					   	AND table_content.menuVisibility = 1 
+					   ORDER BY table_content_properties.menuOrder ASC";
 
 			if($stmt = self::$_link->prepare($query))
 			{
@@ -98,6 +104,8 @@
 
 				$stmt->close();
 			}
+			else
+				die(self::$_link -> error);
 			
 			foreach($return as $title => $id)
 			{
@@ -118,7 +126,13 @@
 			if(!isset($return))
 				$return = array();
 
-			$query = "SELECT `title`,`id` FROM `table_content` WHERE `has_parent` = '1' AND `parent_id` = ? AND `deprecated` = 0 ORDER BY `menu_order` ASC";
+			$query = "SELECT table_content_properties.title,table_content_properties.id 
+					  FROM `table_content_properties`
+					  LEFT JOIN `table_content` ON table_content.id = table_content_properties.cId 
+					  WHERE table_content_properties.hasParent = 1
+					  	AND table_content_properties.parentId = ? 
+					  	AND table_content.deprecated = 0 
+					  ORDER BY table_content_properties.menuOrder ASC";
 
 			if($stmtChildren = self::$_link->prepare($query))
 			{
@@ -128,13 +142,19 @@
 				$stmtChildren->bind_param('i',$menuId);
 				$stmtChildren->execute();
 				$stmtChildren->bind_result($title,$id);
+
+				// Bugs caused by not closing bloody stmt..
 				while($stmtChildren->fetch())
 				{
 					$return[$title] = array();
-					$return[$title] = self::getChildrenRecursive($id);
+					// $return[$title] = self::getChildrenRecursive($id);
 				}
+
 				$stmtChildren->close();
 			}
+			else
+				die(self::$_link->error);
+
 			return $return;
 		}
 
@@ -218,7 +238,7 @@
 				
 		        if($debug)
 		        	die($stmt->error);
-		        
+
 		        if($stmt->affected_rows > 0 )
 		        {
 		        	self::$_insertId = $stmt -> insert_id;

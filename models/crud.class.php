@@ -18,7 +18,7 @@
 			// Check if data exists, if not, redirect home with error message.
 			if(!isset($create->title) || !isset($create->content) || !isset($create->parent))
 				\core\access\Redirect::to(HOME_PATH . '/crud/create/?ns=controllers&path=controller_path','something went wrong setting the variables, Please contact an administrator');
-
+			
 			// Check if it's a submenu item or not. if not set to 0, else set to 1 and get parent id.
 			if($create->parent == '-')
 			{
@@ -29,7 +29,7 @@
 			{
 				$create->hasParent = '1';
 
-				$parentContent = \api\Api::getPages() -> getPage('',$parent);
+				$parentContent = \api\Api::getPages() -> getPage('',$create->parent);
 				$create->parentId = $parentContent[0];
 			}
 
@@ -106,14 +106,14 @@
 			}
 
 			// Set a check on the visability of a page, if it's set and value is on, set on 1, else set on 0
-			$update['visable']    = isset($visable) && $visable == 'on' ? '1' : '0';
+			$update['visible']    = isset($visible) && $visible == 'on' ? '1' : '0';
 			$update['updated_at'] = @date('Y-m-d H:i:s');
 
 			// Unset the weird order key for not having to hack into the array..
 			unset($update['parent']);
 			
 			// Set the rows that need to be updated.
-			$rows = array('title','meta_tags','meta_description','content_id','content_class','content','has_parent','parent_id','visable','updated_at');
+			$rows = array('title','meta_tags','meta_description','content_id','content_class','content','has_parent','parent_id','visible','updated_at');
 
 			// Update the table, and return true on success.
 			return \api\Api::updateTable('table_content',$rows,$update,array('id' => $this->getId()));

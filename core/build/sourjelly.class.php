@@ -98,7 +98,7 @@
 					//Check the system for critical requirements
 					if(!isset($_SESSION['system_warning']))
 						self::$_settings = new \core\access\System;
-
+		
 					// Set the html object to admin template
 					self::$_html = new HtmlBase('admin');
 				}
