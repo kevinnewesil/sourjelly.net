@@ -103,7 +103,7 @@
 
 				$visable = $page['visable'] == '1' ? 'checked=checked' : '';
 
-				$tmp = str_replace(array('{id}','{title}','{content}','{created_at}','{checked_visable}'),$page,$tmp);
+				$tmp = str_replace(array('{id}','{title}','{content}','{created_at}','','{checked_visable}','{meta_tags}','{meta_description}','{content_id}','{content_class}'),$page,$tmp);
 				$placeholders = array('{optionvalue}','{optionname}','{select}',$visable);
 
 				$options = str_replace($placeholders,array('-','Geen parent menu',''),$option);
@@ -261,14 +261,14 @@
 		{
 			$rawUrl = explode('/index.php/',$_SERVER['REQUEST_URI']);
 			$parts = explode('/',$rawUrl[1]);
-
+			
 			array_pop($_POST);
 			$update = $_POST;
 			unset($_POST);
 
 			if(empty($update['title']) || empty($update['content']))
 				\core\access\Redirect::to(HOME_PATH . '/crud/update/' . $parts[2] .'/?ns=controllers&path=controller_path','Title and/or content can not be empty.');
-
+			
 			if($this->crudModel->update($update))
 				\core\access\Redirect::to(HOME_PATH . '/crud/update/?ns=controllers&path=controller_path','Page succesfully edited.','success');
 			else

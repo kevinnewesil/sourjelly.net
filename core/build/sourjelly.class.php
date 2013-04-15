@@ -59,6 +59,7 @@
 		protected function startSourjelly()
 		{
 			//Render core classes and functions
+			$this -> beforeLoad();
 			$this -> callClasses();
 			$this -> callFunctions();
 			return;
@@ -81,7 +82,15 @@
 			$_SESSION['user_language'] = \api\Api::getUsers() -> getUserLanguageBySession();
 
 			if (PHP_SAPI !== 'cli') {
-			//Check the user premission to make sure that only the class is build the visitor has access to.
+
+				// Read the url and explode on index.php
+				$url = explode('index.php/',$_SERVER['REQUEST_URI']);
+				
+				// Check if controller is in url
+				if(isset($url[1]) && $url[1] != '')
+					$fun = explode('/',$url[1]);
+				
+				//Check the user premission to make sure that only the class is build the visitor has access to.
 				if(\api\Api::getUsers() -> getUserPremissionBySession() > 1)
 				{
 					//Check the system for critical requirements
@@ -94,7 +103,7 @@
 					self::$_html = new HtmlBase('main');
 
 				//Check for premission again so that administrators don't have to be the only users on the website, and login is made possible.
-				if(isset($_SESSION['login']) || isset($_GET['login']) && $_GET['login'] == 'login' || isset($_POST['login']) || \api\Api::getUsers() -> getUserPremissionBySession() > 1)
+				if(isset($_SESSION['login']) || isset($_GET['login']) && $_GET['login'] == 'login' || isset($_POST['login']) || \api\Api::getUsers() -> getUserPremissionBySession() > 1 || (isset($fun) && $fun[0] == 'auth' && (!isset($fun[1]) || $fun[1] == '')))
 					self::$_al = new \core\build\autoloader;
 				else
 					self::$_wv = new \core\build\Webview;
@@ -108,14 +117,17 @@
 		 * callFunctions This function calls the helper file, and executes basis user settings.
 		 * after that it uses the @class -> \config\Config , to set the user's system configuration right.
 		 */
-		protected function callFunctions()
+		protected function beforeLoad()
 		{
 			//Call the /core/helpers.php functions for better code processing.
 			\core\setLogFile();
 			\core\removeMagicQoutes();
 			\core\unregisterGlobals();
 			\core\setTimezone();
+		}
 
+		protected function callFunctions()
+		{
 			//Change the php.ini settings to the users ini settings
 			self::$_config -> setSystemSettings();
 		}

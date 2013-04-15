@@ -15,14 +15,18 @@
 		 */
 		public function create($create)
 		{
+			// Make sure that each array item is a variable by itself for easier parsing and less hacking as it's sort of hardcoded
 			foreach($create as $name => $value)
 				$$name = $value;
 
-			$visable = isset($visable) && $visable == 'on' ? '1' : '0';
-
+			// Check if data exists, if not, redirect home with error message.
 			if(!isset($title) || !isset($content) || !isset($parent))
 				\core\access\Redirect::to(HOME_PATH . '/crud/create/?ns=controllers&path=controller_path','something went wrong setting the variables, Please contact an administrator');
 
+			// Check if the page must be visable in the main menu or not
+			$visable = isset($visable) && $visable == 'on' ? '1' : '0';
+
+			// Check if it's a submenu item or not. if not set to 0, else set to 1 and get parent id.
 			if($parent == '-')
 			{
 				$has_parent = '0';
@@ -36,14 +40,12 @@
 				$parentId = $parentContent[0];
 			}
 
-			if(\api\Api::insertInto('table_content',
-					array('title','content','has_parent','parent_id','menu_order','deprecated','public','visable','created_at'),
-					array($title,$content,$has_parent,$parentId , '0','0','1',$visable,date('Y-m-d H:i:s')),
-					'ssiiiiiis')
-				)
-				return true;
-			else
-				return false;		
+			// Define the rows of the table that should be inserted into, and set those variables
+			$rows   = array('title','content','has_parent','parent_id','menu_order','deprecated','public','visable','meta_tags','meta_description','content_class','content_id','created_at');
+			$values = array($title,$content,$has_parent,$parentId , '0','0','1',$visable,$metaTags,$metaDescription,$contentClass,$contentId,@date('Y-m-d H:i:s'));
+
+			// Make an internal API request for inserting data into the database.
+			return \api\Api::insertInto('table_content',$rows,$values,'ssiiiiiisssss');
 		}
 
 		/**
@@ -53,39 +55,35 @@
 		 */
 		public function update($update)
 		{
-			$id = $this->getId();
-
+			// Set the parent variable for having a weird array order otherwhise
 			$parent = $update['parent'];
-			array_pop($update);
 
+			// Check if parent is set, if not leave empty, else change to proper page Id
 			if($parent == '-')
 			{
-				array_push($update, '0');
-				array_push($update, '0');
+				$update['has_parent'] = '0';
+				$update['parent_id'] = '0';
 			}
 			else
 			{
-				array_push($update, '1');
+				$update['has_parent'] = '1';
 
 				$parentContent = \api\Api::getPages() -> getPage('',$parent);
-				$parentId = $parentContent[0];
-
-				array_push($update, $parentId);
+				$update['parent_id'] = $parentContent[0];
 			}
 
-			$visable = isset($visable) && $visable == 'on' ? '1' : '0';
+			// Set a check on the visability of a page, if it's set and value is on, set on 1, else set on 0
+			$update['visable']    = isset($visable) && $visable == 'on' ? '1' : '0';
+			$update['updated_at'] = @date('Y-m-d H:i:s');
 
-			array_push($update,$visable);
-			array_push($update,date('Y-m-d H:i:s'));
+			// Unset the weird order key for not having to hack into the array..
+			unset($update['parent']);
 			
-			if(\api\Api::updateTable('table_content',
-				array('title','content','has_parent','parent_id','visable','updated_at'),
-				$update,
-				array('id' => $id)
-			))
-				return true;
-			else
-				return false;
+			// Set the rows that need to be updated.
+			$rows = array('title','meta_tags','meta_description','content_id','content_class','content','has_parent','parent_id','visable','updated_at');
+
+			// Update the table, and return true on success.
+			return \api\Api::updateTable('table_content',$rows,$update,array('id' => $this->getId()));
 		}
 
 		/**
@@ -94,16 +92,8 @@
 		 */
 		public function delete()
 		{
-			$id = $this->getId();
-
-			if(\api\Api::updateTable('table_content',
-				array('deprecated'),
-				array('1'),
-				array('id' => $id)
-			))
-				return true;
-			else
-				return false;
+			// Update the table to set a deprecated flag on the right row.
+			return \api\Api::updateTable('table_content',array('deprecated'),array('1'),array('id' => $this -> getId()));
 		}
 
 		/**
@@ -112,16 +102,8 @@
 		 */
 		public function undoDelete()
 		{
-			$id = $this->getId();
-
-			if(\api\Api::updateTable('table_content',
-				array('deprecated'),
-				array('0'),
-				array('id' => $id)
-			))
-				return true;
-			else
-				return false;
+			// Update the table to remove the deprecated flag from the right row
+			return \api\Api::updateTable('table_content',array('deprecated'),array('0'),array('id' => $this -> getId()));
 		}
 
 		/**
@@ -130,8 +112,10 @@
 		 */
 		protected function getId()
 		{
+			//Read the url and split it. check if there's an ID on the right place and if it's numeric
 			$rawUrl = explode('/index.php/',$_SERVER['REQUEST_URI']);
 			$parts = explode('/',$rawUrl[1]);
+			
 			if(is_numeric($parts[2]))
 				return $parts[2];
 			else
