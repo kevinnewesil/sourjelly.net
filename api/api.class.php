@@ -290,6 +290,9 @@
 				return false;
 		}
 
+		/**
+		 * 
+		 */
 		public static function checkQuery($query, $sort = 'SELECT')
 		{
 			if(strpos($query, $sort) === false)

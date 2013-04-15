@@ -6,7 +6,7 @@
 	 * @package default
 	 * 
 	 * this is where the magic happens. All the system shit is loaded here, the system actions are defined here, everything is saved and parsed here.
-	 * There's no other possibility then to go via this file. if you manage to evade this file and get into the system you're an idiot.
+	 * There's no other possibility then to go via this file. if you manage to invade this file and get into the system you're an idiot.
 	 * You'll ruin the whole system. Please keep using the f*cking Sourjelly class to save our lives.
 	 */
 	class Sourjelly
@@ -28,7 +28,8 @@
 		 */
 		public function __construct()
 		{
-			//Require the core files of the system.
+			// Require the core files of the system.
+			// Sour jelly's back bone
 			require(CONFIG_PATH . 'config.class.php');
 			require(CDB_PATH . 'databaseBase.class.php');
 			require(CORE_PATH . 'helpers.php');
@@ -62,6 +63,7 @@
 			$this -> beforeLoad();
 			$this -> callClasses();
 			$this -> callFunctions();
+			
 			return;
 		}
 
@@ -97,9 +99,11 @@
 					if(!isset($_SESSION['system_warning']))
 						self::$_settings = new \core\access\System;
 
+					// Set the html object to admin template
 					self::$_html = new HtmlBase('admin');
 				}
 				else
+					// Set the html object to the main template
 					self::$_html = new HtmlBase('main');
 
 				//Check for premission again so that administrators don't have to be the only users on the website, and login is made possible.
