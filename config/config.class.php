@@ -25,13 +25,18 @@
 
 		protected $_custom = array();
 
-		protected static $_link = NULL;
+		protected static $_link      = NULL;
+
+		protected static $_query_ok  = true;
+		protected static $_query_msg = NULL;
 
 		/**
 		 * Requires the main config file, and uses it's variable to set the main config data inside the class as protected properties.
 		 */
 		public function __construct()
 		{
+			require(CONFIG_PATH . 'simple.config.php');
+
 			$config = require(CONFIG_PATH . 'main.config.php');
 
 			$this->_db 			= $config['db'];
@@ -48,6 +53,8 @@
 					$this->_db['mysqli']['pass'],
 					$this->_db['mysqli']['name']
 				);
+
+			self::$_link -> autocommit(false);
 		}
 
 		/**
@@ -147,5 +154,21 @@
 		protected function getCustom()
 		{
 			return $this -> _custom;
+		}
+
+		public static function setQueryOkFalse()
+		{
+			self::$_query_ok = false;
+		}
+
+		public static function setQueryFalseMsg($msg)
+		{
+			self::$_query_msn = $msg;
+		}
+
+		public function __destruct()
+		{
+			self::$_query_ok == true ? self::$_link -> commit() : self::$_link -> rollback();
+			//Redirect;
 		}
 	}

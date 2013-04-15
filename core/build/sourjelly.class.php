@@ -47,11 +47,11 @@
 
 			require(SYSTEM_PATH . 'controller.class.php');
 			require(SYSTEM_PATH . 'model.class.php');
+			require(SYSTEM_PATH . 'simpleLoader.php');
 
 			require(API_PATH . 'api.class.php');
 
 			$this -> startSourjelly();
-
 		}
 
 		/**

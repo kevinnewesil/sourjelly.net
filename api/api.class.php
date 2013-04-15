@@ -105,7 +105,9 @@
 				$stmt->close();
 			}
 			else
-				die(self::$_link -> error);
+			{
+				
+			}
 			
 			foreach($return as $title => $id)
 			{
