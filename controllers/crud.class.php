@@ -240,14 +240,7 @@
 		 */
 		public function post_create()
 		{
-			array_pop($_POST);
-			$create = $_POST;
-			unset($_POST);
-
-			if(empty($create['title']) || empty($create['content']))
-				\core\access\Redirect::to(HOME_PATH . '/crud/create/?ns=controllers&path=controller_path','Please enter all asked details');
-
-			if($this->crudModel->create($create))
+			if($this->crudModel->create(\core\access\Request::returnGlobalObject('post')))
 				\core\access\Redirect::to(HOME_PATH . '/crud/create/?ns=controllers&path=controller_path','Page succesfully created!','success');
 			else
 				\core\access\Redirect::to(HOME_PATH . '/crud/create/?ns=controllers&path=controller_path','Something went wrong creating the page');

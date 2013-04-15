@@ -73,8 +73,13 @@
 
 			\core\build\Sourjelly::getDb() -> createTable("table_content",
 				array(
-					'front' => 'int',
-					'back'  => 'int',
+					'front'          => 'int',
+					'back'           => 'int',
+					'public'         => 'int',
+					'menuVisibility' => 'int',
+					'deprecated'     => 'int',
+					'created_at'     => 'timestamp',
+					'updated_at'     => 'timestamp',
 				)
 			);
 
@@ -86,15 +91,10 @@
 					'hasParent'       => 'int',
 					'parentId'        => 'int',
 					'menuOrder'       => 'int',
-					'public'          => 'int',
-					'menuVisablity'   => 'int',
 					'metaTags'        => 'string',
 					'metaDescription' => 'string',
 					'contentClass'    => 'string',
 					'contentId'       => 'string',
-					'deprecated'      => 'int',
-					'created_at'      => 'timestamp',
-					'updated_at'      => 'timestamp',
 				)
 			);
 
@@ -104,7 +104,7 @@
 					// Content styling
 					'contentTextAlign' => 'string',
 					// Title styling
-					'visability'       => 'int',
+					'titleVisibility'  => 'int',
 					'titleTextAlign'   => 'string',
 					'titleFontSize'    => 'int',
 				)

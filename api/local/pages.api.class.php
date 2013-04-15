@@ -29,12 +29,16 @@
 		 */
 		public function getAllPages()
 		{
-			$query = "SELECT `title`,`content`,`created_at`,`updated_at`,`has_parent`,`id` FROM `table_content` WHERE `deprecated` != 1 ORDER BY `menu_order` ASC";
+			$query = "SELECT `title`,`content`,`created_at`,`updated_at`,`hasParent`, table_content.id 
+					  FROM `table_content_properties`
+					  LEFT JOIN `table_content` ON table_content.id = table_content_properties.cId
+					  WHERE `deprecated` != 1 ORDER BY `menuOrder` ASC";
+
 			$pageArray  = array();
 
 			if($stmt = self::$_link->prepare($query))
 			{	
-				if(!\api\Api::checkQuery($query))
+				if(!\api\Api::checkQuery($query,'SELECT',true))
 					\core\access\Redirect::Home('Something went wrong with the query.');
 
 				$stmt->execute();

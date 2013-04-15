@@ -10,42 +10,75 @@
 	{
 		/**
 		 * checks if the values are correct and inserts data for a webpage into the database.
-		 * @param  array $create the values of the create request.
+		 * @param  object $create the values of the create request.
 		 * @return boolean       return true if row was inserted correctly.
 		 */
 		public function create($create)
 		{
-			// Make sure that each array item is a variable by itself for easier parsing and less hacking as it's sort of hardcoded
-			foreach($create as $name => $value)
-				$$name = $value;
-
 			// Check if data exists, if not, redirect home with error message.
-			if(!isset($title) || !isset($content) || !isset($parent))
+			if(!isset($create->title) || !isset($create->content) || !isset($create->parent))
 				\core\access\Redirect::to(HOME_PATH . '/crud/create/?ns=controllers&path=controller_path','something went wrong setting the variables, Please contact an administrator');
 
-			// Check if the page must be visable in the main menu or not
-			$visable = isset($visable) && $visable == 'on' ? '1' : '0';
-
 			// Check if it's a submenu item or not. if not set to 0, else set to 1 and get parent id.
-			if($parent == '-')
+			if($create->parent == '-')
 			{
-				$has_parent = '0';
-				$parent_id = '0';
+				$create->hasParent = '0';
+				$create->parentId = '0';
 			}
 			else
 			{
-				$has_parent = '1';
+				$create->hasParent = '1';
 
 				$parentContent = \api\Api::getPages() -> getPage('',$parent);
-				$parentId = $parentContent[0];
+				$create->parentId = $parentContent[0];
 			}
 
+			$values = array(
+				(isset($create -> activeFrontEnd) && $create -> activeFrontEnd == 'on') ? '1' : '0',
+				(isset($create -> activeBackEnd) && $create -> activeBackEnd == 'on') ? '1' : '0',
+				'1',
+				(isset($create->visible) && $create->visible == 'on') ? '1' : '0',
+				@date('Y-m-d H:i:s'),
+			);
+
+			if(!\api\Api::insertInto('table_content',array('front','back','public','menuVisibility','created_at'),$values,'iiiis'))
+				return false;
+
+			$contentId = \api\Api::getLastInsertId();
+			
 			// Define the rows of the table that should be inserted into, and set those variables
-			$rows   = array('title','content','has_parent','parent_id','menu_order','deprecated','public','visable','meta_tags','meta_description','content_class','content_id','created_at');
-			$values = array($title,$content,$has_parent,$parentId , '0','0','1',$visable,$metaTags,$metaDescription,$contentClass,$contentId,@date('Y-m-d H:i:s'));
+			$rows   = array('cId','title','content','hasParent','parentId',
+							'menuOrder','metaTags','metaDescription',
+							'contentClass','contentId');
+
+			$values = array($contentId,$create -> title, $create -> content, $create -> hasParent,$create->parentId , 
+							'0',$create -> metaTags,$create -> metaDescription,
+							$create -> contentClass,$create -> contentId);
 
 			// Make an internal API request for inserting data into the database.
-			return \api\Api::insertInto('table_content',$rows,$values,'ssiiiiiisssss');
+			if(!\api\Api::insertInto('table_content_properties',$rows,$values,'issiiissss'))
+				return false;
+
+			// Define the rows and data for the content layout
+			$rows   = array('cId','contentTextAlign','titleVisibility','titleTextAlign','titleFontSize');
+			$values = array($contentId, $create -> contentTextAlignment,
+							(isset($create -> showPagetitle) && $create -> showPagetitle == 'on') ? '1' : '0',
+							$create -> titleTextAlignment,
+							$create -> titleFontSize
+						);
+
+			if(!\api\Api::insertInto('table_content_layout',$rows,$values,'isisi'))
+				return false;
+
+			$rows   = array('cid','roleId');
+			// hardcoded public for now.. Need to edit this later for custom level premission of content.
+			$values = array($contentId,'1');
+
+			if(!\api\Api::insertInto('table_content_roles',$rows,$values,'ii'))
+				return false;
+
+			// Return true on success
+			return true;
 		}
 
 		/**

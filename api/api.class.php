@@ -21,6 +21,8 @@
 		protected static $_settings;
 		protected static $_themes;
 
+		protected static $_insertId;
+
 		/**
 		 * The API constructor functions gets all the local sub API's and set protected static properties in the API class
 		 * Theses protected properties have the objects of the local sub API classes.
@@ -186,7 +188,8 @@
 
 			for ($i=0; $i < count($values); $i++)
 			{
-				if($i < count($values)-1)
+
+				if($i < (count($values)-1))
 					$query .= '?,';
 				else
 					$query .= '?';
@@ -196,7 +199,7 @@
 
 			if($stmt = self::$_link->prepare($query))
 			{
-				if(!self::checkQuery($query,'INSERT'))
+				if(!self::checkQuery($query,'INSERT',true))
 					\core\access\Redirect::Home('Something went wrong with the query.');
 					
 				if($types && $values)
@@ -215,11 +218,19 @@
 				
 		        if($debug)
 		        	die($stmt->error);
-
+		        
 		        if($stmt->affected_rows > 0 )
+		        {
+		        	self::$_insertId = $stmt -> insert_id;
+		        	$stmt -> close();
 		        	return true;
-		        else 
+		        }
+		        else
+		        { 
+		        	self::$_insertId = false;
+		        	$stmt -> close();
 		        	return false;
+		        }
 			}
 			else
 				\core\access\Redirect::Home(self::$_link->error . 'in \api\Api::insetInto()','error');
@@ -290,18 +301,27 @@
 				return false;
 		}
 
+		public static function getLastInsertId()
+		{
+			return self::$_insertId;
+		}
+
 		/**
 		 * 
 		 */
-		public static function checkQuery($query, $sort = 'SELECT')
+		public static function checkQuery($query, $sort = 'SELECT', $timestamps = false)
 		{
 			if(strpos($query, $sort) === false)
 				return false;
 
 			switch ($sort) {
 				case 'SELECT':
-					if(strpos('UPDATE', $query) || strpos('INSERT', $query) || strpos('DELETE', $query))
-						return false;
+					if(!$timestamps)
+						if(strpos('UPDATE', $query) || strpos('INSERT', $query) || strpos('DELETE', $query))
+							return false;
+					else
+						if(strpos('INSERT', $query) || strpos('DELETE', $query))
+							return false;
 					break;
 				
 				case 'UPDATE':
@@ -310,8 +330,12 @@
 					break;
 				
 				case 'INSERT':
-					if(strpos('SELECT', $query) || strpos('UPDATE', $query) || strpos('DELETE', $query))
-						return false;
+					if(!$timestamps)
+						if(strpos('SELECT', $query) || strpos('UPDATE', $query) || strpos('DELETE', $query))
+							return false;
+					else
+						if(strpos('SELECT', $query) || strpos('DELETE', $query))
+							return false;
 					break;
 				
 				case 'DELETE':
