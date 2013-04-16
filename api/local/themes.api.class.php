@@ -42,7 +42,11 @@
 				$stmt -> close();
 			}
 			else
-				$ret = false;
+			{
+				\QueryFalse();
+				\QueryFalseMsg('Could not fetch active theme.. <br> error: ' . self::$_link -> error);
+				return false;
+			}
 
 			return $ret;
 		}
@@ -68,7 +72,11 @@
 				$stmt -> close();
 			}
 			else
-				$ret = false;
+			{
+				\QueryFalse();
+				\QueryFalseMsg('Could not fetch theme data.. <br> error: ' . self::$_link -> error);
+				return false;
+			}
 
 			return $ret;
 		}
@@ -92,7 +100,11 @@
 				$ret = $stmt -> fetch_assoc();
 			}
 			else
-				$ret = false;
+			{
+				\QueryFalse();
+				\QueryFalseMsg('Could not fetch theme data.. <br> error: ' . self::$_link -> error);
+				return false;
+			}
 
 			return $ret;
 		}

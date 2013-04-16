@@ -54,6 +54,13 @@
 				}
 				$stmt->close();
 			}
+			else
+			{
+				\QueryFalse();
+				\QueryFalseMsg('Could not fetch users.. <br> error: ' . self::$_link -> error);
+				return false;
+			}
+
 			return $user;
 		}
 
@@ -104,6 +111,13 @@
                 $stmt->close();
 
 			}
+			else
+			{
+				\QueryFalse();
+				\QueryFalseMsg('Could not Fetch current user.. <br> error: ' . self::$_link -> error);
+				return false;
+			}
+
 			return $ret;
 		}
 
@@ -139,10 +153,16 @@
 						     'lang'          => $lang
 					            );
 				}
-				//debug
-				//die(var_dump($ret));
+
 				$stmt->close();
 			}
+			else
+			{
+				\QueryFalse();
+				\QueryFalseMsg('Could not fetch user.. <br> error: ' . self::$_link -> error);
+				return false;
+			}
+
 			return $ret;
 		}
 
@@ -167,6 +187,13 @@
 				$stmt->fetch();
 				$stmt->close();
 			}
+			else
+			{
+				\QueryFalse();
+				\QueryFalseMsg('Could not fetch user perms.. <br> error: ' . self::$_link -> error);
+				return false;
+			}
+
 			return (string)$permissions;
 		}
 
@@ -189,6 +216,8 @@
 			}
 			else
 			{
+				\QueryFalse();
+				\QueryFalseMsg('Could not check tables.. <br> error: ' . self::$_link -> error);
 				return false;
 			}
 		}
@@ -208,6 +237,13 @@
 				$stmt->fetch();
 				$stmt->close();
 			}
-			return !empty($lang) ? (string)$lang : '_EN';
+			else
+			{
+				\QueryFalse();
+				\QueryFalseMsg('Could not fetch language.. <br> error: ' . self::$_link -> error);
+				return false;
+			}
+
+			return !empty($lang) ? (string) $lang : '_EN';
 		}
 	}

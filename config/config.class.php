@@ -35,8 +35,6 @@
 		 */
 		public function __construct()
 		{
-			require(CONFIG_PATH . 'simple.config.php');
-
 			$config = require(CONFIG_PATH . 'main.config.php');
 
 			$this->_db 			= $config['db'];
@@ -166,9 +164,9 @@
 			self::$_query_msn = $msg;
 		}
 
-		public function __destruct()
+		public static function saveQueryData()
 		{
-			self::$_query_ok == true ? self::$_link -> commit() : self::$_link -> rollback();
-			//Redirect;
+			self::$_query_ok === true ? self::$_link -> commit() : self::$_link -> rollback();
+			self::$_query_ok !== true ? \Refresh(self::$_query_msg) : NULL ;
 		}
 	}

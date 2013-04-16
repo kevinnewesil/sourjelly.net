@@ -106,7 +106,9 @@
 			}
 			else
 			{
-				
+				\QueryFalse();
+				\QueryFalseMsg('Could not fetch menu items..<br> error: ' . self::$_link -> error);
+				return false;
 			}
 			
 			foreach($return as $title => $id)
@@ -155,7 +157,11 @@
 				$stmtChildren->close();
 			}
 			else
-				die(self::$_link->error);
+			{
+				\QueryFalse();
+				\QueryFalseMsg('Could not fetch menu item children.. <br> error: ' . self::$_link -> error);
+				return false;
+			}
 
 			return $return;
 		}
@@ -182,7 +188,11 @@
 				return $ret;
 			}
 			else
-				\core\access\redirect::Home(self::$_link->error,'error');
+			{
+				\QueryFalse();
+				\QueryFalseMsg('Could not fetch row.. <br> error: ' . self::$_link -> error);
+				return false;
+			}
 		}
 
 		/**
@@ -255,7 +265,11 @@
 		        }
 			}
 			else
-				\core\access\Redirect::Home(self::$_link->error . 'in \api\Api::insetInto()','error');
+			{
+				\QueryFalse();
+				\QueryFalseMsg('Could not Insert row.. <br> error: ' . self::$_link -> error);
+				return false;
+			}
 		}
 
 		/**
@@ -320,7 +334,11 @@
 				}
 			}
 			else
+			{
+				\QueryFalse();
+				\QueryFalseMsg('Could not Update row.. <br> error: ' . self::$_link -> error);
 				return false;
+			}
 		}
 
 		public static function getLastInsertId()

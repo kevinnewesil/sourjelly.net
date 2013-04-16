@@ -214,4 +214,13 @@
 		{
 			return require(SYSTEM_PATH . $name . 'Compiler.class.php');
 		}
+
+		public function __destruct()
+		{
+			// Check for the exectuted queries to be alright
+			\config\Config::saveQueryData();
+			
+			// build the html!
+			self::getHtml()->Build();
+		}
 	}

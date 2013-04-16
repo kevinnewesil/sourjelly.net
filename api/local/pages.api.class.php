@@ -52,7 +52,11 @@
 				$stmt->close();
 			}
 			else
-				die(self::$_link->error);
+			{
+				\QueryFalse();
+				\QueryFalseMsg('Could not fetch pages.. getAllPages. <br> error: ' . self::$_link -> error);
+				return false;
+			}
 
 			return $pageArray;
 		}
@@ -116,7 +120,11 @@
 				$stmt->close();
 			}
 			else
-				die(self::$_link -> error);
+			{
+				\QueryFalse();
+				\QueryFalseMsg('Could not fetch page.. getPage<br> error: ' . self::$_link -> error);
+				return false;
+			}
 
 			return $return;
 		}
@@ -151,7 +159,11 @@
 				return $return;
 			}
 			else
-				die(self::$_link->error);
+			{
+				\QueryFalse();
+				\QueryFalseMsg('Could not fetch column value.. getIdFromTitle<br> error: ' . self::$_link -> error);
+				return false;
+			}
 
 			return false;
 		}
@@ -180,7 +192,11 @@
 				$res->close();
 			}
 			else
-				die(self::$_link->error);
+			{
+				\QueryFalse();
+				\QueryFalseMsg('Could not fetch deleted pages.. <br> error: ' . self::$_link -> error);
+				return false;
+			}
 
 			return $return;
 		}
