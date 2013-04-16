@@ -37,7 +37,7 @@
 
 			$link = \core\build\Sourjelly::getConfig('link');
 
-			if($stmt = $link->prepare("INSERT INTO `table_users` (`email`,`username`,`password`,`registered_at`,`firstname`,`lastname`,`DoB`,`active`,`premission`) VALUES (?,?,?,?,?,?,?,?,2)"))
+			if($stmt = $link->prepare("INSERT INTO `table_users` (`email`,`username`,`password`,`registered_at`,`firstname`,`lastname`,`DoB`,`active`,`permissions`) VALUES (?,?,?,?,?,?,?,?,2)"))
 			{
 				$stmt->bind_param('ssssssss',$this->_email,$this->_email,$this->_password,$this->_time,$this->_name, $this->_lastname, $this->_dob,$this->_activionKey);
 				$stmt->execute();

@@ -33,11 +33,6 @@
 		 */
 		public function Assign($placeholder,$replacer,$debug = false)
 		{
-			if($debug)
-			{
-				//$l = $this -> layout;
-				//die($l);
-			}
 			return $this->layout = str_replace($placeholder,$replacer,$this->layout);
 		}
 
@@ -53,6 +48,7 @@
 				$notice        = str_replace('{noticeInfo}',$_SESSION['notice'],$noticeSnippet);
 
 				$this->layout  = str_replace('{notice}',$notice,$this->layout);
+
 				unset($_SESSION['notice']);
 
 				if(isset($_SESSION['system_warning']))
@@ -123,7 +119,6 @@
 
 				$this->Assign('{modulesList}',$submenu,true);
 			}
-
 			else
 			{
 				$this->Assign('{nav}','');
@@ -164,7 +159,7 @@
 				$this->Themes();
 				$settings = \core\build\Sourjelly::getApi() -> getSettings() -> getSystemSettings();
 
-				if($settings['embeddedHtml'] == 1)
+				if($settings['embeddedHtml'] === "1")
 				{
 					\core\build\Sourjelly::loadCompilers('embed');
 
@@ -173,7 +168,7 @@
 				}
 
 				$this->basePaths();
-				echo $this->layout;
+				die($this->layout);
 			}
 			else
 				die('The layout for this page could not even be found.. What have you done?!');

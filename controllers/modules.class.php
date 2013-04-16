@@ -106,14 +106,7 @@
 			$tmp 		  = \core\build\Template::getTemplate('module/deleted.html.tpl');
 			$rowsTmp	  = \core\build\Template::getTemplate('module/deletedRows.html.tpl');
 			$modules 	  = \Api\Api::getModules() -> getAllDeprecatedModules();
-			$placeholders     = array('{name}',
-					          '{description}',
-						  '{uploaded_at}',
-						  '{match}',
-						  '{position}',
-						  '{active}',
-						  '{id}',
-						 );
+			$placeholders = array('{name}','{description}','{uploaded_at}','{match}','{position}','{active}','{id}');
 
 			foreach($modules as $module)
 			{

@@ -18,15 +18,15 @@
 // Check for the required json and curl extensions, the Google APIs PHP Client
 // won't function without them.
 if (! function_exists('curl_init')) {
-  \core\access\Rediect::Home('Google PHP API Client requires the CURL PHP extension','error');
+  \core\access\Redirect::Home('Google PHP API Client requires the CURL PHP extension','error');
 }
 
 if (! function_exists('json_decode')) {
-  \core\access\Rediect::Home('Google PHP API Client requires the JSON PHP extension','error');
+  \core\access\Redirect::Home('Google PHP API Client requires the JSON PHP extension','error');
 }
 
 if (! function_exists('http_build_query')) {
-  \core\access\Rediect::Home('Google PHP API Client requires http_build_query()','error');
+  \core\access\Redirect::Home('Google PHP API Client requires http_build_query()','error');
 }
 
 if (! ini_get('date.timezone') && function_exists('date_default_timezone_set')) {

@@ -64,8 +64,8 @@
 		 */
 		function update()
 		{
-			if(\api\Api::getUsers() -> getUserPremissionBySession() < 2)
-				\core\access\Redirect::Home('No premission to change system settings');
+			if(\api\Api::getUsers() -> getUserpermissionsBySession() <= 2)
+				\core\access\Redirect::Home('No permissions to change system settings');
 			
 			if($this->_model -> update())
 				\core\access\Redirect::To(HOME_PATH . '/settings/index/?ns=controllers&path=controller_path' , 'System settings successfully updated','success');

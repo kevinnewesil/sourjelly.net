@@ -25,7 +25,10 @@
 
 		protected $_custom = array();
 
-		protected static $_link = NULL;
+		protected static $_link      = NULL;
+
+		protected static $_query_ok  = true;
+		protected static $_query_msg = NULL;
 
 		/**
 		 * Requires the main config file, and uses it's variable to set the main config data inside the class as protected properties.
@@ -48,6 +51,8 @@
 					$this->_db['mysqli']['pass'],
 					$this->_db['mysqli']['name']
 				);
+
+			self::$_link -> autocommit(false);
 		}
 
 		/**
@@ -88,8 +93,8 @@
 			$placeholders = array( '{varname}' , '{varvalue}' );
 			$configFile   = "<?php  \n\r\n\r" ;
 
-			//Check the folder premission of the Module
-			//$info = \core\access\System::getPremissions( MODULES_PATH . $moduleInfo[0][0] );
+			//Check the folder permissions of the Module
+			//$info = \core\access\System::getpermissionss( MODULES_PATH . $moduleInfo[0][0] );
 
 			//Foreach user inputted variables for the config file, make a string with the config variables set in the config layout
 			foreach ($vars as $varname => $varvalue)
@@ -147,5 +152,28 @@
 		protected function getCustom()
 		{
 			return $this -> _custom;
+		}
+
+		public static function setQueryOkFalse()
+		{
+			self::$_query_ok = false;
+		}
+
+		public static function setQueryFalseMsg($msg)
+		{
+			self::$_query_msg = $msg;
+		}
+
+		public static function saveQueryData()
+		{
+			if(self::$_query_ok === true)
+				self::$_link -> commit();
+			else
+			{
+				self::$_link -> rollback();
+				\Refresh(self::$_query_msg);
+			}
+			
+			return true;
 		}
 	}

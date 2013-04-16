@@ -20,8 +20,6 @@
 	 * --BUGFIXES--
 	 * 
 	 * @todo @bug proper redirect after false login.
-	 * @todo @bug fucking zombie fucking session, in the fucking admin fucking panel, which comes, when it can't include a controller < which is wierd cause it should redirect, but it doesn't instead it just sets a wierd fuckign session, that is UNTRACABLE AND UNDELETEABLE. IF YOU WANT TO CONTRIBUTE AND HELP ME OUT FIXING THIS WIERD ASS MOTHERFUCKING BUG PLEASE BE MY GUEST, MY REWARD WILL BE GREAT I PROMISE!
-	 * @todo @bug zombie session in autoloader includeClass function..
 	 * 
 	 * --EXTRA--
 	 * @todo  Write exampled for each class functions to show the usage.
@@ -43,7 +41,3 @@
 	
 	// time to start the system...
 	new \core\build\Sourjelly;
-	
-	// build the html!
-	\core\build\Sourjelly::getHtml()->Build();
-

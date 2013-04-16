@@ -51,10 +51,6 @@
 
 			$this->_password = sha1($user['firstname'] . '-' . $password . '-' . $user['registered_at']);
 			$this->_username = $user['username'];
-
-            // Debugging...
-            // var_dump($this->_password);
-            // die(var_dump($user));
             
             if($this->_password === $user['password'])
 				if($_SESSION['login'] = $user['firstname'] . ' ' . $user['lastname'])

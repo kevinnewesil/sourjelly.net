@@ -86,7 +86,7 @@ CREATE TABLE `table_users` (
   `DoB` date default NULL,
   `registered_at` timestamp NOT NULL default CURRENT_TIMESTAMP,
   `active` varchar(126) default NULL,
-  `premission` int(8) default NULL,
+  `permissions` int(8) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
