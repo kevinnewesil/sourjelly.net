@@ -57,6 +57,7 @@
 			require(API_PATH . 'api.class.php');
 
 			$this -> startSourjelly();
+			$this -> finishSourjelly();
 		}
 
 		/**
@@ -220,7 +221,7 @@
 			return require(SYSTEM_PATH . $name . 'Compiler.class.php');
 		}
 
-		public function __destruct()
+		private function finishSourjelly()
 		{
 			// Check for the exectuted queries to be alright
 			\config\Config::saveQueryData();
