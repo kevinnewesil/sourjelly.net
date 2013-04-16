@@ -124,7 +124,6 @@
 
 				$this->Assign('{modulesList}',$submenu,true);
 			}
-
 			else
 			{
 				$this->Assign('{nav}','');
@@ -159,6 +158,7 @@
 		{
 			if($this->layout != NULL)
 			{
+				// die(var_dump($_POST));
 				$this->errorHandeling();
 				$this->Login();
 				$this->nav();

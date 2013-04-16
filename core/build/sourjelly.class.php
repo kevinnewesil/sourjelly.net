@@ -227,6 +227,6 @@
 			
 			if(!$this -> _ajax)
 				// build the html!
-				die(self::getHtml()->Build());
+				self::getHtml()->Build();
 		}
 	}
