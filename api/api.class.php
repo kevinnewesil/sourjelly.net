@@ -247,9 +247,6 @@
 		        }
 
 		        $stmt->execute();
-				
-		        if($debug)
-		        	die($stmt->error);
 
 		        if($stmt->affected_rows > 0 )
 		        {

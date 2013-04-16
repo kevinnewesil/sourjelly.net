@@ -106,8 +106,6 @@
                                      'lang'          => $lang
                                     );
                 }
-                //debug
-                //die(var_dump($ret));
                 $stmt->close();
 
 			}

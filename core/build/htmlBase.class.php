@@ -33,11 +33,6 @@
 		 */
 		public function Assign($placeholder,$replacer,$debug = false)
 		{
-			if($debug)
-			{
-				//$l = $this -> layout;
-				//die($l);
-			}
 			return $this->layout = str_replace($placeholder,$replacer,$this->layout);
 		}
 
@@ -158,7 +153,6 @@
 		{
 			if($this->layout != NULL)
 			{
-				// die(var_dump($_POST));
 				$this->errorHandeling();
 				$this->Login();
 				$this->nav();
