@@ -456,3 +456,5 @@
 [12-Apr-2013 21:33:55 UTC] PHP Notice:  Undefined variable: parentId in /Users/ajcvhall/www/sourjelly.net/models/crud.class.php on line 45
 [12-Apr-2013 21:34:08 UTC] PHP Notice:  Undefined variable: parentId in /Users/ajcvhall/www/sourjelly.net/models/crud.class.php on line 45
 [12-Apr-2013 21:34:11 UTC] PHP Notice:  Undefined index: user_language in /Users/ajcvhall/www/sourjelly.net/core/access/auth.class.php on line 75
+[16-Apr-2013 19:55:42 UTC] PHP Notice:  Undefined index: user_language in /Users/ajcvhall/www/sourjelly.net/core/access/auth.class.php on line 75
+[16-Apr-2013 20:06:23 UTC] PHP Notice:  Undefined index: user_language in /Users/ajcvhall/www/sourjelly.net/core/access/auth.class.php on line 75
