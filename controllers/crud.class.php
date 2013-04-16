@@ -230,10 +230,10 @@
 		 */
 		public function post_create()
 		{
-			if($this-> _model ->create(\core\access\Request::returnGlobalObject('post')))
-				\core\access\Redirect::to(HOME_PATH . '/crud/create/?ns=controllers&path=controller_path','Page succesfully created!','success');
+			if($this-> _model -> create(\core\access\Request::returnGlobalObject('post')))
+				\Go(HOME_PATH . '/crud/create/?ns=controllers&path=controller_path','Page succesfully created!','success');
 			else
-				\core\access\Redirect::to(HOME_PATH . '/crud/create/?ns=controllers&path=controller_path','Something went wrong creating the page');
+				\Go(HOME_PATH . '/crud/create/?ns=controllers&path=controller_path','Something went wrong creating the page');
 		}
 
 		/**

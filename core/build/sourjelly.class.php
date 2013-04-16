@@ -23,11 +23,16 @@
 		protected static $_settings;
 		protected static $_html;
 
+		protected $_ajax;
+
 		/**
 		 * __construct() requires the system files, which build the system.
 		 */
-		public function __construct()
+		public function __construct($ajax = false)
 		{
+			// Set ajax for ajax request
+			$this -> _ajax = $ajax;
+
 			// Require the core files of the system.
 			// Sour jelly's back bone
 			require(CONFIG_PATH . 'config.class.php');
@@ -220,7 +225,8 @@
 			// Check for the exectuted queries to be alright
 			\config\Config::saveQueryData();
 			
-			// build the html!
-			self::getHtml()->Build();
+			if(!$this -> _ajax)
+				// build the html!
+				die(self::getHtml()->Build());
 		}
 	}

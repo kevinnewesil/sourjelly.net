@@ -161,12 +161,19 @@
 
 		public static function setQueryFalseMsg($msg)
 		{
-			self::$_query_msn = $msg;
+			self::$_query_msg = $msg;
 		}
 
 		public static function saveQueryData()
 		{
-			self::$_query_ok === true ? self::$_link -> commit() : self::$_link -> rollback();
-			self::$_query_ok !== true ? \Refresh(self::$_query_msg) : NULL ;
+			if(self::$_query_ok === true)
+				self::$_link -> commit();
+			else
+			{
+				self::$_link -> rollback();
+				\Refresh(self::$_query_msg);
+			}
+			
+			return true;
 		}
 	}
