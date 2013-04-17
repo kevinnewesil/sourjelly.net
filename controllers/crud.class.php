@@ -41,6 +41,7 @@
 
 			$tmp = \core\build\Template::getTemplate('crud/create.html.tpl');
 			$tmp = str_replace('{pagesoptions}',$parent,$tmp);
+			
 			\core\build\Sourjelly::getHtml()->assign('{content}',$tmp);
 		}
 
@@ -231,9 +232,9 @@
 		public function post_create()
 		{
 			if($this-> _model -> create(\core\access\Request::returnGlobalObject('post')))
-				\Go(HOME_PATH . '/crud/create/?ns=controllers&path=controller_path','Page succesfully created!','success');
-			else
-				\Go(HOME_PATH . '/crud/create/?ns=controllers&path=controller_path','Something went wrong creating the page');
+				\SetNotice('Page succesfully created');
+
+
 		}
 
 		/**
@@ -241,18 +242,8 @@
 		 * @see \models\Crud -> update
 		 */
 		public function post_update()
-		{
-			$rawUrl = explode('/index.php/',$_SERVER['REQUEST_URI']);
-			$parts = explode('/',$rawUrl[1]);
-			
-			array_pop($_POST);
-			$update = $_POST;
-			unset($_POST);
-
-			if(empty($update['title']) || empty($update['content']))
-				\core\access\Redirect::to(HOME_PATH . '/crud/update/' . $parts[2] .'/?ns=controllers&path=controller_path','Title and/or content can not be empty.');
-			
-			if($this-> _model ->update($update))
+		{	
+			if($this-> _model ->update(\core\access\Request::returnGlobalObject('post')))
 				\core\access\Redirect::to(HOME_PATH . '/crud/update/?ns=controllers&path=controller_path','Page succesfully edited.','success');
 			else
 				\core\access\Redirect::to(HOME_PATH . '/crud/update/?ns=controllers&path=controller_path','Something went wrong updating the page.');

@@ -27,7 +27,7 @@
 			// Check if data exists, if not, redirect home with error message.
 			if(!isset($create->title) || !isset($create->content) || !isset($create->parent))
 				\core\access\Redirect::to(HOME_PATH . '/crud/create/?ns=controllers&path=controller_path','something went wrong setting the variables, Please contact an administrator');
-			
+
 			// Check if it's a submenu item or not. if not set to 0, else set to 1 and get parent id.
 			if($create->parent == '-')
 			{
@@ -42,49 +42,35 @@
 				$create->parentId = $parentContent[0];
 			}
 
-			$values = array(
+			$table_content_values = array(
 				(isset($create -> activeFrontEnd) && $create -> activeFrontEnd == 'on') ? '1' : '0',
 				(isset($create -> activeBackEnd) && $create -> activeBackEnd == 'on') ? '1' : '0',
-				'1',
 				(isset($create->visible) && $create->visible == 'on') ? '1' : '0',
-				@date('Y-m-d H:i:s'),
+				@date('Y-m-d H:i:s'), '1'
 			);
 
-			if(!\api\Api::insertInto('table_content',array('front','back','public','menuVisibility','created_at'),$values,'iiiis'))
+			// Execute this request first for getting a content Id.
+			if(!\api\Api::insertInto('table_content',array('front','back','menuVisibility','created_at','public'),$table_content_values,'iiiis'))
 				return false;
 
 			$contentId = \api\Api::getLastInsertId();
 			
 			// Define the rows of the table that should be inserted into, and set those variables
-			$rows   = array('cId','title','content','hasParent','parentId',
-							'menuOrder','metaTags','metaDescription',
-							'contentClass','contentId');
-
-			$values = array($contentId,$create -> title, $create -> content, $create -> hasParent,$create->parentId , 
-							'0',$create -> metaTags,$create -> metaDescription,
-							$create -> contentClass,$create -> contentId);
-
-			// Make an internal API request for inserting data into the database.
-			if(!\api\Api::insertInto('table_content_properties',$rows,$values,'issiiissss'))
-				return false;
+			$table_content_properties_rows   = array('cId','title','content','hasParent','parentId','menuOrder','metaTags','metaDescription','contentClass','contentId');
+			$table_content_properties_values = array($contentId,$create -> title, $create -> content, $create -> hasParent,$create->parentId , '0' ,
+													 $create -> metaTags,$create -> metaDescription, $create -> contentClass,$create -> contentId );
 
 			// Define the rows and data for the content layout
-			$rows   = array('cId','contentTextAlign','titleVisibility','titleTextAlign','titleFontSize');
-			$values = array($contentId, $create -> contentTextAlignment,
-							(isset($create -> showPagetitle) && $create -> showPagetitle == 'on') ? '1' : '0',
-							$create -> titleTextAlignment,
-							$create -> titleFontSize
-						);
+			$table_content_layout_rows   = array('cId','contentTextAlign','titleTextAlign','titleFontSize','titleVisibility');
+			$table_content_layout_values = array($contentId, $create -> contentTextAlignment , $create -> titleTextAlignment , $create -> titleFontSize ,
+											     (isset($create -> showPagetitle) && $create -> showPagetitle == 'on') ? '1' : '0' );
 
-			if(!\api\Api::insertInto('table_content_layout',$rows,$values,'isisi'))
-				return false;
+			// Make an internal API request for inserting data into the database.
+			if(!\api\Api::insertInto('table_content_properties',$table_content_properties_rows,$table_content_properties_values,'issiiissss')) return false;
+			if(!\api\Api::insertInto('table_content_layout',$table_content_layout_rows,$table_content_layout_values,'isisi')) return false;
 
-			$rows   = array('cid','roleId');
 			// hardcoded public for now.. Need to edit this later for custom level premission of content.
-			$values = array($contentId,'1');
-
-			if(!\api\Api::insertInto('table_content_roles',$rows,$values,'ii'))
-				return false;
+			if(!\api\Api::insertInto('table_content_roles',array('cid','roleId'),array($contentId,'1'),'ii')) return false;
 
 			// Return true on success
 			return true;

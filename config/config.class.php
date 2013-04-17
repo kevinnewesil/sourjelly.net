@@ -27,9 +27,6 @@
 
 		protected static $_link      = NULL;
 
-		protected static $_query_ok  = true;
-		protected static $_query_msg = NULL;
-
 		/**
 		 * Requires the main config file, and uses it's variable to set the main config data inside the class as protected properties.
 		 */
@@ -52,7 +49,7 @@
 					$this->_db['mysqli']['name']
 				);
 
-			self::$_link -> autocommit(false);
+			self::$_link -> autocommit(true);
 		}
 
 		/**
@@ -152,28 +149,5 @@
 		protected function getCustom()
 		{
 			return $this -> _custom;
-		}
-
-		public static function setQueryOkFalse()
-		{
-			self::$_query_ok = false;
-		}
-
-		public static function setQueryFalseMsg($msg)
-		{
-			self::$_query_msg = $msg;
-		}
-
-		public static function saveQueryData()
-		{
-			if(self::$_query_ok === true)
-				self::$_link -> commit();
-			else
-			{
-				self::$_link -> rollback();
-				\Refresh(self::$_query_msg);
-			}
-			
-			return true;
 		}
 	}
