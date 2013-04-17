@@ -2018,3 +2018,4 @@
 [17-Apr-2013 08:56:56 UTC] PHP Notice:  Trying to get property of non-object in /home/dakevin/domains/sourjelly.net/public_html/development/core/build/install.class.php on line 100
 [17-Apr-2013 08:56:56 UTC] PHP Fatal error:  Cannot redeclare class config\Config in /home/dakevin/domains/sourjelly.net/public_html/development/config/config.class.php on line 20
 [17-Apr-2013 08:57:05 UTC] PHP Warning:  file_get_contents(/home/dakevin/domains/sourjelly.net/public_html/development/views/snippets/_EN/errors/notice.html.tpl): failed to open stream: No such file or directory in /home/dakevin/domains/sourjelly.net/public_html/development/core/build/template.class.php on line 13
+[17-Apr-2013 09:06:36 UTC] PHP Notice:  Undefined index: user_language in /home/dakevin/domains/sourjelly.net/public_html/development/core/access/auth.class.php on line 71
