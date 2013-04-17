@@ -21,6 +21,7 @@
         $parts = explode('/' , $_SERVER['REQUEST_URI']);
         $index = array_search('index.php',$parts);
         $pathfix = '';
+        
         for($i = 0; $i < $index; $i++){
             $pathfix .= $parts[$i] . '/';
         }
