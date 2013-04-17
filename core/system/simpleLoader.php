@@ -1,0 +1,49 @@
+<?php if(!defined("DS")) die('no direct script access');
+
+	if(!function_exists("Refresh"))
+	{
+		function Refresh($notice,$sort = "notice")
+		{
+			\core\access\Redirect::Refresh($notice,$sort);
+		}
+	}
+
+	if(!function_exists("Go"))
+	{
+		function Go($path,$notice,$sort = "notice")
+		{
+			\core\access\Redirect::To($path,$notice,$sort);
+		}
+	}
+
+	if(!function_exists("GoHome"))
+	{
+		function GoHome($notice,$sort = "notice")
+		{
+			\core\access\Redirect::Home($notice,$sort);
+		}
+	}
+
+	if(!function_exists("GoBack"))
+	{
+		function GoBack($notice,$sort = "notice")
+		{
+			\core\access\Redirect::Back($notice,$sort);
+		}
+	}
+
+	if(!function_exists("QueryFalse"))
+	{
+		function QueryFalse()
+		{
+			\config\Config::setQueryOkFalse();
+		}
+	}
+
+	if(!function_exists("QueryFalseMsg"))
+	{
+		function QueryFalseMsg($msg)
+		{
+			\config\Config::setQueryFalseMsg($msg);
+		}
+	}

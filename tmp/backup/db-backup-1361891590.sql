@@ -148,7 +148,7 @@ CREATE TABLE `table_users` (
   `registered_at` timestamp NOT NULL default CURRENT_TIMESTAMP,
   `active` varchar(126) default NULL,
   `dev` int(1) NOT NULL default '0',
-  `premission` int(8) default NULL,
+  `permissions` int(8) default NULL,
   `lang` varchar(7) character set utf8 NOT NULL default '_EN' COMMENT 'The users language.',
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;

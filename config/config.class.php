@@ -25,7 +25,10 @@
 
 		protected $_custom = array();
 
-		protected static $_link = NULL;
+		protected static $_link      = NULL;
+
+		protected static $_query_ok  = true;
+		protected static $_query_msg = NULL;
 
 		/**
 		 * Requires the main config file, and uses it's variable to set the main config data inside the class as protected properties.
@@ -48,6 +51,8 @@
 					$this->_db['mysqli']['pass'],
 					$this->_db['mysqli']['name']
 				);
+
+			self::$_link -> autocommit(false);
 		}
 
 		/**
@@ -86,17 +91,17 @@
 			$moduleInfo   = \api\Api::getModules() -> getModuleById(); 
 			$configLayout = \core\build\Template::getSnippet('configLayout.html.tpl');
 			$placeholders = array( '{varname}' , '{varvalue}' );
-			$configFile   = "<?php  \n\r\t " ;
+			$configFile   = "<?php  \n\r\n\r" ;
 
-			//Check the folder premission of the Module
-			//$info = \core\access\System::getPremissions( MODULES_PATH . $moduleInfo[0][0] );
+			//Check the folder permissions of the Module
+			//$info = \core\access\System::getpermissionss( MODULES_PATH . $moduleInfo[0][0] );
 
 			//Foreach user inputted variables for the config file, make a string with the config variables set in the config layout
 			foreach ($vars as $varname => $varvalue)
 				$configFile .= str_replace( $placeholders , array($varname , $varvalue ) , $configLayout );
 
 			// Return the config variable for usage in the system
-			$configFile .= " \n\r\n\r\t " . "return $config";
+			$configFile .= " \n\r\n\r\t " . 'return $config;';
 
 			//Check if the directory config exists in the module, if not crate one.
 			if(!is_dir(MODULES_PATH . $moduleInfo[0][0] . '/config'))
@@ -110,7 +115,7 @@
 
 			//Final checks if everything worked, if the file exists and the update was between a minute ago and a minute later, the file has been updated.
 			if(file_exists(MODULES_PATH . $moduleInfo[0][0] . '/config/config.php'))
-				if( filectime(MODULES_PATH . $moduleInfo[0][0] . '/config/config.php') > (time() - 60 ) && filectime(MODULES_PATH . $modulesInfo[0][0] . '/config/config.php') < (time() + 60))
+				if(@filectime(MODULES_PATH . $moduleInfo[0][0] . '/config/config.php') > (time() - 60 ) && @filectime(MODULES_PATH . $modulesInfo[0][0] . '/config/config.php') < (time() + 60))
 					\core\access\Redirect::Refresh("The config file has been updated", "success");
 				else
 					\core\access\Redirect::Refresh("Config file couldn't not be overwritten");
@@ -147,5 +152,28 @@
 		protected function getCustom()
 		{
 			return $this -> _custom;
+		}
+
+		public static function setQueryOkFalse()
+		{
+			self::$_query_ok = false;
+		}
+
+		public static function setQueryFalseMsg($msg)
+		{
+			self::$_query_msg = $msg;
+		}
+
+		public static function saveQueryData()
+		{
+			if(self::$_query_ok === true)
+				self::$_link -> commit();
+			else
+			{
+				self::$_link -> rollback();
+				\Refresh(self::$_query_msg);
+			}
+			
+			return true;
 		}
 	}

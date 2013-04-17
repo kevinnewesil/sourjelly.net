@@ -8,7 +8,7 @@
 	require_once('../core/build/Sourjelly.class.php');
 
 	// Start up the system
-	new \core\build\Sourjelly;
+	new \core\build\Sourjelly(true);
 
 	// Predefine the return as an Array and set 'dev' standart to false
 	$return = array('dev' => 'false');

@@ -6,7 +6,7 @@
 	 * @package default
 	 * 
 	 * this is where the magic happens. All the system shit is loaded here, the system actions are defined here, everything is saved and parsed here.
-	 * There's no other possibility then to go via this file. if you manage to evade this file and get into the system you're an idiot.
+	 * There's no other possibility then to go via this file. if you manage to invade this file and get into the system you're an idiot.
 	 * You'll ruin the whole system. Please keep using the f*cking Sourjelly class to save our lives.
 	 */
 	class Sourjelly
@@ -23,12 +23,18 @@
 		protected static $_settings;
 		protected static $_html;
 
+		protected $_ajax;
+
 		/**
 		 * __construct() requires the system files, which build the system.
 		 */
-		public function __construct()
+		public function __construct($ajax = false)
 		{
-			//Require the core files of the system.
+			// Set ajax for ajax request
+			$this -> _ajax = $ajax;
+
+			// Require the core files of the system.
+			// Sour jelly's back bone
 			require(CONFIG_PATH . 'config.class.php');
 			require(CDB_PATH . 'databaseBase.class.php');
 			require(CORE_PATH . 'helpers.php');
@@ -46,11 +52,12 @@
 
 			require(SYSTEM_PATH . 'controller.class.php');
 			require(SYSTEM_PATH . 'model.class.php');
+			require(SYSTEM_PATH . 'simpleLoader.php');
 
 			require(API_PATH . 'api.class.php');
 
 			$this -> startSourjelly();
-
+			$this -> finishSourjelly();
 		}
 
 		/**
@@ -59,8 +66,10 @@
 		protected function startSourjelly()
 		{
 			//Render core classes and functions
+			$this -> beforeLoad();
 			$this -> callClasses();
 			$this -> callFunctions();
+			
 			return;
 		}
 
@@ -81,20 +90,30 @@
 			$_SESSION['user_language'] = \api\Api::getUsers() -> getUserLanguageBySession();
 
 			if (PHP_SAPI !== 'cli') {
-			//Check the user premission to make sure that only the class is build the visitor has access to.
-				if(\api\Api::getUsers() -> getUserPremissionBySession() > 1)
+
+				// Read the url and explode on index.php
+				$url = explode('index.php/',$_SERVER['REQUEST_URI']);
+				
+				// Check if controller is in url
+				if(isset($url[1]) && $url[1] != '')
+					$fun = explode('/',$url[1]);
+				
+				//Check the user permissions to make sure that only the class is build the visitor has access to.
+				if(\api\Api::getUsers() -> getUserpermissionsBySession() > 1)
 				{
 					//Check the system for critical requirements
 					if(!isset($_SESSION['system_warning']))
 						self::$_settings = new \core\access\System;
-
+		
+					// Set the html object to admin template
 					self::$_html = new HtmlBase('admin');
 				}
 				else
+					// Set the html object to the main template
 					self::$_html = new HtmlBase('main');
 
-				//Check for premission again so that administrators don't have to be the only users on the website, and login is made possible.
-				if(isset($_SESSION['login']) || isset($_GET['login']) && $_GET['login'] == 'login' || isset($_POST['login']) || \api\Api::getUsers() -> getUserPremissionBySession() > 1)
+				//Check for permissions again so that administrators don't have to be the only users on the website, and login is made possible.
+				if(isset($_SESSION['login']) || isset($_GET['login']) && $_GET['login'] == 'login' || isset($_POST['login']) || \api\Api::getUsers() -> getUserpermissionsBySession() > 1 || (isset($fun) && $fun[0] == 'auth' && (!isset($fun[1]) || $fun[1] == '')))
 					self::$_al = new \core\build\autoloader;
 				else
 					self::$_wv = new \core\build\Webview;
@@ -108,14 +127,17 @@
 		 * callFunctions This function calls the helper file, and executes basis user settings.
 		 * after that it uses the @class -> \config\Config , to set the user's system configuration right.
 		 */
-		protected function callFunctions()
+		protected function beforeLoad()
 		{
 			//Call the /core/helpers.php functions for better code processing.
 			\core\setLogFile();
 			\core\removeMagicQoutes();
 			\core\unregisterGlobals();
 			\core\setTimezone();
+		}
 
+		protected function callFunctions()
+		{
 			//Change the php.ini settings to the users ini settings
 			self::$_config -> setSystemSettings();
 		}
@@ -197,5 +219,15 @@
 		public static function loadCompilers($name)
 		{
 			return require(SYSTEM_PATH . $name . 'Compiler.class.php');
+		}
+
+		private function finishSourjelly()
+		{
+			// Check for the exectuted queries to be alright
+			\config\Config::saveQueryData();
+			
+			if(!$this -> _ajax && PHP_SAPI !== 'cli')
+				// build the html!
+				self::getHtml()->Build();
 		}
 	}

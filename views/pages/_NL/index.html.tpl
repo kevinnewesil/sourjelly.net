@@ -578,7 +578,7 @@ include: MODULES_PATH/slider/code/imageSaver.php
 						Properties van de System class: <br>
 						<div class="properties">
 							<p class="muted">
-								<code> protected $_premissions; -> array </code> 
+								<code> protected $_permissionss; -> array </code> 
 								Een 2D array met een path naar een folder op het systeem, en een Array, met het type bestand/folder, de geschreven 
 								permissie -> drwxr--r--, en een decimaal getal voor de premissie van een folder -> 744
 
@@ -592,26 +592,26 @@ include: MODULES_PATH/slider/code/imageSaver.php
 								van eventuele fouten die kunnen worden veroorzaakt door gebrekken op hun server/webhost.
 							</p>
 
-						<h6> <a id="setFolderPremissions"> setFolderPremissions </a> </h6>
+						<h6> <a id="setFolderpermissionss"> setFolderpermissionss </a> </h6>
 							<p>
 								<strong>protected</strong><br>
-								Deze functie roept de <a href="#getPremissions"> getPremissions </a> functie aan, en set de waarden van de array per folder.
+								Deze functie roept de <a href="#getpermissionss"> getpermissionss </a> functie aan, en set de waarden van de array per folder.
 							</p>
 
-						<h6> <a id="getPremissions"> getPremissions </a> </h6>
+						<h6> <a id="getpermissionss"> getpermissionss </a> </h6>
 							<p>
 								<strong>protected</strong><br>
 								Deze functie haalt de permissies op per path wat word aangeroepen, en stuurd de geschreven waarde van de premissie terug.
 							</p>
 
-						<h6> <a id="setDecimalPremission"> setDecimalPremission </a> </h6>
+						<h6> <a id="setDecimalpermissions"> setDecimalpermissions </a> </h6>
 							<p>
 								<strong>protected</strong><br>
 								Deze functie zet de geschreven waarde van de premissie van een functie om naar een decimale waarde met een 'switch'. Vanuit daar 
 								past deze functie de Array aan van de premissies zodat alle waardes vastgesteld staan in de array.
 							</p>
 
-						<h6> <a id="checkDecimalPremission"> checkDecimalPremission </a> </h6>
+						<h6> <a id="checkDecimalpermissions"> checkDecimalpermissions </a> </h6>
 							<p>
 								<strong>protected</strong><br>
 								Deze functie kijkt de premissies van de folder die mogelijk aanpasbaar moeten zijn door de eigenaar van de folder, en 
