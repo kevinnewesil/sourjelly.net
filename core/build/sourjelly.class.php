@@ -226,7 +226,7 @@
 			// Check for the exectuted queries to be alright
 			\config\Config::saveQueryData();
 			
-			if(!$this -> _ajax)
+			if(!$this -> _ajax && PHP_SAPI !== 'cli')
 				// build the html!
 				self::getHtml()->Build();
 		}
