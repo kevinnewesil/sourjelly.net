@@ -91,9 +91,9 @@
 				$this->retrieve();
 			else
 				if($this->_model->delete())
-					\core\access\Redirect::to('/cms/public/index.php/modules/overview/?ns=controllers&path=controller_path', 'Module succefully deleted','success');
+					\core\access\Redirect::to(HOME_PATH . '/modules/overview/?ns=controllers&path=controller_path', 'Module succefully deleted','success');
 				else
-					\core\access\Redirect::to('/cms/public/index.php/modules/overview/?ns=controllers&path=controller_path', 'Error deleting the module');
+					\core\access\Redirect::to(HOME_PATH . '/modules/overview/?ns=controllers&path=controller_path', 'Error deleting the module');
 		}
 
 		/**

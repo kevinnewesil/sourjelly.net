@@ -36,7 +36,7 @@
 					$userInfo['email'],
 					$userInfo['dev'] === 1 ? 'checked="checked"' : '',
 					md5(strtolower(trim($userInfo['email']))),
-					urlencode('http://localhost/cms/public/index.php/users/index/?ns=controllers&path=controller_path'),
+					urlencode(HOME_PATH . '/users/index/?ns=controllers&path=controller_path'),
 				);
 
 			$page = str_replace($placeholders,$replacers,$page);
