@@ -41,8 +41,7 @@
 			}
 			else
 			{
-				\QueryFalse();
-				\QueryFalseMsg('Could not fetch current settings.. <br> error: ' . self::$_link -> error);
+				\SetNotice('Could not fetch current settings.. <br> error: ' . self::$_link -> error);
 				return false;
 			}
 		}

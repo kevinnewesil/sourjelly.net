@@ -53,8 +53,7 @@
 			}
 			else
 			{
-				\QueryFalse();
-				\QueryFalseMsg('Could not fetch pages.. getAllPages. <br> error: ' . self::$_link -> error);
+				\SetNotice('Could not fetch pages.. getAllPages. <br> error: ' . self::$_link -> error);
 				return false;
 			}
 
@@ -121,8 +120,7 @@
 			}
 			else
 			{
-				\QueryFalse();
-				\QueryFalseMsg('Could not fetch page.. getPage<br> error: ' . self::$_link -> error);
+				\SetNotice('Could not fetch page.. getPage<br> error: ' . self::$_link -> error);
 				return false;
 			}
 
@@ -160,8 +158,7 @@
 			}
 			else
 			{
-				\QueryFalse();
-				\QueryFalseMsg('Could not fetch column value.. getIdFromTitle<br> error: ' . self::$_link -> error);
+				\SetNotice('Could not fetch column value.. getIdFromTitle<br> error: ' . self::$_link -> error);
 				return false;
 			}
 
@@ -193,8 +190,7 @@
 			}
 			else
 			{
-				\QueryFalse();
-				\QueryFalseMsg('Could not fetch deleted pages.. <br> error: ' . self::$_link -> error);
+				\SetNotice('Could not fetch deleted pages.. <br> error: ' . self::$_link -> error);
 				return false;
 			}
 

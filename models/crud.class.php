@@ -83,21 +83,18 @@
 		 */
 		public function update($update)
 		{
-			// Set the parent variable for having a weird array order otherwhise
-			$parent = $update['parent'];
-
 			// Check if parent is set, if not leave empty, else change to proper page Id
-			if($parent == '-')
+			if($update -> parent == '-')
 			{
-				$update['has_parent'] = '0';
-				$update['parent_id'] = '0';
+				$update -> hasParent = '0';
+				$update -> parentId = '0';
 			}
 			else
 			{
-				$update['has_parent'] = '1';
+				$update -> has_parent = '1';
 
 				$parentContent = \api\Api::getPages() -> getPage('',$parent);
-				$update['parent_id'] = $parentContent[0];
+				$update -> parentId = $parentContent[0];
 			}
 
 			// Set a check on the visability of a page, if it's set and value is on, set on 1, else set on 0

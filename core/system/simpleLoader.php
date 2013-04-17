@@ -13,14 +13,6 @@
 	if(!function_exists("GoBack")) { function GoBack($notice,$sort = "notice") { \core\access\Redirect::Back($notice,$sort); } }
 
 	/**
-	 * Query handling 
-	 */
-
-	if(!function_exists("QueryFalse")) { function QueryFalse() { \config\Config::setQueryOkFalse(); } }
-
- 	if(!function_exists("QueryFalseMsg")) { function QueryFalseMsg($msg) { \config\Config::setQueryFalseMsg($msg); } }
-
-	/**
 	 * Session handling
 	 */
 
