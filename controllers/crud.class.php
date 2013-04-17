@@ -41,7 +41,7 @@
 
 			$tmp = \core\build\Template::getTemplate('crud/create.html.tpl');
 			$tmp = str_replace('{pagesoptions}',$parent,$tmp);
-			
+
 			\core\build\Sourjelly::getHtml()->assign('{content}',$tmp);
 		}
 
@@ -229,13 +229,7 @@
 		 * Calls for the crud model -> create function, to execute creating a new page.
 		 * @see  \models\Crud -> create
 		 */
-		public function post_create()
-		{
-			if($this-> _model -> create(\core\access\Request::returnGlobalObject('post')))
-				\SetNotice('Page succesfully created');
-
-
-		}
+		public function post_create() { if($this-> _model -> create(\core\access\Request::returnGlobalObject('post'))) \SetNotice('Page succesfully created'); }
 
 		/**
 		 * Parses and sets the data of a page that's going to be updated, and calls for the crud model -> update function to update the page.
