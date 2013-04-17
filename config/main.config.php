@@ -14,9 +14,9 @@
 
 			'mysqli' => array(
 				'host' => 'localhost',
-				'user' => 'root',
-				'pass' => 'root',
-				'name' => 'cms',
+				'user' => 'da_admin',
+				'pass' => 'OucqDKd2',
+				'name' => 'dakevin_development',
 				'port' => 3306,
 			),
 
