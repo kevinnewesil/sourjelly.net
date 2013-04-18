@@ -68,7 +68,7 @@
 
 			// Make an internal API request for inserting data into the database.
 			if(!\api\Api::insertInto('table_content_properties',$table_content_properties_rows,$table_content_properties_values,'issiiissss')) return false;
-			if(!\api\Api::insertInto('table_content_layout',$table_content_layout_rows,$table_content_layout_values,'isisi')) return false;
+			if(!\api\Api::insertInto('table_content_layout',$table_content_layout_rows,$table_content_layout_values,'issii')) return false;
 
 			// hardcoded public for now.. Need to edit this later for custom level premission of content.
 			if(!\api\Api::insertInto('table_content_roles',array('cid','roleId'),array($contentId,'1'),'ii')) return false;

@@ -88,47 +88,64 @@
 			$page = \api\Api::getPages() -> getPage($id);
 			$menu = \api\Api::getMenuItems();
 
-			die(var_dump($page));
-
 			$tmp = \core\build\Template::getTemplate('crud/update.html.tpl');
 			$option = \core\build\Template::getSnippet('selectOption.html.tpl');
 
-			$visible = $page['visible'] == '1' ? 'checked=checked' : '';
+			// Clean all the data.
+			$frontend = $page['tc']['front'] == '1' ? 'checked="checked"' : '';
+			$backend  = $page['tc']['back'] == '1' ? 'checked="checked"' : '';
+			$visible  = $page['tc']['menuVisibility'] == '1' ? 'checked="checked"' : '';
+			$titleVis = $page['tcl']['titleVisibility'] == '1' ? 'checked="checked"' : '';
 
-			$placeholders = array('{id}','{title}','{parent}','{create_at}','{frontend_checked}','{backend_checked}','{checked_visible}',
-								  '{meta_tags}','{meta_description}','{pagetitle_checked}','{alignleft_selected}','{alignright_selected}',
-								  '{aligncenter_selected}','{alignjustify_selected}','{fontsize}','{content_id}','{content_class}','{content}');
 
-			$placeholders = array('{optionvalue}','{optionname}','{select}',$visible);
+			$placeholders = array('{id}','{title}','{parent}','{created_at}','{frontend_checked}','{backend_checked}','{checked_visible}',
+								  '{meta_tags}','{meta_description}','{pagetitle_checked}','{contentAlignleft_selected}','{contentAlignright_selected}',
+								  '{contentAligncenter_selected}','{contentAlignjustify_selected}','{titleAlignleft_selected}','{titleAlignright_selected}',
+								  '{titleAligncenter_selected}','{titleAlignjustify_selected}',
+								  '{fontsize}','{content_id}','{content_class}','{content}');
+
+			$parentPlaceholders = array('{optionvalue}','{optionname}','{select}',$visible);
 
 			// Pre define the options variable and set the first option to no parent menu selected.
-			$options = str_replace($placeholders,array('-','Geen parent menu',''),$option);
+			$options = str_replace($parentPlaceholders,array('-','Geen parent menu',''),$option);
 
 			foreach($menu as $title => $submenu)
 			{
 				if(is_array($submenu) && !empty($submenu))
 				{
 					if(\api\Api::getPages() -> getIdFromTitle($title) == $page['parent'])
-						$options .= str_replace($placeholders, array($title,$title,'selected="selected"'),$option);
+						$options .= str_replace($parentPlaceholders, array($title,$title,'selected="selected"'),$option);
 					else
-						$options .= str_replace($placeholders, array($title,$title,''),$option);
+						$options .= str_replace($parentPlaceholders, array($title,$title,''),$option);
 
 					foreach($submenu as $subtitle => $nothingYet)
 						if(\api\Api::getPages() -> getIdFromTitle($subtitle) == $page['parent'])
-							$options .= str_replace($placeholders, array($subtitle,$subtitle,'selected="selected"'),$option);
+							$options .= str_replace($parentPlaceholders, array($subtitle,$subtitle,'selected="selected"'),$option);
 						else
-							$options .= str_replace($placeholders, array($subtitle,$subtitle,''),$option);
+							$options .= str_replace($parentPlaceholders, array($subtitle,$subtitle,''),$option);
 				}
 				else
 				{
 					if(\api\Api::getPages() -> getIdFromTitle($title) == $page['parent'])
-						$options .= str_replace($placeholders, array($title,$title,'selected="selected"'),$option);
+						$options .= str_replace($parentPlaceholders, array($title,$title,'selected="selected"'),$option);
 					else
-						$options .= str_replace($placeholders, array($title,$title,''),$option);
+						$options .= str_replace($parentPlaceholders, array($title,$title,''),$option);
 				}
 			}
 
-			$tmp = str_replace('{parent}',$options,$tmp);
+			$replacers = array($page['tcp']['id'],$page['tcp']['title'],$options, $page['tc']['created_at'], $frontend, $backend,
+							    $visible, $page['tcp']['metaTags'], $page['tcp']['metaDescription'],$titleVis, 
+								(strpos($page['tcl']['contentTextAlign'], 'left')) ? 'checked="checked"' : '' ,
+								(strpos($page['tcl']['contentTextAlign'], 'right')) ? 'checked="checked"' : '' , 
+								(strpos($page['tcl']['contentTextAlign'], 'center')) ? 'checked="checked"' : '' ,
+								(strpos($page['tcl']['contentTextAlign'], 'justify')) ? 'checked="checked"' : '' ,
+								(strpos($page['tcl']['titleTextAlign'], 'left')) ? 'checked="checked"' : '' ,
+								(strpos($page['tcl']['titleTextAlign'], 'right')) ? 'checked="checked"' : '' , 
+								(strpos($page['tcl']['titleTextAlign'], 'center')) ? 'checked="checked"' : '' ,
+								(strpos($page['tcl']['titleTextAlign'], 'justify')) ? 'checked="checked"' : '' ,
+								$page['tcl']['fontSize'], $page['tcp']['contentId'], $page['tcp']['contentClass'], $page['tcp']['content']);
+			
+			$tmp = str_replace($placeholders,$replacers,$tmp);
 
 			\core\build\Sourjelly::getHtml()->assign('{content}',$tmp);
 		}

@@ -97,13 +97,13 @@
 						</div>
 
 						<div class="control-group">
-							<label for="showPagetitle" class="control-label">Text alignment:</label>
+							<label for="titleTextAlign" class="control-label">Text alignment:</label>
 							<div class="controls">
-								<select name="showPagetitle" id="showPagetitle">
-									<option value="left" {alignleft_selected}>Left</option>
-									<option value="right" {alignright_selected}>Right</option>
-									<option value="center" {aligncenter_selected}>Center</option>
-									<option value="justify" {alignjustify_selected}>Justify</option>
+								<select name="titleTextAlign" id="titleTextAlign">
+									<option value="left" {titleAlignleft_selected}>Left</option>
+									<option value="right" {titleAlignright_selected}>Right</option>
+									<option value="center" {titleAligncenter_selected}>Center</option>
+									<option value="justify" {titleAlignjustify_selected}>Justify</option>
 								</select>
 							</div>
 						</div>
@@ -128,6 +128,18 @@
 							<label for="contentClass" class="control-label">Class:</label>
 							<div class="controls">
 								<input type="text" name="contentClass" value="{content_class}" id="contentClass" placeholder="Class name">
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label for="contentTextAlign" class="control-label">Text alignment:</label>
+							<div class="controls">
+								<select name="contentTextAlign" id="contentTextAlign">
+									<option value="left" {contentAlignleft_selected}>Left</option>
+									<option value="right" {contentAlignright_selected}>Right</option>
+									<option value="center" {contentAligncenter_selected}>Center</option>
+									<option value="justify" {contentAlignjustify_selected}>Justify</option>
+								</select>
 							</div>
 						</div>
 					</div>
