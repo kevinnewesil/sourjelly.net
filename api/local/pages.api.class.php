@@ -72,21 +72,27 @@
 
 			if($title == NULL)
 			{
-				$query = "SELECT table_content_properties.id,`title`,`content`,`created_at`,`parentId`,`menuVisibility`,`metaTags`,`metaDescription`,`contentId`,`contentClass` 
-						  FROM `table_content_properties` 
-						  LEFT JOIN `table_content` ON table_content.id = table_content_properties.cId
-						  WHERE table_content.id = ? 
-						  	AND `deprecated` != 1 
-						  ORDER BY `menuOrder` ASC";
+				$query = "SELECT tcp.id,tcp.title,tcp.content,tcp.hasParent,tcp.parentId,
+								 tcp.metaTags,tcp.metaDescription,tcp.contentClass,tcp.contentId,
+								 tcl.contentTextAlign,tcl.titleVisibility,tcl.titleTextAlign,tcl.titleFontSize,
+								 tc.front, tc.back, tc.public, tc.menuVisibility, tc.created_at, tc.updated_at
+						  FROM `table_content_properties` as tcp
+						  LEFT JOIN `table_content` as tc ON tc.id = tcp.cId
+						  RIGHT JOIN `table_content_layout` as tcl ON tc.id = tcl.cId
+						  WHERE tc.id = ? 
+						  	AND tc.deprecated != 1";
 			}
 			else
 			{
-				$query = "SELECT table_content_properties.id,`title`,`content`,`created_at`,`parentId`,`menuVisibility`,`metaTags`,`metaDescription`,`contentId`,`contentClass` 
-						  FROM `table_content_properties` 
-						  LEFT JOIN `table_content` ON table_content.id = table_content_properties.cId
-						  WHERE table_content_properties.title = ?
-						  	AND `deprecated` != 1  
-						  ORDER BY `menuOrder` ASC";
+				$query = "SELECT tcp.id,tcp.title,tcp.content,tcp.hasParent,tcp.parentId,
+								 tcp.metaTags,tcp.metaDescription,tcp.contentClass,tcp.contentId,
+								 tcl.contentTextAlign,tcl.titleVisibility,tcl.titleTextAlign,tcl.titleFontSize,
+								 tc.front, tc.back, tc.public, tc.menuVisibility, tc.created_at, tc.updated_at
+						  FROM `table_content_properties` as tcp
+						  LEFT JOIN `table_content` as tc ON tc.id = tcp.cId
+						  RIGHT JOIN `table_content_layout` as tcl ON tc.id = tcl.cId
+						  WHERE tcp.title = ?
+						  	AND tc.deprecated != 1";
 			}
 			
 			if($stmt = self::$_link->prepare($query))
@@ -102,13 +108,40 @@
 				$stmt->execute();
 				$stmt -> store_result();
 
-				if($stmt -> num_rows !== 0)
+				if($stmt -> num_rows > 0)
 				{
-					$stmt->bind_result($id,$title,$content,$created_at,$parent_id,$visible,$meta_tags,$meta_description,$content_id,$content_class);
+					$stmt->bind_result($id,$title,$content,$hasParent, $parentId, $metaTags, $metaDescription, $contentClass, $contentId, $contentTextAlign, 
+									   $titleVisibility, $titleTextAlign, $titleFontSize, $front, $back, $public, $menuVisibility, $created_at, $updated_at);
 
 					while($stmt->fetch())
 					{
-						$return = array($id,$title,$content,$created_at,'parent' => $parent_id,'visible' => $visible,$meta_tags,$meta_description,$content_id,$content_class);
+						$return = array(
+								  	'tcp' => array(
+										'id'      => $id,
+										'title'   => $title,
+										'content' => $content,
+										'hasParent' => $hasParent,
+										'parentId' => $parentId,
+										'metaTags' => $metaTags,
+										'metaDescription' => $metaDescription,
+										'contentClass' => $contentClass,
+										'contentId' => $contentId,
+									),
+									'tcl' => array(
+										'contentTextAlign' => $contentTextAlign,
+										'titleVisibility' => $titleVisibility,
+										'titleTextAlign' => $titleTextAlign,
+										'titleFontSize' => $titleFontSize,
+									),
+									'tc'  => array(
+										'front' => $front,
+										'back' => $back,
+										'public' => $public,
+										'menuVisibility' => $menuVisibility,
+										'created_at' => $created_at,
+										'updated_at' => $updated_at,
+									),
+						);
 					}
 				}
 				else

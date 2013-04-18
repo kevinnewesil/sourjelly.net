@@ -25,27 +25,27 @@
 		public function create($create)
 		{
 			// Check if data exists, if not, redirect home with error message.
-			if(!isset($create->title) || !isset($create->content) || !isset($create->parent))
-				\core\access\Redirect::to(HOME_PATH . '/crud/create/?ns=controllers&path=controller_path','something went wrong setting the variables, Please contact an administrator');
+			if(empty($create->title) || empty($create->content))
+				\core\access\Redirect::Refresh('Please fill in atleast a title, and some content!');
 
 			// Check if it's a submenu item or not. if not set to 0, else set to 1 and get parent id.
-			if($create->parent == '-')
+			if($create -> parent == '-')
 			{
-				$create->hasParent = '0';
-				$create->parentId = '0';
+				$create -> hasParent = '0';
+				$create -> parentId = '0';
 			}
 			else
 			{
-				$create->hasParent = '1';
-
+				$create -> hasParent = '1';
+				// Connect to local api to fetch parent ID.
 				$parentContent = \api\Api::getPages() -> getPage('',$create->parent);
-				$create->parentId = $parentContent[0];
+				$create -> parentId = $parentContent[0];
 			}
-
+			// Pre-define the basic content table variables.
 			$table_content_values = array(
 				(isset($create -> activeFrontEnd) && $create -> activeFrontEnd == 'on') ? '1' : '0',
 				(isset($create -> activeBackEnd) && $create -> activeBackEnd == 'on') ? '1' : '0',
-				(isset($create->visible) && $create->visible == 'on') ? '1' : '0',
+				(isset($create -> visible) && $create -> visible == 'on') ? '1' : '0',
 				@date('Y-m-d H:i:s'), '1'
 			);
 
@@ -53,11 +53,12 @@
 			if(!\api\Api::insertInto('table_content',array('front','back','menuVisibility','created_at','public'),$table_content_values,'iiiis'))
 				return false;
 
+			// Fetch the content ID for relations
 			$contentId = \api\Api::getLastInsertId();
 			
 			// Define the rows of the table that should be inserted into, and set those variables
 			$table_content_properties_rows   = array('cId','title','content','hasParent','parentId','menuOrder','metaTags','metaDescription','contentClass','contentId');
-			$table_content_properties_values = array($contentId,$create -> title, $create -> content, $create -> hasParent,$create->parentId , '0' ,
+			$table_content_properties_values = array($contentId,$create -> title, $create -> content, $create -> hasParent,$create-> parentId , '0' ,
 													 $create -> metaTags,$create -> metaDescription, $create -> contentClass,$create -> contentId );
 
 			// Define the rows and data for the content layout
@@ -83,6 +84,7 @@
 		 */
 		public function update($update)
 		{
+			die(var_dump($update));
 			// Check if parent is set, if not leave empty, else change to proper page Id
 			if($update -> parent == '-')
 			{
@@ -92,7 +94,7 @@
 			else
 			{
 				$update -> has_parent = '1';
-
+				// Connect to local API to fetch parent content ID.
 				$parentContent = \api\Api::getPages() -> getPage('',$parent);
 				$update -> parentId = $parentContent[0];
 			}
