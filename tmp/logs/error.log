@@ -459,3 +459,4 @@
 [16-Apr-2013 19:55:42 UTC] PHP Notice:  Undefined index: user_language in /Users/ajcvhall/www/sourjelly.net/core/access/auth.class.php on line 75
 [16-Apr-2013 20:06:23 UTC] PHP Notice:  Undefined index: user_language in /Users/ajcvhall/www/sourjelly.net/core/access/auth.class.php on line 75
 [16-Apr-2013 20:32:32 UTC] PHP Fatal error:  Call to a member function Build() on a non-object in /Users/ajcvhall/www/sourjelly.net/core/build/Sourjelly.class.php on line 231
+[16-Apr-2013 20:53:52 UTC] PHP Warning:  file_get_contents(/Users/ajcvhall/www/sourjelly.net/views/snippets/_EN/errors/notice.html.tpl): failed to open stream: No such file or directory in /Users/ajcvhall/www/sourjelly.net/core/build/template.class.php on line 13

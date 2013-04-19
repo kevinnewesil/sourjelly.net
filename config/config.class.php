@@ -170,6 +170,7 @@
 				self::$_link -> commit();
 			else
 			{
+				$_SESSION['system_error'] = 'pre';
 				self::$_link -> rollback();
 				\Refresh(self::$_query_msg);
 			}
