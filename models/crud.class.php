@@ -101,7 +101,6 @@
 
 			// Set a check on the visability of a page, if it's set and value is on, set on 1, else set on 0
 			$update['visible']    = isset($visible) && $visible == 'on' ? '1' : '0';
-			$update['updated_at'] = @date('Y-m-d H:i:s');
 
 			// Unset the weird order key for not having to hack into the array..
 			unset($update['parent']);

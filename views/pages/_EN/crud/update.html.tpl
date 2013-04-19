@@ -1,6 +1,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('.redactor').redactor();
+		$('.redactor').redactor({ minHeight: 250 });
+		
 		$(".empty-form").click(function(){
 			$("textarea").html('');
 			$(".redactor_editor").html('');
