@@ -55,7 +55,7 @@
 
 			// Fetch the content ID for relations
 			$contentId = \api\Api::getLastInsertId();
-			
+
 			// Define the rows of the table that should be inserted into, and set those variables
 			$table_content_properties_rows   = array('cId','title','content','hasParent','parentId','menuOrder','metaTags','metaDescription','contentClass','contentId');
 			$table_content_properties_values = array($contentId,$create -> title, $create -> content, $create -> hasParent,$create-> parentId , '0' ,
@@ -84,7 +84,6 @@
 		 */
 		public function update($update)
 		{
-			die(var_dump($update));
 			// Check if parent is set, if not leave empty, else change to proper page Id
 			if($update -> parent == '-')
 			{
@@ -99,17 +98,31 @@
 				$update -> parentId = $parentContent[0];
 			}
 
-			// Set a check on the visability of a page, if it's set and value is on, set on 1, else set on 0
-			$update['visible']    = isset($visible) && $visible == 'on' ? '1' : '0';
+			// Define the table rows
+			$table_content_rows            = array('front','back','menuVisibility','public');
+			$table_content_properties_rows = array('cId','title','content','hasParent','parentId','menuOrder','metaTags','metaDescription','contentClass','contentId');
+			$table_content_layout_rows     = array('cId','contentTextAlign','titleTextAlign','titleFontSize','titleVisibility');
 
-			// Unset the weird order key for not having to hack into the array..
-			unset($update['parent']);
-			
-			// Set the rows that need to be updated.
-			$rows = array('title','meta_tags','meta_description','content_id','content_class','content','has_parent','parent_id','visible','updated_at');
+			// Pre-define the basic content table variables.
+			$table_content_values = array(
+				(isset($update -> activeFrontEnd) && $update -> activeFrontEnd == 'on') ? '1' : '0',
+				(isset($update -> activeBackEnd) && $update -> activeBackEnd == 'on') ? '1' : '0',
+				(isset($update -> visible) && $update -> visible == 'on') ? '1' : '0',
+				'1'
+			);
+
+			$table_content_properties_values = array($this -> getId() ,$update -> title, $update -> content, $update -> hasParent,$update-> parentId , '0' ,
+													 $update -> metaTags,$update -> metaDescription, $update -> contentClass,$update -> contentId );
+
+			$table_content_layout_values = array($contentId, $update -> contentTextAlignment , $update -> titleTextAlignment , $update -> titleFontSize ,
+											     (isset($update -> showPagetitle) && $update -> showPagetitle == 'on') ? '1' : '0' );
 
 			// Update the table, and return true on success.
-			return \api\Api::updateTable('table_content',$rows,$update,array('id' => $this->getId()));
+			return \api\Api::updateTable('table_content',$table_content_rows,$table_content_values,array('id' => $this->getId()));
+			return \api\Api::updateTable('table_content_properties',$table_content_properties_rows,$table_content_properties_values,array('id' => $this->getId()));
+			return \api\Api::updateTable('table_content_layout',$table_content_layout_rows,$table_content_layout_values,array('id' => $this->getId()));
+
+			return true;
 		}
 
 		/**

@@ -20,7 +20,6 @@
 				</div>
 			</div>
 
-
 			<div class="control-group">
 				<label for="parent" class="control-label">Belongs to menu item:</label>
 				<div class="controls">
@@ -67,7 +66,7 @@
 						<div class="control-group">
 							<label for="visible" class="control-label">visible in main menu:</label>
 							<div class="controls">
-								<input type="checkbox" name="visible" id="visible" {checked_visable}>
+								<input type="checkbox" name="visible" id="visible" {checked_visible}>
 							</div>
 						</div>
 
