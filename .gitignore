@@ -12,3 +12,5 @@ ehthumbs.db
 Thumbs.db
 
 config/main.config.php
+tmp/logs/error.log
+public_html/assets/css/themes/Sourjelly.less
