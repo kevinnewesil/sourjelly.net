@@ -57,10 +57,19 @@
 		 */
 		public static function Refresh($notice = NULL,$sort = 'warning')
 		{
-			$notice != NULL ? $_SESSION['notice'] = $notice : '';
-			$_SESSION['notice_sort'] = $sort;
-			header('location:' . $_SERVER['REQUEST_URI']);
-			exit();
+			if(isset($_SESSION['system_reset']) && $_SESSION['system_reset'] !== true)
+			{
+				$notice != NULL ? $_SESSION['notice'] = $notice : '';
+				$_SESSION['notice_sort'] = $sort;
+
+				if(isset($_SESSION['system_reset']) && $_SESSION['system_reset'] == 'pre')
+					$_SESSION['system_reset'] = true;
+
+				header('location:' . $_SERVER['REQUEST_URI']);
+				exit();
+			}
+			else
+				unset($_SESSION['system_reset']);
 		}
 
 		/**
