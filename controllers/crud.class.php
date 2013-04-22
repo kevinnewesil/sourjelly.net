@@ -29,20 +29,15 @@
 		{
 			$parent    = '';
 			$menuitems = \api\Api::getMenuItems();
-			$selectTmp = \core\build\Template::getSnippet('selectOption.html.tpl');
+			$selectTmp = \Snippet('selectOption.html.tpl');
 
 			foreach($menuitems as $menuitem => $submenu)
-			{
-				$parent .= str_replace(
-						array('{optionvalue}','{optionname}'),
-						array($menuitem,$menuitem),
-						$selectTmp);
-			}
+				$parent .= str_replace( array('{optionvalue}','{optionname}'), array($menuitem,$menuitem), $selectTmp);
 
-			$tmp = \core\build\Template::getTemplate('crud/create.html.tpl');
+			$tmp = \Template('crud/create.html.tpl');
 			$tmp = str_replace('{pagesoptions}',$parent,$tmp);
 
-			\core\build\Sourjelly::getHtml()->assign('{content}',$tmp);
+			\SjHtml()->assign('{content}',$tmp);
 		}
 
 		/**
@@ -51,13 +46,13 @@
 		public function retrieve()
 		{
 
-			$webTable = \core\build\Template::getTemplate('crud/retrieve.html.tpl');
-			$webTableRow = \core\build\Template::getTemplate('crud/retrieveRow.html.tpl');
+			$webTable = \Template('crud/retrieve.html.tpl');
+			$webTableRow = \Template('crud/retrieveRow.html.tpl');
 			$placeholdersRow = array('{title}','{content}','{created_at}','{updated_at}','{parent}','{id}');
 
 			$rows = '';
 
-			$pages = \api\Api::getPages() -> getAllPages();
+			$pages = \getApiPages() -> getAllPages();
 
 			foreach($pages as $page)
 			{
@@ -70,7 +65,7 @@
 			}
 
 			$tables = str_replace('{rows}',$rows,$webTable);
-			\core\build\Sourjelly::getHtml()->assign('{content}',$tables);
+			\SjHtml()->assign('{content}',$tables);
 		}
 
 		/**
@@ -85,9 +80,9 @@
 				return 0;
 			}
 
-			$page = \api\Api::getPages() -> getPage($id);
+			$page = \getApiPages() -> getPage($id);
 			$menu = \api\Api::getMenuItems();
-
+			
 			$tmp = \core\build\Template::getTemplate('crud/update.html.tpl');
 			$option = \core\build\Template::getSnippet('selectOption.html.tpl');
 
@@ -113,20 +108,20 @@
 			{
 				if(is_array($submenu) && !empty($submenu))
 				{
-					if(\api\Api::getPages() -> getIdFromTitle($title) == $page['parent'])
+					if(\getApiPages() -> getIdFromTitle($title) == $page['tcp']['parentId'])
 						$options .= str_replace($parentPlaceholders, array($title,$title,'selected="selected"'),$option);
 					else
 						$options .= str_replace($parentPlaceholders, array($title,$title,''),$option);
 
 					foreach($submenu as $subtitle => $nothingYet)
-						if(\api\Api::getPages() -> getIdFromTitle($subtitle) == $page['parent'])
+						if(\getApiPages() -> getIdFromTitle($subtitle) == $page['tcp']['parentId'])
 							$options .= str_replace($parentPlaceholders, array($subtitle,$subtitle,'selected="selected"'),$option);
 						else
 							$options .= str_replace($parentPlaceholders, array($subtitle,$subtitle,''),$option);
 				}
 				else
 				{
-					if(\api\Api::getPages() -> getIdFromTitle($title) == $page['parent'])
+					if(\api\Api::getPages() -> getIdFromTitle($title) == $page['tcp']['parentId'])
 						$options .= str_replace($parentPlaceholders, array($title,$title,'selected="selected"'),$option);
 					else
 						$options .= str_replace($parentPlaceholders, array($title,$title,''),$option);
@@ -143,26 +138,11 @@
 								(strpos($page['tcl']['titleTextAlign'], 'right')) ? 'checked="checked"' : '' , 
 								(strpos($page['tcl']['titleTextAlign'], 'center')) ? 'checked="checked"' : '' ,
 								(strpos($page['tcl']['titleTextAlign'], 'justify')) ? 'checked="checked"' : '' ,
-								$page['tcl']['fontSize'], $page['tcp']['contentId'], $page['tcp']['contentClass'], $page['tcp']['content']);
+								$page['tcl']['titleFontSize'], $page['tcp']['contentId'], $page['tcp']['contentClass'], $page['tcp']['content']);
 			
 			$tmp = str_replace($placeholders,$replacers,$tmp);
 
 			\core\build\Sourjelly::getHtml()->assign('{content}',$tmp);
-		}
-
-		/**
-		 * function that checks the ID of an page, and redirects to the crud model to delete the page
-		 * @see  \model\Crud
-		 */
-		public function delete()
-		{
-			if(!$this->checkId())
-				$this->retrieve();
-			else
-				if($this-> _model -> delete())
-					\core\access\Redirect::to(HOME_PATH . '/crud/retrieve/?ns=controllers&path=controller_path','Page succesfully deleted','success');
-				else
-					\core\access\Redirect::to(HOME_PATH . '/crud/retrieve/?ns=controllers&path=controller_path','Something went wrong deleting the page');
 		}
 
 		/**
@@ -231,31 +211,29 @@
 		}
 
 		/**
+		 * function that checks the ID of an page, and redirects to the crud model to delete the page
+		 * @see  \model\Crud
+		 */
+		public function delete() { if($this-> _model -> delete()) \SetNoticeSuccess('Page succesfully deleted'); }
+
+
+		/**
 		 * Function that calls for the crud model to unset a deprecated flag on a page.
 		 * @see  \models\Crud
 		 */
-		public function undoDelete()
-		{
-			if(!$this->checkId())
-				$this->retrieve();
-			else
-				if($this-> _model ->undoDelete())
-					\core\access\Redirect::to(HOME_PATH . '/crud/deleted/?ns=controllers&path=controller_path','Page succesfully activated','success');
-				else
-					\core\access\Redirect::to(HOME_PATH . '/crud/deleted/?ns=controllers&path=controller_path','Something went wrong activating the page');
-		}
+		public function undoDelete() { if($this-> _model ->undoDelete()) \SetNoticeSuccess('Page succesfully activated'); }
 
 		/**
 		 * Calls for the crud model -> create function, to execute creating a new page.
 		 * @see  \models\Crud -> create
 		 */
-		public function post_create() { if($this-> _model -> create(\core\access\Request::returnGlobalObject('post'))) \SetNotice('Page succesfully created'); }
+		public function post_create() { if($this-> _model -> create(\core\access\Request::returnGlobalObject('post'))) \SetNoticeSuccess('Page succesfully created'); }
 
 		/**
 		 * Parses and sets the data of a page that's going to be updated, and calls for the crud model -> update function to update the page.
 		 * @see \models\Crud -> update
 		 */
-		public function post_update() { if($this-> _model -> update(\core\access\Request::returnGlobalObject('post'))) \SetNotice('Page updated successfully'); }
+		public function post_update() { if($this-> _model -> update(\core\access\Request::returnGlobalObject('post'))) \SetNoticeSuccess('Page updated successfully'); }
 
 		/**
 		 * 

@@ -47,7 +47,7 @@
 				$stmt->bind_result($title,$content,$created_at,$updated_at,$has_parent,$id);
 
 				while($row = $stmt->fetch())
-					$pageArray[] = array($title,$content,$created_at,$updated_at,$has_parent,$id);
+					$pageArray[] = array($title,html_entity_decode($content),$created_at,$updated_at,$has_parent,$id);
 
 				$stmt->close();
 			}

@@ -2036,3 +2036,37 @@
 [17-Apr-2013 13:57:45 UTC] PHP Fatal error:  Call to undefined method config\Config::saveQueryData() in /Library/WebServer/Documents/sourjelly.net/core/build/sourjelly.class.php on line 231
 [17-Apr-2013 13:57:49 UTC] PHP Fatal error:  Call to undefined method config\Config::saveQueryData() in /Library/WebServer/Documents/sourjelly.net/core/build/sourjelly.class.php on line 231
 [17-Apr-2013 13:58:07 UTC] PHP Fatal error:  Call to undefined method config\Config::saveQueryData() in /Library/WebServer/Documents/sourjelly.net/core/build/sourjelly.class.php on line 231
+[22-Apr-2013 09:12:18 UTC] PHP Fatal error:  Call to undefined function SetNoticeSuccess() in /Library/WebServer/Documents/sourjelly.net/controllers/crud.class.php on line 235
+[22-Apr-2013 09:13:06 UTC] PHP Fatal error:  Call to undefined function controllers\SetNoticeSuccess() in /Library/WebServer/Documents/sourjelly.net/controllers/crud.class.php on line 235
+[22-Apr-2013 09:13:09 UTC] PHP Fatal error:  Call to undefined function SetNoticeSuccess() in /Library/WebServer/Documents/sourjelly.net/controllers/crud.class.php on line 235
+[22-Apr-2013 09:13:24 UTC] PHP Fatal error:  Call to undefined function SetNoticeSuccess() in /Library/WebServer/Documents/sourjelly.net/controllers/crud.class.php on line 235
+[22-Apr-2013 09:13:25 UTC] PHP Fatal error:  Call to undefined function SetNoticeSuccess() in /Library/WebServer/Documents/sourjelly.net/controllers/crud.class.php on line 235
+[22-Apr-2013 09:13:40 UTC] PHP Warning:  Missing argument 2 for SetNoticeSuccess(), called in /Library/WebServer/Documents/sourjelly.net/controllers/crud.class.php on line 235 and defined in /Library/WebServer/Documents/sourjelly.net/core/system/simpleLoader.php on line 20
+[22-Apr-2013 09:47:21 UTC] PHP Notice:  Undefined variable: id in /Library/WebServer/Documents/sourjelly.net/controllers/crud.class.php on line 76
+[22-Apr-2013 09:47:21 UTC] PHP Notice:  Undefined index: tc in /Library/WebServer/Documents/sourjelly.net/controllers/crud.class.php on line 83
+[22-Apr-2013 09:47:21 UTC] PHP Notice:  Undefined index: tc in /Library/WebServer/Documents/sourjelly.net/controllers/crud.class.php on line 84
+[22-Apr-2013 09:47:21 UTC] PHP Notice:  Undefined index: tc in /Library/WebServer/Documents/sourjelly.net/controllers/crud.class.php on line 85
+[22-Apr-2013 09:47:21 UTC] PHP Notice:  Undefined index: tcl in /Library/WebServer/Documents/sourjelly.net/controllers/crud.class.php on line 86
+[22-Apr-2013 09:47:21 UTC] PHP Notice:  Undefined index: parent in /Library/WebServer/Documents/sourjelly.net/controllers/crud.class.php on line 117
+[22-Apr-2013 09:47:21 UTC] PHP Notice:  Undefined index: tcp in /Library/WebServer/Documents/sourjelly.net/controllers/crud.class.php on line 124
+[22-Apr-2013 09:47:21 UTC] PHP Notice:  Undefined index: tcp in /Library/WebServer/Documents/sourjelly.net/controllers/crud.class.php on line 124
+[22-Apr-2013 09:47:21 UTC] PHP Notice:  Undefined index: tc in /Library/WebServer/Documents/sourjelly.net/controllers/crud.class.php on line 124
+[22-Apr-2013 09:47:21 UTC] PHP Notice:  Undefined index: tcp in /Library/WebServer/Documents/sourjelly.net/controllers/crud.class.php on line 125
+[22-Apr-2013 09:47:21 UTC] PHP Notice:  Undefined index: tcp in /Library/WebServer/Documents/sourjelly.net/controllers/crud.class.php on line 125
+[22-Apr-2013 09:47:21 UTC] PHP Notice:  Undefined index: tcl in /Library/WebServer/Documents/sourjelly.net/controllers/crud.class.php on line 126
+[22-Apr-2013 09:47:21 UTC] PHP Notice:  Undefined index: tcl in /Library/WebServer/Documents/sourjelly.net/controllers/crud.class.php on line 127
+[22-Apr-2013 09:47:21 UTC] PHP Notice:  Undefined index: tcl in /Library/WebServer/Documents/sourjelly.net/controllers/crud.class.php on line 128
+[22-Apr-2013 09:47:21 UTC] PHP Notice:  Undefined index: tcl in /Library/WebServer/Documents/sourjelly.net/controllers/crud.class.php on line 129
+[22-Apr-2013 09:47:21 UTC] PHP Notice:  Undefined index: tcl in /Library/WebServer/Documents/sourjelly.net/controllers/crud.class.php on line 130
+[22-Apr-2013 09:47:21 UTC] PHP Notice:  Undefined index: tcl in /Library/WebServer/Documents/sourjelly.net/controllers/crud.class.php on line 131
+[22-Apr-2013 09:47:21 UTC] PHP Notice:  Undefined index: tcl in /Library/WebServer/Documents/sourjelly.net/controllers/crud.class.php on line 132
+[22-Apr-2013 09:47:21 UTC] PHP Notice:  Undefined index: tcl in /Library/WebServer/Documents/sourjelly.net/controllers/crud.class.php on line 133
+[22-Apr-2013 09:47:21 UTC] PHP Notice:  Undefined index: tcl in /Library/WebServer/Documents/sourjelly.net/controllers/crud.class.php on line 134
+[22-Apr-2013 09:47:21 UTC] PHP Notice:  Undefined index: tcp in /Library/WebServer/Documents/sourjelly.net/controllers/crud.class.php on line 134
+[22-Apr-2013 09:47:21 UTC] PHP Notice:  Undefined index: tcp in /Library/WebServer/Documents/sourjelly.net/controllers/crud.class.php on line 134
+[22-Apr-2013 09:47:21 UTC] PHP Notice:  Undefined index: tcp in /Library/WebServer/Documents/sourjelly.net/controllers/crud.class.php on line 134
+[22-Apr-2013 09:47:35 UTC] PHP Notice:  Undefined index: parent in /Library/WebServer/Documents/sourjelly.net/controllers/crud.class.php on line 124
+[22-Apr-2013 09:47:35 UTC] PHP Notice:  Undefined index: fontSize in /Library/WebServer/Documents/sourjelly.net/controllers/crud.class.php on line 141
+[22-Apr-2013 09:48:09 UTC] PHP Notice:  Undefined index: parent in /Library/WebServer/Documents/sourjelly.net/controllers/crud.class.php on line 124
+[22-Apr-2013 09:48:09 UTC] PHP Notice:  Undefined index: fontSize in /Library/WebServer/Documents/sourjelly.net/controllers/crud.class.php on line 141
+[22-Apr-2013 09:49:36 UTC] PHP Notice:  Undefined index: fontSize in /Library/WebServer/Documents/sourjelly.net/controllers/crud.class.php on line 141
