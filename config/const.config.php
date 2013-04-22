@@ -19,7 +19,6 @@
 	else
     {
         $parts = explode('index.php' , $_SERVER['REQUEST_URI']);
-     
 		DEFINE('AJAX_PATH' , '..' . DS . 'ajax' . DS);
 		DEFINE('ASSETS_PATH' , $parts[0] . 'assets' . DS);
 		DEFINE('MODULES_ASSETS_PATH' , '..' . DS . 'modules' . DS);

@@ -89,8 +89,7 @@
 			//Set user language.
 			$_SESSION['user_language'] = \api\Api::getUsers() -> getUserLanguageBySession();
 
-			if (PHP_SAPI !== 'cli') {
-
+			if (PHP_SAPI !== 'cli' && $this -> _ajax !== true) {
 				// Read the url and explode on index.php
 				$url = explode('index.php/',$_SERVER['REQUEST_URI']);
 				
