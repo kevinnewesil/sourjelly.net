@@ -47,8 +47,8 @@
 
 			$webTable        = \Template('crud/retrieve.html.tpl');
 			$webTableRow     = \Template('crud/retrieveRow.html.tpl');
-			$placeholdersRow = array('{title}','{content}','{created_at}','{updated_at}','{parent}','{id}');
 			$pages           = \getApiPages() -> getAllPages();
+			$placeholdersRow = array('{title}','{content}','{created_at}','{updated_at}','{parent}','{id}');
 			$rows            = '';
 
 			foreach($pages as $page)
