@@ -28,4 +28,20 @@
 
 			$this->_model = new $namespaced_model;
 		}
+
+		/**
+		 * protected function that splits the URL to check if there's a numeric part in the url, which can be used as the ID of a page for
+		 * retrieving, updating, deleting, and undo deleting.
+		 * @return boolean true if the url part is numeric and in the right position, false otherwhise
+		 */
+		protected function checkId()
+		{
+			$rawUrl = explode('/index.php/',$_SERVER['REQUEST_URI']);
+			$parts = explode('/',$rawUrl[1]);
+
+			if(is_numeric($parts[2]))
+				return $parts[2];
+			else
+				return false;
+		}
 	}

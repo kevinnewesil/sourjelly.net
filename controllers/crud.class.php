@@ -1,9 +1,9 @@
-<?php namespace controllers;
+<?php namespace controllers; if(!defined("DS")) die('no direct script access!');
 
 	/**
 	* @author  Kevin Newesil <newesil.kevin@gmail.com>
 	* @version  1.0
-	* @package  default
+	* @package  controller
 	*
 	*/
 	class Crud extends \core\system\Controller
@@ -18,7 +18,7 @@
 			if(isset($_POST['submit']))
 			{
 				$function = 'post_' . $_POST['submit'];
-				$this->$function();
+				$this -> $function();
 			}
 		}
 
@@ -29,15 +29,14 @@
 		{
 			$parent    = '';
 			$menuitems = \api\Api::getMenuItems();
+			$tmp       = \Template('crud/create.html.tpl');
 			$selectTmp = \Snippet('selectOption.html.tpl');
 
 			foreach($menuitems as $menuitem => $submenu)
 				$parent .= str_replace( array('{optionvalue}','{optionname}'), array($menuitem,$menuitem), $selectTmp);
 
-			$tmp = \Template('crud/create.html.tpl');
 			$tmp = str_replace('{pagesoptions}',$parent,$tmp);
-
-			\SjHtml()->assign('{content}',$tmp);
+			\SjHtml() -> assign('{content}',$tmp);
 		}
 
 		/**
@@ -46,13 +45,11 @@
 		public function retrieve()
 		{
 
-			$webTable = \Template('crud/retrieve.html.tpl');
-			$webTableRow = \Template('crud/retrieveRow.html.tpl');
+			$webTable        = \Template('crud/retrieve.html.tpl');
+			$webTableRow     = \Template('crud/retrieveRow.html.tpl');
 			$placeholdersRow = array('{title}','{content}','{created_at}','{updated_at}','{parent}','{id}');
-
-			$rows = '';
-
-			$pages = \getApiPages() -> getAllPages();
+			$pages           = \getApiPages() -> getAllPages();
+			$rows            = '';
 
 			foreach($pages as $page)
 			{
@@ -65,7 +62,7 @@
 			}
 
 			$tables = str_replace('{rows}',$rows,$webTable);
-			\SjHtml()->assign('{content}',$tables);
+			\SjHtml() -> assign('{content}',$tables);
 		}
 
 		/**
@@ -80,10 +77,10 @@
 				return 0;
 			}
 
-			$page = \getApiPages() -> getPage($id);
-			$menu = \api\Api::getMenuItems();
-
-			$tmp = \Template('crud/update.html.tpl');
+			$page   = \getApiPages() -> getPage($id);
+			$menu   = \api\Api::getMenuItems();
+			
+			$tmp    = \Template('crud/update.html.tpl');
 			$option = \Snippet('selectOption.html.tpl');
 
 			// Clean all the data.
@@ -141,8 +138,7 @@
 								$page['tcl']['titleFontSize'], $page['tcp']['contentId'], $page['tcp']['contentClass'], $page['tcp']['content']);
 			
 			$tmp = str_replace($placeholders,$replacers,$tmp);
-
-			\SjHtml()->assign('{content}',$tmp);
+			\SjHtml() -> assign('{content}',$tmp);
 		}
 
 		/**
@@ -151,13 +147,13 @@
 		public function order()
 		{
 
-			$tpl = \Template('crud/order.html.tpl');
-			$itemstpl = \Template('crud/items.html.tpl');
-			$submenutpl = \Template('crud/submenu.html.tpl');
+			$tpl         = \Template('crud/order.html.tpl');
+			$itemstpl    = \Template('crud/items.html.tpl');
+			$submenutpl  = \Template('crud/submenu.html.tpl');
 			$subitemstpl = \Template('crud/subitems.html.tpl');
-
-			$menu = \api\Api::getMenuItems();
-			$items = '';
+			
+			$menu        = \api\Api::getMenuItems();
+			$items       = '';
 
 			foreach($menu as $title => $submenu)
 			{
@@ -178,8 +174,7 @@
 			}
 
 			$tpl = str_replace('{items}', $items, $tpl);
-
-			\SjHtml()->assign('{content}',$tpl);
+			\SjHtml() -> assign('{content}',$tpl);
 		}
 
 		/**
@@ -187,13 +182,11 @@
 		 */
 		public function deleted()
 		{
-			$webTable = \Template('crud/deleted.html.tpl');
-			$webTableRow = \Template('crud/deletedRow.html.tpl');
+			$webTable        = \Template('crud/deleted.html.tpl');
+			$webTableRow     = \Template('crud/deletedRow.html.tpl');
 			$placeholdersRow = array('{title}','{content}','{created_at}','{updated_at}','{parent}','{id}');
-
-			$rows = '';
-
-			$pages = \getApiPages() -> getDeletedPages();
+			$pages           = \getApiPages() -> getDeletedPages();
+			$rows            = '';
 
 			foreach($pages as $page)
 			{
@@ -207,7 +200,7 @@
 			}
 
 			$tables = str_replace('{rows}',$rows,$webTable);
-			\SjHtml()->assign('{content}',$tables);
+			\SjHtml() -> assign('{content}',$tables);
 		}
 
 		/**
@@ -219,13 +212,13 @@
 
 		/**
 		 * Function that calls for the crud model to unset a deprecated flag on a page.
-		 * @see  \models\Crud
+		 * @see \models\Crud
 		 */
 		public function undoDelete() { if($this-> _model ->undoDelete()) \SetNoticeSuccess('Page succesfully activated'); }
 
 		/**
 		 * Calls for the crud model -> create function, to execute creating a new page.
-		 * @see  \models\Crud -> create
+		 * @see \models\Crud -> create
 		 */
 		public function post_create() { if($this-> _model -> create(\core\access\Request::returnGlobalObject('post'))) \SetNoticeSuccess('Page succesfully created'); }
 
@@ -236,12 +229,9 @@
 		public function post_update() { if($this-> _model -> update(\core\access\Request::returnGlobalObject('post'))) \SetNoticeSuccess('Page updated successfully'); }
 
 		/**
-		 * 
+		 * Loads the template file and makes it possible to upload (multiple) image(s) to server. easy as click 'nd drag. handled by javascript/ajax.
 		 */
-		public function upload()
-		{
-			\SjHtml()->assign('{content}', \Template('crud/images/upload.html.tpl'));
-		}
+		public function upload() { \SjHtml()->assign('{content}', \Template('crud/images/upload.html.tpl')); }
 
         public function images()
         {
@@ -253,21 +243,4 @@
         {
 
         }
-
-
-		/**
-		 * Private function that splits the URL to check if there's a numeric part in the url, which can be used as the ID of a page for
-		 * retrieving, updating, deleting, and undo deleting.
-		 * @return boolean true if the url part is numeric and in the right position, false otherwhise
-		 */
-		protected function checkId()
-		{
-			$rawUrl = explode('/index.php/',$_SERVER['REQUEST_URI']);
-			$parts = explode('/',$rawUrl[1]);
-
-			if(is_numeric($parts[2]))
-				return $parts[2];
-			else
-				return false;
-		}
 	}
