@@ -75,6 +75,6 @@
         
         public function social()
         {
-			\SjHtml->Assign('{content}', \Template('settings/socialmedia.html.tpl') ); 
+			\SjHtml()->Assign('{content}', \Template('settings/socialmedia.html.tpl') ); 
         }
 	}
