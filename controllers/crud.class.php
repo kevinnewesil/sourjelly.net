@@ -82,9 +82,9 @@
 
 			$page = \getApiPages() -> getPage($id);
 			$menu = \api\Api::getMenuItems();
-			
-			$tmp = \core\build\Template::getTemplate('crud/update.html.tpl');
-			$option = \core\build\Template::getSnippet('selectOption.html.tpl');
+
+			$tmp = \Template('crud/update.html.tpl');
+			$option = \Snippet('selectOption.html.tpl');
 
 			// Clean all the data.
 			$frontend = $page['tc']['front'] == '1' ? 'checked="checked"' : '';
@@ -142,7 +142,7 @@
 			
 			$tmp = str_replace($placeholders,$replacers,$tmp);
 
-			\core\build\Sourjelly::getHtml()->assign('{content}',$tmp);
+			\SjHtml()->assign('{content}',$tmp);
 		}
 
 		/**
@@ -151,10 +151,10 @@
 		public function order()
 		{
 
-			$tpl = \core\build\Template::getTemplate('crud/order.html.tpl');
-			$itemstpl = \core\build\Template::getTemplate('crud/items.html.tpl');
-			$submenutpl = \core\build\Template::getTemplate('crud/submenu.html.tpl');
-			$subitemstpl = \core\build\Template::getTemplate('crud/subitems.html.tpl');
+			$tpl = \Template('crud/order.html.tpl');
+			$itemstpl = \Template('crud/items.html.tpl');
+			$submenutpl = \Template('crud/submenu.html.tpl');
+			$subitemstpl = \Template('crud/subitems.html.tpl');
 
 			$menu = \api\Api::getMenuItems();
 			$items = '';
@@ -179,7 +179,7 @@
 
 			$tpl = str_replace('{items}', $items, $tpl);
 
-			\core\build\Sourjelly::getHtml()->assign('{content}',$tpl);
+			\SjHtml()->assign('{content}',$tpl);
 		}
 
 		/**
@@ -187,13 +187,13 @@
 		 */
 		public function deleted()
 		{
-			$webTable = \core\build\Template::getTemplate('crud/deleted.html.tpl');
-			$webTableRow = \core\build\Template::getTemplate('crud/deletedRow.html.tpl');
+			$webTable = \Template('crud/deleted.html.tpl');
+			$webTableRow = \Template('crud/deletedRow.html.tpl');
 			$placeholdersRow = array('{title}','{content}','{created_at}','{updated_at}','{parent}','{id}');
 
 			$rows = '';
 
-			$pages = \api\Api::getPages() -> getDeletedPages();
+			$pages = \getApiPages() -> getDeletedPages();
 
 			foreach($pages as $page)
 			{
@@ -207,7 +207,7 @@
 			}
 
 			$tables = str_replace('{rows}',$rows,$webTable);
-			\core\build\Sourjelly::getHtml()->assign('{content}',$tables);
+			\SjHtml()->assign('{content}',$tables);
 		}
 
 		/**
@@ -240,9 +240,7 @@
 		 */
 		public function upload()
 		{
-			$tmp = \core\build\Template::getTemplate('crud/images/upload.html.tpl');
-
-			\core\build\Sourjelly::getHtml()->assign('{content}',$tmp);
+			\SjHtml()->assign('{content}', \Template('crud/images/upload.html.tpl'));
 		}
 
         public function images()
