@@ -168,7 +168,8 @@
 				}
 
 				$this->basePaths();
-				die($this->layout);
+
+				echo ($this->layout);
 			}
 			else
 				die('The layout for this page could not even be found.. What have you done?!');

@@ -4,6 +4,7 @@
 	 * @version 1.1.0.0
 	 * 
 	 * @todo thighten up security
+	 * @todo move getId from controller function to main controller function.
 	 * @todo clean up messy code
 	 * @todo !important Write documentation in code
 	 * @todo !important Write web interface user documentation.

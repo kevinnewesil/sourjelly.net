@@ -18,15 +18,9 @@
 	}
 	else
     {
-        $parts = explode('/' , $_SERVER['REQUEST_URI']);
-        $index = array_search('index.php',$parts);
-        $pathfix = '';
-        for($i = 0; $i < $index; $i++){
-            $pathfix .= $parts[$i] . '/';
-        }
-
+        $parts = explode('index.php' , $_SERVER['REQUEST_URI']);
 		DEFINE('AJAX_PATH' , '..' . DS . 'ajax' . DS);
-		DEFINE('ASSETS_PATH' , $pathfix . 'assets' . DS);
+		DEFINE('ASSETS_PATH' , $parts[0] . 'assets' . DS);
 		DEFINE('MODULES_ASSETS_PATH' , '..' . DS . 'modules' . DS);
 	}
 

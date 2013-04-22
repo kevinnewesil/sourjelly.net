@@ -106,8 +106,7 @@
 			}
 			else
 			{
-				\QueryFalse();
-				\QueryFalseMsg('Could not fetch menu items..<br> error: ' . self::$_link -> error);
+				\SetNotice('Could not fetch menu items..<br> error: ' . self::$_link -> error);
 				return false;
 			}
 			
@@ -189,8 +188,7 @@
 			}
 			else
 			{
-				\QueryFalse();
-				\QueryFalseMsg('Could not fetch row.. <br> error: ' . self::$_link -> error);
+				\SetNotice('Could not fetch row.. <br> error: ' . self::$_link -> error);
 				return false;
 			}
 		}
@@ -228,11 +226,11 @@
 			}
 
 			$query .= ")";
-
+			
 			if($stmt = self::$_link->prepare($query))
 			{
 				if(!self::checkQuery($query,'INSERT',true))
-					\core\access\Redirect::Home('Something went wrong with the query.');
+					\SetNotice('Something went wrong with the query.');
 					
 				if($types && $values)
 		        {
@@ -255,7 +253,7 @@
 		        	return true;
 		        }
 		        else
-		        { 
+		        {
 		        	self::$_insertId = false;
 		        	$stmt -> close();
 		        	return false;
@@ -263,8 +261,7 @@
 			}
 			else
 			{
-				\QueryFalse();
-				\QueryFalseMsg('Could not Insert row.. <br> error: ' . self::$_link -> error);
+				\setNotice('Could not prepare query to insert row.. <br> error: ' . self::$_link -> error);
 				return false;
 			}
 		}
@@ -332,8 +329,7 @@
 			}
 			else
 			{
-				\QueryFalse();
-				\QueryFalseMsg('Could not Update row.. <br> error: ' . self::$_link -> error);
+				\SetNotice('Could not Update row.. <br> error: ' . self::$_link -> error);
 				return false;
 			}
 		}
