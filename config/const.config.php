@@ -13,16 +13,19 @@
 	if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] == 'localhost' && $_SERVER['SCRIPT_NAME'] !== 'index.php')
 	{
 		$dirname = dirname($_SERVER['SCRIPT_NAME']);
-
+		$dirname = str_replace('ajax/','public_html/',$dirname);
+		
 		DEFINE('AJAX_PATH', dirname($dirname) . DS . 'ajax' . DS);
-		DEFINE('ASSETS_PATH', str_replace('ajax/','public_html/', $dirname ) . DS . 'assets' . DS);
+		DEFINE('ASSETS_PATH', $dirname . DS . 'assets' . DS);
 		DEFINE('MODULES_ASSETS_PATH' ,dirname($dirname) . DS .  'modules' . DS);
 	}
 	else
     {
         $parts = explode('index.php' , $_SERVER['REQUEST_URI']);
+        $parts[0] = str_replace('ajax/','public_html/',$parts[0]);
+
 		DEFINE('AJAX_PATH' , MAIN_PATH . 'ajax' . DS);
-		DEFINE('ASSETS_PATH' , str_replace('ajax/','public_html/',$parts[0]) . 'assets' . DS);
+		DEFINE('ASSETS_PATH' , $parts[0] . 'assets' . DS);
 		DEFINE('MODULES_ASSETS_PATH' , '..' . DS . 'modules' . DS);
 	}
 
