@@ -57,6 +57,14 @@
 		 */
 		public function setSystemSettings()
 		{
+
+			// Set default settings
+
+			// Make system errors look fancy.. :)
+			ini_set('error_prepend_string','<span style="color:#FF0000;"><pre>');
+			ini_set('error_append_string','</pre></span>');
+
+			// Set user based settings.
 			$settings = \core\build\Sourjelly::getApi() -> getSettings() -> getSystemSettings();
 			if($settings !== NULL || !empty($settings))
 			{
