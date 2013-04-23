@@ -13,12 +13,12 @@
 		},
 		success : function(data){
 			$(data).each(function(key,value){
-				img += '<img src="{assets}img/uploads/' + data[key] + '" alt="" id="' + data[key] + '" class="thumb"/>';
+				img += '<img src="{assets}img/uploads/' + data[key] + '" alt="" id="' + data[key] + '" class="thumbnail" data-src="holder.js/300x200"/>' + "\r\n";
 			});
 		},
-		
-		$("#imgbox").html(img);
 	});
+
+	$("#imgbox").html(img);
 
 </script>
 
