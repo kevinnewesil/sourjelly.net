@@ -14,7 +14,7 @@
 	// set $demo_mode to true;
 
 	$demo_mode = false;
-	$upload_dir =  '/Library/WebServer/Documents/sourjelly.net/public_html/assets/img/uploads/';
+	$upload_dir =  $_SERVER['DOCUMENT_ROOT'] . ASSETS_PATH . 'img/uploads/';
 	$allowed_ext = array('jpg','jpeg','png','gif');
 
 	if(strtolower($_SERVER['REQUEST_METHOD']) != 'post'){
