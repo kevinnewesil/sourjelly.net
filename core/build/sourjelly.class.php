@@ -56,8 +56,8 @@
 
 			require(API_PATH . 'api.class.php');
 
-			$this -> startSourjelly();
-			$this -> finishSourjelly();
+            $this -> startSourjelly();
+            $this -> finishSourjelly();
 		}
 
 		/**
@@ -222,10 +222,7 @@
 		}
 
 		private function finishSourjelly()
-		{
-			// Check for the exectuted queries to be alright
-			\config\Config::saveQueryData();
-			
+		{	
 			if(!$this -> _ajax && PHP_SAPI !== 'cli')
 				// build the html!
 				self::getHtml()->Build();

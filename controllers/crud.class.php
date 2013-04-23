@@ -41,6 +41,7 @@
 
 			$tmp = \core\build\Template::getTemplate('crud/create.html.tpl');
 			$tmp = str_replace('{pagesoptions}',$parent,$tmp);
+
 			\core\build\Sourjelly::getHtml()->assign('{content}',$tmp);
 		}
 
@@ -78,55 +79,75 @@
 		public function update()
 		{
 
-			if(!$this->checkId())
-				$this->retrieve();
-			else
+			if(!$id = $this->checkId())
 			{
-				$rawUrl = explode('/index.php/',$_SERVER['REQUEST_URI']);
-				$parts = explode('/',$rawUrl[1]);
-
-				$page = \api\Api::getPages() -> getPage($parts[2]);
-				$menu = \api\Api::getMenuItems();
-
-				$tmp = \core\build\Template::getTemplate('crud/update.html.tpl');
-				$option = \core\build\Template::getSnippet('selectOption.html.tpl');
-
-				$visible = $page['visible'] == '1' ? 'checked=checked' : '';
-
-				$tmp = str_replace(array('{id}','{title}','{content}','{created_at}','','{checked_visible}','{meta_tags}','{meta_description}','{content_id}','{content_class}'),$page,$tmp);
-				$placeholders = array('{optionvalue}','{optionname}','{select}',$visible);
-
-				// Pre define the options variable and set the first option to no parent menu selected.
-				$options = str_replace($placeholders,array('-','Geen parent menu',''),$option);
-
-				foreach($menu as $title => $submenu)
-				{
-					if(is_array($submenu) && !empty($submenu))
-					{
-						if(\api\Api::getPages() -> getIdFromTitle($title) == $page['parent'])
-							$options .= str_replace($placeholders, array($title,$title,'selected="selected"'),$option);
-						else
-							$options .= str_replace($placeholders, array($title,$title,''),$option);
-
-						foreach($submenu as $subtitle => $nothingYet)
-							if(\api\Api::getPages() -> getIdFromTitle($subtitle) == $page['parent'])
-								$options .= str_replace($placeholders, array($subtitle,$subtitle,'selected="selected"'),$option);
-							else
-								$options .= str_replace($placeholders, array($subtitle,$subtitle,''),$option);
-					}
-					else
-					{
-						if(\api\Api::getPages() -> getIdFromTitle($title) == $page['parent'])
-							$options .= str_replace($placeholders, array($title,$title,'selected="selected"'),$option);
-						else
-							$options .= str_replace($placeholders, array($title,$title,''),$option);
-					}
-				}
-
-				$tmp = str_replace('{parent}',$options,$tmp);
-
-				\core\build\Sourjelly::getHtml()->assign('{content}',$tmp);
+				$this->retrieve();
+				return 0;
 			}
+
+			$page = \api\Api::getPages() -> getPage($id);
+			$menu = \api\Api::getMenuItems();
+
+			$tmp = \core\build\Template::getTemplate('crud/update.html.tpl');
+			$option = \core\build\Template::getSnippet('selectOption.html.tpl');
+
+			// Clean all the data.
+			$frontend = $page['tc']['front'] == '1' ? 'checked="checked"' : '';
+			$backend  = $page['tc']['back'] == '1' ? 'checked="checked"' : '';
+			$visible  = $page['tc']['menuVisibility'] == '1' ? 'checked="checked"' : '';
+			$titleVis = $page['tcl']['titleVisibility'] == '1' ? 'checked="checked"' : '';
+
+
+			$placeholders = array('{id}','{title}','{parent}','{created_at}','{frontend_checked}','{backend_checked}','{checked_visible}',
+								  '{meta_tags}','{meta_description}','{pagetitle_checked}','{contentAlignleft_selected}','{contentAlignright_selected}',
+								  '{contentAligncenter_selected}','{contentAlignjustify_selected}','{titleAlignleft_selected}','{titleAlignright_selected}',
+								  '{titleAligncenter_selected}','{titleAlignjustify_selected}',
+								  '{fontsize}','{content_id}','{content_class}','{content}');
+
+			$parentPlaceholders = array('{optionvalue}','{optionname}','{select}',$visible);
+
+			// Pre define the options variable and set the first option to no parent menu selected.
+			$options = str_replace($parentPlaceholders,array('-','Geen parent menu',''),$option);
+
+			foreach($menu as $title => $submenu)
+			{
+				if(is_array($submenu) && !empty($submenu))
+				{
+					if(\api\Api::getPages() -> getIdFromTitle($title) == $page['parent'])
+						$options .= str_replace($parentPlaceholders, array($title,$title,'selected="selected"'),$option);
+					else
+						$options .= str_replace($parentPlaceholders, array($title,$title,''),$option);
+
+					foreach($submenu as $subtitle => $nothingYet)
+						if(\api\Api::getPages() -> getIdFromTitle($subtitle) == $page['parent'])
+							$options .= str_replace($parentPlaceholders, array($subtitle,$subtitle,'selected="selected"'),$option);
+						else
+							$options .= str_replace($parentPlaceholders, array($subtitle,$subtitle,''),$option);
+				}
+				else
+				{
+					if(\api\Api::getPages() -> getIdFromTitle($title) == $page['parent'])
+						$options .= str_replace($parentPlaceholders, array($title,$title,'selected="selected"'),$option);
+					else
+						$options .= str_replace($parentPlaceholders, array($title,$title,''),$option);
+				}
+			}
+
+			$replacers = array($page['tcp']['id'],$page['tcp']['title'],$options, $page['tc']['created_at'], $frontend, $backend,
+							    $visible, $page['tcp']['metaTags'], $page['tcp']['metaDescription'],$titleVis, 
+								(strpos($page['tcl']['contentTextAlign'], 'left')) ? 'checked="checked"' : '' ,
+								(strpos($page['tcl']['contentTextAlign'], 'right')) ? 'checked="checked"' : '' , 
+								(strpos($page['tcl']['contentTextAlign'], 'center')) ? 'checked="checked"' : '' ,
+								(strpos($page['tcl']['contentTextAlign'], 'justify')) ? 'checked="checked"' : '' ,
+								(strpos($page['tcl']['titleTextAlign'], 'left')) ? 'checked="checked"' : '' ,
+								(strpos($page['tcl']['titleTextAlign'], 'right')) ? 'checked="checked"' : '' , 
+								(strpos($page['tcl']['titleTextAlign'], 'center')) ? 'checked="checked"' : '' ,
+								(strpos($page['tcl']['titleTextAlign'], 'justify')) ? 'checked="checked"' : '' ,
+								$page['tcl']['fontSize'], $page['tcp']['contentId'], $page['tcp']['contentClass'], $page['tcp']['content']);
+			
+			$tmp = str_replace($placeholders,$replacers,$tmp);
+
+			\core\build\Sourjelly::getHtml()->assign('{content}',$tmp);
 		}
 
 		/**
@@ -228,36 +249,17 @@
 		 * Calls for the crud model -> create function, to execute creating a new page.
 		 * @see  \models\Crud -> create
 		 */
-		public function post_create()
-		{
-			if($this-> _model -> create(\core\access\Request::returnGlobalObject('post')))
-				\Go(HOME_PATH . '/crud/create/?ns=controllers&path=controller_path','Page succesfully created!','success');
-			else
-				\Go(HOME_PATH . '/crud/create/?ns=controllers&path=controller_path','Something went wrong creating the page');
-		}
+		public function post_create() { if($this-> _model -> create(\core\access\Request::returnGlobalObject('post'))) \SetNotice('Page succesfully created'); }
 
 		/**
 		 * Parses and sets the data of a page that's going to be updated, and calls for the crud model -> update function to update the page.
 		 * @see \models\Crud -> update
 		 */
-		public function post_update()
-		{
-			$rawUrl = explode('/index.php/',$_SERVER['REQUEST_URI']);
-			$parts = explode('/',$rawUrl[1]);
-			
-			array_pop($_POST);
-			$update = $_POST;
-			unset($_POST);
+		public function post_update() { if($this-> _model -> update(\core\access\Request::returnGlobalObject('post'))) \SetNotice('Page updated successfully'); }
 
-			if(empty($update['title']) || empty($update['content']))
-				\core\access\Redirect::to(HOME_PATH . '/crud/update/' . $parts[2] .'/?ns=controllers&path=controller_path','Title and/or content can not be empty.');
-			
-			if($this-> _model ->update($update))
-				\core\access\Redirect::to(HOME_PATH . '/crud/update/?ns=controllers&path=controller_path','Page succesfully edited.','success');
-			else
-				\core\access\Redirect::to(HOME_PATH . '/crud/update/?ns=controllers&path=controller_path','Something went wrong updating the page.');
-		}
-
+		/**
+		 * 
+		 */
 		public function upload()
 		{
 			$tmp = \core\build\Template::getTemplate('crud/images/upload.html.tpl');
@@ -288,7 +290,7 @@
 			$parts = explode('/',$rawUrl[1]);
 
 			if(is_numeric($parts[2]))
-				return true;
+				return $parts[2];
 			else
 				return false;
 		}

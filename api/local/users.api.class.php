@@ -56,8 +56,7 @@
 			}
 			else
 			{
-				\QueryFalse();
-				\QueryFalseMsg('Could not fetch users.. <br> error: ' . self::$_link -> error);
+				\SetNotice('Could not fetch users.. <br> error: ' . self::$_link -> error);
 				return false;
 			}
 
@@ -111,8 +110,7 @@
 			}
 			else
 			{
-				\QueryFalse();
-				\QueryFalseMsg('Could not Fetch current user.. <br> error: ' . self::$_link -> error);
+				\SetNotice('Could not Fetch current user.. <br> error: ' . self::$_link -> error);
 				return false;
 			}
 
@@ -156,8 +154,7 @@
 			}
 			else
 			{
-				\QueryFalse();
-				\QueryFalseMsg('Could not fetch user.. <br> error: ' . self::$_link -> error);
+				\SetNotice('Could not fetch user.. <br> error: ' . self::$_link -> error);
 				return false;
 			}
 
@@ -187,8 +184,7 @@
 			}
 			else
 			{
-				\QueryFalse();
-				\QueryFalseMsg('Could not fetch user perms.. <br> error: ' . self::$_link -> error);
+				\SetNotice('Could not fetch user perms.. <br> error: ' . self::$_link -> error);
 				return false;
 			}
 
@@ -214,8 +210,7 @@
 			}
 			else
 			{
-				\QueryFalse();
-				\QueryFalseMsg('Could not check tables.. <br> error: ' . self::$_link -> error);
+				\SetNotice('Could not check tables.. <br> error: ' . self::$_link -> error);
 				return false;
 			}
 		}
@@ -237,8 +232,7 @@
 			}
 			else
 			{
-				\QueryFalse();
-				\QueryFalseMsg('Could not fetch language.. <br> error: ' . self::$_link -> error);
+				\SetNotice('Could not fetch language.. <br> error: ' . self::$_link -> error);
 				return false;
 			}
 

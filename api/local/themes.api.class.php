@@ -43,8 +43,7 @@
 			}
 			else
 			{
-				\QueryFalse();
-				\QueryFalseMsg('Could not fetch active theme.. <br> error: ' . self::$_link -> error);
+				\SetNotice('Could not fetch active theme.. <br> error: ' . self::$_link -> error);
 				return false;
 			}
 
@@ -73,8 +72,7 @@
 			}
 			else
 			{
-				\QueryFalse();
-				\QueryFalseMsg('Could not fetch theme data.. <br> error: ' . self::$_link -> error);
+				\SetNotice('Could not fetch theme data.. <br> error: ' . self::$_link -> error);
 				return false;
 			}
 
@@ -101,8 +99,7 @@
 			}
 			else
 			{
-				\QueryFalse();
-				\QueryFalseMsg('Could not fetch theme data.. <br> error: ' . self::$_link -> error);
+				\SetNotice('Could not fetch theme data.. <br> error: ' . self::$_link -> error);
 				return false;
 			}
 

@@ -49,8 +49,7 @@
 			}
 			else
 			{
-				\QueryFalse();
-				\QueryFalseMsg('Could not fetch active theme.. <br> error: ' . self::$_link -> error);
+				\SetNotice('Could not fetch active theme.. <br> error: ' . self::$_link -> error);
 				return false;
 			}
 			
@@ -92,8 +91,7 @@
 			}
 			else
 			{
-				\QueryFalse();
-				\QueryFalseMsg('Could not fetch module by id.. <br> error: ' . self::$_link -> error);
+				\SetNotice('Could not fetch module by id.. <br> error: ' . self::$_link -> error);
 				return false;
 			}
 
@@ -127,8 +125,7 @@
 			}
 			else
 			{
-				\QueryFalse();
-				\QueryFalseMsg('Could not fetch module by deprecated flag.. <br> error: ' . self::$_link -> error);
+				\SetNotice('Could not fetch module by deprecated flag.. <br> error: ' . self::$_link -> error);
 				return false;
 			}
 
@@ -184,8 +181,7 @@
 			}
 			else
 			{
-				\QueryFalse();
-				\QueryFalseMsg('Could not fetch module by page id.. <br> error: ' . self::$_link -> error);
+				\SetNotice('Could not fetch module by page id.. <br> error: ' . self::$_link -> error);
 				return false;
 			}
 

@@ -17,9 +17,17 @@
 		DEFINE('MODULES_ASSETS_PATH' ,dirname(dirname($_SERVER['SCRIPT_NAME'])) . DS .  'modules' . DS);
 	}
 	else
-	{
+    {
+        $parts = explode('/' , $_SERVER['REQUEST_URI']);
+        $index = array_search('index.php',$parts);
+        $pathfix = '';
+
+        for($i = 0; $i < $index; $i++){
+            $pathfix .= $parts[$i] . '/';
+        }
+
 		DEFINE('AJAX_PATH' , '..' . DS . 'ajax' . DS);
-		DEFINE('ASSETS_PATH' , DS . 'assets' . DS);
+		DEFINE('ASSETS_PATH' , $pathfix . 'assets' . DS);
 		DEFINE('MODULES_ASSETS_PATH' , '..' . DS . 'modules' . DS);
 	}
 
