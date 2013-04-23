@@ -1,7 +1,7 @@
 ehthumbs.db
 .DS_Store
 tmp/logs/error.log
-public_html/assets/css/themes/Sourjelly.less
+public_html/assets/css/themes/*
 .DS_Store?
 /public_html/assets/img/uploads/*
 Thumbs.db
