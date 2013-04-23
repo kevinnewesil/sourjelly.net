@@ -2,24 +2,30 @@
 
 	$.ajax({
 		url : '{ajax}image_loader.php',
-		async : false,
+		async : true,
 		dataType : 'json',
 		global : false,
 		type : 'post',
 		data : {
 			action : 'loadQuick'
 		},
+
 		success : function(data){
-			$(data).each(function(key,value){
-				$("#uploaded-images").append('<div class="thumbnail">
-										<img src="{assets}img/uploads/' + value + '" alt="" id="' + value + '" data-src="holder.js/300x200"/>' + "\r\n"
-									+ '</div>');
-			});
+			if (data[0] !== false) {
+				$(data).each(function(key,value){
+					$('div[id="uploaded-images"]').append('<img src="{assets}img/uploads/' + value + '" height="200px" width="200px" class="span2"/>');
+				});
+			}
+			else
+			{
+				$("#uploaded-images").append( '<h3> No images found </h3>');
+			}
 		},
 	});
 
 </script>
 
-<div class="well" id="uploaded-images">
-	
+<div class="well">
+	<h2>Images</h2>
+	<div class="row" id="uploaded-images"></div>
 </div>
