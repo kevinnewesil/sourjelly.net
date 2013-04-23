@@ -233,10 +233,7 @@
 		 */
 		public function upload() { \SjHtml()->assign('{content}', \Template('crud/images/upload.html.tpl')); }
 
-        public function images()
-        {
-
-        }
+        public function images() { \SjHtml() -> assign('{content}', \Template('crud/images/overview.html.tpl')); }
 
 
         public function cropper()
