@@ -12,14 +12,19 @@
 	//Make sure to re-check this one... fucking failures every fucking where.
 	if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] == 'localhost' && $_SERVER['SCRIPT_NAME'] !== 'index.php')
 	{
-		DEFINE('AJAX_PATH', dirname(dirname($_SERVER['SCRIPT_NAME'])) . DS . 'ajax' . DS);
-		DEFINE('ASSETS_PATH', dirname($_SERVER['SCRIPT_NAME']) . DS . 'assets' . DS);
-		DEFINE('MODULES_ASSETS_PATH' ,dirname(dirname($_SERVER['SCRIPT_NAME'])) . DS .  'modules' . DS);
+		$dirname = dirname($_SERVER['SCRIPT_NAME']);
+		$dirname = str_replace('ajax/','public_html/',$dirname);
+		
+		DEFINE('AJAX_PATH', dirname($dirname) . DS . 'ajax' . DS);
+		DEFINE('ASSETS_PATH', $dirname . DS . 'assets' . DS);
+		DEFINE('MODULES_ASSETS_PATH' ,dirname($dirname) . DS .  'modules' . DS);
 	}
 	else
     {
         $parts = explode('index.php' , $_SERVER['REQUEST_URI']);
-		DEFINE('AJAX_PATH' , '..' . DS . 'ajax' . DS);
+        $parts[0] = str_replace('ajax/','public_html/',$parts[0]);
+
+		DEFINE('AJAX_PATH' , MAIN_PATH . 'ajax' . DS);
 		DEFINE('ASSETS_PATH' , $parts[0] . 'assets' . DS);
 		DEFINE('MODULES_ASSETS_PATH' , '..' . DS . 'modules' . DS);
 	}
