@@ -1,12 +1,12 @@
 ehthumbs.db
-.DS_Store
+._*
 tmp/logs/error.log
-public_html/assets/css/themes/Sourjelly.less
 .DS_Store?
 Icon?
 Thumbs.db
+public_html/assets/css/themes/Sourjelly.less
 .Spotlight-V100
 .Trashes
-._*
+.DS_Store
 .com.apple.timemachine.supported
 config/main.config.php
