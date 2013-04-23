@@ -91,9 +91,9 @@
 				$this->retrieve();
 			else
 				if($this->_model->delete())
-					\core\access\Redirect::to('/cms/public/index.php/modules/overview/?ns=controllers&path=controller_path', 'Module succefully deleted','success');
+					\core\access\Redirect::to(HOME_PATH . '/modules/overview/?ns=controllers&path=controller_path', 'Module succefully deleted','success');
 				else
-					\core\access\Redirect::to('/cms/public/index.php/modules/overview/?ns=controllers&path=controller_path', 'Error deleting the module');
+					\core\access\Redirect::to(HOME_PATH . '/modules/overview/?ns=controllers&path=controller_path', 'Error deleting the module');
 		}
 
 		/**
@@ -106,14 +106,7 @@
 			$tmp 		  = \core\build\Template::getTemplate('module/deleted.html.tpl');
 			$rowsTmp	  = \core\build\Template::getTemplate('module/deletedRows.html.tpl');
 			$modules 	  = \Api\Api::getModules() -> getAllDeprecatedModules();
-			$placeholders     = array('{name}',
-					          '{description}',
-						  '{uploaded_at}',
-						  '{match}',
-						  '{position}',
-						  '{active}',
-						  '{id}',
-						 );
+			$placeholders = array('{name}','{description}','{uploaded_at}','{match}','{position}','{active}','{id}');
 
 			foreach($modules as $module)
 			{

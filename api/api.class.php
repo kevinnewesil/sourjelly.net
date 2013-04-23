@@ -21,6 +21,8 @@
 		protected static $_settings;
 		protected static $_themes;
 
+		protected static $_insertId;
+
 		/**
 		 * The API constructor functions gets all the local sub API's and set protected static properties in the API class
 		 * Theses protected properties have the objects of the local sub API classes.
@@ -80,7 +82,13 @@
 		public static function getMenuItems()
 		{
 			$return = array();
-			$query  = "SELECT `id`,`title` FROM `table_content` WHERE `has_parent` = '0' AND `deprecated` = 0 AND `visable` = 1 ORDER BY `menu_order` ASC";
+			$query  = "SELECT table_content_properties.id,table_content_properties.title 
+					   FROM `table_content_properties`
+					   LEFT JOIN `table_content` ON table_content.id = table_content_properties.cId 
+					   WHERE table_content_properties.hasParent = 0 
+					   	AND table_content.deprecated = 0 
+					   	AND table_content.menuVisibility = 1 
+					   ORDER BY table_content_properties.menuOrder ASC";
 
 			if($stmt = self::$_link->prepare($query))
 			{
@@ -95,6 +103,11 @@
 				}
 
 				$stmt->close();
+			}
+			else
+			{
+				\SetNotice('Could not fetch menu items..<br> error: ' . self::$_link -> error);
+				return false;
 			}
 			
 			foreach($return as $title => $id)
@@ -116,7 +129,13 @@
 			if(!isset($return))
 				$return = array();
 
-			$query = "SELECT `title`,`id` FROM `table_content` WHERE `has_parent` = '1' AND `parent_id` = ? AND `deprecated` = 0 ORDER BY `menu_order` ASC";
+			$query = "SELECT table_content_properties.title,table_content_properties.id 
+					  FROM `table_content_properties`
+					  LEFT JOIN `table_content` ON table_content.id = table_content_properties.cId 
+					  WHERE table_content_properties.hasParent = 1
+					  	AND table_content_properties.parentId = ? 
+					  	AND table_content.deprecated = 0 
+					  ORDER BY table_content_properties.menuOrder ASC";
 
 			if($stmtChildren = self::$_link->prepare($query))
 			{
@@ -126,13 +145,23 @@
 				$stmtChildren->bind_param('i',$menuId);
 				$stmtChildren->execute();
 				$stmtChildren->bind_result($title,$id);
+
+				// Bugs caused by not closing bloody stmt..
 				while($stmtChildren->fetch())
 				{
 					$return[$title] = array();
-					$return[$title] = self::getChildrenRecursive($id);
+					// $return[$title] = self::getChildrenRecursive($id);
 				}
+
 				$stmtChildren->close();
 			}
+			else
+			{
+				\QueryFalse();
+				\QueryFalseMsg('Could not fetch menu item children.. <br> error: ' . self::$_link -> error);
+				return false;
+			}
+
 			return $return;
 		}
 
@@ -158,7 +187,10 @@
 				return $ret;
 			}
 			else
-				\core\access\redirect::Home(self::$_link->error,'error');
+			{
+				\SetNotice('Could not fetch row.. <br> error: ' . self::$_link -> error);
+				return false;
+			}
 		}
 
 		/**
@@ -186,18 +218,19 @@
 
 			for ($i=0; $i < count($values); $i++)
 			{
-				if($i < count($values)-1)
+
+				if($i < (count($values)-1))
 					$query .= '?,';
 				else
 					$query .= '?';
 			}
 
 			$query .= ")";
-
+			
 			if($stmt = self::$_link->prepare($query))
 			{
-				if(!self::checkQuery($query,'INSERT'))
-					\core\access\Redirect::Home('Something went wrong with the query.');
+				if(!self::checkQuery($query,'INSERT',true))
+					\SetNotice('Something went wrong with the query.');
 					
 				if($types && $values)
 		        {
@@ -212,17 +245,25 @@
 		        }
 
 		        $stmt->execute();
-				
-		        if($debug)
-		        	die($stmt->error);
 
 		        if($stmt->affected_rows > 0 )
+		        {
+		        	self::$_insertId = $stmt -> insert_id;
+		        	$stmt -> close();
 		        	return true;
-		        else 
+		        }
+		        else
+		        {
+		        	self::$_insertId = false;
+		        	$stmt -> close();
 		        	return false;
+		        }
 			}
 			else
-				\core\access\Redirect::Home(self::$_link->error . 'in \api\Api::insetInto()','error');
+			{
+				\setNotice('Could not prepare query to insert row.. <br> error: ' . self::$_link -> error);
+				return false;
+			}
 		}
 
 		/**
@@ -287,18 +328,33 @@
 				}
 			}
 			else
+			{
+				\SetNotice('Could not Update row.. <br> error: ' . self::$_link -> error);
 				return false;
+			}
 		}
 
-		public static function checkQuery($query, $sort = 'SELECT')
+		public static function getLastInsertId()
+		{
+			return self::$_insertId;
+		}
+
+		/**
+		 * 
+		 */
+		public static function checkQuery($query, $sort = 'SELECT', $timestamps = false)
 		{
 			if(strpos($query, $sort) === false)
 				return false;
 
 			switch ($sort) {
 				case 'SELECT':
-					if(strpos('UPDATE', $query) || strpos('INSERT', $query) || strpos('DELETE', $query))
-						return false;
+					if(!$timestamps)
+						if(strpos('UPDATE', $query) || strpos('INSERT', $query) || strpos('DELETE', $query))
+							return false;
+					else
+						if(strpos('INSERT', $query) || strpos('DELETE', $query))
+							return false;
 					break;
 				
 				case 'UPDATE':
@@ -307,8 +363,12 @@
 					break;
 				
 				case 'INSERT':
-					if(strpos('SELECT', $query) || strpos('UPDATE', $query) || strpos('DELETE', $query))
-						return false;
+					if(!$timestamps)
+						if(strpos('SELECT', $query) || strpos('UPDATE', $query) || strpos('DELETE', $query))
+							return false;
+					else
+						if(strpos('SELECT', $query) || strpos('DELETE', $query))
+							return false;
 					break;
 				
 				case 'DELETE':

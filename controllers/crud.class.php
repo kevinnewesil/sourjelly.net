@@ -1,31 +1,24 @@
-<?php namespace controllers;
+<?php namespace controllers; if(!defined("DS")) die('no direct script access!');
 
 	/**
 	* @author  Kevin Newesil <newesil.kevin@gmail.com>
 	* @version  1.0
-	* @package  default
+	* @package  controller
 	*
-	* @var $crudmodel @deprecated
-	* @var $link @deprecated
 	*/
-	class Crud
+	class Crud extends \core\system\Controller
 	{
-		protected $crudModel;
-		protected $link;
-
 		/**
-		 * @deprecated from version 1.0 > currently building 1.1
 		 * Created sort of restfull constructor that checkes if there's a post, and redirects to the post_function of this class.
 		 */
 		public function __construct()
 		{
-			require(MODEL_PATH . 'crud.class.php');
-			$this->crudModel = new \models\crud;
+			parent::__construct();
 
 			if(isset($_POST['submit']))
 			{
 				$function = 'post_' . $_POST['submit'];
-				$this->$function();
+				$this -> $function();
 			}
 		}
 
@@ -34,22 +27,16 @@
 		 */
 		public function create()
 		{
-
-			$parent = '';
+			$parent    = '';
 			$menuitems = \api\Api::getMenuItems();
-			$selectTmp = \core\build\Template::getSnippet('selectOption.html.tpl');
+			$tmp       = \Template('crud/create.html.tpl');
+			$selectTmp = \Snippet('selectOption.html.tpl');
 
 			foreach($menuitems as $menuitem => $submenu)
-			{
-				$parent .= str_replace(
-						array('{optionvalue}','{optionname}'),
-						array($menuitem,$menuitem),
-						$selectTmp);
-			}
+				$parent .= str_replace( array('{optionvalue}','{optionname}'), array($menuitem,$menuitem), $selectTmp);
 
-			$tmp = \core\build\Template::getTemplate('crud/create.html.tpl');
 			$tmp = str_replace('{pagesoptions}',$parent,$tmp);
-			\core\build\Sourjelly::getHtml()->assign('{content}',$tmp);
+			\SjHtml() -> assign('{content}',$tmp);
 		}
 
 		/**
@@ -58,13 +45,11 @@
 		public function retrieve()
 		{
 
-			$webTable = \core\build\Template::getTemplate('crud/retrieve.html.tpl');
-			$webTableRow = \core\build\Template::getTemplate('crud/retrieveRow.html.tpl');
+			$webTable        = \Template('crud/retrieve.html.tpl');
+			$webTableRow     = \Template('crud/retrieveRow.html.tpl');
+			$pages           = \getApiPages() -> getAllPages();
 			$placeholdersRow = array('{title}','{content}','{created_at}','{updated_at}','{parent}','{id}');
-
-			$rows = '';
-
-			$pages = \api\Api::getPages() -> getAllPages();
+			$rows            = '';
 
 			foreach($pages as $page)
 			{
@@ -77,7 +62,7 @@
 			}
 
 			$tables = str_replace('{rows}',$rows,$webTable);
-			\core\build\Sourjelly::getHtml()->assign('{content}',$tables);
+			\SjHtml() -> assign('{content}',$tables);
 		}
 
 		/**
@@ -86,72 +71,74 @@
 		public function update()
 		{
 
-			if(!$this->checkId())
+			if(!$id = $this->checkId())
 			{
 				$this->retrieve();
+				return 0;
 			}
-			else
+
+			$page   = \getApiPages() -> getPage($id);
+			$menu   = \api\Api::getMenuItems();
+			
+			$tmp    = \Template('crud/update.html.tpl');
+			$option = \Snippet('selectOption.html.tpl');
+
+			// Clean all the data.
+			$frontend = $page['tc']['front'] == '1' ? 'checked="checked"' : '';
+			$backend  = $page['tc']['back'] == '1' ? 'checked="checked"' : '';
+			$visible  = $page['tc']['menuVisibility'] == '1' ? 'checked="checked"' : '';
+			$titleVis = $page['tcl']['titleVisibility'] == '1' ? 'checked="checked"' : '';
+
+
+			$placeholders = array('{id}','{title}','{parent}','{created_at}','{frontend_checked}','{backend_checked}','{checked_visible}',
+								  '{meta_tags}','{meta_description}','{pagetitle_checked}','{contentAlignleft_selected}','{contentAlignright_selected}',
+								  '{contentAligncenter_selected}','{contentAlignjustify_selected}','{titleAlignleft_selected}','{titleAlignright_selected}',
+								  '{titleAligncenter_selected}','{titleAlignjustify_selected}',
+								  '{fontsize}','{content_id}','{content_class}','{content}');
+
+			$parentPlaceholders = array('{optionvalue}','{optionname}','{select}',$visible);
+
+			// Pre define the options variable and set the first option to no parent menu selected.
+			$options = str_replace($parentPlaceholders,array('-','Geen parent menu',''),$option);
+
+			foreach($menu as $title => $submenu)
 			{
-				$rawUrl = explode('/index.php/',$_SERVER['REQUEST_URI']);
-				$parts = explode('/',$rawUrl[1]);
-
-				$page = \api\Api::getPages() -> getPage($parts[2]);
-				$menu = \api\Api::getMenuItems();
-
-				$tmp = \core\build\Template::getTemplate('crud/update.html.tpl');
-				$option = \core\build\Template::getSnippet('selectOption.html.tpl');
-
-				$visable = $page['visable'] == '1' ? 'checked=checked' : '';
-
-				$tmp = str_replace(array('{id}','{title}','{content}','{created_at}','','{checked_visable}','{meta_tags}','{meta_description}','{content_id}','{content_class}'),$page,$tmp);
-				$placeholders = array('{optionvalue}','{optionname}','{select}',$visable);
-
-				$options = str_replace($placeholders,array('-','Geen parent menu',''),$option);
-
-				foreach($menu as $title => $submenu)
+				if(is_array($submenu) && !empty($submenu))
 				{
-					if(is_array($submenu) && !empty($submenu)){
-						foreach($submenu as $subTitle => $submenu)
-						{
-							if($page[0] == $title)
-								$options .= str_replace($placeholders,array($title,$title,'selected="selected"'),$option);
-							else
-								$options .= str_replace($placeholders,array($title,$title,''),$option);
-
-							if($page[0] == $subTitle)
-								$options .= str_replace($placeholders,array($title,$title . ' || ' . $subTitle,'selected="selected"'),$option);
-							else
-								$options .= str_replace($placeholders,array($title,$title . ' || ' . $subTitle,''),$option);
-						}
-					}
+					if(\getApiPages() -> getIdFromTitle($title) == $page['tcp']['parentId'])
+						$options .= str_replace($parentPlaceholders, array($title,$title,'selected="selected"'),$option);
 					else
-					{
-						if($page[0] == $title)
-							$options .= str_replace($placeholders,array($title,$title,'selected="selected"'),$option);
+						$options .= str_replace($parentPlaceholders, array($title,$title,''),$option);
+
+					foreach($submenu as $subtitle => $nothingYet)
+						if(\getApiPages() -> getIdFromTitle($subtitle) == $page['tcp']['parentId'])
+							$options .= str_replace($parentPlaceholders, array($subtitle,$subtitle,'selected="selected"'),$option);
 						else
-							$options .= str_replace($placeholders,array($title,$title,''),$option);
-					}
+							$options .= str_replace($parentPlaceholders, array($subtitle,$subtitle,''),$option);
 				}
-
-				$tmp = str_replace('{parent}',$options,$tmp);
-
-				\core\build\Sourjelly::getHtml()->assign('{content}',$tmp);
-			}
-		}
-
-		/**
-		 * function that checks the ID of an page, and redirects to the crud model to delete the page
-		 * @see  \model\Crud
-		 */
-		public function delete()
-		{
-			if(!$this->checkId())
-				$this->retrieve();
-			else
-				if($this->crudModel->delete())
-					\core\access\Redirect::to(HOME_PATH . '/crud/retrieve/?ns=controllers&path=controller_path','Page succesfully deleted','success');
 				else
-					\core\access\Redirect::to(HOME_PATH . '/crud/retrieve/?ns=controllers&path=controller_path','Something went wrong deleting the page');
+				{
+					if(\api\Api::getPages() -> getIdFromTitle($title) == $page['tcp']['parentId'])
+						$options .= str_replace($parentPlaceholders, array($title,$title,'selected="selected"'),$option);
+					else
+						$options .= str_replace($parentPlaceholders, array($title,$title,''),$option);
+				}
+			}
+
+			$replacers = array($page['tcp']['id'],$page['tcp']['title'],$options, $page['tc']['created_at'], $frontend, $backend,
+							    $visible, $page['tcp']['metaTags'], $page['tcp']['metaDescription'],$titleVis, 
+								(strpos($page['tcl']['contentTextAlign'], 'left')) ? 'checked="checked"' : '' ,
+								(strpos($page['tcl']['contentTextAlign'], 'right')) ? 'checked="checked"' : '' , 
+								(strpos($page['tcl']['contentTextAlign'], 'center')) ? 'checked="checked"' : '' ,
+								(strpos($page['tcl']['contentTextAlign'], 'justify')) ? 'checked="checked"' : '' ,
+								(strpos($page['tcl']['titleTextAlign'], 'left')) ? 'checked="checked"' : '' ,
+								(strpos($page['tcl']['titleTextAlign'], 'right')) ? 'checked="checked"' : '' , 
+								(strpos($page['tcl']['titleTextAlign'], 'center')) ? 'checked="checked"' : '' ,
+								(strpos($page['tcl']['titleTextAlign'], 'justify')) ? 'checked="checked"' : '' ,
+								$page['tcl']['titleFontSize'], $page['tcp']['contentId'], $page['tcp']['contentClass'], $page['tcp']['content']);
+			
+			$tmp = str_replace($placeholders,$replacers,$tmp);
+			\SjHtml() -> assign('{content}',$tmp);
 		}
 
 		/**
@@ -160,13 +147,13 @@
 		public function order()
 		{
 
-			$tpl = \core\build\Template::getTemplate('crud/order.html.tpl');
-			$itemstpl = \core\build\Template::getTemplate('crud/items.html.tpl');
-			$submenutpl = \core\build\Template::getTemplate('crud/submenu.html.tpl');
-			$subitemstpl = \core\build\Template::getTemplate('crud/subitems.html.tpl');
-
-			$menu = \api\Api::getMenuItems();
-			$items = '';
+			$tpl         = \Template('crud/order.html.tpl');
+			$itemstpl    = \Template('crud/items.html.tpl');
+			$submenutpl  = \Template('crud/submenu.html.tpl');
+			$subitemstpl = \Template('crud/subitems.html.tpl');
+			
+			$menu        = \api\Api::getMenuItems();
+			$items       = '';
 
 			foreach($menu as $title => $submenu)
 			{
@@ -187,8 +174,7 @@
 			}
 
 			$tpl = str_replace('{items}', $items, $tpl);
-
-			\core\build\Sourjelly::getHtml()->assign('{content}',$tpl);
+			\SjHtml() -> assign('{content}',$tpl);
 		}
 
 		/**
@@ -196,13 +182,11 @@
 		 */
 		public function deleted()
 		{
-			$webTable = \core\build\Template::getTemplate('crud/deleted.html.tpl');
-			$webTableRow = \core\build\Template::getTemplate('crud/deletedRow.html.tpl');
+			$webTable        = \Template('crud/deleted.html.tpl');
+			$webTableRow     = \Template('crud/deletedRow.html.tpl');
 			$placeholdersRow = array('{title}','{content}','{created_at}','{updated_at}','{parent}','{id}');
-
-			$rows = '';
-
-			$pages = \api\Api::getPages() -> getDeletedPages();
+			$pages           = \getApiPages() -> getDeletedPages();
+			$rows            = '';
 
 			foreach($pages as $page)
 			{
@@ -216,97 +200,44 @@
 			}
 
 			$tables = str_replace('{rows}',$rows,$webTable);
-			\core\build\Sourjelly::getHtml()->assign('{content}',$tables);
+			\SjHtml() -> assign('{content}',$tables);
 		}
+
+		/**
+		 * function that checks the ID of an page, and redirects to the crud model to delete the page
+		 * @see  \model\Crud
+		 */
+		public function delete() { if($this-> _model -> delete()) \SetNoticeSuccess('Page succesfully deleted'); }
+
 
 		/**
 		 * Function that calls for the crud model to unset a deprecated flag on a page.
-		 * @see  \models\Crud
+		 * @see \models\Crud
 		 */
-		public function undoDelete()
-		{
-			if(!$this->checkId())
-				$this->retrieve();
-			else
-				if($this->crudModel->undoDelete())
-					\core\access\Redirect::to(HOME_PATH . '/crud/deleted/?ns=controllers&path=controller_path','Page succesfully activated','success');
-				else
-					\core\access\Redirect::to(HOME_PATH . '/crud/deleted/?ns=controllers&path=controller_path','Something went wrong activating the page');
-		}
+		public function undoDelete() { if($this-> _model ->undoDelete()) \SetNoticeSuccess('Page succesfully activated'); }
 
 		/**
 		 * Calls for the crud model -> create function, to execute creating a new page.
-		 * @see  \models\Crud -> create
+		 * @see \models\Crud -> create
 		 */
-		public function post_create()
-		{
-			array_pop($_POST);
-			$create = $_POST;
-			unset($_POST);
-
-			if(empty($create['title']) || empty($create['content']))
-				\core\access\Redirect::to(HOME_PATH . '/crud/create/?ns=controllers&path=controller_path','Please enter all asked details');
-
-			if($this->crudModel->create($create))
-				\core\access\Redirect::to(HOME_PATH . '/crud/create/?ns=controllers&path=controller_path','Page succesfully created!','success');
-			else
-				\core\access\Redirect::to(HOME_PATH . '/crud/create/?ns=controllers&path=controller_path','Something went wrong creating the page');
-		}
+		public function post_create() { if($this-> _model -> create(\core\access\Request::returnGlobalObject('post'))) \SetNoticeSuccess('Page succesfully created'); }
 
 		/**
 		 * Parses and sets the data of a page that's going to be updated, and calls for the crud model -> update function to update the page.
 		 * @see \models\Crud -> update
 		 */
-		public function post_update()
-		{
-			$rawUrl = explode('/index.php/',$_SERVER['REQUEST_URI']);
-			$parts = explode('/',$rawUrl[1]);
-			
-			array_pop($_POST);
-			$update = $_POST;
-			unset($_POST);
+		public function post_update() { if($this-> _model -> update(\core\access\Request::returnGlobalObject('post'))) \SetNoticeSuccess('Page updated successfully'); }
 
-			if(empty($update['title']) || empty($update['content']))
-				\core\access\Redirect::to(HOME_PATH . '/crud/update/' . $parts[2] .'/?ns=controllers&path=controller_path','Title and/or content can not be empty.');
-			
-			if($this->crudModel->update($update))
-				\core\access\Redirect::to(HOME_PATH . '/crud/update/?ns=controllers&path=controller_path','Page succesfully edited.','success');
-			else
-				\core\access\Redirect::to(HOME_PATH . '/crud/update/?ns=controllers&path=controller_path','Something went wrong updating the page.');
-		}
+		/**
+		 * Loads the template file and makes it possible to upload (multiple) image(s) to server. easy as click 'nd drag. handled by javascript/ajax.
+		 */
+		public function upload() { \SjHtml()->assign('{content}', \Template('crud/images/upload.html.tpl')); }
 
-		public function upload()
-		{
-			$tmp = \core\build\Template::getTemplate('crud/images/upload.html.tpl');
-
-			\core\build\Sourjelly::getHtml()->assign('{content}',$tmp);
-		}
-
-        public function images()
-        {
-
-        }
+        public function images() { \SjHtml() -> assign('{content}', \Template('crud/images/overview.html.tpl')); }
 
 
         public function cropper()
         {
 
         }
-
-
-		/**
-		 * Private function that splits the URL to check if there's a numeric part in the url, which can be used as the ID of a page for
-		 * retrieving, updating, deleting, and undo deleting.
-		 * @return boolean true if the url part is numeric and in the right position, false otherwhise
-		 */
-		protected function checkId()
-		{
-			$rawUrl = explode('/index.php/',$_SERVER['REQUEST_URI']);
-			$parts = explode('/',$rawUrl[1]);
-
-			if(is_numeric($parts[2]))
-				return true;
-			else
-				return false;
-		}
 	}

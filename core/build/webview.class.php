@@ -19,7 +19,7 @@
 			$rawUrl = $_SERVER['REQUEST_URI'];
 			$urlSplit = explode('/',$rawUrl);
 
-			$this->_page = ($urlSplit[count($urlSplit)-1] == '' || $urlSplit[count($urlSplit)-1] == 'index.php') ? 'home' : $urlSplit[count($urlSplit)-1];
+			$this->_page = ($urlSplit[count($urlSplit)-1] == '' || $urlSplit[count($urlSplit)-1] == 'index.php') ? 'empty-index' : $urlSplit[count($urlSplit)-1];
 			$this->_page = str_replace('_',' ',$this->_page);
 			
 			$this->buildPage();
@@ -29,18 +29,22 @@
 		 * Renders a lot of items, and dynamicaly builds up the page for the user.
 		 */
 		protected function buildPage()
-		{
-			$pageInfo         = \api\Api::getPages() -> getPage(0,$this->_page);
+		{	
+			$menuArr          = \api\Api::getMenuItems();
+			$menu             = '';
+
+			if($this -> _page == 'empty-index')
+				$pageInfo     = \getApiPages() -> getFirstPage();
+			else
+				$pageInfo     = \getapiPages() -> getPage(0,$this->_page);
+
 			$placeholders     = array('{title}','{content}','{pages}',);
 			$menuPlaceholders = array('{liClass}','{link}','{aClass}','{data-toggle}','{tab-index}','{linkName}','{submenu}','{caret}');
 			
-			$menuArr          = \api\Api::getMenuItems();
-			$menu             = '';
-			
-			$items            = \core\build\Template::getSnippet('menuItems.tpl');
-			$subnav           = \core\build\Template::getSnippet('submenu.tpl');
-			$caret            = \core\build\Template::getSnippet('caret.tpl');
-			$divider          = \core\build\Template::getSnippet('divider.tpl');
+			$items            = \Snippet('menuItems.tpl');
+			$subnav           = \Snippet('submenu.tpl');
+			$caret            = \Snippet('caret.tpl');
+			$divider          = \Snippet('divider.tpl');
 
 			foreach($menuArr as $menuTitle => $submenu)
 			{
@@ -95,9 +99,7 @@
 			}
 			else
 			{
-				$replacers = array(
-					$pageInfo['1'], $pageInfo['2'],$menu,
-				);
+				$replacers = array( $pageInfo['tcp']['title'], html_entity_decode($pageInfo['tcp']['content']),$menu,);
 			}
 
 			$pageId = \api\Api::getPages() -> getIdFromTitle($this->_page);

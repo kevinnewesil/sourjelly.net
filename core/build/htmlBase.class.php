@@ -33,11 +33,6 @@
 		 */
 		public function Assign($placeholder,$replacer,$debug = false)
 		{
-			if($debug)
-			{
-				//$l = $this -> layout;
-				//die($l);
-			}
 			return $this->layout = str_replace($placeholder,$replacer,$this->layout);
 		}
 
@@ -49,11 +44,16 @@
 		{
 			if(isset($_SESSION['notice']) && $_SESSION['notice'] != '')
 			{
-				$noticeSnippet = \core\build\Template::getSnippet($_SESSION['notice_sort'] .'.html.tpl','errors');
+
+				if(!isset($_SESSION['notice_sort'])) $_SESSION['notice_sort'] = 'warning';
+
+				$noticeSnippet = \Snippet($_SESSION['notice_sort'] .'.html.tpl','errors');
 				$notice        = str_replace('{noticeInfo}',$_SESSION['notice'],$noticeSnippet);
 
 				$this->layout  = str_replace('{notice}',$notice,$this->layout);
+
 				unset($_SESSION['notice']);
+				unset($_SESSION['notice_sort']);
 
 				if(isset($_SESSION['system_warning']))
 					unset($_SESSION['system_warning']);
@@ -123,7 +123,6 @@
 
 				$this->Assign('{modulesList}',$submenu,true);
 			}
-
 			else
 			{
 				$this->Assign('{nav}','');
@@ -164,7 +163,7 @@
 				$this->Themes();
 				$settings = \core\build\Sourjelly::getApi() -> getSettings() -> getSystemSettings();
 
-				if($settings['embeddedHtml'] == 1)
+				if($settings['embeddedHtml'] === "1")
 				{
 					\core\build\Sourjelly::loadCompilers('embed');
 
@@ -173,7 +172,8 @@
 				}
 
 				$this->basePaths();
-				echo $this->layout;
+
+				echo ($this->layout);
 			}
 			else
 				die('The layout for this page could not even be found.. What have you done?!');

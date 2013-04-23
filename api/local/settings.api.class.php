@@ -39,5 +39,10 @@
 				$result = $stmt->fetch_assoc();
 				return $result;
 			}
+			else
+			{
+				\SetNotice('Could not fetch current settings.. <br> error: ' . self::$_link -> error);
+				return false;
+			}
 		}
 	}

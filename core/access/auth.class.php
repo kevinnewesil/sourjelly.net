@@ -23,8 +23,8 @@
 		{
 			if(isset($_POST['login']))
 				$this->postLogin();
-			else
-				$this->getLogin();
+			
+			$this->getLogin();
 		}
 
 		/**
@@ -52,17 +52,13 @@
 			$this->_password = sha1($user['firstname'] . '-' . $password . '-' . $user['registered_at']);
 			$this->_username = $user['username'];
 
-            // Debugging...
-            // var_dump($this->_password);
-            // die(var_dump($user));
-            
             if($this->_password === $user['password'])
 				if($_SESSION['login'] = $user['firstname'] . ' ' . $user['lastname'])
 					\core\access\Redirect::home('logged in successfully','success');
 				else
-					\core\access\Redirect::Refresh('Session for user could not be created, please contact an administrator. || authclass;');
+					\SetNotice('Session for user could not be created, please contact an administrator. || authclass;');
 			else
-				\core\access\Redirect::Refresh('Username or Password wrong..');
+				\SetNotice('Username or Password wrong..');
 
 		}
 

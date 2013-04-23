@@ -6,46 +6,75 @@
 	* @package  default
 	* 
 	*/
-	class Crud
+	class Crud extends \core\system\Model
 	{
+
+		/**
+		 * Calls for the Main controller to execute the common functions etc.
+		 */
+		public function __construct()
+		{
+			parent::__construct();
+		}
+
 		/**
 		 * checks if the values are correct and inserts data for a webpage into the database.
-		 * @param  array $create the values of the create request.
+		 * @param  object $create the values of the create request.
 		 * @return boolean       return true if row was inserted correctly.
 		 */
 		public function create($create)
 		{
-			// Make sure that each array item is a variable by itself for easier parsing and less hacking as it's sort of hardcoded
-			foreach($create as $name => $value)
-				$$name = $value;
-
 			// Check if data exists, if not, redirect home with error message.
-			if(!isset($title) || !isset($content) || !isset($parent))
-				\core\access\Redirect::to(HOME_PATH . '/crud/create/?ns=controllers&path=controller_path','something went wrong setting the variables, Please contact an administrator');
-
-			// Check if the page must be visable in the main menu or not
-			$visable = isset($visable) && $visable == 'on' ? '1' : '0';
+			if(empty($create->title) || empty($create->content))
+				\core\access\Redirect::Refresh('Please fill in atleast a title, and some content!');
 
 			// Check if it's a submenu item or not. if not set to 0, else set to 1 and get parent id.
-			if($parent == '-')
+			if($create -> parent == '-')
 			{
-				$has_parent = '0';
-				$parent_id = '0';
+				$create -> hasParent = '0';
+				$create -> parentId = '0';
 			}
 			else
 			{
-				$has_parent = '1';
-
-				$parentContent = \api\Api::getPages() -> getPage('',$parent);
-				$parentId = $parentContent[0];
+				$create -> hasParent = '1';
+				// Connect to local api to fetch parent ID.
+				$parentContent = \api\Api::getPages() -> getPage('',$create->parent);
+				$create -> parentId = $parentContent[0];
 			}
+			// Pre-define the basic content table variables.
+			$table_content_values = array(
+				(isset($create -> activeFrontEnd) && $create -> activeFrontEnd == 'on') ? '1' : '0',
+				(isset($create -> activeBackEnd) && $create -> activeBackEnd == 'on') ? '1' : '0',
+				(isset($create -> visible) && $create -> visible == 'on') ? '1' : '0',
+				@date('Y-m-d H:i:s'), '1'
+			);
+
+			// Execute this request first for getting a content Id.
+			if(!\api\Api::insertInto('table_content',array('front','back','menuVisibility','created_at','public'),$table_content_values,'iiiis'))
+				return false;
+
+			// Fetch the content ID for relations
+			$contentId = \api\Api::getLastInsertId();
 
 			// Define the rows of the table that should be inserted into, and set those variables
-			$rows   = array('title','content','has_parent','parent_id','menu_order','deprecated','public','visable','meta_tags','meta_description','content_class','content_id','created_at');
-			$values = array($title,$content,$has_parent,$parentId , '0','0','1',$visable,$metaTags,$metaDescription,$contentClass,$contentId,@date('Y-m-d H:i:s'));
+			$table_content_properties_rows   = array('cId','title','content','hasParent','parentId','menuOrder','metaTags','metaDescription','contentClass','contentId');
+			$table_content_properties_values = array($contentId,$create -> title, $create -> content, $create -> hasParent,$create-> parentId , '0' ,
+													 $create -> metaTags,$create -> metaDescription, $create -> contentClass,$create -> contentId );
+
+			// Define the rows and data for the content layout
+			$table_content_layout_rows   = array('cId','contentTextAlign','titleTextAlign','titleFontSize','titleVisibility');
+			$table_content_layout_values = array($contentId, $create -> contentTextAlignment , $create -> titleTextAlignment , $create -> titleFontSize ,
+											     (isset($create -> showPagetitle) && $create -> showPagetitle == 'on') ? '1' : '0' );
 
 			// Make an internal API request for inserting data into the database.
-			return \api\Api::insertInto('table_content',$rows,$values,'ssiiiiiisssss');
+			if(!\api\Api::insertInto('table_content_properties',$table_content_properties_rows,$table_content_properties_values,'issiiissss')) return false;
+			if(!\api\Api::insertInto('table_content_layout',$table_content_layout_rows,$table_content_layout_values,'issii')) return false;
+
+			// hardcoded public for now.. Need to edit this later for custom level premission of content.
+			if(!\api\Api::insertInto('table_content_roles',array('cid','roleId'),array($contentId,'1'),'ii')) return false;
+
+			// Return true on success
+			return true;
 		}
 
 		/**
@@ -55,35 +84,45 @@
 		 */
 		public function update($update)
 		{
-			// Set the parent variable for having a weird array order otherwhise
-			$parent = $update['parent'];
-
 			// Check if parent is set, if not leave empty, else change to proper page Id
-			if($parent == '-')
+			if($update -> parent == '-')
 			{
-				$update['has_parent'] = '0';
-				$update['parent_id'] = '0';
+				$update -> hasParent = '0';
+				$update -> parentId = '0';
 			}
 			else
 			{
-				$update['has_parent'] = '1';
-
+				$update -> has_parent = '1';
+				// Connect to local API to fetch parent content ID.
 				$parentContent = \api\Api::getPages() -> getPage('',$parent);
-				$update['parent_id'] = $parentContent[0];
+				$update -> parentId = $parentContent[0];
 			}
 
-			// Set a check on the visability of a page, if it's set and value is on, set on 1, else set on 0
-			$update['visable']    = isset($visable) && $visable == 'on' ? '1' : '0';
-			$update['updated_at'] = @date('Y-m-d H:i:s');
+			// Define the table rows
+			$table_content_rows            = array('front','back','menuVisibility','public');
+			$table_content_properties_rows = array('cId','title','content','hasParent','parentId','menuOrder','metaTags','metaDescription','contentClass','contentId');
+			$table_content_layout_rows     = array('cId','contentTextAlign','titleTextAlign','titleFontSize','titleVisibility');
 
-			// Unset the weird order key for not having to hack into the array..
-			unset($update['parent']);
-			
-			// Set the rows that need to be updated.
-			$rows = array('title','meta_tags','meta_description','content_id','content_class','content','has_parent','parent_id','visable','updated_at');
+			// Pre-define the basic content table variables.
+			$table_content_values = array(
+				(isset($update -> activeFrontEnd) && $update -> activeFrontEnd == 'on') ? '1' : '0',
+				(isset($update -> activeBackEnd) && $update -> activeBackEnd == 'on') ? '1' : '0',
+				(isset($update -> visible) && $update -> visible == 'on') ? '1' : '0',
+				'1'
+			);
+
+			$table_content_properties_values = array($this -> getId() ,$update -> title, $update -> content, $update -> hasParent,$update-> parentId , '0' ,
+													 $update -> metaTags,$update -> metaDescription, $update -> contentClass,$update -> contentId );
+
+			$table_content_layout_values = array($contentId, $update -> contentTextAlignment , $update -> titleTextAlignment , $update -> titleFontSize ,
+											     (isset($update -> showPagetitle) && $update -> showPagetitle == 'on') ? '1' : '0' );
 
 			// Update the table, and return true on success.
-			return \api\Api::updateTable('table_content',$rows,$update,array('id' => $this->getId()));
+			return \api\Api::updateTable('table_content',$table_content_rows,$table_content_values,array('id' => $this->getId()));
+			return \api\Api::updateTable('table_content_properties',$table_content_properties_rows,$table_content_properties_values,array('id' => $this->getId()));
+			return \api\Api::updateTable('table_content_layout',$table_content_layout_rows,$table_content_layout_values,array('id' => $this->getId()));
+
+			return true;
 		}
 
 		/**

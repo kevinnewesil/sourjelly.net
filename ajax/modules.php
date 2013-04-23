@@ -8,7 +8,7 @@
 	require_once('../core/build/Sourjelly.class.php');
 
 	// Start the system
-	new \core\build\Sourjelly;
+	new \core\build\Sourjelly(true);
 
 	// Predefine the return value
 	$return = array();

@@ -48,7 +48,10 @@
 				$stmt -> close();
 			}
 			else
-				die(self::$_link->error);
+			{
+				\SetNotice('Could not fetch active theme.. <br> error: ' . self::$_link -> error);
+				return false;
+			}
 			
 			return $array;
 		}
@@ -86,21 +89,11 @@
 
 				$stmt -> close();
 			}
-
-			// if($stmt = self::$_link->prepare($query))
-			// {
-			// 	$stmt->execute();
-			// 	$stmt -> store_result();
-
-			// 	$stmt->bind_result($title,$content,$created_at,$updated_at,$has_parent,$active,$id);
-
-			// 	while($row = $stmt->fetch())
-			// 		$array[] = $row;
-
-			// 	$stmt->close();
-			// }
 			else
-				die(self::$_link->error);
+			{
+				\SetNotice('Could not fetch module by id.. <br> error: ' . self::$_link -> error);
+				return false;
+			}
 
 			return $array;
 		}
@@ -131,7 +124,10 @@
 				$stmt->close();
 			}
 			else
-				die(self::$_link->error);
+			{
+				\SetNotice('Could not fetch module by deprecated flag.. <br> error: ' . self::$_link -> error);
+				return false;
+			}
 
 			return $pageArray;
 		}
@@ -184,7 +180,10 @@
 				return $ret;
 			}
 			else
-				die(var_dump(self::$_link->error));
+			{
+				\SetNotice('Could not fetch module by page id.. <br> error: ' . self::$_link -> error);
+				return false;
+			}
 
 			return false;
 		}

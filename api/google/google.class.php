@@ -30,7 +30,16 @@
 
 		public function setConnection()
 		{
+			if(isset($_GET['code']))
+			{
+				$this -> _googleClient -> authenticate();
+				if(!$this -> getGoogleAccessToken())
+				{
+					header('location:' . $this -> _googleClient -> getAuthUrl());
+					exit();
+				}
 
+			}
 		}
 
 		public function setServices($services)
@@ -55,5 +64,10 @@
 		public function getGoogleDateFormat($timestamp)
 		{
 			return date("Y-m-d\TH:i:s.000+P",$timestamp);
+		}
+
+		protected function getGoogleAccessToken()
+		{
+			return \api\Api::selectRow("SELECT `authToken` FROM `table_google_api` INNER JOIN `table_users` ON table_google_api.uId = table_users.id WHERE CONCAT(firstname , ' ' , lastname) = '" . $_SESSION['login'] . "'");
 		}
 	}

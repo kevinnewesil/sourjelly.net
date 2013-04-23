@@ -54,6 +54,12 @@
 				}
 				$stmt->close();
 			}
+			else
+			{
+				\SetNotice('Could not fetch users.. <br> error: ' . self::$_link -> error);
+				return false;
+			}
+
 			return $user;
 		}
 
@@ -74,7 +80,7 @@
 		public function getUserBySession()
 		{
 
-			$query = "SELECT `id`,`firstname`,`lastname`,`username`,`email`,`password`,`DoB`,`registered_at`,`active`,`dev`,`premission`,`lang` FROM `table_users` WHERE CONCAT(firstname, ' ', lastname) = ?";
+			$query = "SELECT `id`,`firstname`,`lastname`,`username`,`email`,`password`,`DoB`,`registered_at`,`active`,`dev`,`permissions`,`lang` FROM `table_users` WHERE CONCAT(firstname, ' ', lastname) = ?";
 			if($stmt = self::$_link->prepare($query))
 			{
 				if(!\api\Api::checkQuery($query))
@@ -82,7 +88,7 @@
 
 				$stmt -> bind_param('s',$_SESSION['login']);
 				$stmt -> execute();
-				$stmt -> bind_result($id,$firstname,$lastname,$username,$email,$password,$dob,$registered_at,$active,$dev,$premission,$lang);
+				$stmt -> bind_result($id,$firstname,$lastname,$username,$email,$password,$dob,$registered_at,$active,$dev,$permissions,$lang);
 
 				while($row = $stmt -> fetch()){
                         $ret = array('id'	     => $id,
@@ -95,15 +101,19 @@
                                      'registered_at' => $registered_at,
                                      'active'        => $active,
                                      'dev'           => $dev,
-                                     'premission'    => $premission,
+                                     'permissions'    => $permissions,
                                      'lang'          => $lang
                                     );
                 }
-                //debug
-                //die(var_dump($ret));
                 $stmt->close();
 
 			}
+			else
+			{
+				\SetNotice('Could not Fetch current user.. <br> error: ' . self::$_link -> error);
+				return false;
+			}
+
 			return $ret;
 		}
 
@@ -115,7 +125,7 @@
 		 */
 		public function getUserByUsernameOrEmail($username,$email = NULL)
 		{
-			$query = "SELECT `id`,`firstname`,`lastname`,`username`,`email`,`password`,`DoB`,`registered_at`,`active`,`dev`,`premission`,`lang` FROM `table_users` WHERE `username` = ? OR `email` = ?";
+			$query = "SELECT `id`,`firstname`,`lastname`,`username`,`email`,`password`,`DoB`,`registered_at`,`active`,`dev`,`permissions`,`lang` FROM `table_users` WHERE `username` = ? OR `email` = ?";
 			if($stmt = self::$_link->prepare($query))
 			{
 				if(!\api\Api::checkQuery($query))
@@ -123,38 +133,52 @@
 
 				$stmt->bind_param('ss',$username,$email);
 				$stmt->execute();
-				$stmt->bind_result($id,$firstname,$lastname,$username,$email,$password,$dob,$registered_at,$active,$dev,$premission,$lang);
-				while($row = $stmt -> fetch()){
-					$ret = array($id,
-						     'firstname'     => $firstname,
-						     'lastname'      => $lastname,
-						     'username'      => $username,
-						     'email'         => $email,
-						     'password'      => $password,
-						     'dob'           => $dob,
-     						     'registered_at' => $registered_at,
-						     'active'        => $active,
-						     'dev'           => $dev,
-                                                     'premission'    => $premission,
-						     'lang'          => $lang
-					            );
+				$stmt->bind_result($id,$firstname,$lastname,$username,$email,$password,$dob,$registered_at,$active,$dev,$permissions,$lang);
+				$stmt -> store_result();
+				
+				if($stmt -> num_rows > 0)
+					while($row = $stmt -> fetch()){
+						$ret = array($id,
+							     'firstname'     => $firstname,
+							     'lastname'      => $lastname,
+							     'username'      => $username,
+							     'email'         => $email,
+							     'password'      => $password,
+							     'dob'           => $dob,
+	     						 'registered_at' => $registered_at,
+							     'active'        => $active,
+							     'dev'           => $dev,
+	                             'permissions'   => $permissions,
+							     'lang'          => $lang
+						            );
+					}
+				else
+				{
+					$stmt -> close();
+					\setNotice('Something went wrong fetching your username' . self::$_link -> error);
+					return false;
 				}
-				//debug
-				//die(var_dump($ret));
+
 				$stmt->close();
 			}
+			else
+			{
+				\SetNotice('Could not fetch user.. <br> error: ' . self::$_link -> error);
+				return false;
+			}
+
 			return $ret;
 		}
 
 		/**
-		 * Get the currently logged in user's premission.
-		 * @return string  the level of premission the user has.
+		 * Get the currently logged in user's permissions.
+		 * @return string  the level of permissions the user has.
 		 */
-		public function getUserPremissionBySession()
+		public function getUserpermissionsBySession()
 		{
-			$premission = '';
+			$permissions = '';
 
-			$query = "SELECT `premission` FROM `table_users` WHERE CONCAT(firstname , ' ' , lastname) = ?";
+			$query = "SELECT `permissions` FROM `table_users` WHERE CONCAT(firstname , ' ' , lastname) = ?";
 			
 			if($stmt = self::$_link->prepare($query))
 			{
@@ -163,11 +187,17 @@
 
 				$stmt->bind_param('s',$_SESSION['login']);
 				$stmt->execute();
-				$stmt->bind_result($premission);
+				$stmt->bind_result($permissions);
 				$stmt->fetch();
 				$stmt->close();
 			}
-			return (string)$premission;
+			else
+			{
+				\SetNotice('Could not fetch user perms.. <br> error: ' . self::$_link -> error);
+				return false;
+			}
+
+			return (string)$permissions;
 		}
 
 		/**
@@ -189,6 +219,7 @@
 			}
 			else
 			{
+				\SetNotice('Could not check tables.. <br> error: ' . self::$_link -> error);
 				return false;
 			}
 		}
@@ -208,6 +239,12 @@
 				$stmt->fetch();
 				$stmt->close();
 			}
-			return !empty($lang) ? (string)$lang : '_EN';
+			else
+			{
+				\SetNotice('Could not fetch language.. <br> error: ' . self::$_link -> error);
+				return false;
+			}
+
+			return !empty($lang) ? (string) $lang : '_EN';
 		}
 	}

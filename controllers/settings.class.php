@@ -64,19 +64,17 @@
 		 */
 		function update()
 		{
-			if(\api\Api::getUsers() -> getUserPremissionBySession() < 2)
-				\core\access\Redirect::Home('No premission to change system settings');
+			if(\api\Api::getUsers() -> getUserpermissionsBySession() <= 2)
+				\GoHome('No permissions to change system settings');
 			
 			if($this->_model -> update())
-				\core\access\Redirect::To(HOME_PATH . '/settings/index/?ns=controllers&path=controller_path' , 'System settings successfully updated','success');
+				\SetNoticeSuccess('System settings successfully updated');
 			else
 				\core\access\Redirect::To(HOME_PATH . '/settings/index/?ns=controllers&path=controller_path' , 'something went wrong updating the system settings.');
 		}
         
         public function social()
         {
-            $tmp = \core\build\Template::getTemplate('settings/socialmedia.html.tpl');
-
-           \core\build\Sourjelly::getHtml()->Assign('{content}',$tmp); 
+			\SjHtml()->Assign('{content}', \Template('settings/socialmedia.html.tpl') ); 
         }
 	}

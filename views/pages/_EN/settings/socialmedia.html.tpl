@@ -67,6 +67,13 @@
                         </div>
                     </div>
 
+                    <div class="control-group">
+                        <label class="control-label" for="callbackUrl">callback url</label>
+                        <div class="controls">
+                            <input type="text" name="callbackUrl" value="{callbackurl}" id="callbackUrl" placeholder="callback url">
+                        </div>
+                    </div>
+
                 </fieldset>
             </form>
         </div>

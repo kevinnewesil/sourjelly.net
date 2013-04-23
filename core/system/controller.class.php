@@ -18,7 +18,7 @@
 		{
 			$controller_child = explode('\\',get_class($this));
 			$model_name_raw   = $controller_child[count($controller_child)-1];
-			$model_name_clean = substr($model_name_raw, 0, strlen($model_name_raw)-1);
+			$model_name_clean = ($model_name_raw[strlen($model_name_raw)-1] === 's') ? substr($model_name_raw, 0, strlen($model_name_raw)-1) : $model_name_raw;
 			$namespaced_model = MODELS . '\\' . $model_name_clean;
 
 			if(file_exists(MODEL_PATH . strtolower($model_name_clean) . '.class.php'))
@@ -27,5 +27,21 @@
 				\core\access\Redirect::Home('No Model found matching this controller..','error');
 
 			$this->_model = new $namespaced_model;
+		}
+
+		/**
+		 * protected function that splits the URL to check if there's a numeric part in the url, which can be used as the ID of a page for
+		 * retrieving, updating, deleting, and undo deleting.
+		 * @return boolean true if the url part is numeric and in the right position, false otherwhise
+		 */
+		protected function checkId()
+		{
+			$rawUrl = explode('/index.php/',$_SERVER['REQUEST_URI']);
+			$parts = explode('/',$rawUrl[1]);
+
+			if(is_numeric($parts[2]))
+				return $parts[2];
+			else
+				return false;
 		}
 	}

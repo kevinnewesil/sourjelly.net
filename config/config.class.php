@@ -25,7 +25,7 @@
 
 		protected $_custom = array();
 
-		protected static $_link = NULL;
+		protected static $_link      = NULL;
 
 		/**
 		 * Requires the main config file, and uses it's variable to set the main config data inside the class as protected properties.
@@ -48,6 +48,8 @@
 					$this->_db['mysqli']['pass'],
 					$this->_db['mysqli']['name']
 				);
+
+			self::$_link -> autocommit(true);
 		}
 
 		/**
@@ -55,6 +57,14 @@
 		 */
 		public function setSystemSettings()
 		{
+
+			// Set default settings
+
+			// Make system errors look fancy.. :)
+			ini_set('error_prepend_string','<span style="color:#FF0000;"><pre>');
+			ini_set('error_append_string','</pre></span>');
+
+			// Set user based settings.
 			$settings = \core\build\Sourjelly::getApi() -> getSettings() -> getSystemSettings();
 			if($settings !== NULL || !empty($settings))
 			{
@@ -88,8 +98,8 @@
 			$placeholders = array( '{varname}' , '{varvalue}' );
 			$configFile   = "<?php  \n\r\n\r" ;
 
-			//Check the folder premission of the Module
-			//$info = \core\access\System::getPremissions( MODULES_PATH . $moduleInfo[0][0] );
+			//Check the folder permissions of the Module
+			//$info = \core\access\System::getpermissionss( MODULES_PATH . $moduleInfo[0][0] );
 
 			//Foreach user inputted variables for the config file, make a string with the config variables set in the config layout
 			foreach ($vars as $varname => $varvalue)

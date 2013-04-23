@@ -9,9 +9,9 @@
 
 		error_reporting(-1);
 
-		require_once('config/const.config.php');
+        require_once('config/const.config.php');
 
-		require_once('core/build/Sourjelly.class.php');
+		require_once(BUILD_PATH . 'sourjelly.class.php');
 	}
 
 	//-----------------------------------------------------------------------------------------------------------------
