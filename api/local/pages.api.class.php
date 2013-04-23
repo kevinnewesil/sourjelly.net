@@ -161,6 +161,85 @@
 		}
 
 		/**
+		 * This gets a page via an Id, or via the Title if nessecairy.
+		 * @param  int 		$id    	The id of the page which should be fetched.
+		 * @param  string 	$title 	The title of the page which should be fetched.
+		 * @return array        	An array with the data of the fetched page.
+		 */
+		public function getFirstPage()
+		{
+			$return = array();
+
+			$query = "SELECT tcp.id,tcp.title,tcp.content,tcp.hasParent,tcp.parentId,
+							 tcp.metaTags,tcp.metaDescription,tcp.contentClass,tcp.contentId,
+							 tcl.contentTextAlign,tcl.titleVisibility,tcl.titleTextAlign,tcl.titleFontSize,
+							 tc.front, tc.back, tc.public, tc.menuVisibility, tc.created_at, tc.updated_at
+					  FROM `table_content_properties` as tcp
+					  LEFT JOIN `table_content` as tc ON tc.id = tcp.cId
+					  RIGHT JOIN `table_content_layout` as tcl ON tc.id = tcl.cId
+					  LIMIT 1";
+			
+			if($stmt = self::$_link->prepare($query))
+			{
+				if(!\api\Api::checkQuery($query))
+					\core\access\Redirect::Home('Something went wrong with the query.');
+
+				$stmt->execute();
+				$stmt -> store_result();
+
+				if($stmt -> num_rows > 0)
+				{
+					$stmt->bind_result($id,$title,$content,$hasParent, $parentId, $metaTags, $metaDescription, $contentClass, $contentId, $contentTextAlign, 
+									   $titleVisibility, $titleTextAlign, $titleFontSize, $front, $back, $public, $menuVisibility, $created_at, $updated_at);
+
+					while($stmt->fetch())
+					{
+						$return = array(
+								  	'tcp' => array(
+										'id'      => $id,
+										'title'   => $title,
+										'content' => $content,
+										'hasParent' => $hasParent,
+										'parentId' => $parentId,
+										'metaTags' => $metaTags,
+										'metaDescription' => $metaDescription,
+										'contentClass' => $contentClass,
+										'contentId' => $contentId,
+									),
+									'tcl' => array(
+										'contentTextAlign' => $contentTextAlign,
+										'titleVisibility' => $titleVisibility,
+										'titleTextAlign' => $titleTextAlign,
+										'titleFontSize' => $titleFontSize,
+									),
+									'tc'  => array(
+										'front' => $front,
+										'back' => $back,
+										'public' => $public,
+										'menuVisibility' => $menuVisibility,
+										'created_at' => $created_at,
+										'updated_at' => $updated_at,
+									),
+						);
+					}
+				}
+				else
+				{
+					$return = array();
+				}
+
+				$stmt->close();
+			}
+			else
+			{
+				\SetNotice('Could not fetch page.. getPage<br> error: ' . self::$_link -> error);
+				return false;
+			}
+
+			return $return;
+		}
+
+		/**
 		 * Gives you a page Id from a page title. Usefull for getting Id's via urls.
 		 * @param  string $title 	The title of the page where you need the ID from.
 		 * @return int        		The id of the page you wanted.
