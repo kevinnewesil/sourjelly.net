@@ -134,6 +134,8 @@
 				$stmt->bind_param('ss',$username,$email);
 				$stmt->execute();
 				$stmt->bind_result($id,$firstname,$lastname,$username,$email,$password,$dob,$registered_at,$active,$dev,$permissions,$lang);
+				$stmt -> store_result();
+				
 				if($stmt -> num_rows > 0)
 					while($row = $stmt -> fetch()){
 						$ret = array($id,
@@ -152,9 +154,9 @@
 					}
 				else
 				{
-					\setNotice('Something went wrong fetching your username');
 					$stmt -> close();
-					return 0;
+					\setNotice('Something went wrong fetching your username' . self::$_link -> error);
+					return false;
 				}
 
 				$stmt->close();

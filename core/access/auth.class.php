@@ -51,7 +51,7 @@
 
 			$this->_password = sha1($user['firstname'] . '-' . $password . '-' . $user['registered_at']);
 			$this->_username = $user['username'];
-            
+
             if($this->_password === $user['password'])
 				if($_SESSION['login'] = $user['firstname'] . ' ' . $user['lastname'])
 					\core\access\Redirect::home('logged in successfully','success');
