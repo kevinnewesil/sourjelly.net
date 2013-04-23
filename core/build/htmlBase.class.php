@@ -44,12 +44,16 @@
 		{
 			if(isset($_SESSION['notice']) && $_SESSION['notice'] != '')
 			{
-				$noticeSnippet = \core\build\Template::getSnippet($_SESSION['notice_sort'] .'.html.tpl','errors');
+
+				if(!isset($_SESSION['notice_sort'])) $_SESSION['notice_sort'] = 'warning';
+
+				$noticeSnippet = \Snippet($_SESSION['notice_sort'] .'.html.tpl','errors');
 				$notice        = str_replace('{noticeInfo}',$_SESSION['notice'],$noticeSnippet);
 
 				$this->layout  = str_replace('{notice}',$notice,$this->layout);
 
 				unset($_SESSION['notice']);
+				unset($_SESSION['notice_sort']);
 
 				if(isset($_SESSION['system_warning']))
 					unset($_SESSION['system_warning']);

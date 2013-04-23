@@ -11,13 +11,15 @@
 		},
 		success : function(data){
 			$(data).each(function(key,value){
-				$("#imgbox").append('<img src="{assets}img/uploads/' +data[key]+ '" alt="" id="' + data[key] + '" class="thumbnail" data-src="holder.js/300x200"/>' + "\r\n");
+				$("#uploaded-images").append('<div class="thumbnail">
+										<img src="{assets}img/uploads/' + value + '" alt="" id="' + value + '" data-src="holder.js/300x200"/>' + "\r\n"
+									+ '</div>');
 			});
 		},
 	});
 
 </script>
 
-<div class="well" id="imgbox">
+<div class="well" id="uploaded-images">
 	
 </div>
