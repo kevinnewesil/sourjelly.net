@@ -134,20 +134,29 @@
 				$stmt->bind_param('ss',$username,$email);
 				$stmt->execute();
 				$stmt->bind_result($id,$firstname,$lastname,$username,$email,$password,$dob,$registered_at,$active,$dev,$permissions,$lang);
-				while($row = $stmt -> fetch()){
-					$ret = array($id,
-						     'firstname'     => $firstname,
-						     'lastname'      => $lastname,
-						     'username'      => $username,
-						     'email'         => $email,
-						     'password'      => $password,
-						     'dob'           => $dob,
-     						 'registered_at' => $registered_at,
-						     'active'        => $active,
-						     'dev'           => $dev,
-                             'permissions'   => $permissions,
-						     'lang'          => $lang
-					            );
+				$stmt -> store_result();
+				
+				if($stmt -> num_rows > 0)
+					while($row = $stmt -> fetch()){
+						$ret = array($id,
+							     'firstname'     => $firstname,
+							     'lastname'      => $lastname,
+							     'username'      => $username,
+							     'email'         => $email,
+							     'password'      => $password,
+							     'dob'           => $dob,
+	     						 'registered_at' => $registered_at,
+							     'active'        => $active,
+							     'dev'           => $dev,
+	                             'permissions'   => $permissions,
+							     'lang'          => $lang
+						            );
+					}
+				else
+				{
+					$stmt -> close();
+					\setNotice('Something went wrong fetching your username' . self::$_link -> error);
+					return false;
 				}
 
 				$stmt->close();

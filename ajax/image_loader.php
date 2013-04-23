@@ -11,7 +11,7 @@
 	new \core\build\Sourjelly(true);
 
 	$return  = array();
-	$imgpath = '/Library/WebServer/Documents/sourjelly.net/public_html/assets/img/uploads/';
+	$imgpath = $_SERVER['DOCUMENT_ROOT'] . DS . 'sourjelly.net/public_html/assets/img/uploads/';
 	$post 	 = \Post();
 
 
@@ -23,6 +23,16 @@
 					$return[] = $file -> getFilename();
 
 			break;
+
+		case 'removeImg':
+			
+			if(unlink($_SERVER['DOCUMENT_ROOT'] . DS . $post -> filepath ))
+				$return[] = true;
+			else
+				$return[] = false;
+
+			break;
+
 		default:
 			$return[] = false;
 			break;

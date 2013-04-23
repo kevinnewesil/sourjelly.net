@@ -49,3 +49,4 @@
 	 */
 
 	if(!function_exists("Post")) { function Post() { return \core\access\Request::returnGlobalObject('post'); } }
+	if(!function_exists("Get")) { function Get() { return \core\access\Request::returnGlobalObject('get'); } }
