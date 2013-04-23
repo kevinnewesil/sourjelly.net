@@ -58,7 +58,7 @@
 
 				if(data[0] === true)
 				{
-					$('img[src="{ajax}/img/uploads/' + $('.delete-button').attr('alt') + '"]').remove();
+					$('img[src="{assets}img/uploads/' + $('.delete-button').attr('alt') + '"]').remove();
 					alert('Image deleted succesfully');
 				}
 				else
