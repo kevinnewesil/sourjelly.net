@@ -23,6 +23,16 @@
 					$return[] = $file -> getFilename();
 
 			break;
+
+		case 'removeImg':
+			
+			if(unlink($_SERVER['DOCUMENT_ROOT'] . DS . $post -> filepath ))
+				$return[] = true;
+			else
+				$return[] = false;
+
+			break;
+
 		default:
 			$return[] = false;
 			break;
