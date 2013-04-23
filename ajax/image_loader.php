@@ -11,7 +11,7 @@
 	new \core\build\Sourjelly(true);
 
 	$return  = array();
-	$imgpath = ASSETS_PATH . 'img/uploads/';
+	$imgpath = $_SERVER['DOCUMENT_ROOT'] . ASSETS_PATH . 'img/uploads/';
 	$post 	 = \Post();
 
 
