@@ -95,7 +95,7 @@
 				$update -> has_parent = '1';
 				// Connect to local API to fetch parent content ID.
 				$parentContent = \api\Api::getPages() -> getPage('',$parent);
-				$update -> parentId = $parentContent[0];
+				$update -> parentId = $parentContent['tcp']['id'];
 			}
 
 			// Define the table rows

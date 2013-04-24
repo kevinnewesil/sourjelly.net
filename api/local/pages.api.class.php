@@ -72,7 +72,7 @@
 
 			if($title == NULL)
 			{
-				$query = "SELECT tcp.id,tcp.title,tcp.content,tcp.hasParent,tcp.parentId,
+				$query = "SELECT tcp.cId,tcp.title,tcp.content,tcp.hasParent,tcp.parentId,
 								 tcp.metaTags,tcp.metaDescription,tcp.contentClass,tcp.contentId,
 								 tcl.contentTextAlign,tcl.titleVisibility,tcl.titleTextAlign,tcl.titleFontSize,
 								 tc.front, tc.back, tc.public, tc.menuVisibility, tc.created_at, tc.updated_at
@@ -84,7 +84,7 @@
 			}
 			else
 			{
-				$query = "SELECT tcp.id,tcp.title,tcp.content,tcp.hasParent,tcp.parentId,
+				$query = "SELECT tcp.cId,tcp.title,tcp.content,tcp.hasParent,tcp.parentId,
 								 tcp.metaTags,tcp.metaDescription,tcp.contentClass,tcp.contentId,
 								 tcl.contentTextAlign,tcl.titleVisibility,tcl.titleTextAlign,tcl.titleFontSize,
 								 tc.front, tc.back, tc.public, tc.menuVisibility, tc.created_at, tc.updated_at
