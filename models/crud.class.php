@@ -39,7 +39,7 @@
 				$create -> hasParent = '1';
 				// Connect to local api to fetch parent ID.
 				$parentContent = \api\Api::getPages() -> getPage('',$create->parent);
-				$create -> parentId = $parentContent[0];
+				$create -> parentId = $parentContent['tcp']['id'];
 			}
 			// Pre-define the basic content table variables.
 			$table_content_values = array(
