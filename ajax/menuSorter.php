@@ -25,8 +25,8 @@
 		foreach($menuArr as $position => $title)
 		{
 			\api\Api::updateTable(
-				'table_content',
-				array('menu_order'),
+				'table_content_properties',
+				array('menuOrder'),
 				array($position+1),
 				array('title' => $title)
 			);

@@ -3,41 +3,22 @@
         <li class="active"><a href="#facebook" data-toggle="tab">Facebook</a></li>
         <li><a href="#twitter" data-toggle="tab">Twitter</a></li>
         <li><a href="#google" data-toggle="tab">Google</a></li>
+        <li class="pull-right"><a href="#connect" data-toggle="tab">Connect</a></li>
     </ul>
     <div class="tab-content">
         <div class="tab-pane active" id="facebook">
-            <a href="{fb_auth_url}" class="btn btn-info btn-large">Connect to facebook!</a>
             <form class="form form-horizontal" method="post" action="#">
                 <fieldset>
                     <legend>Facebook user data </legend>
                     
-                    <div class="control-group">
-                        <label class="control-label" for="fb-username">Facebook Username</label>
-                        <div class="controls">
-                            <input type="text" name="fb-username" value="{fb-username}" id="fb-username"/>
-                        </div>
-                    </div>
-                
-                   <div class="control-group">
-                        <label class="control-label" for=""></label>
-                        <div class="controls">
-                            <input id="" name="" value="" type="text"/>
-                        </div>
-                   </div>
                 </fieldset>
             </form>
         </div>
         <div class="tab-pane" id="twitter">
-            <a href="{twitter_auth_url}" class="btn btn-info btn-large">Connect to twitter</a>
             <form class="form form-horizontal" method="post" action="#">
                 <fieldset>
                     <legend>Twitter user data </legend>
-                    <div class="control-group">
-                        <label class="control-label" for=""></label>
-                        <div class="controls">
-                            <input type="text" name="" value="" id="">
-                        </div>
-                    </div>
+                    
                 </fieldset>
             </form>
         </div>
@@ -54,28 +35,23 @@
                     </div>
 
                     <div class="control-group">
-                        <label class="control-label" for="clientId">Client ID</label>
+                        <label class="control-label" for="calendarId">calendar ids</label>
                         <div class="controls">
-                            <input type="text" name="clientId" value="{clientId}" id="clientId" placeholder="Google client id">
-                        </div>
-                    </div>
-                    
-                    <div class="control-group">
-                        <label class="control-label" for="clientSecret">Client secret</label>
-                        <div class="controls">
-                            <input type="text" name="clientSecret" value="{clientSecret}" id="clientSecret" placeholder="Google client id">
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label class="control-label" for="callbackUrl">callback url</label>
-                        <div class="controls">
-                            <input type="text" name="callbackUrl" value="{callbackurl}" id="callbackUrl" placeholder="callback url">
+                            <input type="text" name="calendarId" value="{calendarId}" id="calendarId" placeholder="Google calendar ids">
                         </div>
                     </div>
 
                 </fieldset>
             </form>
+        </div>
+
+        <div class="tab-pane" id="connect">
+            <ul class="unstyled">
+                <li><a href="#" class="btn btn-facebook">Connect to Facebook</a>
+                <li><a href="#" class="btn btn-twitter">Connect to Twitter</a></li>
+                <li><a href="#" class="btn btn-google">Connect to Google</a></li>
+                <li><a href="#" class="btn btn-sourjelly">Connect to Sourjelly</a></li></li>
+            </ul>
         </div>
     </div>
 </div>
