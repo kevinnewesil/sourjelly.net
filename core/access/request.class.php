@@ -14,10 +14,7 @@
 			if(!$request = self::getRequestBody($state))
 				return false;
 
-			self::$_initializeObject = new \stdClass;
-
-			foreach($request as $key => $value)
-				self::$_initializeObject -> $key = htmlentities($value,ENT_QUOTES,"UTF-8");
+			self::parseArrayToObject($request);
 
 			return (object) self::$_initializeObject;
 		}
@@ -30,6 +27,18 @@
 			$request[$name] = htmlentities($request[$name],ENT_QUOTES,"UTF-8");
 
 			return $request[$name];
+		}
+
+		protected static function parseArrayToObject($array)
+		{
+
+			foreach($array as $key => $value)
+				if(is_array($value))
+					self::parseArrayToObject($value);
+				else
+					$array[$key] = htmlentities($value,ENT_QUOTES, "UTF-8");
+
+			self::$_initializeObject = $array;
 		}
 
 		protected static function getRequestBody($state)

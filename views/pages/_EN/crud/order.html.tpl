@@ -2,18 +2,11 @@
 
 	$(document).ready(function(){
 
-		var sorted = {};
-		var subsorted = {};
+		var sorted = [];
 
-		$(".sortable").sortable({
+		$(".sortable , .subsortable").sortable({
 			update: function( event, ui ) {
-			 	sorted = $(".sortable").sortable("toArray");
-			}
-		});
-
-		$(".subsortable").sortable({
-			update: function( event, ui ) {
-			 	subsorted = $(".subsortable").sortable( "toArray" );
+		 		getAllItems();
 			}
 		});
 
@@ -23,13 +16,21 @@
 		 		type : 'post',
 		 		data : {
 		 			menuArr : sorted,
-		 			submenuArr : subsorted,
 		 		},
 		 		success : function(data){
 		 			alert("Menu volgorde succesvol upgedate");
 		 		}
 		 	});
 		});
+
+		function getAllItems(){
+			sorted = [];
+			
+			$('.sortable li').each(function(){
+	 			sorted.push($(this).attr("id"));
+	 		});
+		};
+
 	});
 
 </script>
@@ -37,7 +38,7 @@
 <h2>Menu order</h2>
 
 <div class="well">
-	<ol class="sortable">
+	<ol class="sortable unstyled">
 		{items}
 	</ol>
 

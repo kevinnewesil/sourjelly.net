@@ -1,75 +1,92 @@
+	/* Hide/show admin nav */
+
 .pull{
-	width:40px;
-	height:50px;
-	background-color:black;
-	border-radius:0 0 50px 50px ;
-	position:absolute;
-	margin-left:45%;
-	margin-bottom:50px;
+	width           : 40px;
+	height          : 50px;
+	background-color: black;
+	border-radius   : 0 0 50px 50px ;
+	position        : absolute;
+	margin-left     : 45%;
+	margin-bottom   : 50px;
 }
 
 .pull i{
-	position:absolute;
-	bottom:10%;
-	left:35%;
+	position        : absolute;
+	bottom          : 10%;
+	left            : 35%;
 }
 
+	/* Menu order css */
+
 .sortable{
-	font-size:13pt;
-	width:50%;
-	background-color:#F9F9F9;
+	font-size       : 13pt;
+	width           : 50%;
+	background-color: #F9F9F9;
+	width 			: 99%;
+	text-decoration : underline;
+}
+
+.sortable ol{
+	padding-left	: 5px;
+	margin-left     : 40px;
 }
 
 .sortable li{
+	
+	width 		    : 100%;
 
-	font-weight: bolder;
-	cursor:move;
-	margin-bottom:5px;
-	padding:2px 0;
-
-	border: #E6EEEE 2px solid;
-	border-radius: 5px;
-	z-index: -1px;
-
-	box-shadow: 0 5px 5px #666666;
+	cursor          : move;
+	margin-bottom   : 5px;
+	padding         : 5px;
+	
+	border          : #EEEEEE 1px solid;
+	border-radius   : 4px 4px 4px 4px;
+	z-index         : -1px;
+	
+	box-shadow      : 0 2px 2px #DDDDDD;
 }
 
 .sortable li ol{
-
+	margin-left     : 40px;
+	margin-right    : 4px;
 }
 
 .sortable li ol li{
-	border-right: none;
-
-	box-shadow: 0 5px 5px #888888;
+	border-right    : none;
+	border-top      : none;
+	padding         : 5px;
+	margin-top      : 4px;
 }
 
 .sortable li ol li:last-child{
-	margin-bottom:10px;
+	margin-bottom   : 10px;
 }
 
+	/* Custom theme editor CSS */
+
 .themeForm input[type="text"]{
-	color : #9d261d;
+	color           : #9d261d;
 }
-.image-upload-box{
-	min-height:300px;
-}
+
+	/* Custom navbar settings */
+
 .navbar-custom{
 	box-shadow: 0 4px 6px -6px #232323;
 }
 
 .form-search{
-	padding:10px 0;
+	padding: 10px 0;
 }
+
 .dropdowndiv{
 	background-image : url('../img/debut_dark.png');
 	background-repeat: repeat-x;
-	height           :150px;
+	height           : 150px;
 	margin           : 60px auto 0 auto;
-	width            :790px;
-	text-align       :center;
+	width            : 790px;
+	text-align       : center;
 	border-bottom    : 1px solid #B1B1B1;
-	padding          :20px 5%;
-	background-color :#FEFEFE;
-	display          :none;
-	}
+	padding          : 20px 5%;
+	background-color : #FEFEFE;
+	display          : none;
+}

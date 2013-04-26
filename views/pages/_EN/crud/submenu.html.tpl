@@ -1,3 +1,3 @@
-<ol class="subsortable">
+<ol class="subsortable unstyled">
 	{subitems}
 </ol>

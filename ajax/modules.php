@@ -13,6 +13,8 @@
 	// Predefine the return value
 	$return = array();
 
+	$data = \Post();
+
 	// Switch the action the user wants to preform on the modules
 	switch($_POST['action'])
 	{
