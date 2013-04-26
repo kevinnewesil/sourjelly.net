@@ -49,12 +49,13 @@
 
 			foreach($modules as $module)
 			{
-				if(isset($module[5]) && $module[5] === 1)
-					$module[5] = 'Yes';
+				if(isset($module['active']) && $module['active'] == 1)
+					$module['active'] = 'Yes';
 				else
-					$module[5] = 'No';
+					$module['active'] = 'No';
 
-				$rows .= str_replace($placeholders, array($module[0],$module[1],$module[2],$module[3],$module[4],$module[5],$module[6]) ,$rowsTmp);
+				$replacers = array($module['title'],$module['description'],$module['created_at'], $module['pages'],$module['position'],$module['active'],$module['id']);
+				$rows .= str_replace($placeholders, $replacers ,$rowsTmp);
 			}
 
 			$mainTmp = str_replace('{rows}',$rows,$mainTmp);

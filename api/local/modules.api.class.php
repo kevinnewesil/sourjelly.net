@@ -41,7 +41,7 @@
 
 				if($stmt -> num_rows !== 0)
 				{
-					while($row = $stmt -> fetch_array())
+					while($row = $stmt -> fetch_assoc())
 						$array[] = $row;
 				}
 

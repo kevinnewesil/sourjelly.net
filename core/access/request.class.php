@@ -57,6 +57,8 @@
 					break;
 			}
 
+			unset($_POST);
+
 			return $request;
 		}
 	}
