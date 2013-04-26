@@ -10,6 +10,9 @@
 	{
 		protected $_table;
 
+		protected static $_post;
+		protected static $_get;
+
 		/**
 		 * Gets the name of the model, cleans it, and uses the the name, to render the table.
 		 */
@@ -17,6 +20,9 @@
 		{
 			$model_child_name = explode('\\',get_class($this));
 			$this -> _table   = 'table_' . strtolower($model_child_name[count($model_child_name)-1]) . 's';
+
+			$this -> _post    = \Post();
+			$this -> _get     = \Get();
 		}
 
 		/**

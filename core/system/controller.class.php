@@ -11,6 +11,8 @@
 	{
 		protected $_model;
 
+		protected static $_post;
+
 		/**
 		 * gets the name of the controller via the url, and cleanes it up, so that it can include, and start the model that belongs to the controller.
 		 */
@@ -27,6 +29,8 @@
 				\core\access\Redirect::Home('No Model found matching this controller..','error');
 
 			$this->_model = new $namespaced_model;
+
+			$this -> _post = \Post();
 		}
 
 		/**

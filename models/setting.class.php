@@ -22,23 +22,23 @@
 		 */
 		public function update()
 		{
-			if( \api\Api::updateTable('table_users',array('lang'),array($_POST['lang']),array("CONCAT(firstname , ' ' , lastname)" => $_SESSION['login'])) || \api\Api::updateTable(
+			if( \api\Api::updateTable('table_users',array('lang'),array(parent::$_post -> lang),array("CONCAT(firstname , ' ' , lastname)" => $_SESSION['login'])) || \api\Api::updateTable(
 				"table_settings",
 				array('displayErrors','displayStartupErrors','logErrors','trackErrors','htmlErrors','maxExecutionTime','memoryLimit','postMaxSize','uploadMaxFilesize','maxFileUploads','embeddedHtml','ipMonitoring','timezone'),
 				array(
-					isset($_POST['displayErrors']) && $_POST['displayErrors'] == 'on' ? 1 : 0,
-					isset($_POST['displayStartupErrors']) && $_POST['displayStartupErrors'] == 'on' ? 1 : 0,
-					isset($_POST['logErrors']) && $_POST['logErrors'] == 'on' ? 1 : 0,
-					isset($_POST['trackErrors']) && $_POST['trackErrors'] == 'on' ? 1 : 0,
-					isset($_POST['htmlErrors']) && $_POST['htmlErrors'] == 'on' ? 1 : 0,
-					$_POST['maxExecutionTime'],
-					$_POST['memoryLimit'],
-					$_POST['postMaxSize'],
-					$_POST['uploadMaxFilesize'],
-					$_POST['maxFileUploads'],
-					isset($_POST['embeddedHtml']) && $_POST['embeddedHtml'] == 'on' ? 1 : 0,
-					isset($_POST['ipMonitoring']) && $_POST['ipMonitoring'] == 'on' ? 1 : 0,
-					$_POST['timezone'],
+					isset(parent::$_post -> displayErrors) && parent::$_post -> displayErrors == 'on' ? 1 : 0,
+					isset(parent::$_post -> displayStartupErrors) && parent::$_post -> displayStartupErrors == 'on' ? 1 : 0,
+					isset(parent::$_post -> logErrors) && parent::$_post -> logErrors == 'on' ? 1 : 0,
+					isset(parent::$_post -> trackErrors) && parent::$_post -> trackErrors == 'on' ? 1 : 0,
+					isset(parent::$_post -> htmlErrors) && parent::$_post -> htmlErrors == 'on' ? 1 : 0,
+					parent::$_post -> maxExecutionTime,
+					parent::$_post -> memoryLimit,
+					parent::$_post -> postMaxSize,
+					parent::$_post -> uploadMaxFilesize,
+					parent::$_post -> maxFileUploads,
+					isset(parent::$_post -> embeddedHtml) && parent::$_post -> embeddedHtml == 'on' ? 1 : 0,
+					isset(parent::$_post -> ipMonitoring) && parent::$_post -> ipMonitoring == 'on' ? 1 : 0,
+					parent::$_post -> timezone,
 				),
 				array('id' => '1')
 			))

@@ -45,11 +45,11 @@
 		{
 			switch ($state) {
 				case 'get':
-					$request = $_GET;
+					$request = (isset($_GET) && !empty($_GET) ? $_GET : NULL ;
 					break;
 
 				case 'post':
-					$request = $_POST;
+					$request = (isset($_POST) && !empty($_POST)) ? $_POST : NULL;
 					break;
 				
 				default:

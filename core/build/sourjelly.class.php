@@ -25,6 +25,9 @@
 
 		protected $_ajax;
 
+		private $_get;
+		private $_post;
+
 		/**
 		 * __construct() requires the system files, which build the system.
 		 */
@@ -55,6 +58,9 @@
 			require(SYSTEM_PATH . 'simpleLoader.php');
 
 			require(API_PATH . 'api.class.php');
+
+			$this -> _get  = \Get();
+			$this -> _post = \Post();
 
             $this -> startSourjelly();
             $this -> finishSourjelly();
@@ -112,7 +118,7 @@
 					self::$_html = new HtmlBase('main');
 
 				//Check for permissions again so that administrators don't have to be the only users on the website, and login is made possible.
-				if(isset($_SESSION['login']) || isset($_GET['login']) && $_GET['login'] == 'login' || isset($_POST['login']) || \getApiUsers() -> getUserpermissionsBySession() > 1 || (isset($fun) && $fun[0] == 'auth' && (!isset($fun[1]) || $fun[1] == '')))
+				if(isset($_SESSION['login']) || isset($this -> _get -> login ) && $this -> _get -> login == 'login' || isset($this -> _post -> login) || \getApiUsers() -> getUserpermissionsBySession() > 1 || (isset($fun) && $fun[0] == 'auth' && (!isset($fun[1]) || $fun[1] == '')))
 					self::$_al = new \core\build\autoloader;
 				else
 					self::$_wv = new \core\build\Webview;

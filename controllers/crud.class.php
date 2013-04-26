@@ -15,9 +15,9 @@
 		{
 			parent::__construct();
 
-			if(isset($_POST['submit']))
+			if(isset(parent::$_post -> submit))
 			{
-				$function = 'post_' . $_POST['submit'];
+				$function = 'post_' . parent::$_post -> submit;
 				$this -> $function();
 			}
 		}

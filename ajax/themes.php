@@ -11,16 +11,17 @@
 	new \core\build\Sourjelly(true);
 	// Predefine the return value
 	$return = array();
+	$data   = \Post();
 
 	// Switch the action the user wants to do via the ajax call.
-	switch($_POST['action'])
+	switch($data -> action)
 	{
 		// Activate a theme
 		case 'activate' :
 			// Explode the html tag ID attribute on '~' to get the ID and theme name.
-			$id = explode('~', $_POST['id']);
+			$id = explode('~', $data -> id);
 			// Cast the current variable to 0 or 1 -> int
-			(int)$current = $_POST['current'] == 'Yes' ? 0 : 1;
+			(int) $current = $data -> current == 'Yes' ? 0 : 1;
 
 			// If $current is 1 Rewrite the theme.less file, so the activeted theme variable file will be rendered.
 			if($current == '1')
@@ -58,7 +59,7 @@
 
 		case 'undelete' :
 			// Retrieve the ID from the id attribute from the html tag
-			$id = explode('~', $_POST['id']);
+			$id = explode('~', $data -> id);
 			// Remove the deprecated flag from the table
 			if(\api\Api::updateTable('table_themes',array('deprecated'), array('0') ,array('id' => $id[1]),true))
 				$return['value'] = 'true';

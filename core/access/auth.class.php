@@ -15,13 +15,17 @@
 		protected $_name;
 		protected $_link;
 
+		protected $_post;
+
 		/**
 		 * This function checks if there's a post request to login, if there is it starts the @see postLogin(); if there isn't it starts the
 		 * @see getLogin() function.
 		 */
 		public function login()
 		{
-			if(isset($_POST['login']))
+			$this -> _post = \Post();
+
+			if(isset($this -> _post -> login))
 				$this->postLogin();
 			
 			$this->getLogin();
@@ -42,10 +46,8 @@
 		private function postLogin()
 		{
 
-			$this->_email = $_POST['email'];
-			$password = $_POST['password'];
-
-			unset($_POST);
+			$this->_email = $this -> _post -> email;
+			$password = $this -> _post -> password;
 
 			$user = \api\Api::getUsers() -> getUserByUsernameOrEmail($this->_email,$this->_email);
 

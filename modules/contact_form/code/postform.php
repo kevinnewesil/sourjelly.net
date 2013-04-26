@@ -3,22 +3,24 @@
 	require(MODULES_PATH . "contact_form/code/errors.php");
 	$config = require(MODULES_PATH . "contact_form/config/config.php");
 
-	if(isset($_POST['submit_contact_form']) && $_POST['submit_contact_form'] == 'contact')
+	$data = \Post();
+
+	if(isset($data -> submit_contact_form) && $data -> submit_contact_form == 'contact')
 	{
 		$error = NULL;
 
-		array_pop($_POST);
+		array_pop($data);
 
-		if(!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['message']))
+		if(!empty($data -> name) && !empty($data -> email) && !empty($data -> message))
 		{
-			if(isset($_POST['captha']))
+			if(isset($data -> captha))
 			{
 				die('1');
 			}
 
-			if(strlen($_POST['email']) > 9 && strlen($_POST['message']) > 9 && strlen($_POST['message']) < 501)
+			if(strlen($data -> email) > 9 && strlen($data -> message) > 9 && strlen($data -> message) < 501)
 			{
-				if(filter_var($_POST['email'],FILTER_VALIDATE_EMAIL))
+				if(filter_var($data -> email,FILTER_VALIDATE_EMAIL))
 				{
 					if(file_exists(MODULES_PATH . 'contact_form/tmp/mailllist.php'))
 						$mode = 'w';
@@ -33,7 +35,7 @@
 					{
 						if($handle = @fopen(MODULES_PATH . 'contact_form/tmp/maillist.php', $mode))
 						{
-							$mailstring = implode('~', $_POST) . ';';
+							$mailstring = implode('~', $data) . ';';
 							fwrite($handle, $mailstring . PHP_EOL);
 							fclose($handle);
 
@@ -48,7 +50,7 @@
 					{
 						$maillist = explode(';',$maillist);
 						array_pop($maillist);
-						array_push($maillist, implode('~',$_POST));
+						array_push($maillist, implode('~',$data));
 
 						foreach($maillist as $mail)
 						{

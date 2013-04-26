@@ -12,9 +12,10 @@
 
 	// Predefine the return as an Array and set 'dev' standart to false
 	$return = array('dev' => 'false');
+	$data   = \Post();
 
 	// Switch the action the system is checking for
-	switch($_POST['action'])
+	switch($data -> action)
 	{
 		// Check if the user is a developer, if so, set the dev return value to true
 		case 'checkDev':
@@ -28,16 +29,16 @@
 		// check if there aren't any harmfull injections being posted. if not, update settings directly.
 		case 'saveInput':
 
-			if($_POST['name'] !== 'lang')
-				if(!strpos($_POST['value'], 'script'))
-					if(\api\Api::updateTable('table_settings',array($_POST['name']),array($_POST['value']), array('id' => '1'),true))
+			if($data -> name !== 'lang')
+				if(!strpos($data -> value, 'script'))
+					if(\api\Api::updateTable('table_settings',array($data -> name),array($data -> value), array('id' => '1'),true))
 						$return['update'] = true;
 					else
 						$return['update'] = false;
 				else
 					$return['update'] = false;
-			else if($_POST['name'] == 'lang')
-				if(\api\Api::updateTable('table_users',array('lang'),array($_POST['value']),array("CONCAT(firstname , ' ' , lastname)" => $_SESSION['login']),true))
+			else if($data -> name == 'lang')
+				if(\api\Api::updateTable('table_users',array('lang'),array($data -> value),array("CONCAT(firstname , ' ' , lastname)" => $_SESSION['login']),true))
 					$return['update'] = true;
 				else
 					$return['update'] = false;
