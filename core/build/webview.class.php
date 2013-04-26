@@ -38,7 +38,9 @@
 			else
 				$pageInfo     = \getapiPages() -> getPage(0,$this->_page);
 
-			$placeholders     = array('{title}','{content}','{pages}',);
+			$placeholders     = array('{title}','{content}','{pages}','{metaTags}','{metaDescription}','{pageAuthor}','{contentClasses}','{contentIds}',
+									  '{contentTextAlign}','{titleVisibility}','{titleTextAlign}','{titleFontSize}',
+									 );
 			$menuPlaceholders = array('{liClass}','{link}','{aClass}','{data-toggle}','{tab-index}','{linkName}','{submenu}','{caret}');
 			
 			$items            = \Snippet('menuItems.tpl');
@@ -92,14 +94,20 @@
 
 			if(empty($pageInfo))
 			{
-				$page = \core\build\Template::getTemplate('error/404.tpl');
+				$page = \Template('error/404.tpl');
 				$replacers = array(
 					'This is not the page you are looking for!' , $page , $menu
 				);
 			}
 			else
 			{
-				$replacers = array( $pageInfo['tcp']['title'], html_entity_decode($pageInfo['tcp']['content']),$menu,);
+				
+				$replacers = array( $pageInfo['tcp']['title'], html_entity_decode($pageInfo['tcp']['content']),$menu,
+									$pageInfo['tcp']['metaTags'],$pageInfo['tcp']['metaDescription'],'Author',
+									$pageInfo['tcp']['contentClass'] , $pageInfo['tcp']['contentId'], 
+									$pageInfo['tcl']['contentTextAlign'],$pageInfo['tcl']['titleVisibility'],$pageInfo['tcl']['titleTextAlign'],
+									$pageInfo['tcl']['titleFontSize'],
+								  );
 			}
 
 			$pageId = \api\Api::getPages() -> getIdFromTitle($this->_page);

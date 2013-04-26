@@ -6,6 +6,7 @@
 	 * @todo Make post en get only available via Sourjelly class...
 	 * @todo Write propper error display for API insert into, and update table.
 	 * @todo timezone interperter.
+	 * @todo add page author 
 	 * @todo thighten up security
 	 * @todo move getId from controller function to main controller function.
 	 * @todo clean up messy code

@@ -90,7 +90,7 @@
 		{
 			//Simple check if $vars actually is an array, if not parse error and redirect user.
 			if(!is_array($vars))
-				\core\access\Redirect::refresh("The vars you want to pass trough the config generator should be an array.");
+				\Refresh("The vars you want to pass trough the config generator should be an array.");
 
 			//Set the Basic variables needed for the config file to be written. Module name, config file layout, placeholders , and predefine of config content var.
 			$moduleInfo   = \api\Api::getModules() -> getModuleById(); 
@@ -120,12 +120,12 @@
 
 			//Final checks if everything worked, if the file exists and the update was between a minute ago and a minute later, the file has been updated.
 			if(file_exists(MODULES_PATH . $moduleInfo[0][0] . '/config/config.php'))
-				if(@filectime(MODULES_PATH . $moduleInfo[0][0] . '/config/config.php') > (time() - 60 ) && @filectime(MODULES_PATH . $modulesInfo[0][0] . '/config/config.php') < (time() + 60))
-					\core\access\Redirect::Refresh("The config file has been updated", "success");
+				if(filectime(MODULES_PATH . $moduleInfo[0][0] . '/config/config.php') > (time() - 60 ) && @filectime(MODULES_PATH . $modulesInfo[0][0] . '/config/config.php') < (time() + 60))
+					\setNoticeSuccess("The config file has been updated");
 				else
-					\core\access\Redirect::Refresh("Config file couldn't not be overwritten");
+					\setNoticeError("Config file couldn't not be overwritten");
 			else
-				\core\access\Redirect::Refresh("The file 'config.php' for the module : " . $moduleInfo[0][0] . " Couldn't be created..");
+				\setNoticeError("The file 'config.php' for the module : " . $moduleInfo[0][0] . " Couldn't be created..");
 
 		}
 

@@ -8,21 +8,20 @@
 	if(file_exists(MODULES_PATH . 'contact_form/config/config.php'))
 		$config = require(MODULES_PATH . 'contact_form/config/config.php');
 	else
-		//$config = array();
-	die(var_dump($data));
+		$config = array();
+
 	if(isset($data -> contact_form_submit) && $data -> contact_form_submit == 'save contact form settings')
 	{
-		array_pop($data);
 
 		//Set the checkboxes as boulean.
 		$data -> captcha  = (isset($data -> captcha)  && $data -> captcha  == 'on') ? 1 : 0;
 		$data -> sticky   = (isset($data -> sticky)   && $data -> sticky   == 'on') ? 1 : 0;
 		$data -> allPages = (isset($data -> allPages) && $data -> allPages == 'on') ? 1 : 0;
 
-		if(is_array($data) && !empty($data))
+		if(is_object($data) && !empty($data))
 			\config\Config::generateConfig($data);
 		else
-			\core\access\Redirect::Refresh('data could not be parsed');
+			\SetNotice('data could not be parsed');
 
 	}
 

@@ -4,6 +4,12 @@
 		<title>Sourjelly.net</title> <!-- The title of your personal website. -->
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" > <!-- The charset of the website. (making it possible to use letters and special characters) -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- Set user defined meta data. -->
+		<meta name="keywords" content="{metaTags}"> <!-- Set the keywords for the page for SEO -->
+		<meta name="description" content="{metaDescription}"> <!-- Set the description of the page for SEO -->
+		<meta name="author" content="{pageAuthor}"> <!-- Set who ever wrote the page. -->
+
 		<!-- Include stlesheets -->
 		<link rel="stylesheet" href="{assets}css/bootstrap.min.css"> <!-- The main bootstrap layout. -->
 		<link rel="stylesheet/less" href="{assets}css/theme.less"> <!-- The path to one's custom theme. -->
@@ -35,7 +41,23 @@
                 });
               });
               $('#showdiv').tooltip();
-              $('#admin-int').tooltip();</script>
+              $('#admin-int').tooltip();
+        </script>
+        
+        <!-- Dynamic style for user defined settings that overrules all other shit. is per  page defineable. -->
+        <style type="text/css">
+        	
+        	.content-title{
+        		text-align : {titleTextAlign} ;
+        		font-size  : {titleFontSize} ;
+        		display    : {titleVisibility} ;
+        	}
+
+        	.content-content{
+        		text-align : {contentTextAlign} ;
+        	}
+
+        </style>
 
 	</head>
 	<body>
@@ -71,33 +93,15 @@
 			</div>
 
 			<div class="container">
-				
-			    <!-- Button to trigger modal -->
-    <a href="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
-     
-    <!-- Modal -->
-    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Modal header</h3>
-    </div>
-    <div class="modal-body">
-    <p>One fine body…</p>
-    </div>
-    <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <button class="btn btn-primary">Save changes</button>
-    </div>
-    </div>
 				<div class="main-content">
 
 				    {notice} <!-- Displays system error messages -->
 					
 					<!-- Shows page title and content, and the modules connected to the pages. -->
-					<div class="content">
-						<h2>{title}</h2> <!-- The title of the page, dynamically inserted. -->
+					<div class="content {contentClasses}" id="{contentIds}">
+						<h2 class="content-title">{title}</h2> <!-- The title of the page, dynamically inserted. -->
 					
-						{content} <!-- The content of the page, dynamically inserted. -->
+						<span class="content-content">{content}</span> <!-- The content of the page, dynamically inserted. -->
 						
 					</div>
 					{moduleHtml} <!-- The module(s) that belong to an html page, dynamically build. -->
