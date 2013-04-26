@@ -15,9 +15,9 @@
 		{
 			parent::__construct();
 
-			if(isset(parent::$_post -> submit))
+			if(isset($this -> _post -> submit))
 			{
-				$function = 'post_' . parent::$_post -> submit;
+				$function = 'post_' . $this -> _post -> submit;
 				$this -> $function();
 			}
 		}
@@ -127,14 +127,14 @@
 
 			$replacers = array($page['tcp']['id'],$page['tcp']['title'],$options, $page['tc']['created_at'], $frontend, $backend,
 							    $visible, $page['tcp']['metaTags'], $page['tcp']['metaDescription'],$titleVis, 
-								(strpos($page['tcl']['contentTextAlign'], 'left')) ? 'checked="checked"' : '' ,
-								(strpos($page['tcl']['contentTextAlign'], 'right')) ? 'checked="checked"' : '' , 
-								(strpos($page['tcl']['contentTextAlign'], 'center')) ? 'checked="checked"' : '' ,
-								(strpos($page['tcl']['contentTextAlign'], 'justify')) ? 'checked="checked"' : '' ,
-								(strpos($page['tcl']['titleTextAlign'], 'left')) ? 'checked="checked"' : '' ,
-								(strpos($page['tcl']['titleTextAlign'], 'right')) ? 'checked="checked"' : '' , 
-								(strpos($page['tcl']['titleTextAlign'], 'center')) ? 'checked="checked"' : '' ,
-								(strpos($page['tcl']['titleTextAlign'], 'justify')) ? 'checked="checked"' : '' ,
+								(strpos($page['tcl']['contentTextAlign'], 'left') !== false ) ? 'selected="selected"' : '' ,
+								(strpos($page['tcl']['contentTextAlign'], 'right') !== false ) ? 'selected="selected"' : '' , 
+								(strpos($page['tcl']['contentTextAlign'], 'center') !== false ) ? 'selected="selected"' : '' ,
+								(strpos($page['tcl']['contentTextAlign'], 'justify') !== false ) ? 'selected="selected"' : '' ,
+								(strpos($page['tcl']['titleTextAlign'], 'left') !== false ) ? 'selected="selected"' : '' ,
+								(strpos($page['tcl']['titleTextAlign'], 'right') !== false ) ? 'selected="selected"' : '' , 
+								(strpos($page['tcl']['titleTextAlign'], 'center') !== false ) ? 'selected="selected"' : '' ,
+								(strpos($page['tcl']['titleTextAlign'], 'justify') !== false ) ? 'selected="selected"' : '' ,
 								$page['tcl']['titleFontSize'], $page['tcp']['contentId'], $page['tcp']['contentClass'], $page['tcp']['content']);
 			
 			$tmp = str_replace($placeholders,$replacers,$tmp);
@@ -220,13 +220,13 @@
 		 * Calls for the crud model -> create function, to execute creating a new page.
 		 * @see \models\Crud -> create
 		 */
-		public function post_create() { if($this-> _model -> create(\core\access\Request::returnGlobalObject('post'))) \SetNoticeSuccess('Page succesfully created'); }
+		public function post_create() { if($this-> _model -> create()) \SetNoticeSuccess('Page succesfully created'); }
 
 		/**
 		 * Parses and sets the data of a page that's going to be updated, and calls for the crud model -> update function to update the page.
 		 * @see \models\Crud -> update
 		 */
-		public function post_update() { if($this-> _model -> update(\core\access\Request::returnGlobalObject('post'))) \SetNoticeSuccess('Page updated successfully'); }
+		public function post_update() { if($this-> _model -> update()) \SetNoticeSuccess('Page updated successfully'); }
 
 		/**
 		 * Loads the template file and makes it possible to upload (multiple) image(s) to server. easy as click 'nd drag. handled by javascript/ajax.

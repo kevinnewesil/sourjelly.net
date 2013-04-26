@@ -24,17 +24,17 @@
 		{
 			$rows   = array( 'firstname','lastname','username','email','dob','dev' );
 			$values = array( 
-				parent::$_post -> firstname,
-				parent::$_post -> lastname,
-				parent::$_post -> username,
-				parent::$_post -> email,
-				parent::$_post -> dob,
-				isset(parent::$_post -> developer) && parent::$_post -> developer == 'on' ? 1 : 0,
+				$this -> _post -> firstname,
+				$this -> _post -> lastname,
+				$this -> _post -> username,
+				$this -> _post -> email,
+				$this -> _post -> dob,
+				isset($this -> _post -> developer) && $this -> _post -> developer == 'on' ? 1 : 0,
 			);
-			$where = array('id' => parent::$_post -> userId);
+			$where = array('id' => $this -> _post -> userId);
 
-			if( parent::$_post -> password == parent::$_post -> passwordCheck &&
-				parent::__validates( array( 'password' => parent::$_post -> password), array( 'firstname' , '-' , 'password' , '-' , 'registered_at' )
+			if( $this -> _post -> password == $this -> _post -> passwordCheck &&
+				parent::__validates( array( 'password' => $this -> _post -> password), array( 'firstname' , '-' , 'password' , '-' , 'registered_at' )
 			))
 				if(\api\Api::updateTable( $this -> _table ,$rows,$values,$where ))
 					return true;

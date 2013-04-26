@@ -10,6 +10,13 @@
 	if(!function_exists("SjDb")) { function SjDb(){ return \core\build\Sourjelly::GetDb(); } }
 
 	/**
+	 * Super globals
+	 */
+
+	if(!function_exists("Post")) { function Post() { return \core\build\Sourjelly::getPost(); } }
+	if(!function_exists("Get")) { function Get() { return \core\build\Sourjelly::getGet(); } }
+
+	/**
 	 * Redirects
 	 */
 
@@ -43,10 +50,3 @@
 
 	if(!function_exists("Template")) { function Template($path){ return \core\build\Template::getTemplate($path); } }
 	if(!function_exists("Snippet")) { function Snippet($name, $path = NULL){ return \core\build\Template::getSnippet($name , $path); } }
-
-	/**
-	 * Super globals
-	 */
-
-	if(!function_exists("Post")) { function Post() { return \core\access\Request::returnGlobalObject('post'); } }
-	if(!function_exists("Get")) { function Get() { return \core\access\Request::returnGlobalObject('get'); } }

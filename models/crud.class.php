@@ -22,9 +22,12 @@
 		 * @param  object $create the values of the create request.
 		 * @return boolean       return true if row was inserted correctly.
 		 */
-		public function create($create)
+		public function create()
 		{
-			// Check if data exists, if not, redirect home with error message.
+
+			$create = $this -> _post;
+
+			// Check if data exists, if not, refresh with error message.
 			if(empty($create->title) || empty($create->content))
 				\core\access\Redirect::Refresh('Please fill in atleast a title, and some content!');
 
@@ -46,12 +49,12 @@
 				(isset($create -> activeFrontEnd) && $create -> activeFrontEnd == 'on') ? '1' : '0',
 				(isset($create -> activeBackEnd) && $create -> activeBackEnd == 'on') ? '1' : '0',
 				(isset($create -> visible) && $create -> visible == 'on') ? '1' : '0',
-				@date('Y-m-d H:i:s'), '1'
+				date('Y-m-d H:i:s',strtotime("now")), '1'
 			);
 
 			// Execute this request first for getting a content Id.
-			if(!\api\Api::insertInto('table_content',array('front','back','menuVisibility','created_at','public'),$table_content_values,'iiiis'))
-				return false;
+			if(!\api\Api::insertInto('table_content',array('front','back','menuVisibility','created_at','public'),$table_content_values,'iiisi'))
+				\core\access\Redirect::Refresh('Could not create main content layout');
 
 			// Fetch the content ID for relations
 			$contentId = \api\Api::getLastInsertId();
@@ -82,8 +85,10 @@
 		 * @param  array $update the values that should be updated
 		 * @return boolean       return true if update was succesfull
 		 */
-		public function update($update)
+		public function update()
 		{
+			$update = $this -> _post;
+
 			// Check if parent is set, if not leave empty, else change to proper page Id
 			if($update -> parent == '-')
 			{
@@ -112,15 +117,15 @@
 			);
 
 			$table_content_properties_values = array($this -> getId() ,$update -> title, $update -> content, $update -> hasParent,$update-> parentId , '0' ,
-													 $update -> metaTags,$update -> metaDescription, $update -> contentClass,$update -> contentId );
+													 $update -> metaTags,$update -> metaDescription, $update -> contentClass,$this -> getId() );
 
-			$table_content_layout_values = array($contentId, $update -> contentTextAlignment , $update -> titleTextAlignment , $update -> titleFontSize ,
+			$table_content_layout_values = array($this -> getId() , $update -> contentTextAlign , $update -> titleTextAlign , $update -> fontSize ,
 											     (isset($update -> showPagetitle) && $update -> showPagetitle == 'on') ? '1' : '0' );
-
+			
 			// Update the table, and return true on success.
-			return \api\Api::updateTable('table_content',$table_content_rows,$table_content_values,array('id' => $this->getId()));
-			return \api\Api::updateTable('table_content_properties',$table_content_properties_rows,$table_content_properties_values,array('id' => $this->getId()));
-			return \api\Api::updateTable('table_content_layout',$table_content_layout_rows,$table_content_layout_values,array('id' => $this->getId()));
+			\api\Api::updateTable('table_content',$table_content_rows,$table_content_values,array('id' => $this->getId()));
+			\api\Api::updateTable('table_content_properties',$table_content_properties_rows,$table_content_properties_values,array('id' => $this->getId()));
+			\api\Api::updateTable('table_content_layout',$table_content_layout_rows,$table_content_layout_values,array('id' => $this->getId()));
 
 			return true;
 		}

@@ -50,27 +50,7 @@
 		}
 
 		protected function table_content()
-		{	
-			// Original code
-			// \core\build\Sourjelly::getDb()->createTable("table_content",
-			// 	array(
-			// 		'title' => 'string',
-			// 		'content' => 'text',
-			// 		'has_parent' => 'int',
-			// 		'parent_id' => 'int',
-			// 		'menu_order' => 'int',
-			// 		'deprecated' => 'int',
-			// 		'public' => 'int',
-			// 		'visible' => 'int',
-			// 		'meta_tags' => 'string',
-			// 		'meta_description' => 'string',
-			// 		'content_class' => 'string',
-			// 		'content_id' => 'string',
-			// 		'created_at' => 'timestamp',
-			// 		'updated_at' => 'timestamp',
-			// 	)
-			// );
-
+		{
 			\core\build\Sourjelly::getDb() -> createTable("table_content",
 				array(
 					'front'          => 'int',
@@ -78,8 +58,8 @@
 					'public'         => 'int',
 					'menuVisibility' => 'int',
 					'deprecated'     => 'int',
-					'created_at'     => 'timestamp',
-					'updated_at'     => 'timestamp',
+					'created_at'     => 'datetime',
+					'updated_at'     => 'datetime',
 				)
 			);
 

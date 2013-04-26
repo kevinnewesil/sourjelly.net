@@ -256,6 +256,7 @@
 		        {
 		        	self::$_insertId = false;
 		        	$stmt -> close();
+		        	\setNotice('Something went wrong with inserting the row' . self::$_link -> error . 'about around line 260');
 		        	return false;
 		        }
 			}

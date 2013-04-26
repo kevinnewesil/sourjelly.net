@@ -58,11 +58,11 @@
 		 */
 		public function create()
 		{
-			array_pop(parent::$_post);
-			$themeName = parent::$_post -> themeName;
-			array_shift(parent::$_post);
+			array_pop($this -> _post);
+			$themeName = $this -> _post -> themeName;
+			array_shift($this -> _post);
 
-			$themeData = parent::$_post;
+			$themeData = $this -> _post;
 
 			foreach($themeData as $key => $value)
 				$themeData[$key] = stripslashes(stripslashes($value));
@@ -91,7 +91,7 @@
 			fwrite($fh, '@import "themes/' . $themeName . '"; ' . PHP_EOL . \core\build\Template::getSnippet('theme.layout.less','less'));
 			fclose($fh);
 
-			$post = implode('=' , array(implode('~' ,array_keys(parent::$_post)) ,implode('~',array_merge(array('themeName' => $themeName),parent::$_post))));
+			$post = implode('=' , array(implode('~' ,array_keys($this -> _post)) ,implode('~',array_merge(array('themeName' => $themeName),$this -> _post))));
 
 			\api\Api::updateTable('table_themes',array('active'),array('0'),array('active' => '1'));
 
@@ -117,7 +117,7 @@
 		 */
 		public function update()
 		{
-			if(isset(parent::$_post -> submit))
+			if(isset($this -> _post -> submit))
 				if($this -> postUpdate())
 					\core\access\redirect::Refresh("theme updated succesfully");
 				else
@@ -149,13 +149,13 @@
 		 */
 		private function postUpdate()
 		{
-			$id = parent::$_post -> id;
-			$themeName = parent::$_post -> themeName;
-			array_pop(parent::$_post);
-			array_shift(parent::$_post);
-			array_shift(parent::$_post);
+			$id = $this -> _post -> id;
+			$themeName = $this -> _post -> themeName;
+			array_pop($this -> _post);
+			array_shift($this -> _post);
+			array_shift($this -> _post);
 
-			$themeData = parent::$_post;
+			$themeData = $this -> _post;
 
 			foreach($themeData as $key => $value)
                 $themeData[$key] = stripslashes(stripslashes($value));
@@ -179,7 +179,7 @@
 			fwrite($fh, '@import "themes/' . $themeName . '"; ' . PHP_EOL . \core\build\Template::getSnippet('theme.layout.less','less'));
 			fclose($fh);
 
-			$post = implode('=' , array(implode('~' ,array_keys(parent::$_post)) ,implode('~',array_merge(array('themeName' => $themeName),parent::$_post))));
+			$post = implode('=' , array(implode('~' ,array_keys($this -> _post)) ,implode('~',array_merge(array('themeName' => $themeName),$this -> _post))));
 
 			\api\Api::updateTable('table_themes',array('active'),array('0'),array('active' => '1'));
 

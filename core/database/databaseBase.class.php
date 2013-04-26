@@ -26,6 +26,7 @@
 		{
 			$query = "CREATE TABLE IF NOT EXISTS `" . $name . "` (id int NOT NULL AUTO_INCREMENT, PRIMARY KEY(id),";
 			$i = 0;
+			
 			if(is_array($rows))
 				foreach($rows as $row => $type)
 				{
@@ -42,6 +43,9 @@
 						case 'timestamp':
 							$query .= $row . " timestamp ";
 							break;
+						case 'datetime':
+							$query .= $row . " datetime ";
+							break;
 						case 'date':
 							$query .= $row . " date ";
 							break;
@@ -49,6 +53,7 @@
 							$query .= $row . " blob ";
 							break;
 					}
+
 					$i < count($rows)-1 ? $query .= " , " : '';
 					$i++;
 				}

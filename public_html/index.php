@@ -3,6 +3,9 @@
 	 * @author Kevin Newesil <newesil.kevin@gmail.com>
 	 * @version 1.1.0.0
 	 * 
+	 * @todo Make post en get only available via Sourjelly class...
+	 * @todo Write propper error display for API insert into, and update table.
+	 * @todo timezone interperter.
 	 * @todo thighten up security
 	 * @todo move getId from controller function to main controller function.
 	 * @todo clean up messy code

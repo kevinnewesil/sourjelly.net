@@ -25,8 +25,8 @@
 
 		protected $_ajax;
 
-		private $_get;
-		private $_post;
+		private static $_get;
+		private static $_post;
 
 		/**
 		 * __construct() requires the system files, which build the system.
@@ -59,8 +59,8 @@
 
 			require(API_PATH . 'api.class.php');
 
-			$this -> _get  = \Get();
-			$this -> _post = \Post();
+			self::$_get  = \core\access\Request::returnGlobalObject('get');
+			self::$_post = \core\access\Request::returnGlobalObject('post');
 
             $this -> startSourjelly();
             $this -> finishSourjelly();
@@ -214,6 +214,9 @@
 				return self::$_db->{$func}();
 			}
 		}
+
+		public static function getGet(){ return self::$_get; }
+		public static function getPost(){ return self::$_post; }
 
 
 		/**
