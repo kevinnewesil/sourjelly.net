@@ -17,6 +17,8 @@
 		protected $_paths = array();
 		protected $_class = array();
 		protected $_ns    = NULL;
+
+		protected $_get   = NULL;
 		
 		/**
 		 * __construct()
@@ -28,6 +30,7 @@
 		{
 			// Read the url and explode on index.php
 			$url = explode('index.php/',$_SERVER['REQUEST_URI']);
+			$this -> _get = \Get();
 
 			// Check if controller is in url
 			if(isset($url[1]) && $url[1] != '')
@@ -62,7 +65,7 @@
 		private function IncludeClass()
 		{	
 			// Return if file could be included or not.
-			return include(constant(strtoupper($_GET['path'])) . $this->_parts[0] . '.class.php');
+			return include(constant(strtoupper($this -> _get -> path)) . $this->_parts[0] . '.class.php');
 		}
 		
 		/**
@@ -83,8 +86,8 @@
 			if($this->IncludeClass() !== 1) \core\access\Redirect::Home('Class does not exist. check if your link is still valid!');
 
 			// check if namespace could be fetched, if namespace couldn't be fetched fuck the system.
-			if(!isset($_GET['ns']) || $_GET['ns'] == '') \core\access\Redirect::Home('No namespace defined');
-			$this->_ns = constant(strtoupper($_GET['ns']));
+			if(!isset($this -> _get -> ns) || $this -> _get -> ns == '') \core\access\Redirect::Home('No namespace defined');
+			$this->_ns = constant(strtoupper($this -> _get -> ns));
 
 			// Define the classname including the namespace.
 			$class = $this -> _ns . '\\' . $this->_parts[0];

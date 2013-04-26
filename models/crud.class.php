@@ -97,9 +97,9 @@
 			}
 			else
 			{
-				$update -> has_parent = '1';
+				$update -> hasParent = '1';
 				// Connect to local API to fetch parent content ID.
-				$parentContent = \api\Api::getPages() -> getPage('',$parent);
+				$parentContent = \api\Api::getPages() -> getPage('',$update -> parent);
 				$update -> parentId = $parentContent['tcp']['id'];
 			}
 
