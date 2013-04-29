@@ -8,17 +8,15 @@
 	 */
 	class Webview
 	{
-
-		protected $_page;
-
 		/**
 		 * Pre renders all the data that is needed to get the info for the page the visitor is currently on.
 		 */
 		public function __construct()
 		{
+			
 			$rawUrl = $_SERVER['REQUEST_URI'];
 			$urlSplit = explode('/',$rawUrl);
-
+			
 			$this->_page = ($urlSplit[count($urlSplit)-1] == '' || $urlSplit[count($urlSplit)-1] == 'index.php') ? 'empty-index' : $urlSplit[count($urlSplit)-1];
 			$this->_page = str_replace('_',' ',$this->_page);
 			
@@ -113,6 +111,6 @@
 			$pageId = \api\Api::getPages() -> getIdFromTitle($this->_page);
 			\core\build\Sourjelly::getHtml()->modules($pageId);
 			\core\build\Sourjelly::getHtml()->assign($placeholders,$replacers);
-
+		
 		}
 	}

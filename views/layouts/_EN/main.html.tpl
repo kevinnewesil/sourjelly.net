@@ -62,6 +62,7 @@
 	</head>
 	<body>
 		<div id="container">
+			
 			<!-- Navigation settings / responsive design, collapses menu on smaller screens and makes them easily accessable for mobile devices. -->
 			<nav>
 				<div class="navbar navbar-fixed-top" >

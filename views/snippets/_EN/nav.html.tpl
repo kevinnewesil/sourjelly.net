@@ -16,7 +16,7 @@
 </li>
 
 <li class="dropdown">
-	 <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Modules">
+	<a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Modules">
 		Modules
 		<b class="caret"></b>
 	</a>
@@ -38,15 +38,34 @@
 </li>
 
 <li class="dropdown">
-	<a href="" class="dropdown-toggle" data-toggle="dropdown" title="thema's">
-		Themes
+	<a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Layout">
+		Layout
 		<b class="caret"></b>
 	</a>
 
 	<ul class="dropdown-menu">
-		<li><a href="{base}/themes/index/?ns=controllers&amp;path=controller_path" title="Thema">Theme selection</a></li>
-		<li><a href="{base}/themes/upload/?ns=controllers&amp;path=controller_path" title="Thema">Upload theme</a></li>
-		<li><a href="{base}/themes/newTheme/?ns=controllers&amp;path=controller_path" title="Thema">Create theme</a></li>
+		<li class="dropdown-submenu">
+			<a href="#" class="dropdown-toggle" id="basic-layout" data-toggle="dropdown" title="basic layouts">
+				Basic lay-outs
+			</a>
+			<ul class="dropdown-menu" role="menu" aria-labelledby="basic-layout">
+				<li> <a href="{base}/layouts/navigation/?ns=controllers&amp;path=controller_path" title="Navigation">Navigation</a> </li>
+				<li> <a href="{base}/layouts/header/?ns=controllers&amp;path=controller_path" title="Header">Header</a> </li>
+				<li> <a href="{base}/layouts/content/?ns=controllers&amp;path=controller_path" title="content">Content</a> </li>
+				<li> <a href="{base}/layouts/footer/?ns=controllers&amp;path=controller_path" title="Footer">Footer</a> </li>
+			</ul>
+		</li>
+
+		<li class="dropdown-submenu">
+			<a href="#" class="dropdown-toggle" id="themes" data-toggle="dropdown" title="themes">
+				Theme
+			</a>
+			<ul class="dropdown-menu" role="menu" aria-labelledby="themes">
+				<li><a href="{base}/themes/index/?ns=controllers&amp;path=controller_path" title="Pick existing theme">Theme selection</a></li>
+				<li><a href="{base}/themes/upload/?ns=controllers&amp;path=controller_path" title="Upload theme">Upload theme</a></li>
+				<li><a href="{base}/themes/newTheme/?ns=controllers&amp;path=controller_path" title="Create new theme">Create theme</a></li>
+			</ul>
+		</li>
 	</ul>
 
 </li>

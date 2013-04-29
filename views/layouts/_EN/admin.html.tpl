@@ -100,7 +100,7 @@
 
 			<div class="container">
 				{notice}
-			
+
 				<div class="content">
 					{content}
 				</div>

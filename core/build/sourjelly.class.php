@@ -23,7 +23,7 @@
 		protected static $_settings;
 		protected static $_html;
 
-		protected $_ajax;
+		private $_ajax;
 
 		private static $_get;
 		private static $_post;

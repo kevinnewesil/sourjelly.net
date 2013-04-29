@@ -14,7 +14,7 @@
 	{
 
 		protected $link;
-		public $layout = NULL;
+		public 	  $layout = NULL;
 
 		/**
 		 * the construct function checks what layout is asked for and saves the layout into the class property @param $layout.
@@ -57,13 +57,10 @@
 
 				if(isset($_SESSION['system_warning']))
 					unset($_SESSION['system_warning']);
-
-				return true;
 			}
 			else
-			{
-				$this->layout = str_replace('{notice}','',$this->layout);
-			}
+				$this->layout  = str_replace('{notice}','',$this->layout);
+
 		}
 
 		/**
@@ -113,7 +110,8 @@
 
 				foreach($modules as $module)
 					$modulesListItems .= str_replace(array('{link}','{linkName}'),array('{base}/modules/settings/' . $module['id'] . '/?ns=controllers&amp;path=controller_path',$module['title']),$modulesListTmp);
-
+				
+				
 				$this->Assign('{nav}',$tmp);
 
 				if($modulesListItems != '')
@@ -124,9 +122,7 @@
 				$this->Assign('{modulesList}',$submenu,true);
 			}
 			else
-			{
 				$this->Assign('{nav}','');
-			}
 		}
 
 		/**
@@ -173,6 +169,7 @@
 
 				$this->basePaths();
 
+				
 				echo ($this->layout);
 			}
 			else
