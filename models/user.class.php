@@ -6,12 +6,12 @@
 	* @package  default
 	* 
 	*/
-	class User extends \core\system\model
+	final class User extends \core\system\model
 	{
 		/**
 		 * Calls the main model class.
 		 */
-		public function __construct()
+		final public function __construct()
 		{
 			parent::__construct();
 		}
@@ -20,7 +20,7 @@
 		 * Checks if the values are correct, and updates the user information vai the post request.
 		 * @return boolean return true if user data is updated succesfully
 		 */
-		public function update()
+		final public function update()
 		{
 			$rows   = array( 'firstname','lastname','username','email','dob','dev' );
 			$values = array( 

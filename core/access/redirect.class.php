@@ -1,11 +1,11 @@
-<?php namespace core\access;
+<?php namespace core\access; if(!defined("DS")) die('no direct script access!');
 
 	/**
 	 * @author Kevin Newesil <newesil.kevin@gmail.com>
 	 * @version 1.1.0.0
 	 * 
 	 */
-	class Redirect
+	final class Redirect
 	{
 		/**
 		 * This function creates a redirect to a requested path, and sends the user there.
@@ -15,7 +15,7 @@
 		 * @param string $notice the 'error' message for the user.
 		 * @param string $sort   the sort of message that the user should see. success message, warning message etc.
 		 */
-		public static function To($path = NULL,$notice = NULL,$sort = 'warning')
+		final public static function To($path = NULL,$notice = NULL,$sort = 'warning')
 		{
 			$path == NULL ? Redirect::Home("You have to define a path!") : '';
 
@@ -32,7 +32,7 @@
 		 * @param string $notice the 'error' message the user should see.
 		 * @param string $sort   the sort of message that the user should see. success message, warning message etc.
 		 */
-		public static function Home($notice = NULL,$sort = 'warning')
+		final public static function Home($notice = NULL,$sort = 'warning')
 		{
 			$notice != NULL ? $_SESSION['notice'] = $notice : '';
 			$_SESSION['notice_sort'] = $sort;
@@ -44,7 +44,7 @@
 		/**
 		 * uses a session variable to redirect the user back to the previous page.
 		 */
-		public static function Back()
+		final public static function Back()
 		{
 			header('location:' . $_SESSION['PREV_URL']);
 			exit();
@@ -55,7 +55,7 @@
 		 * @param string $notice The message the user should see after being redirected
 		 * @param string $sort   The sort of message that the user should see. success message, warning message etc.
 		 */
-		public static function Refresh($notice = NULL,$sort = 'warning')
+		final public static function Refresh($notice = NULL,$sort = 'warning')
 		{
 			if(isset($_SESSION['system_reset']) && $_SESSION['system_reset'] !== true)
 			{
@@ -77,7 +77,7 @@
 		 * @param  string $notice The message the user should see after being redirected
 		 * @param  string $sort   The sort of message that the user should see. success message, warning message etc.
 		 */
-		public static function install($notice = NULL , $sort = 'warning')
+		final public static function install($notice = NULL , $sort = 'warning')
 		{
 			$notice != NULL ? $_SESSION['notice'] = $notice : '';
 			$_SESSION['notice_sort'] = $sort;

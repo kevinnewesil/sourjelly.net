@@ -11,7 +11,7 @@
 	* @var $class array Name of the class that has to be auto loaded and the object of the class.
 	* @todo custom error message for not existing file.
 	*/
-	class Autoloader
+	final class Autoloader
 	{
 		protected $_parts = array();
 		protected $_paths = array();
@@ -26,7 +26,7 @@
 		 * @var $this->parts array An array with the get attributes, including class name and class function for parsing.
 		 * The autoloader construct makes a clean array of the class that needs to be called to access the proper class.
 		 */
-		public function __construct()
+		final public function __construct()
 		{
 			// Read the url and explode on index.php
 			$url = explode('index.php/',$_SERVER['REQUEST_URI']);
@@ -62,7 +62,7 @@
 		 * The IncludeClass function makes the path to the class a beautiful string to read for the include function and parses this.
 		 * so that the Sourjelly of include can be returned.
 		 */		
-		private function IncludeClass()
+		final private function IncludeClass()
 		{	
 			// Return if file could be included or not.
 			return include(constant(strtoupper($this -> _get -> path)) . $this->_parts[0] . '.class.php');
@@ -76,7 +76,7 @@
 		 * @var $class string the full path to the class, @var $this->ns + @var $this->parts
 		 * This Autoload function calls for the IncludeClass function and sets the new class as variable with the name the same as the class.
 		 */
-		public function Autoload()
+		final public function Autoload()
 		{
 			// Check if everything is actually defined.
 			if($this->_parts == NULL)
@@ -106,7 +106,7 @@
 		 * This AutoFunction function calls for the function in the class that has the code that needs to be excecuted.
 		 * Example url: index.php/auth/register << calls for class Auth function Register.
 		 */
-		public function AutoFunction()
+		final public function AutoFunction()
 		{	
 			// check if function name is actually defined..
 			!isset($this->_parts[1]) ? \core\access\Redirect::Home('No function found to excute in class.') : '';
@@ -136,7 +136,7 @@
 		 * [buildIndex description]
 		 * @return [type] [description]
 		 */
-		public function buildIndex()
+		final public function buildIndex()
 		{
 			// Assign the index page to the content area in the html via the html base class.
 			\core\build\Sourjelly::getHtml()->Assign('{content}',\core\build\Template::getTemplate('index.html.tpl'));
@@ -145,19 +145,19 @@
 		/**
 		 * Getter functions for access to protected class variables.
 		 */
-		public function GetParts()
+		final public function GetParts()
 		{
 			return $this->parts;
 		}
-		public function GetPaths()
+		final public function GetPaths()
 		{
 			return $this->paths;
 		}
-		public function getClass()
+		final public function getClass()
 		{
 			return $this->class;
 		}
-		public function GetNs()
+		final public function GetNs()
 		{
 			return $this->ns;
 		}

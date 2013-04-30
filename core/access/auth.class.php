@@ -6,7 +6,7 @@
 	 * @package  default
 	 *
 	 */
-	class Auth
+	final class Auth
 	{
 		protected $_username;
 		protected $_password;
@@ -21,7 +21,7 @@
 		 * This function checks if there's a post request to login, if there is it starts the @see postLogin(); if there isn't it starts the
 		 * @see getLogin() function.
 		 */
-		public function login()
+		final public function login()
 		{
 			$this -> _post = \Post();
 
@@ -34,7 +34,7 @@
 		/**
 		 * Render the login for html.
 		 */
-		private function getLogin()
+		final private function getLogin()
 		{
 			\core\build\Sourjelly::getHtml()->Assign(array('{pages}','{title}','{content}','{moduleHtml}'),array('','Login',\core\build\Template::getTemplate('auth/login.html.tpl'),''));
 		}
@@ -43,7 +43,7 @@
 		 * this function sets the data of the login post right, and checks if the login is valid. if the login is valid creates a session that login is true,
 		 * else it redirects to the login form, with an error message.
 		 */
-		private function postLogin()
+		final private function postLogin()
 		{
 
 			$this->_email = $this -> _post -> email;
@@ -67,7 +67,7 @@
 		/**
 		 * Function that destroys all user related session and redirects a user to the home page.
 		 */
-		public function logout()
+		final public function logout()
 		{
 			session_unset($_SESSION['login']);
 			session_unset($_SESSION['user_language']);

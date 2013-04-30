@@ -6,15 +6,15 @@
 	* @package  default
 	* 
 	*/
-	class Theme extends \core\system\Model
+	final class Theme extends \core\system\Model
 	{
 
-		public function __construct()
+		final public function __construct()
 		{
 			parent::__construct();
 		}
 
-		public function delete()
+		final public function delete()
 		{
 			$id = $this -> getId();
 
@@ -24,7 +24,7 @@
 				return false;
 		}
 
-		private function getId()
+		final private function getId()
 		{
 			$url = explode('/',$_SERVER['REQUEST_URI']);
 

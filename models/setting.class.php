@@ -6,12 +6,12 @@
 	* @package  default
 	* 
 	*/
-	class Setting extends \core\system\Model
+	final class Setting extends \core\system\Model
 	{
 		/**
 		 * Calls for the main model class
 		 */
-		public function __construct()
+		final public function __construct()
 		{
 			parent::__construct();
 		}
@@ -20,7 +20,7 @@
 		 * Checks if all the values are correct and updates the settings values.
 		 * @return boolean returns true on correct update.
 		 */
-		public function update()
+		final public function update()
 		{
 			if( \api\Api::updateTable('table_users',array('lang'),array($this -> _post -> lang),array("CONCAT(firstname , ' ' , lastname)" => $_SESSION['login'])) || \api\Api::updateTable(
 				"table_settings",

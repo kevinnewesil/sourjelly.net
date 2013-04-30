@@ -1,6 +1,6 @@
 <?php namespace core\access; if(!defined("DS")) die('no direct script access');
 
-	class Request
+	final class Request
 	{
 		/**
 		 * @author Kevin Newesil <newesil.kevin@gmail.com>
@@ -9,7 +9,7 @@
 
 		protected static $_initializeObject;
 
-		public static function returnGlobalObject($state = 'get')
+		final public static function returnGlobalObject($state = 'get')
 		{
 			if(!$request = self::getRequestBody($state))
 				return false;
@@ -19,7 +19,7 @@
 			return (object) self::$_initializeObject;
 		}
 
-		public static function returnParsedValue($name, $state = 'get')
+		final public static function returnParsedValue($name, $state = 'get')
 		{
 			if(!$request = self::getRequestBody($state))
 				return false;
@@ -29,7 +29,7 @@
 			return $request[$name];
 		}
 
-		protected static function parseArrayToObject($array)
+		final protected static function parseArrayToObject($array)
 		{
 
 			foreach($array as $key => $value)
@@ -41,7 +41,7 @@
 			self::$_initializeObject = $array;
 		}
 
-		protected static function getRequestBody($state)
+		final protected static function getRequestBody($state)
 		{
 			switch ($state) {
 				case 'get':

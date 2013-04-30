@@ -31,6 +31,7 @@
 	 * @todo  Write actual documentation INSIDE the functions of the classes.
 	 * @todo  Rewrite modules and crud controllers/models, so that they make use of the base Controller and base Model classes.
 	 * @todo  Rewrite the API classes so that the link is set via the config file and not via the api classes.
+	 * @todo add final keyword to final classes and functions
 	 *
 	 */
 

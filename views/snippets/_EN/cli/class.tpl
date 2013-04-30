@@ -7,10 +7,10 @@
 	* 
 	* @var {PROPERTIE_NAME} {PROPERTY_TYPE} {PROPERTY_DESCRIPTION}
 	*/
-	class {classname} extends \core\system\{extends}
+	final class {classname} extends \core\system\{extends}
 	{
 
-		public function __construct()
+		final public function __construct()
 		{
 			parent::__construct();
 		}

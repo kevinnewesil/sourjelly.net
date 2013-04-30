@@ -6,14 +6,14 @@
 	 *
 	 * @param $_permissionss an array with all the permissionss data of the folders of the system saved in.
 	 */
-	class System
+	final class System
 	{
 		protected $_permissionss = array();
 
 		/**
 		 * Calls for all functions within this class, as this class is a sort of before filter for an administrator.
 		 */
-		public function __construct()
+		final public function __construct()
 		{
 			//$this -> setFolderpermissionss();
 			//$this -> setDecimalpermissions();
@@ -23,7 +23,7 @@
 		/**
 		 * A list of all folders, going through the getpermissionss function one by one.
 		 */
-		protected function setFolderpermissionss()
+		final protected function setFolderpermissionss()
 		{
 			$this -> _permissionss[API_PATH]        = $this -> getpermissionss(API_PATH);
 			$this -> _permissionss[CONFIG_PATH]     = $this -> getpermissionss(CONFIG_PATH);
@@ -42,7 +42,7 @@
 		 * @param  string $path the path to the file/folder that should be checked for it's permissionss.
 		 * @return string       return a string with the folder/file permissions data.
 		 */
-		protected function getpermissionss($path)
+		final protected function getpermissionss($path)
 		{
 
 			if(!is_dir($path) || !file_exists($path))
@@ -101,7 +101,7 @@
 		 * Gets the written premissons of a file/folder, and makes them into a numeric permissions string.
 		 * This function also checks what type the permissions check is for, and extends the permissionss array with that data.
 		 */
-		protected function setDecimalpermissions()
+		final protected function setDecimalpermissions()
 		{
 			foreach($this -> _permissionss as $path => $permissions)
 			{
@@ -188,7 +188,7 @@
 		/**
 		 * This function checks if the system is compatable with the settings of the files and folders, if not it sends a message to the administrator.
 		 */
-		protected function checkDecimalpermissions()
+		final protected function checkDecimalpermissions()
 		{
 			foreach($this -> _permissionss as $folder => $permissions)
 				if($permissions['decimal'] < 600 )

@@ -34,6 +34,13 @@
 		}
 
 		/**
+		 * Disable object cloning
+		 */
+		public function __clone(){
+			exit;
+		}
+
+		/**
 		 * protected function that splits the URL to check if there's a numeric part in the url, which can be used as the ID of a page for
 		 * retrieving, updating, deleting, and undo deleting.
 		 * @return boolean true if the url part is numeric and in the right position, false otherwhise

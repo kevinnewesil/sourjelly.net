@@ -1,5 +1,5 @@
 
-		public function {functionname}()
+		final public function {functionname}()
 		{
 			
 		}

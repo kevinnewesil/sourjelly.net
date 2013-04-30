@@ -6,13 +6,13 @@
 	* @package  default
 	* 
 	*/
-	class Crud extends \core\system\Model
+	final class Crud extends \core\system\Model
 	{
 
 		/**
 		 * Calls for the Main controller to execute the common functions etc.
 		 */
-		public function __construct()
+		final public function __construct()
 		{
 			parent::__construct();
 		}
@@ -22,7 +22,7 @@
 		 * @param  object $create the values of the create request.
 		 * @return boolean       return true if row was inserted correctly.
 		 */
-		public function create()
+		final public function create()
 		{
 
 			$create = $this -> _post;
@@ -85,7 +85,7 @@
 		 * @param  array $update the values that should be updated
 		 * @return boolean       return true if update was succesfull
 		 */
-		public function update()
+		final public function update()
 		{
 			$update = $this -> _post;
 
@@ -134,7 +134,7 @@
 		 * Gets the page that is reqested, and places a deprecated flag on it.
 		 * @return boolean return true if deprecated flag was placed
 		 */
-		public function delete()
+		final public function delete()
 		{
 			// Update the table to set a deprecated flag on the right row.
 			return \api\Api::updateTable('table_content',array('deprecated'),array('1'),array('id' => $this -> getId()));
@@ -144,7 +144,7 @@
 		 * Gets the requested page details, and removes the deprecated flag from that page.
 		 * @return boolean return true if deprecated flag was removes succesfully
 		 */
-		public function undoDelete()
+		final public function undoDelete()
 		{
 			// Update the table to remove the deprecated flag from the right row
 			return \api\Api::updateTable('table_content',array('deprecated'),array('0'),array('id' => $this -> getId()));
@@ -154,7 +154,7 @@
 		 * gets the ID of the page that should be edited.
 		 * @return boolean return false if the ID wasn't a valid numeric ID.
 		 */
-		protected function getId()
+		final protected function getId()
 		{
 			//Read the url and split it. check if there's an ID on the right place and if it's numeric
 			$rawUrl = explode('/index.php/',$_SERVER['REQUEST_URI']);

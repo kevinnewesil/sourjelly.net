@@ -1,19 +1,19 @@
 <?php namespace core\access;
 
-	class Secure
+	final class Secure
 	{
 		private $_remAddress = NULL;
 
 		private $_hash       = array();
 
-		public function createHash($string, $salt = 'sourjelly', $pepper = 'SmokeWeedEveryDay')
+		final public function createHash($string, $salt = 'sourjelly', $pepper = 'SmokeWeedEveryDay')
 		{
 			$hash = sha1($salt . '-' . $string . '-' . $pepper);
 			$this -> _hash[] = $hash;
 			return $hash;
 		}
 
-		public function createRandomHash($string)
+		final public function createRandomHash($string)
 		{
 			$hash['number'] = sha1(rand());
 			$hash['time'] = sha1(time());
@@ -25,12 +25,12 @@
 			return (string) sha1(sha1(implode($this->_hash['delimiter'], $hash)) . sha1('SmokeWeedEveryDay'));
 		}
 
-		public function getClientInfo($save = false)
+		final public function getClientInfo($save = false)
 		{
 			
 		}
 
-		public function banIp()
+		final public function banIp()
 		{
 
 		}

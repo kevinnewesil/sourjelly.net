@@ -26,6 +26,14 @@
 		}
 
 		/**
+		 * Disable model cloning
+		 */
+		public function __clone()
+		{
+			exit;
+		}
+
+		/**
 		 * Creates a select query with the rows given.
 		 * @param  array $rows the name of the rows that are requested.
 		 * @return string  the query.

@@ -9,7 +9,7 @@
 	 * There's no other possibility then to go via this file. if you manage to invade this file and get into the system you're an idiot.
 	 * You'll ruin the whole system. Please keep using the f*cking Sourjelly class to save our lives.
 	 */
-	class Sourjelly
+	final class Sourjelly
 	{
 		// Protected static variables that have the objects of the system core.
 		protected static $_config;
@@ -31,7 +31,7 @@
 		/**
 		 * __construct() requires the system files, which build the system.
 		 */
-		public function __construct($ajax = false)
+		final public function __construct($ajax = false)
 		{
 			// Set ajax for ajax request
 			$this -> _ajax = $ajax;
@@ -67,9 +67,17 @@
 		}
 
 		/**
+		 * Disable cloning of sourjelly object
+		 */
+		final public function __clone()
+		{
+			exit;
+		}
+
+		/**
 		 * startSourjelly() An inbetween function, that handles the request made from the __construct, and splits it over the functions that should be executed.
 		 */
-		protected function startSourjelly()
+		final protected function startSourjelly()
 		{
 			//Render core classes and functions
 			$this -> beforeLoad();
@@ -84,7 +92,7 @@
 		 * if the request is not from an Command line interface execute the webbuilder.
 		 * if there's a login request, resign to the login, else, autoload the controller, called by user. see @class -> \core\build\Autoloader
 		 */
-		protected function callClasses()
+		final protected function callClasses()
 		{
 			//Call for config and database class for rest of code.
 			self::$_config = new \config\Config;
@@ -132,7 +140,7 @@
 		 * callFunctions This function calls the helper file, and executes basis user settings.
 		 * after that it uses the @class -> \config\Config , to set the user's system configuration right.
 		 */
-		protected function beforeLoad()
+		final protected function beforeLoad()
 		{
 			//Call the /core/helpers.php functions for better code processing.
 			\core\setLogFile();
@@ -141,7 +149,7 @@
 			\core\setTimezone();
 		}
 
-		protected function callFunctions()
+		final protected function callFunctions()
 		{
 			//Change the php.ini settings to the users ini settings
 			self::$_config -> setSystemSettings();
@@ -154,7 +162,7 @@
 		 * @param  [array] $params    [the params of the function of the object of the property being called]
 		 * @return [Sourjelly]
 		 */
-		public static function callTo($var,$function,$params)
+		final public static function callTo($var,$function,$params)
 		{
 			// Create a string that requires the static param from the Sourjelly class.
 			$selfFunction = 'self::get' . ucfirst($var) . '()';
@@ -171,7 +179,7 @@
 		 * @param  [string] $param 		[the name of the property that's being called in the object that's returned][optional]
 		 * @return [object/value]       [The object the getter is called for / the value of the property in the object the getter is called for]
 		 */
-		public static function getConfig($param = NULL)
+		final public static function getConfig($param = NULL)
 		{
 			if($param === NULL)
 				return self::$_config;
@@ -182,7 +190,7 @@
 			}
 		}
 
-		public static function getApi($param = NULL)
+		final public static function getApi($param = NULL)
 		{
 			if($param === NULL)
 				return self::$_api;
@@ -193,7 +201,7 @@
 			}
 		}
 
-		public static function getHtml($param = NULL)
+		final public static function getHtml($param = NULL)
 		{
 			if($param === NULL)
 				return self::$_html;
@@ -204,7 +212,7 @@
 			}
 		}
 
-		public static function getDb($param = NULL)
+		final public static function getDb($param = NULL)
 		{
 			if($param === NULL)
 				return self::$_db;
@@ -215,8 +223,8 @@
 			}
 		}
 
-		public static function getGet(){ return self::$_get; }
-		public static function getPost(){ return self::$_post; }
+		final public static function getGet(){ return self::$_get; }
+		final public static function getPost(){ return self::$_post; }
 
 
 		/**
@@ -224,12 +232,12 @@
 		 * @param  string  $name The name of  the compiler that should be loaded.
 		 * @return boolean       true on valid require.
 		 */
-		public static function loadCompilers($name)
+		final public static function loadCompilers($name)
 		{
 			return require(SYSTEM_PATH . $name . 'Compiler.class.php');
 		}
 
-		private function finishSourjelly()
+		final private function finishSourjelly()
 		{	
 			if(!$this -> _ajax && PHP_SAPI !== 'cli')
 				// build the html!

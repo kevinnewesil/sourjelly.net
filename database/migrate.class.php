@@ -1,8 +1,8 @@
 <?php namespace database; if(!defined("DS")) die('no direct script access');
 
-	class Migrate
+	final class Migrate
 	{
-		public function __construct()
+		final public function __construct()
 		{
 			new \core\build\Sourjelly;
 
@@ -19,7 +19,7 @@
 			$this -> table_google_api();
 		}
 
-		protected function table_users()
+		final protected function table_users()
 		{
 			\core\build\Sourjelly::getDb()->createTable("table_users",
 				array(
@@ -38,7 +38,7 @@
 			);
 		}
 
-		protected function table_images()
+		final protected function table_images()
 		{
 			\core\build\Sourjelly::getDb()->createTable("table_images",
 				array(
@@ -49,7 +49,7 @@
 			);
 		}
 
-		protected function table_content()
+		final protected function table_content()
 		{
 			\core\build\Sourjelly::getDb() -> createTable("table_content",
 				array(
@@ -98,7 +98,7 @@
 			);
 		}
 
-		protected function table_permissions()
+		final protected function table_permissions()
 		{
 			\core\build\Sourjelly::getDb()->createTable("table_roles",
 				array(
@@ -122,7 +122,7 @@
 			);
 		}
 
-		protected function table_modules()
+		final protected function table_modules()
 		{
 			\core\build\Sourjelly::getDb()->createTable("table_modules",
 				array(
@@ -138,7 +138,7 @@
 			);
 		}
 
-		protected function table_settings()
+		final protected function table_settings()
 		{
 			\core\build\Sourjelly::getDb()->createTable("table_settings",
 				array(
@@ -159,7 +159,7 @@
 			);
 		}
 
-		protected function table_themes()
+		final protected function table_themes()
 		{
 			\core\build\Sourjelly::getDb()->createTable("table_themes",
 				array(
@@ -171,7 +171,7 @@
 			);
 		}
 
-		protected function table_ip()
+		final protected function table_ip()
 		{
 			\core\build\Sourjelly::getDb()->createTable("table_ip",
 				array(
@@ -182,7 +182,7 @@
 			);
 		}
 
-		protected function table_google_api()
+		final protected function table_google_api()
 		{
 			\core\build\Sourjelly::getDb()->createTable("table_google_api",
 				array(
@@ -195,7 +195,7 @@
 			);
 		}
 
-		protected function down()
+		final protected function down()
 		{
 			\core\build\Sourjelly::getDb()->dropTable("table_content");
 			\core\build\Sourjelly::getDb()->dropTable("table_images");
