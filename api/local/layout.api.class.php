@@ -38,22 +38,22 @@
 
 		public static function getHeader()
 		{
-
+			return self::$_header;
 		}
 
 		public static function getFooter()
 		{
-
+			return self::$_footer;
 		}
 
 		public static function getContent()
 		{
-
+			return self::$_content;
 		}
 
 		public static function getNavigation()
 		{
-			
+			return self::$_navigation;
 		}
 
 	}

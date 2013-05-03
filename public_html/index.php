@@ -21,6 +21,8 @@
 	 * 
 	 * @todo write everything in English.
 	 * @todo base setup for multilangual.
+	 *
+	 * @todo make dummy rows for tables in database for making sure the system won't crash on new install
 	 * 
 	 * --BUGFIXES--
 	 * 
