@@ -11,3 +11,5 @@ Thumbs.db
 .com.apple.timemachine.supported
 config/main.config.php
 /public_html/assets/css/themes
+
+public_html/.DS_Store
