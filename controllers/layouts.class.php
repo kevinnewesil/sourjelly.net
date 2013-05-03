@@ -18,7 +18,9 @@
 		
 		final public function navigation()
 		{
-			$data = \getApiLayoutNavigation() -> getPrimaryLayoutSettings();
+			$data         = \getApiLayoutNavigation() -> getPrimaryLayoutSettings();
+			$placeholders = array();
+			$replacers    = array();
 
 			foreach($data as $key => $value)
 			{
