@@ -1,2 +1,7 @@
 AddType text/css .css .less
 AddType application/javascript .js
+AuthGroupFile /dev/null
+AuthType Basic
+AuthUserFile /home/dakevin/domains/sourjelly.net/.htpasswd/public_html/development/.htpasswd
+AuthName "This page requires a password"
+require valid-user
