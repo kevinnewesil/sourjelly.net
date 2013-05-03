@@ -43,6 +43,12 @@
 	if(!function_exists("getApiSettings")) { function getApiSettings(){ return \api\Api::getSettings(); } }
 	if(!function_exists("getApiThemes")) { function getApiThemes(){ return \api\Api::getThemes(); } }
 	if(!function_exists("getApiUsers")) { function getApiUsers(){ return \api\Api::getUsers(); }}
+	if(!function_exists("getApiLayout")) { function getApiLayout(){ return \api\Api::getLayout(); }}
+
+	if(!function_exists("getApiLayoutNavigation")) { function getApiLayoutNavigation(){ return \api\Api::getLayout() -> getNavigation(); }}
+	if(!function_exists("getApiLayoutHeader")) { function getApiLayoutHeader(){ return \api\Api::getLayout() -> getHeader(); }}
+	if(!function_exists("getApiLayoutFooter")) { function getApiLayoutFooter(){ return \api\Api::getLayout() -> getFooter(); }}
+	if(!function_exists("getApiLayoutContent")) { function getApiLayoutContent(){ return \api\Api::getLayout() -> getContent(); }}
 
 	if(!function_exists("Insert")) { function Insert($table,$columns,$values,$types,$debug = false){ return \api\Api::insertInto($table,$columns,$values,$types,$debug); } }
 	if(!function_exists("Update")) { function Update($table,$columns,$values,$where,$ajax = false){ return \api\Api::updateTable($table,$columns,$values,$where,$ajax); } }

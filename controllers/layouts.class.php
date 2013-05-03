@@ -18,8 +18,13 @@
 		
 		final public function navigation()
 		{
-			$placeholders = array('{position_value}');
-			$replacers    = array('absolute');
+			$data = \getApiLayoutNavigation() -> getPrimaryLayoutSettings();
+
+			foreach($data as $key => $value)
+			{
+				$placeholders[] = '{' . $key . '_value}';
+				$replacers[]    = ($key == 'dynamicNavigation') ? 'checked="checked"' : $value;
+			}
 
 			$tmp = str_replace($placeholders, $replacers, \Template('layout/navigation.html.tpl'));
 

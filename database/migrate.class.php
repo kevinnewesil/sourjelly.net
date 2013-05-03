@@ -205,7 +205,7 @@
 					'width'                 => 'int',
 					'position'              => 'string',
 					'positionFromHeader'    => 'string',
-					'navigatinSort'         => 'string',
+					'navigationSort'        => 'string',
 					'jsFunction'            => 'string',
 					'toggleAnimationStyle'  => 'string',
 					'toggleTrigger'         => 'string',

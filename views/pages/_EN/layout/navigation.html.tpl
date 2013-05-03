@@ -22,7 +22,7 @@
 			$(".sj-hidden").css('display','none');
 
 		$(".sj-hidden-toggle").css('display','none');
-		$(".sj-hidden-slideIn").css('display','none');
+		$(".sj-hidden-slideIn").css('display','none');	
 	}
 
 	function saveNavigation(action,data)
@@ -54,13 +54,23 @@
 	function setSelect()
 	{
 		$("select[name=position]").find("option[value={position_value}]").attr('selected',true);
+		$("select[name=positionFromHeader]").find("option[value={positionFromHeader_value}]").attr('selected',true);
+		$("select[name=zIndex]").find("option[value={zIndex_value}]").attr('selected',true);
+		$("select[name=navigationSort]").find("option[value={navigationSort_value}]").attr('selected',true);
+		$("select[name=jsFunction]").find("option[value={jsFunction_value}]").attr('selected',true);
+		$("select[name=toggleAnimationStyle]").find("option[value={toggleAnimationStyle_value}]").attr('selected',true);
+		$("select[name=toggleTrigger]").find("option[value={toggleTrigger_value}]").attr('selected',true);
+		$("select[name=slideInAnimationStyle]").find("option[value={slideInAnimationStyle_value}]").attr('selected',true);
 	}
 
 	// Set document styling to zero visibility on non active/used html form attributes
 	$(window).load(function(){
+		
+		setSelect();
 		setInvisible(true);
 
-		setSelect();
+		if($("#dynamic-navigation").is(":checked") === true)
+			changeVisibility();
 	});
 
 	$(document).ready(function(){
@@ -156,7 +166,7 @@
 		<div class="control-group">
 			<label for="sort" class="control-label">Navigation layout sort</label>
 			<div class="controls">
-				<select name="navigatinSort" id="sort">
+				<select name="navigationSort" id="sort">
 					<option value="navbar">Navbar</option>
 					<option value="navbar-inverse">Navbar inverse</option>
 					<option value="tabbable">tabbable</option>
@@ -173,7 +183,7 @@
 		<div class="control-group">
 			<label for="width" class="control-label">Navigation width</label>
 			<div class="controls">
-				<input type="range" min="1" max="100" step="1" value="{width}" list="powers" id="width" name="width">
+				<input type="range" min="1" max="100" step="1" value="{width_value}" list="powers" id="width" name="width">
 				<span class="help-inline">Width in % value , range from 1 - 100</span>
 			</div>
 
@@ -194,7 +204,7 @@
 
 		<div class="control-group">
 			<label for="dynamic-navigation" class="control-label">Dynamic navigation</label>
-			<div class="controls"><input type="checkbox" id="dynamic-navigation" name="dynamicNavigation"></div>
+			<div class="controls"><input type="checkbox" id="dynamic-navigation" name="dynamicNavigation" {dynamicNavigation_value}></div>
 		</div>
 	
 		<div class="sj-hidden">
