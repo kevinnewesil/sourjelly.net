@@ -110,7 +110,6 @@
 
 			$replacers[2] = str_replace('{pages}',$menu,\Snippet('parts/navbar-fixed-top.html.tpl'));
 
-
 			$pageId = \api\Api::getPages() -> getIdFromTitle($this->_page);
 			\core\build\Sourjelly::getHtml()->modules($pageId);
 			\core\build\Sourjelly::getHtml()->assign($placeholders,$replacers);
