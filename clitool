@@ -213,6 +213,29 @@
 
 				break;
 
+			case 'creator':
+				switch(trim(strtolower($argv[2])))
+				{
+					case 'newesil':
+					case 'kevin':
+					case 'kevinnewesil':
+						echo file_get_contents('views' . DIRECTORY_SEPARATOR . 'snippets' . DIRECTORY_SEPARATOR . '_EN' . DIRECTORY_SEPARATOR . 'cli' . DIRECTORY_SEPARATOR . 'extra' . DIRECTORY_SEPARATOR . 'kevin.ascii');
+						break;
+					case 'hall':
+					case 'vanhall':
+					case 'alain':
+					case 'alainhall':
+					case 'alainvanhall':
+					case 'ajcvhall':
+						echo file_get_contents('views' . DIRECTORY_SEPARATOR . 'snippets' . DIRECTORY_SEPARATOR . '_EN' . DIRECTORY_SEPARATOR . 'cli' . DIRECTORY_SEPARATOR . 'extra' . DIRECTORY_SEPARATOR . 'alain.ascii');
+						break;
+					default:
+						echo file_get_contents('views' . DIRECTORY_SEPARATOR . 'snippets' . DIRECTORY_SEPARATOR . '_EN' . DIRECTORY_SEPARATOR . 'cli' . DIRECTORY_SEPARATOR . 'extra' . DIRECTORY_SEPARATOR . 'default.ascii');
+						break;
+				}
+
+				break;
+
 			//--------------------------------------------------------------------------------------------------------------------||
 			// If the method does not exists, give error message to the user.
 			//--------------------------------------------------------------------------------------------------------------------||

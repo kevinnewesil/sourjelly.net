@@ -200,12 +200,10 @@
 		{
 			\core\build\Sourjelly::getDb() -> createTable("table_layout_navigation",
 				array(
+					'alwaysVisible'			=> 'int',
 					'dynamicNavigation'     => 'int',
 					'zIndex'                => 'int',
-					'width'                 => 'int',
-					'position'              => 'string',
 					'positionFromHeader'    => 'string',
-					'navigationSort'        => 'string',
 					'jsFunction'            => 'string',
 					'toggleAnimationStyle'  => 'string',
 					'toggleTrigger'         => 'string',

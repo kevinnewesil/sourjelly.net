@@ -1,4 +1,20 @@
 <?php
+
+	/*
+	...........................Sour Jelly...........................
+	..____................____.Sour Jelly.____................____..
+	.(....\............../....)Sour Jelly(....\............../....).
+	..\....\........... /..../.Sour Jelly.\....\............/..../.. 
+	...\....\........../..../..Sour Jelly..\....\........../..../...
+	....\..../´¯·|·¯`\/..../...Sour Jelly...\..../´¯·|·¯`\...../....
+	..../....|....|..(¯¯¯`\....Sour Jelly..../´¯¯¯)..|....|....\....
+	...|.....|....|...¯¯.\.....Sour Jelly...../.¯¯...|....|.....|...
+	...|....|´¯.|´¯.|..\.).....Sour Jelly.....(./..|.¯`|.¯`|....|...
+	....\.....`.¯..¯.´...'.....Sour Jelly.....'...`.¯..¯.´...../....
+	.....\____________.·´......Sour Jelly......`·.____________/.....
+	...........................Sour Jelly...........................
+	*/
+
 	/**
 	 * @author Kevin Newesil <newesil.kevin@gmail.com>
 	 * @version 1.1.0.0
@@ -8,8 +24,7 @@
 	 * @todo timezone interperter.
 	 * @todo add page author 
 	 * @todo thighten up security
-	 * @todo move getId from controller function to main controller function.
-	 * @todo clean up messy code
+	 * 
 	 * @todo !important Write documentation in code
 	 * @todo !important Write web interface user documentation.
 	 * @todo !important Re-Write deprecated controllers & models, using the controller & model class instead of other shit.
@@ -23,12 +38,17 @@
 	 * @todo base setup for multilangual.
 	 *
 	 * @todo make dummy rows for tables in database for making sure the system won't crash on new install
+	 * @todo make extra security against updates via javascript 
+	 * 			| -> On first ajax request, parse password, and create session. 
+	 * 			| -> On leave page destroy the password security session.
 	 * 
 	 * --BUGFIXES--
 	 * 
 	 * @todo @bug proper redirect after false login.
+	 * @todo @bug extra checks for rendering login screen on non login links via get request ?get=login.
 	 * 
 	 * --EXTRA--
+	 * 
 	 * @todo  Write exampled for each class functions to show the usage.
 	 * @todo  Write actual documentation INSIDE the functions of the classes.
 	 * @todo  Rewrite modules and crud controllers/models, so that they make use of the base Controller and base Model classes.

@@ -1,4 +1,7 @@
 <script type="text/javascript">
+
+	// set vars
+	var returnValue = true;
 	
 	function changeVisibility()
 	{
@@ -38,25 +41,20 @@
 
 			success : function(data)
 			{
-				if(data[0] === true)
-					alert('update successfull');
-				else
-					alert('something went wrong saving the navigation layout settings');
+				returnValue = data[0];
 			},
 
 			error : function(data)
 			{
-				console.log('error');
+				returnValue = false;
 			},
 		});
 	}
 
 	function setSelect()
 	{
-		$("select[name=position]").find("option[value={position_value}]").attr('selected',true);
 		$("select[name=positionFromHeader]").find("option[value={positionFromHeader_value}]").attr('selected',true);
 		$("select[name=zIndex]").find("option[value={zIndex_value}]").attr('selected',true);
-		$("select[name=navigationSort]").find("option[value={navigationSort_value}]").attr('selected',true);
 		$("select[name=jsFunction]").find("option[value={jsFunction_value}]").attr('selected',true);
 		$("select[name=toggleAnimationStyle]").find("option[value={toggleAnimationStyle_value}]").attr('selected',true);
 		$("select[name=toggleTrigger]").find("option[value={toggleTrigger_value}]").attr('selected',true);
@@ -95,12 +93,6 @@
 			
 			var data = {};
 
-			// $(".form select").each(function(){
-			// 	name = $(this).attr('name');
-			// 	value = $(this).val();
-			// 	data[name] = value;
-			// });
-
 			$(".form input, .form select").each(function(){
 				if($(this).attr('type') == 'checkbox' || $(this).attr('type') == 'submit')
 					return true;
@@ -121,24 +113,52 @@
 
 			saveNavigation('saveNavigationSettings',data);
 
+			if(returnValue === true)
+				alert('update successfull');
+			else
+				alert('something went wrong saving the navigation layout settings');
+
 			return false;
 		});
+
+		$(".form input, .form select").change(function(){
+
+			data = {};
+
+			if($(this).siblings('.image').length > 0)
+				$(this).siblings().remove('.image');
+
+			name = $(this).attr('name');
+
+			if($(this).attr('type') == 'checkbox')
+				if($(this).is(":checked"))
+						val = 1;
+					else
+						val = 0;
+			else
+				val  = $(this).val();
+
+			data[name] = val;
+
+			saveNavigation('saveNavigationSettings',data);
+
+			if(returnValue === true)
+				$('<img src="{assets}img/icons/checked.gif?x=' + Math.random() + '" alt="success" class="image">').appendTo($(this).parent());
+			else
+				$('<img src="{assets}img/icons/cross.gif?x=' + Math.random() + '" alt="error" class="image">').appendTo($(this).parent());
+
+		});
+
+		$(".image").click(function(){
+			$(this).remove();
+		});
+
 	});
 </script>
 
 <form class="form form-horizontal" method="post" action="{base}/layouts/navigation/?ns=controllers&amp;path=controller_path">
 	<fieldset>
 		<legend>Navigation settings</legend>
-		<div class="control-group">
-			<label for="position" class="control-label">Position</label>
-			<div class="controls">
-				<select id="position" name="position">
-					<option value="absolute">Absolute</option>
-					<option value="relative">Relative</option>
-					<option value="fixed">Fixed</option>
-				</select>
-			</div>
-		</div>
 
 		<div class="control-group">
 			<label for="header" class="control-label">Position from header</label>
@@ -164,43 +184,9 @@
 		</div>
 
 		<div class="control-group">
-			<label for="sort" class="control-label">Navigation layout sort</label>
-			<div class="controls">
-				<select name="navigationSort" id="sort">
-					<option value="navbar">Navbar</option>
-					<option value="navbar-inverse">Navbar inverse</option>
-					<option value="tabbable">tabbable</option>
-					<option value="nav-list">Nav list</option>
-					<option value="nav-pills">Nav pills</option>
-					<option value="nav-stacked">Nav stacked</option>
-					<option value="nav-tabs">Nav tabs</option>
-					<option value="nav-tabs nav-stacked">Stacked tabs</option>
-					<option value="nav-pills nav-stacked">Stacked pills</option>
-				</select>
-			</div>
-		</div>
-
-		<div class="control-group">
-			<label for="width" class="control-label">Navigation width</label>
-			<div class="controls">
-				<input type="range" min="1" max="100" step="1" value="{width_value}" list="powers" id="width" name="width">
-				<span class="help-inline">Width in % value , range from 1 - 100</span>
-			</div>
-
-			<datalist id="powers">
-				<option value="0">
-				<option value="10">
-				<option value="20">
-				<option value="30">
-				<option value="40">
-				<option value="50">
-				<option value="60">
-				<option value="70">
-				<option value="80">
-				<option value="90">
-				<option value="100">
-			</datalist>
-		</div>
+			<label for="always-visible" class="control-label">Always visible</label>
+			<div class="controls"><input type="checkbox" id="always-visible" name="alwaysVisible" {alwaysVisible_value}></div>
+		</div>		
 
 		<div class="control-group">
 			<label for="dynamic-navigation" class="control-label">Dynamic navigation</label>

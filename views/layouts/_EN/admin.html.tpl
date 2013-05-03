@@ -64,10 +64,10 @@
 	<body>
 		<div id="container">
 			<nav>
-				<div class="navbar navbar-fixed-top">
+				<div class="nav navbar navbar-fixed-top" id="navigation">
 					<div class="navbar-inner" style="padding-left:50px;">
 						<div>
-							 <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+							<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>

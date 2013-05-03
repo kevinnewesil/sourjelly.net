@@ -36,7 +36,7 @@
 			else
 				$pageInfo     = \getapiPages() -> getPage(0,$this->_page);
 
-			$placeholders     = array('{title}','{content}','{pages}','{metaTags}','{metaDescription}','{pageAuthor}','{contentClasses}','{contentIds}',
+			$placeholders     = array('{title}','{content}','{navigation}','{metaTags}','{metaDescription}','{pageAuthor}','{contentClasses}','{contentIds}',
 									  '{contentTextAlign}','{titleVisibility}','{titleTextAlign}','{titleFontSize}',
 									 );
 			$menuPlaceholders = array('{liClass}','{link}','{aClass}','{data-toggle}','{tab-index}','{linkName}','{submenu}','{caret}');
@@ -107,6 +107,9 @@
 									$pageInfo['tcl']['titleFontSize'],
 								  );
 			}
+
+			$replacers[2] = str_replace('{pages}',$menu,\Snippet('parts/navbar-fixed-top.html.tpl'));
+
 
 			$pageId = \api\Api::getPages() -> getIdFromTitle($this->_page);
 			\core\build\Sourjelly::getHtml()->modules($pageId);
