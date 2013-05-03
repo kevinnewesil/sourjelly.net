@@ -1,5 +1,5 @@
 ehthumbs.db
-.DS_Store
+._*
 tmp/logs/error.log
 .DS_Store?
 /public_html/assets/img/uploads/*
@@ -7,7 +7,7 @@ public_html/assets/css/themes/*
 Thumbs.db
 .Spotlight-V100
 .Trashes
-._*
+.DS_Store
 .com.apple.timemachine.supported
 config/main.config.php
 /public_html/assets/css/themes
