@@ -61,7 +61,6 @@
 
 	</head>
 	<body>
-
 		<div id="container">
 		<div id="container main-cont">
 			<!-- Navigation settings / responsive design, collapses menu on smaller screens and makes them easily accessable for mobile devices. -->
@@ -79,10 +78,8 @@
 				    {notice} <!-- Displays system error messages -->
 					
 					<!-- Shows page title and content, and the modules connected to the pages. -->
-
 					<div class="content {contentClasses}" id="{contentIds}">
-						<h2 class="content-title">{title}</h2> <!-- The title of the page, dynamically inserted. -->
-					
+						<h2 class="content-title">{title}</h2> <!-- The title of the page, dynamically inserted. -->					
 						<span class="content-content">{content}</span> <!-- The content of the page, dynamically inserted. -->
 						
 					</div>
