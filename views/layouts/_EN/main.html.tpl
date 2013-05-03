@@ -61,12 +61,9 @@
 
 	</head>
 	<body>
-<<<<<<< Updated upstream
+
 		<div id="container">
-			
-=======
 		<div id="container main-cont">
->>>>>>> Stashed changes
 			<!-- Navigation settings / responsive design, collapses menu on smaller screens and makes them easily accessable for mobile devices. -->
 			<nav>
 				<!-- tabs -> top / bottom / left / right | pills / list /stacked -> pills / list | -->
