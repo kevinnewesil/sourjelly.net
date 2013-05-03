@@ -51,9 +51,16 @@
 		});
 	}
 
+	function setSelect()
+	{
+		$("select[name=position]").find("option[value={position_value}]").attr('selected',true);
+	}
+
 	// Set document styling to zero visibility on non active/used html form attributes
 	$(window).load(function(){
 		setInvisible(true);
+
+		setSelect();
 	});
 
 	$(document).ready(function(){
@@ -166,7 +173,7 @@
 		<div class="control-group">
 			<label for="width" class="control-label">Navigation width</label>
 			<div class="controls">
-				<input type="range" min="1" max="100" step="1" value="100" list="powers" id="width" name="width">
+				<input type="range" min="1" max="100" step="1" value="{width}" list="powers" id="width" name="width">
 				<span class="help-inline">Width in % value , range from 1 - 100</span>
 			</div>
 
@@ -218,7 +225,8 @@
 
 				<div class="control-group">
 					<label for="toggle-trigger" class="control-label">Toggle trigger</label>
-					<div class="controls"><select name="toggleTrigger" id="toggle-trigger">
+					<div class="controls">
+						<select name="toggleTrigger" id="toggle-trigger">
 							<option value="box">Box</option>
 							<option value="image">Image</option>
 							<option value="logo">Logo</option>
@@ -231,7 +239,8 @@
 			<div class="sj-hidden-slideIn">
 				<div class="control-group">
 					<label for="slidein" class="control-label">Slide in animation style</label>
-					<div class="controls"><select name="slideInAnimationStyle" id="slidein">
+					<div class="controls">
+						<select name="slideInAnimationStyle" id="slidein">
 							<option value="ltr">Left to right</option>
 							<option value="rtl">Right to left</option>
 							<option value="utd">Up to down</option>

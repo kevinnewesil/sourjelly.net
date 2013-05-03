@@ -18,7 +18,12 @@
 		
 		final public function navigation()
 		{
-			\SjHtml() -> assign('{content}',\Template('layout/navigation.html.tpl'));
+			$placeholders = array('{position_value}');
+			$replacers    = array('absolute');
+
+			$tmp = str_replace($placeholders, $replacers, \Template('layout/navigation.html.tpl'));
+
+			\SjHtml() -> assign('{content}',$tmp);
 		}
 
 		final public function header()
