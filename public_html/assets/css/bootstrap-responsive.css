@@ -876,9 +876,8 @@
     top: -100px;
   }
   .modal.fade.in {
-    top: 20px;
+    /*top: 20px;*/
   }
-}
 
 @media (max-width: 480px) {
   .nav-collapse {

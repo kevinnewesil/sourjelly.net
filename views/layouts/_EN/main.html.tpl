@@ -61,8 +61,12 @@
 
 	</head>
 	<body>
+<<<<<<< Updated upstream
 		<div id="container">
 			
+=======
+		<div id="container main-cont">
+>>>>>>> Stashed changes
 			<!-- Navigation settings / responsive design, collapses menu on smaller screens and makes them easily accessable for mobile devices. -->
 			<nav>
 				<!-- tabs -> top / bottom / left / right | pills / list /stacked -> pills / list | -->
@@ -78,6 +82,7 @@
 				    {notice} <!-- Displays system error messages -->
 					
 					<!-- Shows page title and content, and the modules connected to the pages. -->
+
 					<div class="content {contentClasses}" id="{contentIds}">
 						<h2 class="content-title">{title}</h2> <!-- The title of the page, dynamically inserted. -->
 					
