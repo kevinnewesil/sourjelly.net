@@ -49,11 +49,11 @@
 				(isset($create -> activeFrontEnd) && $create -> activeFrontEnd == 'on') ? '1' : '0',
 				(isset($create -> activeBackEnd) && $create -> activeBackEnd == 'on') ? '1' : '0',
 				(isset($create -> visible) && $create -> visible == 'on') ? '1' : '0',
-				date('Y-m-d H:i:s',strtotime("now")), '1'
+				date('Y-m-d H:i:s',strtotime("now")), '1' , '0'
 			);
 
 			// Execute this request first for getting a content Id.
-			if(!\api\Api::insertInto('table_content',array('front','back','menuVisibility','created_at','public'),$table_content_values,'iiisi'))
+			if(!\api\Api::insertInto('table_content',array('front','back','menuVisibility','created_at','public','deprecated'),$table_content_values,'iiisi'))
 				\core\access\Redirect::Refresh('Could not create main content layout');
 
 			// Fetch the content ID for relations
