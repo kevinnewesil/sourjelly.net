@@ -4934,6 +4934,17 @@ legend + .control-group {
       *padding-left: @horizontalComponentOffset;
     }
   }
+
+  .controls {
+    input,
+    select,
+    textarea,
+    .uneditable-input,
+    .input-prepend,
+    .input-append{
+      width: @horizontalComponentOffset - 20;
+    }
+  }
   // Remove bottom margin on block level help text since that's accounted for on .control-group
   .help-block {
     margin-bottom: 0;
@@ -4947,6 +4958,7 @@ legend + .control-group {
   .input-append {
     + .help-block {
       margin-top: @baseLineHeight / 2;
+      width: @horizontalComponentOffset - 20;
     }
   }
   // Move over buttons in .form-actions to align with .controls
