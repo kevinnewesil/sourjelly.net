@@ -16,25 +16,25 @@
 		
 		<!-- Include Javascript files -->
 		
-		<script type="text/javascript" src="{assets}js/jquery.js" type="application/javascript"></script>
-		<script type="text/javascript" type="application/javascript">
+		<script type="text/javascript" src="{assets}js/jquery.js"></script>
+		<script type="text/javascript">
 		    less = {
 		        rootpath: "../assets/css/"
 		    };
 		</script>	
-		<script type="text/javascript" src="{assets}js/jquery-ui-1.9.1.custom.min.js" type="application/javascript"></script>
-		<script type="text/javascript" src="{assets}js/bootstrap.min.js" type="application/javascript"></script>
-		<script type="text/javascript" src="{assets}js/sessions.js" type="application/javascript"></script>
-		<script type="text/javascript" src="{assets}js/tablesorter.js" type="application/javascript"></script>
-		<script type="text/javascript" src="{assets}js/admin-nav.js" type="application/javascript"></script>
-		<script type="text/javascript" src="{assets}js/shorten.js" type="application/javascript"></script>
-		<script type="text/javascript" src="{assets}js/playsound.js" type="application/javascript"></script>
-		<script type="text/javascript" src="{assets}js/functions.js" type="application/javascript"></script>
-		<script type="text/javascript" src="{assets}js/less.js" type="application/javascript"></script>
-		<script type="text/javascript" src="{assets}js/redactor.js" type="application/javascript"></script>
+		<script type="text/javascript" src="{assets}js/jquery-ui-1.9.1.custom.min.js"></script>
+		<script type="text/javascript" src="{assets}js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="{assets}js/sessions.js"></script>
+		<script type="text/javascript" src="{assets}js/tablesorter.js"></script>
+		<script type="text/javascript" src="{assets}js/admin-nav.js"></script>
+		<script type="text/javascript" src="{assets}js/shorten.js"></script>
+		<script type="text/javascript" src="{assets}js/playsound.js"></script>
+		<script type="text/javascript" src="{assets}js/functions.js"></script>
+		<script type="text/javascript" src="{assets}js/less.js"></script>
+		<script type="text/javascript" src="{assets}js/redactor.js"></script>
 
 		<!-- Some random javascript -->
-		<script type="text/javascript" type="application/javascript">
+		<script type="text/javascript">
 		$(document).ready(function(){
 
 			$("#search_form").submit(function(){

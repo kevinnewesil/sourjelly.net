@@ -10,7 +10,7 @@
 	 * @param $link  link to the database
 	 * @param $layout  the main layout of the web page.
 	 */
-	class HtmlBase
+	final class HtmlBase
 	{
 
 		protected $link;
@@ -21,7 +21,7 @@
 		 * @param string  $layout  [the name of the layout that should be rendered]
 		 * @param boolean $install [True if the user is new to the system and wants to isntall it.]
 		 */
-		public function __construct($layout,$install = false)
+		final public function __construct($layout,$install = false)
 		{
 			$this->layout = file_get_contents(VIEWS_PATH . 'layouts' . DS . \core\build\Template::getLang() . DS . $layout . '.html.tpl');
 		}
@@ -31,7 +31,7 @@
 		 * @param [string/array] $placeholder [the name(s) of the placeholder(s) on the main layout that should be replaced]
 		 * @param [string/array] $replacer    [the value(s) that should replace the placeholders on the main layout.]
 		 */
-		public function Assign($placeholder,$replacer,$debug = false)
+		final public function Assign($placeholder,$replacer,$debug = false)
 		{
 			return $this->layout = str_replace($placeholder,$replacer,$this->layout);
 		}
@@ -40,7 +40,7 @@
 		 * [Function that checks if there are any errors set (via the redirect class) and renders them to the html..]
 		 * @return [bool] [if the system had error and they were replaced correctly the system returns true]
 		 */
-		private function errorHandeling()
+		final private function errorHandeling()
 		{
 			if(isset($_SESSION['notice']) && $_SESSION['notice'] != '')
 			{
@@ -66,7 +66,7 @@
 		/**
 		 * [Replaces all the base paths that could be used on a page on the main layout. (for writing easier html)]
 		 */
-		private function basePaths()
+		final private function basePaths()
 		{
 			$this->layout = str_replace('{ajax}', AJAX_PATH , $this->layout);
 			$this->layout = str_replace('{assets}', ASSETS_PATH , $this->layout);
@@ -77,7 +77,7 @@
 		/**
 		 * [Checks if the user is logged in, and via that results renders the contents of the navbar.]
 		 */
-		public function Login()
+		final public function Login()
 		{
 
 			if(isset($_SESSION['login']) && $_SESSION['login'] != '')
@@ -97,7 +97,7 @@
 		/**
 		 * Assigs all menu-items to the navbar
 		 */
-		public function nav()
+		final public function nav()
 		{
 			if(isset($_SESSION['login']) && $_SESSION['login'] != '')
 			{
@@ -129,18 +129,18 @@
 		 * Renders the html of a module if a page is connected to a module(a module is connected to a page.. same diff.)
 		 * @param  int 	$pageId [the id of the current page to check if it as any modules to fetch]
 		 */
-		public function modules($pageId)
+		final public function modules($pageId)
 		{
-
 			$modules     = \api\Api::getModules() -> getModuleByPageId($pageId);;
 			$moduleClass = new \core\build\Modules($modules);
 			$html        = $moduleClass -> getHtml();
+			
 		}
 
 		/**
 		 * this function checks the current theme, and renders it into the html so the right theme will be fetched.
 		 */
-		public function Themes()
+		final public function Themes()
 		{
 			$theme = \api\Api::getThemes() -> getActiveTheme();
 			$this->Assign('{curtheme}', $theme['themeName']);
@@ -149,7 +149,7 @@
 		/**
 		 * This function is called at the very last of the system, and builds/shows the html to the user.
 		 */
-		public function build()
+		final public function build()
 		{
 			if($this->layout != NULL)
 			{

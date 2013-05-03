@@ -1,6 +1,6 @@
 <?php namespace core\build; if(!defined("DS")) die('no direct script access');
 
-	class Install
+	final class Install
 	{
 		protected $_password;
 		protected $_email;
@@ -13,7 +13,7 @@
 
 		protected $_activionKey;
 
-		public function __construct($email = NULL,$password = NULL, $name = NULL, $lastname = NULL, $dob = NULL)
+		final public function __construct($email = NULL,$password = NULL, $name = NULL, $lastname = NULL, $dob = NULL)
 		{
 			$this->_registrationData = date('Y-m-d H:i:s');
 
@@ -32,7 +32,7 @@
 			}
 		}
 
-		private function save()
+		final private function save()
 		{
 
 			$link = \core\build\Sourjelly::getConfig('link');
@@ -57,7 +57,7 @@
 			}
 		}
 
-		private function sendMail()
+		final private function sendMail()
 		{
 			$subject = "Confirming CMS registration";
 			$message = wordwrap("To activate your CMS Systeem please click on the following link:". PHP_EOL);
@@ -80,17 +80,17 @@
                 return false;
 		}
 
-		private function checkMail()
+		final private function checkMail()
 		{
 
 		}
 
-		private function redirect()
+		final private function redirect()
 		{
 			\core\access\Redirect::home('Succesfully installed!','success');
         }
 
-        private function setSystemSettings()
+        final private function setSystemSettings()
         {
             $link = \core\build\Sourjelly::getConfig('link');
             $query = "INSERT INTO `table_settings` VALUES('','1','0','1','0','0','90','256','18','20','20','0','0','Europe/Amsterdam')";

@@ -20,6 +20,7 @@
 		protected static $_users;
 		protected static $_settings;
 		protected static $_themes;
+		protected static $_layout
 
 		protected static $_insertId;
 
@@ -31,18 +32,20 @@
 		public function __construct()
 		{
 			require(API_PATH . 'local/pages.api.class.php');
-			require(API_PATH . 'local/modules.api.class.php');
 			require(API_PATH . 'local/users.api.class.php');
-			require(API_PATH . 'local/settings.api.class.php');
 			require(API_PATH . 'local/themes.api.class.php');
+			require(API_PATH . 'local/layout.api.class.php');
+			require(API_PATH . 'local/modules.api.class.php');
+			require(API_PATH . 'local/settings.api.class.php');
 
 			self::$_link     = \core\build\Sourjelly::getConfig('link');
 			
 			self::$_pages    = new \api\local\Api_pages(self::$_link);
-			self::$_modules  = new \api\local\Api_modules(self::$_link);
 			self::$_users    = new \api\local\Api_users(self::$_link);
-			self::$_settings = new \api\local\Api_settings(self::$_link);
 			self::$_themes   = new \api\local\Api_themes(self::$_link);
+			self::$_layout   = new \api\local\Api_layout(self::$_link);
+			self::$_modules  = new \api\local\Api_modules(self::$_link);
+			self::$_settings = new \api\local\Api_settings(self::$_link);
 		}
 
 		/**

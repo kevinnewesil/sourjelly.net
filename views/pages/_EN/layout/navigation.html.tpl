@@ -1,61 +1,110 @@
 <script type="text/javascript">
-	$(window).load(function(){
-		$(".sj-hidden").css('display','none');
-		$(".sj-hidden-toggle").css('display','none');
-	});
+	
+	function changeVisibility()
+	{
+		$(".sj-hidden").css('display','block');
 
+		if($("#js-function").val() == 'toggle')
+		{
+			$(".sj-hidden-toggle").css('display','block');
+		}
+		else if($("#js-function").val() =='slideIn')
+		{
+			$(".sj-hidden-slideIn").css('display','block');
+		}
+	}
+
+	function setInvisible(everything)
+	{
+		everything = typeof everything !== 'undefined' ? true : false;
+
+		if(everything === true)
+			$(".sj-hidden").css('display','none');
+
+		$(".sj-hidden-toggle").css('display','none');
+		$(".sj-hidden-slideIn").css('display','none');
+	}
+
+	function saveNavigation(action,data)
+	{
+		$.ajax({
+			url : '{ajax}layout.php',
+			dataType : 'json',
+			type : 'post',
+			data : {
+				action : action,
+				data : data,
+			},
+
+			success : function(data)
+			{
+				if(data[0] === true)
+					alert('update successfull');
+				else
+					alert('something went wrong saving the navigation layout settings');
+			},
+
+			error : function(data)
+			{
+				console.log('error');
+			},
+		});
+	}
+
+	// Set document styling to zero visibility on non active/used html form attributes
+	$(window).load(function(){
+		setInvisible(true);
+	});
 
 	$(document).ready(function(){
 
+		// Function to dynamically change visibility inside document on change html attributes.
+
 		$("#dynamic-navigation").change(function(){
-			if($(this).is(":checked") === true){
-				$(".sj-hidden").css('display','block');
-
-				if($("#js-function").val() == 'toggle'){
-					$(".javascript-toggle").css('display','block');
-				}else{
-					$(".sj-hidden").css('display','none');
-				}
-
-			}else{
-				$(".sj-hidden").css('display','none');
-			}
+			if($(this).is(":checked") === true)
+				changeVisibility();
+			else
+				setInvisible(true);
 		});
 
 
-		$(".javascript-sort").change(function(){
-			$(".sj-hidden-toggle").css('display','none');
-
-			if($("#js-function").val() == 'toggle'){
-				$(".javascript-toggle").css('display','block');
-			};
+		$(".javascript-sort").change(function(){			
+			setInvisible(false);
+			changeVisibility();
 		});
 
+		// On submit of form.
 		$(".form").submit(function(){
 			
 			var data = {};
 
-			$(".form input").each(function(){
+			// $(".form select").each(function(){
+			// 	name = $(this).attr('name');
+			// 	value = $(this).val();
+			// 	data[name] = value;
+			// });
+
+			$(".form input, .form select").each(function(){
+				if($(this).attr('type') == 'checkbox' || $(this).attr('type') == 'submit')
+					return true;
+
 				name = $(this).attr('name');
 				value = $(this).val();
 				data[name] = value;
 			});
 
-			$(".form select").each(function(){
+			$('.form input[type=checkbox]').each(function(){
 				name = $(this).attr('name');
-				value = $(this).val();
+				if($(this).is(":checked"))
+					value = '1';
+				else
+					value = '0';
 				data[name] = value;
 			});
 
-			$.each(data,function(key,value){
-				alert(key + ' : ' + value);
-			});
+			saveNavigation('saveNavigationSettings',data);
 
 			return false;
-
-			// ajax 
-
-			//success / error
 		});
 	});
 </script>
@@ -77,7 +126,7 @@
 		<div class="control-group">
 			<label for="header" class="control-label">Position from header</label>
 			<div class="controls">
-				<select name="header" id="header">
+				<select name="positionFromHeader" id="header">
 					<option value="above">Above</option>
 					<option value="below">Below</option>
 					<option value="left">Left</option>
@@ -89,7 +138,7 @@
 		<div class="control-group">
 			<label for="z-index" class="control-label">Over header</label>
 			<div class="controls">
-				<select name="z-index" id="z-index">
+				<select name="zIndex" id="z-index">
 					<option value="0">don't merge layers</option>
 					<option value="1000">In front of</option>
 					<option value="-1000">Behind</option>
@@ -100,7 +149,7 @@
 		<div class="control-group">
 			<label for="sort" class="control-label">Navigation layout sort</label>
 			<div class="controls">
-				<select name="sort" id="sort">
+				<select name="navigatinSort" id="sort">
 					<option value="navbar">Navbar</option>
 					<option value="navbar-inverse">Navbar inverse</option>
 					<option value="tabbable">tabbable</option>
@@ -138,30 +187,27 @@
 
 		<div class="control-group">
 			<label for="dynamic-navigation" class="control-label">Dynamic navigation</label>
-			<div class="controls"><input type="checkbox" id="dynamic-navigation" name="dynamic-navigation"></div>
+			<div class="controls"><input type="checkbox" id="dynamic-navigation" name="dynamicNavigation"></div>
 		</div>
 	
 		<div class="sj-hidden">
 			<div class="javascript-sort">
 				<div class="control-group">
-					<label for="dynamic-sort" class="control-label">Dynamic sort</label>
+					<label for="js-function" class="control-label">Dynamic sort</label>
 					<div class="controls">
-						<select id="js-function" name="js-function" id="dynamic-sort">
-							<option value="toggle" selected="selected">Toggle</option>
-							<option value=""></option>
-							<option value=""></option>
-							<option value=""></option>
-							<option value=""></option>
+						<select id="js-function" name="jsFunction">
+							<option value="toggle">Toggle</option>
+							<option value="slideIn">Slide in</option>
 						</select>
 					</div>
 				</div>
 			</div>
 
-			<div class="sj-hidden-toggle javascript-toggle">
+			<div class="sj-hidden-toggle">
 				<div class="control-group">
-					<label for="animation-style" class="control-label">Animation style</label>
+					<label for="animation-style" class="control-label">Toggle animation style</label>
 					<div class="controls">
-						<select name="animation-style" id="animation-style">
+						<select name="toggleAnimationStyle" id="animation-style">
 							<option value="ltr">left to right</option>
 							<option value="rtl">Right to left</option>
 							<option value="utd">Up to down</option>
@@ -172,7 +218,7 @@
 
 				<div class="control-group">
 					<label for="toggle-trigger" class="control-label">Toggle trigger</label>
-					<div class="controls"><select name="toggle-trigger" id="toggle-trigger">
+					<div class="controls"><select name="toggleTrigger" id="toggle-trigger">
 							<option value="box">Box</option>
 							<option value="image">Image</option>
 							<option value="logo">Logo</option>
@@ -181,11 +227,24 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="sj-hidden-slideIn">
+				<div class="control-group">
+					<label for="slidein" class="control-label">Slide in animation style</label>
+					<div class="controls"><select name="slideInAnimationStyle" id="slidein">
+							<option value="ltr">Left to right</option>
+							<option value="rtl">Right to left</option>
+							<option value="utd">Up to down</option>
+							<option value="dtu">Down to up</option>
+						</select>
+					</div>
+				</div>
+			</div>
 		</div>
 
 		<div class="control-group">
 			<label for="submit" class="control-label">Save!</label>
-			<div class="controls"><input type="submit" name="submit" value="save" id="submit"></div>
+			<div class="controls"><input type="submit" name="submit" value="save" id="submit" class="btn btn-large btn-primary"></div>
 		</div>
 
 	</fieldset>

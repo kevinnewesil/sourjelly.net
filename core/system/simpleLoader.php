@@ -44,6 +44,9 @@
 	if(!function_exists("getApiThemes")) { function getApiThemes(){ return \api\Api::getThemes(); } }
 	if(!function_exists("getApiUsers")) { function getApiUsers(){ return \api\Api::getUsers(); }}
 
+	if(!function_exists("Insert")) { function Insert($table,$columns,$values,$types,$debug = false){ return \api\Api::insertInto($table,$columns,$values,$types,$debug); } }
+	if(!function_exists("Update")) { function Update($table,$columns,$values,$where,$ajax = false){ return \api\Api::updateTable($table,$columns,$values,$where,$ajax); } }
+
 	/**
 	 * Template calls
 	 */

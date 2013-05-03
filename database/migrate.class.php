@@ -17,6 +17,7 @@
 			$this -> table_themes();
 			$this -> table_ip();
 			$this -> table_google_api();
+			$this -> table_layout();
 		}
 
 		final protected function table_users()
@@ -191,6 +192,24 @@
 					'clientId'     => 'string',
 					'clientSecret' => 'string',
 					'refreshToken' => 'string',
+				)
+			);
+		}
+
+		final protected function table_layout()
+		{
+			\core\build\Sourjelly::getDb() -> createTable("table_layout_navigation",
+				array(
+					'dynamicNavigation'     => 'int',
+					'zIndex'                => 'int',
+					'width'                 => 'int',
+					'position'              => 'string',
+					'positionFromHeader'    => 'string',
+					'navigatinSort'         => 'string',
+					'jsFunction'            => 'string',
+					'toggleAnimationStyle'  => 'string',
+					'toggleTrigger'         => 'string',
+					'slideInAnimationStyle' => 'string',
 				)
 			);
 		}

@@ -6,7 +6,7 @@
 	 * 
 	 * @param $_includeClean a list of all modules that should be includes, cleaned up and parsed.
 	 */
-	class Modules
+	final class Modules
 	{
 
 		protected $_includeClean = array();
@@ -42,7 +42,7 @@
 		/**
 		 * Uses the code from the module to get a clean html page, to render to the user.
 		 */
-		public function getHtml()
+		final public function getHtml()
 		{	
 			if(!empty($this->_includeClean))
 			{
@@ -66,7 +66,7 @@
 		 * [getSettings description]
 		 * @return [type] [description]
 		 */
-		public function getSettings()
+		final public function getSettings()
 		{
 			return 'settings';
 		}
@@ -75,7 +75,7 @@
 		 * [saveSettings description]
 		 * @return [type] [description]
 		 */
-		public function saveSettings()
+		final public function saveSettings()
 		{
 			
 		}

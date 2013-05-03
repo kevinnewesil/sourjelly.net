@@ -1,12 +1,12 @@
 <?php namespace core\system; if(!defined("DS")) die('no direct script access!');
 
-	class embedCompiler
+	final class embedCompiler
 	{
 		protected $_replacers = array();
 		protected $_placeholders = array();
 		protected $_layout;
 
-		public function decompile($layout)
+		final public function decompile($layout)
 		{
 			$this -> _layout = $layout;
 
@@ -15,7 +15,7 @@
 			return str_replace($this->_placeholders,$this->_replacers,$this -> _layout);
 		}
 
-		private function link_to()
+		final private function link_to()
 		{
 			$regex = $this -> generate_pattern('link_to');
 			$as = '<a href="' . HOME_PATH . DS;
@@ -46,7 +46,7 @@
 			return $this -> _layout;
 		}
 
-		private function generate_pattern($action)
+		final private function generate_pattern($action)
 		{
 			$regex = array();
 			preg_match_all('/(\{\{(.*)\}\})/', $this -> _layout, $results);

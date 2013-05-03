@@ -164,7 +164,7 @@
 			}
 
 			$query .= "AND `active` = '1' AND `deprecated` != '1'";
-
+			
 			if(!\api\Api::checkQuery($query))
 					\core\access\Redirect::Home('Something went wrong with the query.');
 

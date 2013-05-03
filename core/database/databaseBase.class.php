@@ -3,13 +3,13 @@
 	/**
 	 * @todo Write pdo option
 	 */
-	class DatabaseBase
+	final class DatabaseBase
 	{
 		/**
 		 * Creates a database for the system if the database does not exist yet.
 		 * @param  string $name the name of the database
 		 */
-		public function createDatabase($name)
+		final public function createDatabase($name)
 		{
 			$link = \core\build\Sourjelly::getConfig('_link');
 
@@ -22,7 +22,7 @@
 		 * @param string $name the name of the table in the database
 		 * @param array $rows the names of the rows as keys, and the types as values.
 		 */
-		public function CreateTable($name,$rows)
+		final public function CreateTable($name,$rows)
 		{
 			$query = "CREATE TABLE IF NOT EXISTS `" . $name . "` (id int NOT NULL AUTO_INCREMENT, PRIMARY KEY(id),";
 			$i = 0;
@@ -74,7 +74,7 @@
 		/**
 		 * Deletes a table from the database.
 		 */
-		public function DropTable($name)
+		final public function DropTable($name)
 		{
 			\core\build\Sourjelly::getConfig('link')->query("DROP TABLE IF EXISTS `"  . $name . "`");
 		}

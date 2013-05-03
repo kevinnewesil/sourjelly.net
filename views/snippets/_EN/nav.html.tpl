@@ -48,7 +48,7 @@
 			<a href="#" class="dropdown-toggle" id="basic-layout" data-toggle="dropdown" title="basic layouts">
 				Basic lay-outs
 			</a>
-			<ul class="dropdown-menu" role="menu" aria-labelledby="basic-layout">
+			<ul class="dropdown-menu" aria-labelledby="basic-layout">
 				<li> <a href="{base}/layouts/navigation/?ns=controllers&amp;path=controller_path" title="Navigation">Navigation</a> </li>
 				<li> <a href="{base}/layouts/header/?ns=controllers&amp;path=controller_path" title="Header">Header</a> </li>
 				<li> <a href="{base}/layouts/content/?ns=controllers&amp;path=controller_path" title="content">Content</a> </li>
@@ -60,7 +60,7 @@
 			<a href="#" class="dropdown-toggle" id="themes" data-toggle="dropdown" title="themes">
 				Theme
 			</a>
-			<ul class="dropdown-menu" role="menu" aria-labelledby="themes">
+			<ul class="dropdown-menu" aria-labelledby="themes">
 				<li><a href="{base}/themes/index/?ns=controllers&amp;path=controller_path" title="Pick existing theme">Theme selection</a></li>
 				<li><a href="{base}/themes/upload/?ns=controllers&amp;path=controller_path" title="Upload theme">Upload theme</a></li>
 				<li><a href="{base}/themes/newTheme/?ns=controllers&amp;path=controller_path" title="Create new theme">Create theme</a></li>

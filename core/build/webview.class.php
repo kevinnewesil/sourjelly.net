@@ -6,12 +6,12 @@
 	 * 
 	 * @param $_page the name/id of the current page the visitor is on.
 	 */
-	class Webview
+	final class Webview
 	{
 		/**
 		 * Pre renders all the data that is needed to get the info for the page the visitor is currently on.
 		 */
-		public function __construct()
+		final public function __construct()
 		{
 			
 			$rawUrl = $_SERVER['REQUEST_URI'];
@@ -26,7 +26,7 @@
 		/**
 		 * Renders a lot of items, and dynamicaly builds up the page for the user.
 		 */
-		protected function buildPage()
+		final protected function buildPage()
 		{	
 			$menuArr          = \api\Api::getMenuItems();
 			$menu             = '';
