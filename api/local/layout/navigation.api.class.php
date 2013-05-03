@@ -24,7 +24,7 @@
 				else
 					\SetNotice('No layout settings found..');
 			else
-				\SetNotice('Something went wrong with the query..' . self::$_link -> error)
+				\SetNotice('Something went wrong with the query..' . self::$_link -> error);
 
 			(isset($stmt) && $stmt !== NULL) ? $stmt -> close() : NULL;
 

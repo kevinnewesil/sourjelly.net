@@ -20,7 +20,7 @@
 		protected static $_users;
 		protected static $_settings;
 		protected static $_themes;
-		protected static $_layout
+		protected static $_layout;
 
 		protected static $_insertId;
 
