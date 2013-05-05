@@ -17,10 +17,10 @@
 		z-index: 1080;
 	}
 
-	.toggle .nav , .toggle .navbar-left{
+	.toggle .navbar-left{
 		left:-10000px;
 	}
-	.toggle .nav , .toggle .navbar-right{
+	.toggle .navbar-right{
 		right:-10000px;
 	}
 </style>
