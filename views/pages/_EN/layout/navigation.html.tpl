@@ -211,10 +211,10 @@
 					<label for="animation-style" class="control-label">Toggle animation style</label>
 					<div class="controls">
 						<select name="toggleAnimationStyle" id="animation-style">
-							<option value="ltr">left to right</option>
-							<option value="rtl">Right to left</option>
-							<option value="utd">Up to down</option>
-							<option value="dtp">Down to up</option>
+							<option value="left">left to right</option>
+							<option value="right">Right to left</option>
+							<option value="top">Up to down</option>
+							<option value="bottom">Down to up</option>
 						</select>
 					</div>
 				</div>
@@ -237,10 +237,10 @@
 					<label for="slidein" class="control-label">Slide in animation style</label>
 					<div class="controls">
 						<select name="slideInAnimationStyle" id="slidein">
-							<option value="ltr">Left to right</option>
-							<option value="rtl">Right to left</option>
-							<option value="utd">Up to down</option>
-							<option value="dtu">Down to up</option>
+							<option value="left">Left to right</option>
+							<option value="right">Right to left</option>
+							<option value="top">Up to down</option>
+							<option value="bottom">Down to up</option>
 						</select>
 					</div>
 				</div>

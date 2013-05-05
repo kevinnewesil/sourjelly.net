@@ -108,7 +108,13 @@
 								  );
 			}
 
-			$replacers[2] = str_replace('{pages}',$menu,\Snippet('parts/navbar-fixed-top.html.tpl'));
+			$menuSettings = \GetApiLayoutNavigation() -> getPrimaryLayoutSettings();
+
+			$replacers[2] = str_replace(array('{pages}','{animation-direction}'),array($menu,$menuSettings['slideInAnimationStyle']),\Snippet('parts/navbar-fixed-top.html.tpl'));
+
+			$file = \Snippet('javascript_elements/' . $menuSettings['jsFunction'] . '-' . $menuSettings[$menuSettings['jsFunction'] . 'Trigger'] . '.html.tpl');
+
+			$replacers[2] = ($menuSettings['dynamicNavigation'] == '1') ? str_replace('{nav}', $replacers[2] , $file) : $replacers[2] ;
 
 			$pageId = \api\Api::getPages() -> getIdFromTitle($this->_page);
 			\core\build\Sourjelly::getHtml()->modules($pageId);
