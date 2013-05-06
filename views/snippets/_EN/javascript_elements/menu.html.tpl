@@ -44,6 +44,7 @@
 						<li class="dropdown-submenu">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Navigation</a>
 							<ul class="dropdown-menu">
+								<li><a href="#">Sort</a></li>
 								<li><a href="#">Styling</a></li>
 								<li><a href="#">Properties</a></li>
 							</ul>
