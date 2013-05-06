@@ -24,7 +24,7 @@
 		background-color: #FFFFFF;
 		bottom: 0;
 		color: #333333;
-		width: 110px;
+		width: 120px;
 		box-shadow: 2px 2px 2px #EEEEEE;
 	}
 
@@ -46,8 +46,8 @@
 		border-bottom: 10px solid transparent;
 		border-left: 10px solid white;
 		position: fixed;
-		top: 24px;
-		left: 130px;
+		top: 20px;
+		left: 140px;
 		z-index: 3000;
 	}
 
@@ -58,8 +58,8 @@
 		border-bottom: 14px solid transparent;
 		border-left: 14px solid rgba(200,200,200,0.2);
 		position: fixed;
-		top: 20px;
-		left: 130px;
+		top: 16px;
+		left: 140px;
 		z-index: 2000;
 	}
 </style>
