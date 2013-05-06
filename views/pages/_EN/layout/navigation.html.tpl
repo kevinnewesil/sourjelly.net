@@ -10,6 +10,8 @@
 		if($("#js-function").val() == 'toggle')
 		{
 			$(".sj-hidden-toggle").css('display','block');
+			
+			$("#toggle-trigger").val() == 'text' ? $("#toggle-trigger-text").css('display','inline') : console.log('image') ;
 		}
 		else if($("#js-function").val() =='slideIn')
 		{
@@ -26,6 +28,7 @@
 
 		$(".sj-hidden-toggle").css('display','none');
 		$(".sj-hidden-slideIn").css('display','none');	
+		$("#toggle-trigger-text").css('display','none');
 	}
 
 	function saveNavigation(action,data)
@@ -86,6 +89,10 @@
 		$(".javascript-sort").change(function(){			
 			setInvisible(false);
 			changeVisibility();
+		});
+
+		$("#toggle-trigger").change(function(){
+			$(this).val() == 'text' ? $("#toggle-trigger-text").css('display','inline') : console.log('image') ;
 		});
 
 		// On submit of form.
@@ -223,11 +230,12 @@
 					<label for="toggle-trigger" class="control-label">Toggle trigger</label>
 					<div class="controls">
 						<select name="toggleTrigger" id="toggle-trigger">
-							<option value="box">Box</option>
-							<option value="image">Image</option>
-							<option value="logo">Logo</option>
 							<option value="text">Text</option>
+							<option value="image">Image</option>
 						</select>
+
+						<input type="text" name="toggleTriggerText" value="{toggleTriggerText_value}" placeholder="Text" id="toggle-trigger-text">
+						
 					</div>
 				</div>
 			</div>

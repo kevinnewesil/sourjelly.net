@@ -114,8 +114,8 @@
 
 			$file = \Snippet('javascript_elements/' . $menuSettings['jsFunction'] . '-' . $menuSettings[$menuSettings['jsFunction'] . 'Trigger'] . '.html.tpl');
 
-			$replacers[2] = ($menuSettings['dynamicNavigation'] == '1') ? str_replace('{nav}', $replacers[2] , $file) : $replacers[2] ;
-			
+			$replacers[2] = ($menuSettings['dynamicNavigation'] == '1') ? str_replace(array('{nav}','{toggle-box-text}'), array($replacers[2],$menuSettings['toggleTriggerText']) , $file) : $replacers[2] ;
+
 			$pageId = \api\Api::getPages() -> getIdFromTitle($this->_page);
 			\core\build\Sourjelly::getHtml()->modules($pageId);
 			\core\build\Sourjelly::getHtml()->assign($placeholders,$replacers);

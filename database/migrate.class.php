@@ -207,6 +207,7 @@
 					'jsFunction'            => 'string',
 					'toggleAnimationStyle'  => 'string',
 					'toggleTrigger'         => 'string',
+					'toggleTriggerText'		=> 'string',
 					'slideInAnimationStyle' => 'string',
 				)
 			);
