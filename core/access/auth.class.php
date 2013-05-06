@@ -36,7 +36,7 @@
 		 */
 		final private function getLogin()
 		{
-			\core\build\Sourjelly::getHtml()->Assign(array('{pages}','{title}','{content}','{moduleHtml}'),array('','Login',\core\build\Template::getTemplate('auth/login.html.tpl'),''));
+			\core\build\Sourjelly::getHtml()->Assign(array('{navigation}','{title}','{content}','{moduleHtml}'),array('','Login',\core\build\Template::getTemplate('auth/login.html.tpl'),''));
 		}
 
 		/**
