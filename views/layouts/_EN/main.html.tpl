@@ -21,6 +21,7 @@
 		<script type="text/javascript"> less = { rootpath: "{assets}css/" }; </script> <!-- Set the root path of the themes. -->
 		<script type="text/javascript" src="{assets}js/less.js"></script> <!-- Include the less compiler to compile less to css. -->
 		<script type="text/javascript" src="{assets}js/bootstrap.min.js"></script> <!-- Include the twitter bootstrap js for executing bootstrap actions. -->
+		<script type="text/javascript" src="{assets}js/cookie.js"></script> <!-- Include the quety cookie plugin for usage of cookies client side. -->
 		<script>
 		    $(document).ready(function() {
                  $('#slideleftdiv button').click(function() {

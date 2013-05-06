@@ -32,6 +32,7 @@
 		<script type="text/javascript" src="{assets}js/functions.js"></script>
 		<script type="text/javascript" src="{assets}js/less.js"></script>
 		<script type="text/javascript" src="{assets}js/redactor.js"></script>
+		<script type="text/javascript" src="{assets}js/cookie.js"></script>
 
 		<!-- Some random javascript -->
 		<script type="text/javascript">
