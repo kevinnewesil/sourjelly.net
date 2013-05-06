@@ -42,9 +42,9 @@
 				<li class="disabled"><a href="#">Layout</a></li>
 				<li class="divider"></li>
 				
+				<div class="dropup">
 				<li class="dropdown-submenu">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Basic layouts</a>
-					<div class="dropup">
 						<ul class="dropdown-menu">
 							<li class="disabled"><a href="#">Layout parts</a></li>
 							<li class="divider"></li>
@@ -53,8 +53,8 @@
 							<li><a href="#">Footer</a></li>
 							<li><a href="#">Content</a></li>
 						</ul>
-					</div>
-				</li>
+					</li>
+				</div>
 
 				<li><a href="#">Themes</a></li>
 			</ul>

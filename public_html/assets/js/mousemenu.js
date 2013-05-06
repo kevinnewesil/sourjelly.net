@@ -1,6 +1,6 @@
 $(document).ready(function(){
     $.ajax({
-        url : '../../../../ajax/mouse_menu.php',
+        url : '/sourjelly.net/ajax/mouse_menu.php',
         data : {
             action : 'load-menu-html',
         },
