@@ -33,6 +33,7 @@
 		<script type="text/javascript" src="{assets}js/less.js"></script>
 		<script type="text/javascript" src="{assets}js/redactor.js"></script>
 		<script type="text/javascript" src="{assets}js/cookie.js"></script>
+		<script type="text/javascript" src="{assets}js/mousemenu.js"></script>
 
 		<!-- Some random javascript -->
 		<script type="text/javascript">
