@@ -41,3 +41,5 @@ $(document).click(function(evt){
     if(evt.target.id !== 'mouse-menu')
         $(".mouse-menu").css('display','none');
 });
+
+

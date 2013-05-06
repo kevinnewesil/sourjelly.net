@@ -4,8 +4,6 @@
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">pages</a>
 
 			<ul class="dropdown-menu">
-				<li class="disabled"><a href="#">Pages</a></li>
-				<li class="divider"></li>
 				<li><a href="#">Create</a></li>
 				<li><a href="#">Overview</a></li>
 				<li><a href="#">Menu</a></li>
@@ -25,8 +23,6 @@
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">Modules</a>
 
 			<ul class="dropdown-menu">
-				<li class="disabled"><a href="#">Modules</a></li>
-				<li class="divider"></li>
 				<li><a href="#">Install</a></li>
 				<li><a href="#">Overview</a></li>
 				<li><a href="#">Settings</a></li>
@@ -38,23 +34,26 @@
 		<li class="dropdown-submenu">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">Layout</a>
 
-			<ul class="dropdown-menu">
-				<li class="disabled"><a href="#">Layout</a></li>
-				<li class="divider"></li>
+			<ul class="dropdown-menu">				
 				
-				<div class="dropup">
 				<li class="dropdown-submenu">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Basic layouts</a>
-						<ul class="dropdown-menu">
-							<li class="disabled"><a href="#">Layout parts</a></li>
-							<li class="divider"></li>
-							<li><a href="#">Navigation</a></li>
-							<li><a href="#">Header</a></li>
-							<li><a href="#">Footer</a></li>
-							<li><a href="#">Content</a></li>
-						</ul>
-					</li>
-				</div>
+
+					<ul class="dropdown-menu">
+						
+						<li class="dropdown-submenu">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Navigation</a>
+							<ul class="dropdown-menu">
+								<li><a href="#">Styling</a></li>
+								<li><a href="#">Properties</a></li>
+							</ul>
+						</li>
+
+						<li><a href="#">Header</a></li>
+						<li><a href="#">Footer</a></li>
+						<li><a href="#">Content</a></li>
+					</ul>
+				</li>
 
 				<li><a href="#">Themes</a></li>
 			</ul>
@@ -63,8 +62,6 @@
 		<li class="dropdown-submenu">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings</a>
 			<ul class="dropdown-menu">
-				<li class="disabled"><a href="#">Settings</a></li>
-				<li class="divider"></li>
 				<li><a href="#">Basic system settings</a></li>
 				<li><a href="#">Social media settings</a></li>
 			</ul>
@@ -108,6 +105,5 @@
 		-moz-border-radius: 4px 4px 4px 4px !important ;
 		-webkit-border-radius: 4px 4px 4px 4px !important ;
 		border-radius: 4px 4px 4px 4px !important ;
-		margin-top:0.5px;
 	}
 </style>
