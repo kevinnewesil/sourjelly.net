@@ -90,3 +90,16 @@
 	background-color : #FEFEFE;
 	display          : none;
 }
+
+#modalToggle{
+	width:90%;
+	height:100%;
+	position:fixed;
+	left:25%;
+	top:42%;
+	overflow:scroll;
+}
+
+#modalToggle #modal{
+	height:100%;
+}

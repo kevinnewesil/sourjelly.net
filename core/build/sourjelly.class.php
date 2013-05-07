@@ -117,9 +117,13 @@
 					//Check the system for critical requirements
 					if(!isset($_SESSION['system_warning']))
 						self::$_settings = new \core\access\System;
-		
-					// Set the html object to admin template
-					self::$_html = new HtmlBase('admin');
+
+					if(isset(self::$_get -> ajax) && self::$_get -> ajax == 'true')
+						// Set the html object to an empty template for not re-using the header.
+						self::$_html = new HtmlBase('empty');
+					else
+						// Set the html object to admin template
+						self::$_html = new HtmlBase('admin');
 				}
 				else
 					// Set the html object to the main template

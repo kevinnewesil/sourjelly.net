@@ -14,26 +14,17 @@ $(document).ready(function(){
     });
 });
 
-$(document).mousedown(function(mouse){
-    if(mouse.which == '3')
-    {
-        $(window).keydown(function(key){
-            if(key.keyCode == '16' || key.keyCode == '17')
-            {
-                document.addEventListener('contextmenu', function(e) {
-                    $(".mouse-menu").css({
-                        left : e.pageX,
-                        top : e.pageY,
-                        display : 'block',
-                    });
+document.addEventListener('contextmenu', function(e) {
+    $(".mouse-menu").css({
+        left : e.pageX,
+        top : e.pageY,
+        display : 'block',
+    });
 
-                    e.preventDefault();
-            
-                }, false);
-            }
-        });
-    }
-});
+    e.preventDefault();
+
+}, false);
+
 
 // Remove mouse menu on lose focus
 

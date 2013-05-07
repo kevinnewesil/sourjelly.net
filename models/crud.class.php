@@ -53,31 +53,37 @@
 			);
 
 			// Execute this request first for getting a content Id.
-			if(!\api\Api::insertInto('table_content',array('front','back','menuVisibility','created_at','public','deprecated'),$table_content_values,'iiisi'))
+			if(!\api\Api::insertInto('table_content',array('front','back','menuVisibility','created_at','public','deprecated'),$table_content_values,'iiisii'))
 				\core\access\Redirect::Refresh('Could not create main content layout');
 
 			// Fetch the content ID for relations
 			$contentId = \api\Api::getLastInsertId();
 
-			// Define the rows of the table that should be inserted into, and set those variables
-			$table_content_properties_rows   = array('cId','title','content','hasParent','parentId','menuOrder','metaTags','metaDescription','contentClass','contentId');
-			$table_content_properties_values = array($contentId,$create -> title, $create -> content, $create -> hasParent,$create-> parentId , '0' ,
-													 $create -> metaTags,$create -> metaDescription, $create -> contentClass,$create -> contentId );
+			if($contentId !== '0')
+			{
 
-			// Define the rows and data for the content layout
-			$table_content_layout_rows   = array('cId','contentTextAlign','titleTextAlign','titleFontSize','titleVisibility');
-			$table_content_layout_values = array($contentId, $create -> contentTextAlignment , $create -> titleTextAlignment , $create -> titleFontSize ,
-											     (isset($create -> showPagetitle) && $create -> showPagetitle == 'on') ? '1' : '0' );
+				// Define the rows of the table that should be inserted into, and set those variables
+				$table_content_properties_rows   = array('cId','title','content','hasParent','parentId','menuOrder','metaTags','metaDescription','contentClass','contentId');
+				$table_content_properties_values = array($contentId,$create -> title, $create -> content, $create -> hasParent,$create-> parentId , '0' ,
+														 $create -> metaTags,$create -> metaDescription, $create -> contentClass,$create -> contentId );
 
-			// Make an internal API request for inserting data into the database.
-			if(!\api\Api::insertInto('table_content_properties',$table_content_properties_rows,$table_content_properties_values,'issiiissss')) return false;
-			if(!\api\Api::insertInto('table_content_layout',$table_content_layout_rows,$table_content_layout_values,'issii')) return false;
+				// Define the rows and data for the content layout
+				$table_content_layout_rows   = array('cId','contentTextAlign','titleTextAlign','titleFontSize','titleVisibility');
+				$table_content_layout_values = array($contentId, $create -> contentTextAlignment , $create -> titleTextAlignment , $create -> titleFontSize ,
+												     (isset($create -> showPagetitle) && $create -> showPagetitle == 'on') ? '1' : '0' );
 
-			// hardcoded public for now.. Need to edit this later for custom level premission of content.
-			if(!\api\Api::insertInto('table_content_roles',array('cid','roleId'),array($contentId,'1'),'ii')) return false;
+				// Make an internal API request for inserting data into the database.
+				if(!\api\Api::insertInto('table_content_properties',$table_content_properties_rows,$table_content_properties_values,'issiiissss')) return false;
+				if(!\api\Api::insertInto('table_content_layout',$table_content_layout_rows,$table_content_layout_values,'issii')) return false;
 
-			// Return true on success
-			return true;
+				// hardcoded public for now.. Need to edit this later for custom level premission of content.
+				if(!\api\Api::insertInto('table_content_roles',array('cid','roleId'),array($contentId,'1'),'ii')) return false;
+
+				// Return true on success
+				return true;
+			}
+
+			return false;
 		}
 
 		/**
