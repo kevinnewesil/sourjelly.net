@@ -119,7 +119,7 @@
 
 <script>
 
-    function loadPage(controllerName,functionName)
+    function loadAjax(controllerName,functionName)
     {
 
         $.ajax({
@@ -138,7 +138,7 @@
         });
     };
 
-    function savePage()
+    function save(controllerName, functionName)
     {
     	data = [];
 
@@ -150,9 +150,10 @@
     	});
 
     	$.ajax({
-    		url : '/sourjelly.net/public_html/index.php/crud/create/?ns=controllers&path=controller_path&ajax=true',
+    		url : '/sourjelly.net/public_html/index.php/' + controllerName + '/' + functionName + '/?ns=controllers&path=controller_path&ajax=true',
     		dataType : "html",
     		type : 'post',
+    		data : data,
     		success:function(data)
     		{
     			window.location.reload();
@@ -165,41 +166,47 @@
 		// gets
 
 		 $(".crud-create").click(function(){
-	        loadPage('crud','create');
+	        loadAjax('crud','create');
 	    });
 
 		 $(".crud-overview").click(function(){
-		 	loadPage('crud','retrieve');
+		 	loadAjax('crud','retrieve');
 		 });
 
 		 $(".crud-menu").click(function(){
-			loadPage('crud','order');	
+			loadAjax('crud','order');	
 		 });
 
 		 $(".crud-deleted").click(function(){
-			loadPage('crud','deleted');
+			loadAjax('crud','deleted');
 		 });
 
 		 $(".crud-upload").click(function(){
-			loadPage('crud','upload');
+			loadAjax('crud','upload');
 		 });
 
 		 $(".crud-images").click(function(){
-			loadPage('crud','images');
+			loadAjax('crud','images');
 		 });
 
 		 $(".crud-deleted").click(function(){
-			loadPage('crud','cropper');
+			loadAjax('crud','cropper');
 		 });
 
 		 // Posts
 
 		 $(".crud-create-post").click(function(){
-		 	savePage('crud','create');
+		 	saveAjax('crud','create');
 		 });
 
 		 $(".close").click(function(){
-		 	$("#modalToggle").modal('hide');
+		 	window.location.reload();
+		 });
+
+		 $("body").click(function(e){
+		 	if($("#modalToggle").css('display') == 'block')
+			 	if(e.target.id !== 'modalToggle' && e.target.attr('href') !== 'modalToggle')
+			 		window.location.reload();
 		 });
 	});
 </script>
