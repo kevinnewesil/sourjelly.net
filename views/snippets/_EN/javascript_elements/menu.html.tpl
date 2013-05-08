@@ -73,6 +73,7 @@
 </div>
 
 <div id="modalToggle" class="modal hide fade">
+	<span class="" id="modalSort"></span>
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 		<br><br>
@@ -130,6 +131,7 @@
             success : function(data)
             {	
                 $(".inner-modal").html(data);
+                $("#modalSort").attr('class',controllerName + '-' + functionName)
 
                 $("#modalToggle").on('hidden',function(){
                 	$(this).modal('show');
@@ -199,14 +201,20 @@
 		 	saveAjax('crud','create');
 		 });
 
+		 $("#modalToggle form").submit(function(){
+		 	target = $("#modalSort").attr('class');
+		 	console.log(target);
+		 	return false;
+		 })
+
 		 $(".close").click(function(){
 		 	window.location.reload();
 		 });
 
-		 $("body").click(function(e){
-		 	if($("#modalToggle").css('display') == 'block')
-			 	if(e.target.id !== 'modalToggle' && e.target.attr('href') !== 'modalToggle')
-			 		window.location.reload();
-		 });
+		 // $("body").click(function(e){
+		 // 	if($("#modalToggle").css('display') == 'block')
+			//  	if(e.target.id !== 'modalToggle' && e.target.href !== 'modalToggle')
+			//  		window.location.reload();
+		 // });
 	});
 </script>
