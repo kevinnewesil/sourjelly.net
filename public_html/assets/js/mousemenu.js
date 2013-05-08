@@ -33,4 +33,3 @@ $(document).click(function(evt){
         $(".mouse-menu").css('display','none');
 });
 
-
