@@ -130,7 +130,7 @@
 					self::$_html = new HtmlBase('main');
 
 				//Check for permissions again so that administrators don't have to be the only users on the website, and login is made possible.
-				if(isset($_SESSION['login']) || isset(self::$_get -> login ) && self::$_get -> login == 'login' || isset(self::$_post -> login) || \getApiUsers() -> getUserpermissionsBySession() > 1 || (isset($fun) && $fun[0] == 'auth' && (!isset($fun[1]) || $fun[1] == '')))
+				if($this -> checkForLogin($fun))
 					self::$_al = new \core\build\autoloader;
 				else
 					self::$_wv = new \core\build\Webview;
@@ -246,5 +246,25 @@
 			if(!$this -> _ajax && PHP_SAPI !== 'cli')
 				// build the html!
 				self::getHtml()->Build();
+		}
+
+		final protected function checkForLogin($fun)
+		{
+			$return = true;
+
+			if(
+				!isset(self::$_get -> login) ||
+				!isset($fun) ||
+				!is_array($fun) ||
+				$fun[0] != 'auth' ||
+				$fun[1] != 'login' ||
+				self::$_get -> login != 'login'
+			)
+				$return = false;
+
+			if( isset($_SESSION['login']) && \getApiUsers() -> getUserpermissionsBySession() < 2)
+				$return = false;
+
+			return $return;
 		}
 	}

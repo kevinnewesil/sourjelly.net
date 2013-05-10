@@ -44,7 +44,6 @@
 	 * 
 	 * --BUGFIXES--
 	 * 
-	 * @todo @bug proper redirect after false login.
 	 * @todo @bug extra checks for rendering login screen on non login links via get request ?get=login.
 	 * 
 	 * --EXTRA--
