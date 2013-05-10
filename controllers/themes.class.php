@@ -147,16 +147,15 @@
 		 */
 		private function postUpdate()
 		{
-			$id = $this -> _post -> id;
+			unset($this -> _post -> submit);
 			$themeName = $this -> _post -> themeName;
-			array_pop($this -> _post);
-			array_shift($this -> _post);
-			array_shift($this -> _post);
+			unset($this -> _post -> themeName);
 
-			$themeData = $this -> _post;
+			foreach($this -> _post as $key => $value)
+				$themeData[$key] = stripslashes(stripslashes($value));
 
-			foreach($themeData as $key => $value)
-                $themeData[$key] = stripslashes(stripslashes($value));
+			$placeholders = array_keys($themeData);
+			$replacers    = array_values($themeData);
 
 			$placeholders = array_keys($themeData);
 
@@ -177,7 +176,7 @@
 			fwrite($fh, '@import "themes/' . $themeName . '"; ' . PHP_EOL . \core\build\Template::getSnippet('theme.layout.less','less'));
 			fclose($fh);
 
-			$post = implode('=' , array(implode('~' ,array_keys($this -> _post)) ,implode('~',array_merge(array('themeName' => $themeName),$this -> _post))));
+			$post = implode('=' , array(implode('~' ,array_keys($themeData)) ,implode('~',array_merge(array('themeName' => $themeName),$themeData))));
 
 			\api\Api::updateTable('table_themes',array('active'),array('0'),array('active' => '1'));
 
