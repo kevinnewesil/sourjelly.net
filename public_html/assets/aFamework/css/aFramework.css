@@ -8,6 +8,7 @@
  * main items : 
  * @media (min-width: 0px){} = define screen width changes
  * !important = overrule all underlaying css
+ * z-index = per lvl 100.  < 1 >999999
  */
 
  /*-------------------  reset  -----------------------*/
@@ -156,7 +157,15 @@ code {
 	visibility: hidden;
 }
 
-/*-------------------  header  -----------------------*/
+.aFpr{
+	float: right;
+}
+
+.aFpl{
+	float:left;
+}
+
+/*-------------------  header & nav  -----------------------*/
 
 header {
 
@@ -168,6 +177,46 @@ header {
 
 	}
 }
+
+.nav {
+	margin          :0;
+	padding         :0;
+	border          :none;
+	background-color: none;
+}
+
+.nav-wrapper {
+	width             :100%;
+	height            :60px;
+	position          :fixed;
+	/* fixed needs to be top */
+	z-index           : 1;
+	background-color  : white;
+	border-bottom     : 1px solid lightgray;
+	-moz-box-shadow   : 5px 7px 33px #302f30;
+	-webkit-box-shadow: 5px 7px 33px #302f30;
+	box-shadow        : 5px 7px 33px #302f30;
+}
+
+.inner-nav {
+	width :1024px;
+	height:100%;
+	margin: 0 auto;
+}
+	
+.tag {
+	width  :150px;
+	height :100px;
+	padding: 5px 0;
+}
+
+.menu {}
+
+.menu-ul{}
+
+.menu-li{}
+
+.menu-link{}
 
 /*-------------------  content  -----------------------*/
 
