@@ -8,18 +8,18 @@
 	 * this is where the magic happens. All the system shit is loaded here, the system actions are defined here, everything is saved and parsed here.
 	 * There's no other possibility then to go via this file. if you manage to invade this file and get into the system you're an idiot.
 	 * You'll ruin the whole system. Please keep using the f*cking Sourjelly class to save our lives.
+	 * 
 	 */
 	final class Sourjelly extends \abstracts\Sourjelly_Abstract implements \interfaces\Sourjelly_Interface
 	{
-		// Protected static variables that have the objects of the system core.
 		protected static $_config;
 		protected static $_api;
 		protected static $_db;
 		protected static $_secure;
-		// Protected static variables that contain the code to build the pages for users/visitors.
+		
 		protected static $_al;
 		protected static $_wv;
-		// Protected static variables to set the rest of the views and settings.
+		
 		protected static $_settings;
 		protected static $_html;
 
@@ -88,6 +88,21 @@
 		}
 
 		/**
+		 * callFunctions This function calls the helper file, and executes basis user settings.
+		 * after that it uses the @class -> \config\Config , to set the user's system configuration right.
+		 */
+		final protected function beforeLoad()
+		{
+			//Call the /core/helpers.php functions for better code processing.
+			\core\setLogFile();
+			\core\removeMagicQoutes();
+			\core\unregisterGlobals();
+			\core\setTimezone();
+
+			return;
+		}
+
+		/**
 		 * CallClasses, calls the basic classes that start up the CMS system.
 		 * if the request is not from an Command line interface execute the webbuilder.
 		 * if there's a login request, resign to the login, else, autoload the controller, called by user. see @class -> \core\build\Autoloader
@@ -143,23 +158,12 @@
 
 		}
 
-		/**
-		 * callFunctions This function calls the helper file, and executes basis user settings.
-		 * after that it uses the @class -> \config\Config , to set the user's system configuration right.
-		 */
-		final protected function beforeLoad()
-		{
-			//Call the /core/helpers.php functions for better code processing.
-			\core\setLogFile();
-			\core\removeMagicQoutes();
-			\core\unregisterGlobals();
-			\core\setTimezone();
-		}
-
 		final protected function callFunctions()
 		{
 			//Change the php.ini settings to the users ini settings
 			self::$_config -> setSystemSettings();
+
+			return;
 		}
 
 		/**
@@ -179,6 +183,8 @@
 			$callable = array($object , $function);
 			// Call the function with the params from the object.
 			call_user_func_array($callable, $params);
+
+			return;
 		}
 
 		/**
