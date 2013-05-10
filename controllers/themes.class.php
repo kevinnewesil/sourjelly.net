@@ -58,14 +58,14 @@
 		 */
 		public function create()
 		{
-			array_pop($this -> _post);
+			unset($this -> _post -> submit);
 			$themeName = $this -> _post -> themeName;
-			array_shift($this -> _post);
+			unset($this -> _post -> themeName);
 
 			$themeData = $this -> _post;
 
 			foreach($themeData as $key => $value)
-				$themeData[$key] = stripslashes(stripslashes($value));
+				$themeData -> {$key} = stripslashes(stripslashes($value));
 
 			$placeholders = array_keys($themeData);
 
