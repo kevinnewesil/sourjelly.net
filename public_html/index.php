@@ -39,7 +39,7 @@
 	 *
 	 * @todo make dummy rows for tables in database for making sure the system won't crash on new install
 	 * @todo make extra security against updates via javascript 
-	 * 			| -> On first ajax request, parse password, and create session. 
+	 * 			| -> On first ajax request, parse password, and create session.
 	 * 			| -> On leave page destroy the password security session.
 	 * 
 	 * --BUGFIXES--

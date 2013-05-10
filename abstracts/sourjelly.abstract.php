@@ -18,7 +18,20 @@
 		abstract public function __clone();
 
 		abstract protected function startSourjelly();
+
 		abstract protected function callClasses();
 		abstract protected function beforeLoad();
 		abstract protected function callFunctions();
+
+		abstract public static function callTo($var,$function,$params);
+		abstract public static function getConfig($param = NULL);
+		abstract public static function getApi($param = NULL);
+		abstract public static function getHtml($param = NULL);
+		abstract public static function getDb($param = NULL);
+		abstract public static function getGet();
+		abstract public static function getPost();
+		abstract public static function loadCompilers($name);
+		
+		abstract protected function finishSourjelly();
+		abstract protected function checkForLogin($fun);
 	}
