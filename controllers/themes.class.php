@@ -62,17 +62,14 @@
 			$themeName = $this -> _post -> themeName;
 			unset($this -> _post -> themeName);
 
-			$themeData = $this -> _post;
-
-			foreach($themeData as $key => $value)
-				$themeData -> {$key} = stripslashes(stripslashes($value));
+			foreach($this -> _post as $key => $value)
+				$themeData[$key] = stripslashes(stripslashes($value));
 
 			$placeholders = array_keys($themeData);
+			$replacers    = array_values($themeData);
 
 			foreach($placeholders as $key => $values)
 				$placeholders[$key] = "{" . trim($values) . "}";
-
-			$replacers = array_values($themeData);
 
 			$themeVariables = str_replace($placeholders, $replacers, file_get_contents($_SERVER['DOCUMENT_ROOT'] . CSS_PATH . 'variables.less'));
 
@@ -91,8 +88,8 @@
 			fwrite($fh, '@import "themes/' . $themeName . '"; ' . PHP_EOL . \core\build\Template::getSnippet('theme.layout.less','less'));
 			fclose($fh);
 
-			$post = implode('=' , array(implode('~' ,array_keys($this -> _post)) ,implode('~',array_merge(array('themeName' => $themeName),$this -> _post))));
-
+			$post = implode('=' , array(implode('~' ,array_keys($themeData)) ,implode('~',array_merge(array('themeName' => $themeName),$themeData))));
+			
 			\api\Api::updateTable('table_themes',array('active'),array('0'),array('active' => '1'));
 
 			if(\api\Api::insertInto('table_themes',array('themeName','active','post','deprecated'),array($themeName,'1',$post,'0'),'sisi'))
@@ -131,6 +128,7 @@
 			$themePostInfo = explode('=',$themeInfo['post']);
 
 			$placeholders = array_merge(array('id','themeName') , explode('~',$themePostInfo[0]));
+
 			foreach ($placeholders as $key => $placeholder) {
 				$placeholders[$key] = '{' . $placeholder . '}';
 			}
