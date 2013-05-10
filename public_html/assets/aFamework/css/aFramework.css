@@ -63,9 +63,39 @@ table {
 }
 
 html {
-  font-size: 100%;
-  -webkit-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
+	font-size               : 100%;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust    : 100%;
+}
+
+hr {
+	padding      : 0;
+	border       : 0;
+	margin       : 10px 0;
+	border-top   : 1px solid #ccc;
+	border-bottom: 1px solid #666;
+}
+
+img {
+	width                 : auto\9;
+	height                : auto;
+	max-width             : 100%;
+	vertical-align        : middle;
+	border                : 0;
+	-ms-interpolation-mode: bicubic;
+}
+
+textarea {
+	overflow      : auto;
+	vertical-align: top;
+}
+
+code {
+	padding         : 5px 5px;
+	color           : darkgray;
+	white-space     : nowrap;
+	background-color: #d9ffe1;
+	border          : 1px solid #232323;
 }
 
 /*-------------------  preset classes  -----------------------*/
@@ -80,19 +110,23 @@ html {
 
 /* colors */
 .aFmc {
+	/* main color */
 	color:#CCC;
 }
 
 .aFsc {
+	/* secondary color */
 	color:#666;
 }
 
 .aFmbc {
+	/* main background-color */
 	background-color: white;
 }
 
 .aFmbg {
 	/*
+	* main gradient
 	* IE9 SVG, needs conditional override of 'filter' to 'none' 
 	* location : elements/main-elements/css-resets/htmlgradient.html
 	*/
@@ -107,7 +141,8 @@ html {
 
 }
 
-.aFht {
+.aFhf {
+	/* hide font */
 	font            : 0/0 a;
 	color           : transparent;
 	text-shadow     : none;
@@ -116,6 +151,7 @@ html {
 }
 
 .aFhe{
+	/* hide element */
 	display   : none;
 	visibility: hidden;
 }
