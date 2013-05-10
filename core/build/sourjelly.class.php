@@ -9,7 +9,7 @@
 	 * There's no other possibility then to go via this file. if you manage to invade this file and get into the system you're an idiot.
 	 * You'll ruin the whole system. Please keep using the f*cking Sourjelly class to save our lives.
 	 */
-	final class Sourjelly
+	final class Sourjelly extends \abstracts\Sourjelly_Abstract implements \interfaces\Sourjelly_Interface
 	{
 		// Protected static variables that have the objects of the system core.
 		protected static $_config;
@@ -102,6 +102,9 @@
 
 			//Set user language.
 			$_SESSION['user_language'] = \api\Api::getUsers() -> getUserLanguageBySession();
+
+			// Pre define variables
+			$fun = array();
 
 			if (PHP_SAPI !== 'cli' && $this -> _ajax !== true) {
 				// Read the url and explode on index.php
@@ -245,7 +248,7 @@
 		 * function that runs on the end of sourjelly, that buils the html and shows it to the user
 		 * If the request is not made via ajax or command line interface this function is rendered
 		 */
-		final private function finishSourjelly()
+		final protected function finishSourjelly()
 		{	
 			if(!$this -> _ajax && PHP_SAPI !== 'cli')
 				// build the html!

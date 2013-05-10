@@ -61,7 +61,9 @@
 	DEFINE('CONTROLLER_PATH', MAIN_PATH . 'controllers/');
 	DEFINE('MODEL_PATH', MAIN_PATH . 'models/');
 	DEFINE('API_PATH', MAIN_PATH . 'api/');
+	DEFINE('ABSTRACTS_PATH', MAIN_PATH . 'abstracts/');
 	DEFINE('INTERFACE_PATH', MAIN_PATH . 'interfaces/');
+	DEFINE('TESTS_PATH', MAIN_PATH . 'tests/');
 	DEFINE('TMP_PATH' , MAIN_PATH . 'tmp/');
 	
 	// Define namespaces (used in the autoloader class).
