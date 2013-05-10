@@ -80,7 +80,7 @@
 					
 					<!-- Shows page title and content, and the modules connected to the pages. -->
 					<div class="content {contentClasses}" id="{contentIds}">
-						<h2 class="content-title">{title}</h2> <!-- The title of the page, dynamically inserted. -->					
+						{title}<!-- The title of the page, dynamically inserted. -->					
 						<span class="content-content">{content}</span> <!-- The content of the page, dynamically inserted. -->
 						
 					</div>
