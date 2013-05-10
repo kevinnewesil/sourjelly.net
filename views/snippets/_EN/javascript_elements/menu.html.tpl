@@ -140,29 +140,6 @@
         });
     };
 
-    function save(controllerName, functionName)
-    {
-    	data = [];
-
-    	$("#modal form input, #modal form select , #modal form textarea").each(function(){
-    		name = $(this).attr('name');
-    		val  = $(this).val();
-
-    		data[name] = val;
-    	});
-
-    	$.ajax({
-    		url : '/sourjelly.net/public_html/index.php/' + controllerName + '/' + functionName + '/?ns=controllers&path=controller_path&ajax=true',
-    		dataType : "html",
-    		type : 'post',
-    		data : data,
-    		success:function(data)
-    		{
-    			window.location.reload();
-    		}
-    	});
-    }
-
 	$(document).ready(function(){
 
 		// gets
@@ -195,13 +172,7 @@
 			loadAjax('crud','cropper');
 		 });
 
-		 // Posts
-
-		 $(".crud-create-post").click(function(){
-		 	saveAjax('crud','create');
-		 });
-
-		 $("#modalToggle form").submit(function(){
+		 $("#modal").find('input[type="submit"], input[type="submit"]').click(function(){
 		 	target = $("#modalSort").attr('class');
 		 	console.log(target);
 		 	return false;
