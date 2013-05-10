@@ -5,11 +5,14 @@
  * Licensed under the Apache License v2.0
  * http://www.apache.org/licenses/LICENSE-2.0
  *
+ * main items : 
+ * @media (min-width: 0px){} = define screen width changes
+ * !important = overrule all underlaying css
  */
 
  /*-------------------  reset  -----------------------*/
 
- html, body, div, span, applet, object, iframe,
+html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
@@ -22,35 +25,47 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
+	margin        : 0;
+	padding       : 0;
+	border        : 0;
+	font-size     : 100%;
+	font          : inherit;
 	vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+
 body {
 	line-height: 1;
 }
+
 ol, ul {
 	list-style: none;
 }
+
 blockquote, q {
 	quotes: none;
 }
+
 blockquote:before, blockquote:after,
 q:before, q:after {
 	content: '';
 	content: none;
 }
+
 table {
 	border-collapse: collapse;
-	border-spacing: 0;
+	border-spacing : 0;
+}
+
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
 }
 
 /*-------------------  preset classes  -----------------------*/
@@ -64,15 +79,19 @@ table {
  */
 
 /* colors */
-.aFmc{
+.aFmc {
 	color:#CCC;
 }
 
-.aFmbc{
+.aFsc {
+	color:#666;
+}
+
+.aFmbc {
 	background-color: white;
 }
 
-.aFmbg{
+.aFmbg {
 	/*
 	* IE9 SVG, needs conditional override of 'filter' to 'none' 
 	* location : elements/main-elements/css-resets/htmlgradient.html
@@ -88,11 +107,31 @@ table {
 
 }
 
-.aFsc{
-	color:#666;
+.aFht {
+	font            : 0/0 a;
+	color           : transparent;
+	text-shadow     : none;
+	background-color: transparent;
+	border          : 0;
+}
+
+.aFhe{
+	display   : none;
+	visibility: hidden;
 }
 
 /*-------------------  header  -----------------------*/
+
+header {
+
+}
+
+/* copy of exact same css as above ^ for different resolutions crossbrowser */
+@media(min-width: 1024px) and (max-width: 1152px){
+	header{
+
+	}
+}
 
 /*-------------------  content  -----------------------*/
 
