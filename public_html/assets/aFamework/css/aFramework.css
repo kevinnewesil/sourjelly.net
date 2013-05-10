@@ -1,0 +1,225 @@
+/*!
+ * aframework v 0.0.1
+ *
+ * Copyright 2013 Sour Jelly
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * main items : 
+ * @media (min-width: 0px){} = define screen width changes
+ * !important = overrule all underlaying css
+ * z-index = per lvl 100.  < 1 >999999
+ */
+
+ /*-------------------  reset  -----------------------*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin        : 0;
+	padding       : 0;
+	border        : 0;
+	font-size     : 100%;
+	font          : inherit;
+	vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+body {
+	line-height: 1;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing : 0;
+}
+
+html {
+	font-size               : 100%;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust    : 100%;
+}
+
+hr {
+	padding      : 0;
+	border       : 0;
+	margin       : 10px 0;
+	border-top   : 1px solid #ccc;
+	border-bottom: 1px solid #666;
+}
+
+img {
+	width                 : auto\9;
+	height                : auto;
+	max-width             : 100%;
+	vertical-align        : middle;
+	border                : 0;
+	-ms-interpolation-mode: bicubic;
+}
+
+textarea {
+	overflow      : auto;
+	vertical-align: top;
+}
+
+code {
+	padding         : 5px 5px;
+	color           : darkgray;
+	white-space     : nowrap;
+	background-color: #d9ffe1;
+	border          : 1px solid #232323;
+}
+
+/*-------------------  preset classes  -----------------------*/
+/*!
+ * all preset classes are buit up by the first letter of each word. 
+ * It always starts with the initials 'aF' which stands for aFramework.
+ * For example a reset class would be defined as following :
+ * '.aFrp' which stands for aFramework reset padding.
+ * this feature is mainly ment for quick developer building/debugging.
+ * This is for framework use only, and does not apply for SourJelly. 
+ */
+
+/* colors */
+.aFmc {
+	/* main color */
+	color:#CCC;
+}
+
+.aFsc {
+	/* secondary color */
+	color:#666;
+}
+
+.aFmbc {
+	/* main background-color */
+	background-color: white;
+}
+
+.aFmbg {
+	/*
+	* main gradient
+	* IE9 SVG, needs conditional override of 'filter' to 'none' 
+	* location : elements/main-elements/css-resets/htmlgradient.html
+	*/
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Y2ZTZiNCIgc3RvcC1vcGFjaXR5PSIwLjE0Ii8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlZDkwMTciIHN0b3Atb3BhY2l0eT0iMC4yMyIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(top,  rgba(246,230,180,0.14) 0%, rgba(237,144,23,0.23) 100%); 
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(246,230,180,0.14)), color-stop(100%,rgba(237,144,23,0.23))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(246,230,180,0.14) 0%,rgba(237,144,23,0.23) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(246,230,180,0.14) 0%,rgba(237,144,23,0.23) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(246,230,180,0.14) 0%,rgba(237,144,23,0.23) 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  rgba(246,230,180,0.14) 0%,rgba(237,144,23,0.23) 100%); /* W3C */
+	filter    : progid:DXImageTransform.Microsoft.gradient( startColorstr='#24f6e6b4', endColorstr='#3bed9017',GradientType=0 ); /* IE6-8 */
+
+}
+
+.aFhf {
+	/* hide font */
+	font            : 0/0 a;
+	color           : transparent;
+	text-shadow     : none;
+	background-color: transparent;
+	border          : 0;
+}
+
+.aFhe{
+	/* hide element */
+	display   : none;
+	visibility: hidden;
+}
+
+.aFpr{
+	float: right;
+}
+
+.aFpl{
+	float:left;
+}
+
+/*-------------------  header & nav  -----------------------*/
+
+header {
+
+}
+
+/* copy of exact same css as above ^ for different resolutions crossbrowser */
+@media(min-width: 1024px) and (max-width: 1152px){
+	header{
+
+	}
+}
+
+.nav {
+	margin          :0;
+	padding         :0;
+	border          :none;
+	background-color: none;
+}
+
+.nav-wrapper {
+	width             :100%;
+	height            :60px;
+	position          :fixed;
+	/* fixed needs to be top */
+	z-index           : 1;
+	background-color  : white;
+	border-bottom     : 1px solid lightgray;
+	-moz-box-shadow   : 5px 7px 33px #302f30;
+	-webkit-box-shadow: 5px 7px 33px #302f30;
+	box-shadow        : 5px 7px 33px #302f30;
+}
+
+.inner-nav {
+	width :1024px;
+	height:100%;
+	margin: 0 auto;
+}
+	
+.tag {
+	width  :150px;
+	height :100px;
+	padding: 5px 0;
+}
+
+.menu {}
+
+.menu-ul{}
+
+.menu-li{}
+
+.menu-link{}
+
+/*-------------------  content  -----------------------*/
+
+/*-------------------  footer  -----------------------*/
+
+
