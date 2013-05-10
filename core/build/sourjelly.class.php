@@ -241,6 +241,10 @@
 			return require(SYSTEM_PATH . $name . 'Compiler.class.php');
 		}
 
+		/**
+		 * function that runs on the end of sourjelly, that buils the html and shows it to the user
+		 * If the request is not made via ajax or command line interface this function is rendered
+		 */
 		final private function finishSourjelly()
 		{	
 			if(!$this -> _ajax && PHP_SAPI !== 'cli')
@@ -248,6 +252,9 @@
 				self::getHtml()->Build();
 		}
 
+		/**
+		 * 
+		 */
 		final protected function checkForLogin($fun)
 		{
 			$return = true;
