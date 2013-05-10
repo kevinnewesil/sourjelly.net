@@ -104,7 +104,7 @@
 			$_SESSION['user_language'] = \api\Api::getUsers() -> getUserLanguageBySession();
 
 			// Pre define variables
-			$fun = array();
+			$fun = array('','');
 
 			if (PHP_SAPI !== 'cli' && $this -> _ajax !== true) {
 				// Read the url and explode on index.php
@@ -260,20 +260,16 @@
 		 */
 		final protected function checkForLogin($fun)
 		{
-			$return = true;
+			$return = false;
 
-			if(
-				!isset(self::$_get -> login) ||
-				!isset($fun) ||
-				!is_array($fun) ||
-				$fun[0] != 'auth' ||
-				$fun[1] != 'login' ||
-				self::$_get -> login != 'login'
+			if(isset($_SESSION['login']) && \getApiUsers() -> getUserpermissionsBySession() > 1)
+				$return = true;
+			else if(
+				isset(self::$_get -> login) && self::$_get -> login != 'login' || $fun[0] != 'auth' || $fun[1] != 'login'
 			)
 				$return = false;
-
-			if( isset($_SESSION['login']) && \getApiUsers() -> getUserpermissionsBySession() < 2)
-				$return = false;
+			else
+				$return = true;
 
 			return $return;
 		}
