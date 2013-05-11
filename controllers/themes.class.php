@@ -125,6 +125,10 @@
 			$parts = explode('/',$rawUrl[1]);
 
 			$themeInfo = \api\Api::getThemes() -> getThemeById($parts[2]);
+			
+			if(empty($themeInfo))
+				$themeInfo = '~~=~~';
+
 			$themePostInfo = explode('=',$themeInfo['post']);
 
 			$placeholders = array_merge(array('id','themeName') , explode('~',$themePostInfo[0]));
@@ -132,8 +136,11 @@
 			foreach ($placeholders as $key => $placeholder) {
 				$placeholders[$key] = '{' . $placeholder . '}';
 			}
-
+			
 			$replacers = array_merge(array($themeInfo['id']), explode('~' , $themePostInfo[1])); 
+
+			foreach ($replacers as $key => $replacer)
+				$replacers[$key] = html_entity_decode($replacer,ENT_QUOTES,"UTF-8");
 
 			$tmp = str_replace($placeholders,$replacers,$tmp);
 
@@ -150,6 +157,7 @@
 			unset($this -> _post -> submit);
 			$themeName = $this -> _post -> themeName;
 			unset($this -> _post -> themeName);
+			$id = $this -> _post -> id;
 
 			foreach($this -> _post as $key => $value)
 				$themeData[$key] = stripslashes(stripslashes($value));
@@ -163,6 +171,9 @@
 				$placeholders[$key] = "{" . trim($values) . "}";
 
 			$replacers = array_values($themeData);
+
+			foreach($replacers as $key => $values)
+				$replacers[$key] = html_entity_decode($values,ENT_QUOTES,"UTF-8");
 
 			$themeVariables = str_replace($placeholders, $replacers, file_get_contents($_SERVER['DOCUMENT_ROOT'] . CSS_PATH . 'variables.less'));
 
