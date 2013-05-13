@@ -98,6 +98,23 @@
 
         final private function setSystemSettings()
         {
+
+        	$query = "SELECT * FROM `table_settings";
+        	
+        	if($stmt = $this -> _link -> query($query))
+        	{
+        		if($stmt -> num_rows > 0)
+        		{
+        			$stmt -> close();
+        			return false;
+        		}
+
+        		$stmt -> close();
+        		
+        	}
+        	else
+        		die($this -> _link -> error . 'line 115');
+
             $query = "INSERT INTO `table_settings` VALUES(NULL,'1','0','1','0','0','90','256','18','20','20','0','0','Europe/Amsterdam')";
             
             if($stmt = $this -> _link -> query($query))
@@ -132,7 +149,7 @@
 
         	if($stmt = $this -> _link -> multi_query($query))
         	{
-        		if($this -> _link -> affected_rows == 4)
+        		if($this -> _link -> affected_rows > 0)
         		{
         			$stmt -> close();
         			return true;
