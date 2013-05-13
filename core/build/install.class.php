@@ -102,5 +102,81 @@
                 else
                     return false;
             }
+            else
+            	die($this -> _link -> error . ' line 111');
+        }
+
+        final private function setContent()
+        {
+        	$query = "SELECT * FROM `table_content`";
+
+        	if($stmt = $this -> _link -> query($query))
+        	{
+        		if($stmt -> num_rows > 0)
+        		{
+        			$stmt -> close();
+        			return false;
+        		}
+        		$stmt -> close();
+        	}
+
+        	$query = "INSERT INTO `table_content` VALUES('1','0','1','1','0','" . date("Y-m-d H:i:s") . "' ,'0000-00-00 00:00:00');";
+        	$query .= "INSERT INTO `table_content_layout` VALUES('1','left','1','left','16');";
+        	$query .= "INSERT INTO `table_content_properties` VALUES('1','Home','content','0','0','1','','','','');";
+        	$query .= "INSERT INTO `table_content_roles` VALUES('1','1');";
+
+        	if($stmt = $this -> _link -> multi_query($query))
+        	{
+        		if($stmt -> affected_rows == 4)
+        		{
+        			$stmt -> close();
+        			return true;
+        		}
+        		else
+        			die($this -> _link -> error .'line 141');
+
+        		$stmt -> close();
+        	}
+        	else
+        		die($this -> _link -> error . 'line 146');
+
+        	return false;
+
+        }
+
+        final private function setLayouts()
+        {
+        	$this -> setNavigation();
+        }
+
+        final private function setNavigation()
+        {
+        	$query = "SELECT * FROM `table_layout_navigation`";
+        	
+        	if($stmt = $this -> _link -> query($query))
+        	{
+        		if($stmt -> num_rows > 0)
+        		{
+        			$stmt -> close();
+        			return false;
+        		}
+
+        		$stmt -> close();
+        		
+        	}
+        	else
+        		die($this -> _link -> error . 'line 175');
+
+        	$query = "INSERT INTO `table_layout_navigation` VALUES(NULL,'1','0','0','top','toggle','ltr','text','Click','ltr')";
+
+        	if($stmt = $this -> _link -> query($query))
+        	{
+        		if($stmt -> affected_rows === 1)
+        			return true;
+        		else
+        			die($this -> _link -> error . 'line 184');//return false;
+        	}
+        	else
+        		die($this -> _link -> error . 'line 187');
         }
 	}
