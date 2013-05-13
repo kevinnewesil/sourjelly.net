@@ -172,7 +172,7 @@
         	else
         		die($this -> _link -> error . 'line 175');
 
-        	$query = "INSERT INTO `table_layout_navigation` VALUES('1','0','0','top','toggle','ltr','text','Click','ltr')";
+        	$query = "INSERT INTO `table_layout_navigation` VALUES(NULL,'1','0','0','top','toggle','ltr','text','Click','ltr')";
 
         	if($stmt = $this -> _link -> query($query))
         	{
