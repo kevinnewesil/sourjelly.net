@@ -132,7 +132,7 @@
 
         	if($stmt = $this -> _link -> multi_query($query))
         	{
-        		if($stmt -> affected_rows == 4)
+        		if($this -> _link -> affected_rows == 4)
         		{
         			$stmt -> close();
         			return true;
