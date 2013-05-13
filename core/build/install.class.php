@@ -165,8 +165,6 @@
         			$stmt -> close();
         			return false;
         		}
-        		else
-        			die($this -> _link -> error . 'line 169');
 
         		$stmt -> close();
         		
