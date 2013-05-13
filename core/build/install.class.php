@@ -125,10 +125,10 @@
         		$stmt -> close();
         	}
 
-        	$query = "INSERT INTO `table_content` VALUES('1','0','1','1','0','" . date("Y-m-d H:i:s") . "' ,'0000-00-00 00:00:00');";
-        	$query .= "INSERT INTO `table_content_layout` VALUES('1','left','1','left','16');";
-        	$query .= "INSERT INTO `table_content_properties` VALUES('1','Home','content','0','0','1','','','','');";
-        	$query .= "INSERT INTO `table_content_roles` VALUES('1','1');";
+        	$query = "INSERT INTO `table_content` VALUES(NULL,'1','0','1','1','0','" . date("Y-m-d H:i:s") . "' ,'0000-00-00 00:00:00');";
+        	$query .= "INSERT INTO `table_content_layout` VALUES(NULL,'1','left','1','left','16');";
+        	$query .= "INSERT INTO `table_content_properties` VALUES(NULL,'1','Home','content','0','0','1','','','','');";
+        	$query .= "INSERT INTO `table_content_roles` VALUES(NULL,'1','1');";
 
         	if($stmt = $this -> _link -> multi_query($query))
         	{
