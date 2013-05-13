@@ -12,11 +12,6 @@
 		<div class="nav-collapse collapse pull-right">
 			<ul class="nav">
 				{pages} <!-- Placeholder with all the page titles for links -->
-				<li>
-                  <a href="#" id="showdiv" data-toggle="user-tooltip" data-placement="right" title="ajcvhall">
-                    <i class="icon-user"></i>
-                  </a>
-                </li>
 			</ul>
 		</div>
 	</div>

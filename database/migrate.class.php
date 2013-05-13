@@ -31,7 +31,7 @@
 					'password'      => 'string',
 					'DoB'           => 'date',
 					'registered_at' => 'string',
-					'active'        => 'int',
+					'active'        => 'string',
 					'dev'           => 'int',
 					'permissions'   => 'int',
 					'lang'          => 'string'
