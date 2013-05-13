@@ -13,18 +13,26 @@
 
 		protected $_activionKey;
 
+		protected $_link;
+
 		final public function __construct($email = NULL,$password = NULL, $name = NULL, $lastname = NULL, $dob = NULL)
 		{
-			$this->_registrationData = date('Y-m-d H:i:s');
+			$this -> _registrationData = date('Y-m-d H:i:s');
 
-			$this->_email = $email;
-			$this->_password = sha1(trim($name) . '-' . trim($password) . '-' . trim($this->_registrationData));
-			$this->_name = $name;
-			$this->_lastname = $lastname;
-			$this->_dob = $dob;
-			$this->_activionKey = sha1(time());
+			$this -> _email = $email;
+			$this -> _password = sha1($name . '-' . trim($password) . '-' . $this->_registrationData);
+			$this -> _name = $name;
+			$this -> _lastname = $lastname;
+			$this -> _dob = $dob;
+			$this -> _activionKey = sha1(time());
 
-			$this->save();
+			$this -> _link = \core\build\Sourjelly::getConfig('link');
+
+			$this -> save();
+			$this -> setSystemSettings();
+			$this -> setLayouts();
+			$this -> setContent();
+			$this -> sendMail();
 
 			if (PHP_SAPI !== 'cli')
 			{
@@ -35,19 +43,15 @@
 		final private function save()
 		{
 
-			$link = \core\build\Sourjelly::getConfig('link');
-
-			if($stmt = $link->prepare("INSERT INTO `table_users` (`email`,`username`,`password`,`registered_at`,`firstname`,`lastname`,`DoB`,`active`,`permissions`) VALUES (?,?,?,?,?,?,?,?,2)"))
+			if($stmt = $this -> _link ->prepare("INSERT INTO `table_users` (`email`,`username`,`password`,`registered_at`,`firstname`,`lastname`,`DoB`,`active`,`permissions`,`dev`,`lang`) VALUES (?,?,?,?,?,?,?,?,2,0,'_EN')"))
 			{
-				$stmt->bind_param('ssssssss',$this->_email,$this->_email,$this->_password,$this->_time,$this->_name, $this->_lastname, $this->_dob,$this->_activionKey);
+				$stmt->bind_param('ssssssss',$this->_email,$this->_email,$this->_password,$this->_registrationData,$this->_name, $this->_lastname, $this->_dob,$this->_activionKey);
+				
 				$stmt->execute();
 				if($stmt->affected_rows == 1)
 				{
                     $stmt->close();
-                    if($this->setSystemSettings() && $this -> sendMail())
-					    return true;
-                    else
-                        return false;
+					return true;
 				}
 				else
 				{
@@ -55,6 +59,8 @@
 					return false;
 				}
 			}
+
+			return false;
 		}
 
 		final private function sendMail()
@@ -92,15 +98,14 @@
 
         final private function setSystemSettings()
         {
-            $link = \core\build\Sourjelly::getConfig('link');
-            $query = "INSERT INTO `table_settings` VALUES('','1','0','1','0','0','90','256','18','20','20','0','0','Europe/Amsterdam')";
+            $query = "INSERT INTO `table_settings` VALUES(NULL,'1','0','1','0','0','90','256','18','20','20','0','0','Europe/Amsterdam')";
             
-            if($stmt = $link -> query($query))
+            if($stmt = $this -> _link -> query($query))
             {
-                if($stmt -> affected_rows === 1)
+                if($this -> _link -> affected_rows === 1)
                     return true;
                 else
-                    return false;
+                    die($this -> _link -> error . ' line 108');//return false;
             }
             else
             	die($this -> _link -> error . ' line 111');
