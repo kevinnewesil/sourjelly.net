@@ -107,49 +107,49 @@
 		 * descrition
 		 * @return [type]
 		 */
-		public static function callTo($var,$function,$params){}
+		abstract public static function callTo($var,$function,$params);
 		
 		/**
 		 * descrition
 		 * @return [type]
 		 */
-		public static function getConfig($param = NULL){}
+		abstract public static function getConfig($param = NULL);
 		
 		/**
 		 * descrition
 		 * @return [type]
 		 */
-		public static function getApi($param = NULL){}
+		abstract public static function getApi($param = NULL);
 		
 		/**
 		 * descrition
 		 * @return [type]
 		 */
-		public static function getHtml($param = NULL){}
+		abstract public static function getHtml($param = NULL);
 		
 		/**
 		 * descrition
 		 * @return [type]
 		 */
-		public static function getDb($param = NULL){}
+		abstract public static function getDb($param = NULL);
 		
 		/**
 		 * descrition
 		 * @return [type]
 		 */
-		public static function getGet(){}
+		abstract public static function getGet();
 		
 		/**
 		 * descrition
 		 * @return [type]
 		 */
-		public static function getPost(){}
+		abstract public static function getPost();
 		
 		/**
 		 * descrition
 		 * @return [type]
 		 */
-		public static function loadCompilers($name){}
+		abstract public static function loadCompilers($name);
 		
 		/**
 		 * descrition

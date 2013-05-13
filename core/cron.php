@@ -11,9 +11,6 @@
 
         require_once('config/const.config.php');
 
-        require_once(ABSTRACTS_PATH . 'sourjelly.abstract.php');
-        require_once(INTERFACE_PATH . 'sourjelly.interface.php');
-
 		require_once(BUILD_PATH . 'sourjelly.class.php');
 	}
 
