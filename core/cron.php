@@ -4,17 +4,20 @@
 	// Require config files && Database connection file for automatic usage via server or terminal.
 	//-----------------------------------------------------------------------------------------------------------------
 	
-	if(!class_exists('\\core\\database\\databaseBase'))
+	if(!class_exists('\\core\\build\\Sourjelly'))
 	{
-
+		
 		error_reporting(-1);
-
+		
         require_once('config/const.config.php');
-
+        
         require_once(ABSTRACTS_PATH . 'sourjelly.abstract.php');
         require_once(INTERFACE_PATH . 'sourjelly.interface.php');
-
+        
 		require_once(BUILD_PATH . 'sourjelly.class.php');
+		
+		new \core\build\Sourjelly;
+		
 	}
 
 	//-----------------------------------------------------------------------------------------------------------------
@@ -29,13 +32,13 @@
 			require_once('database/migrate.class.php');
 
 		new \database\Migrate;
-		
+
 		return true;
 	}
 
 	function databaseBackup()
 	{
-		new \core\build\Sourjelly;
+
 		$link = \core\build\Sourjelly::getConfig('link');
 
 		$tables = array();
