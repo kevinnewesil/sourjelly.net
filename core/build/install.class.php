@@ -176,7 +176,7 @@
 
         	if($stmt = $this -> _link -> query($query))
         	{
-        		if($stmt -> affected_rows === 1)
+        		if($this -> _link -> affected_rows === 1)
         			return true;
         		else
         			die($this -> _link -> error . 'line 184'); //return false;
