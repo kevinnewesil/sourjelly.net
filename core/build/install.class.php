@@ -174,7 +174,7 @@
         		if($stmt -> affected_rows === 1)
         			return true;
         		else
-        			die($this -> _link -> error . 'line 184');//return false;
+        			die($this -> _link -> error . 'line 184'); //return false;
         	}
         	else
         		die($this -> _link -> error . 'line 187');
