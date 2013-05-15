@@ -239,17 +239,47 @@
 
 			case 'test':
 				
+				echo 'Checking for argv...';
+
 				if(!isset($argv[2]) || $argv[2] == '')
 				{
-					$ret .= \core\colourString("No test location provided","red");
+					echo \core\colourString("No test location provided","red");
 					break;
 				}
 
+				echo \core\colourString("Argv's loaded ","green") . PHP_EOL . 'Checking if test file exists... ';
+
 				if(!file_exists('tests/' . $argv[2] . '_Tests.php'))
 				{
-					$ret .= \core\colourString("Test file not found","red");
+					echo \core\colourString("Test file not found","red");
 					break;
 				}
+
+				require('tests/' . $argv[2] . '_Tests.php');
+
+				echo \core\colourString('File loaded ','green') . PHP_EOL . 'Checking if test class exists... ';
+
+				$className = "\\tests\\" . ucfirst($argv[2] . '_Tests');
+
+				if(!class_exists($className))
+				{
+					echo \core\colourString("Test class could not be loaded","red");
+					break;
+				}
+
+				echo \core\colourString("Test class exists","green") . PHP_EOL . 'Starting up test envoiroment... ';
+
+				if(!$class = new $className)
+				{
+					echo \core\colourString("Test class could not be called.","red");
+					break;
+				}
+
+				echo \core\colourString("Test class initialised","green") . PHP_EOL;
+
+				echo PHP_EOL . \core\colourString("Loading test class: " . ucfirst($argv[2]) . "... " ,"blue") . PHP_EOL;
+
+				$class -> start();
 
 				break;
 
@@ -263,7 +293,7 @@
 		}
 	}
 
-	$ret .= "\n";
+	$ret .= PHP_EOL;
 
 	//--------------------------------------------------------------------------------------------------------------------||
 	// Functions result , opens a handle, and reads input user put into CLI
