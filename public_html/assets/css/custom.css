@@ -103,3 +103,6 @@
 #modalToggle #modal{
 	height:100%;
 }
+.comment .full-width{
+	position:relative !important;
+}
