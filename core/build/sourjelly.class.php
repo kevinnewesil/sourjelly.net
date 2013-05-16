@@ -213,6 +213,9 @@
 			}
 		}
 
+		final public static function getAl(){ return self::$_al; }
+		final public static function getWv(){ return self::$_wv; }
+
 		final public static function getGet(){ return self::$_get; }
 		final public static function getPost(){ return self::$_post; }
 
@@ -241,7 +244,7 @@
 		/**
 		 * 
 		 */
-		final protected function checkForLogin($fun)
+		final public function checkForLogin($fun)
 		{
 			$return = false;
 
