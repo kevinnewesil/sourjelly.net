@@ -84,12 +84,16 @@
 		 * if the request is not from an Command line interface execute the webbuilder.
 		 * if there's a login request, resign to the login, else, autoload the controller, called by user. see @class -> \core\build\Autoloader
 		 */
-		final protected function callClasses()
+		final public function callClasses()
 		{
 			//Call for config and database class for rest of code.
-			self::$_config = new \config\Config;
-			self::$_db     = new \core\database\DatabaseBase;
-			self::$_api    = new \api\Api;
+			if(!is_object(self::$_api))
+			{
+				self::$_config = new \config\Config;
+				self::$_db     = new \core\database\DatabaseBase;
+				self::$_api    = new \api\Api;
+			}
+
 			//self::$_secure = new \core\access\Secure;
 
 			//Set user language.
@@ -131,7 +135,7 @@
 					self::$_wv = new \core\build\Webview;
 			}
 
-			return;
+			return true;
 
 		}
 
@@ -250,9 +254,7 @@
 
 			if(isset($_SESSION['login']) && \getApiUsers() -> getUserpermissionsBySession() > 1)
 				$return = true;
-			else if(
-				isset(self::$_get -> login) && self::$_get -> login != 'login' || $fun[0] != 'auth' || $fun[1] != 'login'
-			)
+			else if( isset(self::$_get -> login) && self::$_get -> login != 'login' || $fun[0] != 'auth' || $fun[1] != 'login' )
 				$return = false;
 			else
 				$return = true;
