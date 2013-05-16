@@ -1,6 +1,11 @@
 #!/usr/bin/env php
 
 <?php
+
+	// Require the core files of the system.
+	// Sour jelly's back bone
+	require('config/const.config.php');
+	require(CORE_PATH . 'require.php');
 	
 	//--------------------------------------------------------------------------------------------------------------------||
 	//Check if Request is made from terminal/command line.
@@ -239,7 +244,7 @@
 
 			case 'test':
 				
-				echo 'Checking for argv...';
+				echo 'Checking for argv... ';
 
 				if(!isset($argv[2]) || $argv[2] == '')
 				{

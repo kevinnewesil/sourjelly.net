@@ -64,9 +64,7 @@
 	// Require config file which defines basic paths etc. & require the Sourjelly class !
 	require('../config/const.config.php');
 
-	require(INTERFACE_PATH . 'sourjelly.interface.php');
-	require(ABSTRACTS_PATH . 'sourjelly.abstract.php');
-	require(BUILD_PATH . 'sourjelly.class.php');
+	require(CORE_PATH . 'require.php');
 	
 	// time to start the system...
 	new \core\build\Sourjelly;

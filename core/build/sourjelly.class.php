@@ -36,29 +36,6 @@
 			// Set ajax for ajax request
 			$this -> _ajax = $ajax;
 
-			// Require the core files of the system.
-			// Sour jelly's back bone
-			require(CONFIG_PATH . 'config.class.php');
-			require(CDB_PATH . 'databaseBase.class.php');
-			require(CORE_PATH . 'helpers.php');
-
-			require(ACCESS_PATH . 'system.class.php');
-			require(ACCESS_PATH . 'redirect.class.php');
-			require(ACCESS_PATH . 'request.class.php');
-			require(ACCESS_PATH . 'secure.class.php');
-
-			require(BUILD_PATH . 'autoloader.class.php');
-			require(BUILD_PATH . 'template.class.php');
-			require(BUILD_PATH . 'htmlBase.class.php');
-			require(BUILD_PATH . 'module.class.php');
-			require(BUILD_PATH . 'webview.class.php');
-
-			require(SYSTEM_PATH . 'controller.class.php');
-			require(SYSTEM_PATH . 'model.class.php');
-			require(SYSTEM_PATH . 'simpleLoader.php');
-
-			require(API_PATH . 'api.class.php');
-
 			self::$_get  = \core\access\Request::returnGlobalObject('get');
 			self::$_post = \core\access\Request::returnGlobalObject('post');
 
