@@ -9,7 +9,7 @@
 		<link rel="stylesheet" href="{assets}css/bootstrap.min.css" type="text/css">
 		<link rel="stylesheet" href="{assets}css/tablesorter.css" type="text/css">
 		<link rel="stylesheet" href="{assets}css/bootstrap-responsive.min.css" type="text/css">
-		<!-- <link rel="stylesheet/less" href="{assets}css/theme.less" type="text/css"> -->
+		<link rel="stylesheet/less" href="{assets}css/theme.less" type="text/css">
 		<link rel="stylesheet" href="{assets}css/custom.css" type="text/css">
 		<link rel="stylesheet" href="{assets}css/redactor.css" type="text/css">
 		<link rel="stylesheet" href="{assets}css/image-dropper.css" type="text/css">

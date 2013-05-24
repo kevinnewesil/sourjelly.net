@@ -12,7 +12,7 @@
 
 		<!-- Include stlesheets -->
 		<link rel="stylesheet" href="{assets}css/bootstrap.min.css"> <!-- The main bootstrap layout. -->
-		<!-- <link rel="stylesheet/less" href="{assets}css/theme.less">  The path to one's custom theme. -->
+		<link rel="stylesheet/less" href="{assets}css/theme.less">  <!-- The path to one's custom theme. -->
 		<link rel="stylesheet" href="{assets}css/custom.css"> <!-- custom css rules that overwrite the custom theme and the base layout. -->
 		<link rel="stylesheet" href="{assets}css/bootstrap-responsive.min.css"> <!-- The responsive design for cross platform browsing. -->
 
