@@ -90,6 +90,7 @@
 		final public function callClasses()
 		{
 			//Call for config and database class for rest of code.
+			
 			if(!is_object(self::$_api))
 			{
 				self::$_config = new \config\Config;

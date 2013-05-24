@@ -6,6 +6,8 @@
 	// Sour jelly's back bone
 	require('config/const.config.php');
 	require(CORE_PATH . 'require.php');
+
+	new \core\build\Sourjelly;
 	
 	//--------------------------------------------------------------------------------------------------------------------||
 	//Check if Request is made from terminal/command line.
