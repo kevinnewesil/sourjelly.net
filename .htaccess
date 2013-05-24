@@ -1,6 +1,1 @@
-AddType text/css .css .less
-AddType application/javascript .js
 
-RewriteEngine On
-RewriteRule localhost/sourjelly.net/public_html/index.php/users/index/?ns=$1&path=$2 [L]
-# RewriteRule ^([^/]*)/([^/]*)$ /index.php/users/index/?ns=$1&path=$2 [L]
