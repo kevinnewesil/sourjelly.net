@@ -72,6 +72,8 @@
 
 .navbar-custom{
 	box-shadow: 0 4px 6px -6px #232323;
+	background-color: white !important;
+	*z-index: 1 !important;
 }
 
 .form-search{
