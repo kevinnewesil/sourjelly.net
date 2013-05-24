@@ -17,18 +17,29 @@
 
 		protected $_post;
 
+		protected $_cli;
+
 		/**
 		 * This function checks if there's a post request to login, if there is it starts the @see postLogin(); if there isn't it starts the
 		 * @see getLogin() function.
 		 */
-		final public function login()
+		final public function login($cli = false)
 		{
 			$this -> _post = \Post();
+			$return = false;
+
+			if($cli)
+				$this -> _cli = true;
+			else
+				$this -> _cli = false;
 
 			if(isset($this -> _post -> login))
-				$this->postLogin();
+				$return = $this->postLogin();
 			
-			$this->getLogin();
+			if(!$this -> _cli)
+				$return = $this->getLogin();
+
+			return $return;
 		}
 
 		/**
@@ -56,11 +67,16 @@
 
             if($this->_password === $user['password'])
 				if($_SESSION['login'] = $user['firstname'] . ' ' . $user['lastname'])
-					\core\access\Redirect::home('logged in successfully','success');
+					if(!$this -> _cli)
+						\core\access\Redirect::home('logged in successfully','success');
+					else
+						return true;
 				else
 					\SetNotice('Session for user could not be created, please contact an administrator. || authclass;');
 			else
 				\SetNotice('Username or Password wrong..');
+
+			return false;
 
 		}
 

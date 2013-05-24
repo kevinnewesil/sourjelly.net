@@ -15,7 +15,7 @@
 
 		protected $_link;
 
-		final public function __construct($email = NULL,$password = NULL, $name = NULL, $lastname = NULL, $dob = NULL)
+		final public function __construct($email = NULL,$password = NULL, $name = NULL, $lastname = NULL, $dob = NULL, $cli = false)
 		{
 			$this -> _registrationData = date('Y-m-d H:i:s');
 
@@ -24,15 +24,20 @@
 			$this -> _name = $name;
 			$this -> _lastname = $lastname;
 			$this -> _dob = $dob;
-			$this -> _activionKey = sha1(time());
 
 			$this -> _link = \core\build\Sourjelly::getConfig('link');
 
-			$this -> save();
-			$this -> setSystemSettings();
-			$this -> setLayouts();
-			$this -> setContent();
-			$this -> sendMail();
+            if(!$cli)
+            {
+                $this -> _activionKey = sha1(time());
+                $this -> save();
+    			$this -> setSystemSettings();
+    			$this -> setLayouts();
+    			$this -> setContent();
+    			$this -> sendMail();
+            }
+            else
+                $this -> _activionKey = '1';
 
 			if (PHP_SAPI !== 'cli')
 			{
@@ -40,7 +45,7 @@
 			}
 		}
 
-		final private function save()
+		final public function save()
 		{
 
 			if($stmt = $this -> _link ->prepare("INSERT INTO `table_users` (`email`,`username`,`password`,`registered_at`,`firstname`,`lastname`,`DoB`,`active`,`permissions`,`dev`,`lang`) VALUES (?,?,?,?,?,?,?,?,2,0,'_EN')"))
@@ -48,6 +53,7 @@
 				$stmt->bind_param('ssssssss',$this->_email,$this->_email,$this->_password,$this->_registrationData,$this->_name, $this->_lastname, $this->_dob,$this->_activionKey);
 				
 				$stmt->execute();
+
 				if($stmt->affected_rows == 1)
 				{
                     $stmt->close();
@@ -55,10 +61,14 @@
 				}
 				else
 				{
+                    die($this -> _link -> error);
+
 					$stmt->close();
 					return false;
 				}
 			}
+            else
+                die($this -> _link -> error);
 
 			return false;
 		}
