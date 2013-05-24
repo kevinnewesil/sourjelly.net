@@ -18,12 +18,14 @@
 		
 		final public function navigation()
 		{
-			$data = \getApiLayoutNavigation() -> getPrimaryLayoutSettings();
+			$data         = \getApiLayoutNavigation() -> getPrimaryLayoutSettings();
+			$placeholders = array();
+			$replacers    = array();
 
 			foreach($data as $key => $value)
 			{
 				$placeholders[] = '{' . $key . '_value}';
-				$replacers[]    = ($key == 'dynamicNavigation') ? 'checked="checked"' : $value;
+				$replacers[]    = ($key == 'dynamicNavigation' || $key = 'alwaysVisible' && $value == '1') ? 'checked="checked"' : $value;
 			}
 
 			$tmp = str_replace($placeholders, $replacers, \Template('layout/navigation.html.tpl'));

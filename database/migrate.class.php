@@ -4,7 +4,6 @@
 	{
 		final public function __construct()
 		{
-			new \core\build\Sourjelly;
 
 			//\core\build\Sourjelly::getDb()->createDatabase('cms');
 
@@ -31,7 +30,7 @@
 					'password'      => 'string',
 					'DoB'           => 'date',
 					'registered_at' => 'string',
-					'active'        => 'int',
+					'active'        => 'string',
 					'dev'           => 'int',
 					'permissions'   => 'int',
 					'lang'          => 'string'
@@ -200,15 +199,14 @@
 		{
 			\core\build\Sourjelly::getDb() -> createTable("table_layout_navigation",
 				array(
+					'alwaysVisible'			=> 'int',
 					'dynamicNavigation'     => 'int',
 					'zIndex'                => 'int',
-					'width'                 => 'int',
-					'position'              => 'string',
 					'positionFromHeader'    => 'string',
-					'navigationSort'        => 'string',
 					'jsFunction'            => 'string',
 					'toggleAnimationStyle'  => 'string',
 					'toggleTrigger'         => 'string',
+					'toggleTriggerText'		=> 'string',
 					'slideInAnimationStyle' => 'string',
 				)
 			);

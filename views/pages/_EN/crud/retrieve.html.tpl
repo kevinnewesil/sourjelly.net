@@ -3,7 +3,7 @@
 		$('.tablesorter').tablesorter();
 	});
 </script>
-<table class="table table-hover table-condensed tablesorter">
+<table class="table tablesorter">
 	<thead>
 		<tr>
 			<th colspan="7">Pages</th>
@@ -22,4 +22,3 @@
 		{rows}
 	</tbody>
 </table>
-<hr>

@@ -10,7 +10,7 @@
 	else
 		$config = array();
 
-	if(isset($data -> contact_form_submit) && $data -> contact_form_submit == 'save contact form settings')
+	if(isset($data -> contact_form_submit) && $data -> contact_form_submit == 'Save')
 	{
 
 		//Set the checkboxes as boulean.

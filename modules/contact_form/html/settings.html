@@ -1,3 +1,30 @@
+<script type="text/javascript">
+
+	$(document).ready(function(){
+
+		var amount = 1;
+
+		$("#addInput").click(function(){
+			$(".formControls").append("\
+				<div class=\"control-group\">\
+					<label for=\"\" class=\"control-label\">label</label>\
+					<div class=\"controls\">\
+						<input type=\"text\" name=\"input\" value=\"\" class=\"input-added input-" + amount + "\">\
+					</div>\
+				</div>\
+			");
+
+			amount = amount + 1;
+		});
+
+		$(".input-added").live('keyup',function(){
+			val = $(this)[0].value;
+			$(this).attr('name',val);
+			$(this).parent().siblings('label').html(val);
+		});
+	});
+</script>
+
 <form method="post" action="/sourjelly.net/public_html/index.php/modules/settings/1/?ns=controllers&amp;path=controller_path" class="form form-horizontal">
 	<fieldset>
 		<legend>Common settings</legend>
@@ -16,10 +43,27 @@
 				<input type="text" name="saveMail" value="{saveMail}" id="saveMail" placeholder="10">
 			</div>
 		</div>
+	</fieldset>
+
+	<fieldset class="formControls">
+		<legend>Form controls</legend>
+
+		<div class="control-group">
+			<label for="addInput" class="control-label">Add input field</label>
+			<div class="controls input">
+				<a href="#" class="btn btn-primary btn-large" id="addInput">Add input</a>
+			</div>
+		</div>
+
+	</fieldset>
+
+	<fieldset>
+		
+		<legend>Save</legend>
 
 		<div class="control-group">
 			<div class="controls">
-				<input type="submit" name="contact_form_submit" value="save contact form settings" class="btn btn-primary btn-large">
+				<input type="submit" name="contact_form_submit" value="Save" class="btn btn-primary btn-large">
 			</div>
 		</div>
 

@@ -9,7 +9,7 @@
 		<link rel="stylesheet" href="{assets}css/bootstrap.min.css" type="text/css">
 		<link rel="stylesheet" href="{assets}css/tablesorter.css" type="text/css">
 		<link rel="stylesheet" href="{assets}css/bootstrap-responsive.min.css" type="text/css">
-		<link rel="stylesheet/less" href="{assets}css/theme.less" type="text/css">
+		<!-- <link rel="stylesheet/less" href="{assets}css/theme.less" type="text/css"> -->
 		<link rel="stylesheet" href="{assets}css/custom.css" type="text/css">
 		<link rel="stylesheet" href="{assets}css/redactor.css" type="text/css">
 		<link rel="stylesheet" href="{assets}css/image-dropper.css" type="text/css">
@@ -32,6 +32,8 @@
 		<script type="text/javascript" src="{assets}js/functions.js"></script>
 		<script type="text/javascript" src="{assets}js/less.js"></script>
 		<script type="text/javascript" src="{assets}js/redactor.js"></script>
+		<script type="text/javascript" src="{assets}js/cookie.js"></script>
+		<script type="text/javascript" src="{assets}js/mousemenu.js"></script>
 
 		<!-- Some random javascript -->
 		<script type="text/javascript">
@@ -64,10 +66,10 @@
 	<body>
 		<div id="container">
 			<nav>
-				<div class="navbar navbar-fixed-top">
+				<div class="nav navbar navbar-fixed-top" id="navigation">
 					<div class="navbar-inner" style="padding-left:50px;">
 						<div>
-							 <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+							<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>

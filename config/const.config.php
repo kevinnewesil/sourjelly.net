@@ -21,8 +21,13 @@
 	}
 	else
     {
-        $parts = explode('index.php' , $_SERVER['REQUEST_URI']);
-        $parts[0] = str_replace('ajax','public_html',$parts[0]);
+    	if (PHP_SAPI !== 'cli')
+    	{
+	        $parts = explode('index.php' , $_SERVER['REQUEST_URI']);
+	        $parts[0] = str_replace('ajax','public_html',$parts[0]);
+	    }
+	    else
+	    	$parts[0] = $_SERVER['PWD'];
 
 		DEFINE('AJAX_PATH' , MAIN_PATH . 'ajax' . DS);
 		DEFINE('ASSETS_PATH' , $parts[0] . 'assets' . DS);
@@ -56,7 +61,9 @@
 	DEFINE('CONTROLLER_PATH', MAIN_PATH . 'controllers/');
 	DEFINE('MODEL_PATH', MAIN_PATH . 'models/');
 	DEFINE('API_PATH', MAIN_PATH . 'api/');
+	DEFINE('ABSTRACTS_PATH', MAIN_PATH . 'abstracts/');
 	DEFINE('INTERFACE_PATH', MAIN_PATH . 'interfaces/');
+	DEFINE('TESTS_PATH', MAIN_PATH . 'tests/');
 	DEFINE('TMP_PATH' , MAIN_PATH . 'tmp/');
 	
 	// Define namespaces (used in the autoloader class).
