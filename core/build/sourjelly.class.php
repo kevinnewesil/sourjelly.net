@@ -33,6 +33,9 @@
 		 */
 		final public function __construct($ajax = false)
 		{
+
+			
+
 			// Set ajax for ajax request
 			$this -> _ajax = $ajax;
 

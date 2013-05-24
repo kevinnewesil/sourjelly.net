@@ -9,7 +9,7 @@
 	{
 		$error = NULL;
 
-		array_pop($data);
+		unset($data -> submit_contact_form);
 
 		if(!empty($data -> name) && !empty($data -> email) && !empty($data -> message))
 		{
@@ -22,24 +22,37 @@
 			{
 				if(filter_var($data -> email,FILTER_VALIDATE_EMAIL))
 				{
-					if(file_exists(MODULES_PATH . 'contact_form/tmp/mailllist.php'))
-						$mode = 'w';
+					$maillist = '';
+					$numberOfEmail = 0;
+
+					if(!file_exists(MODULES_PATH . 'contact_form/tmp/maillist.php'))
+					{
+						$mode = 'w+';
+					}
 					else
+					{
 						$mode = 'a';
 
-					//Simple check to see the amount of posts
-					$maillist = trim(file_get_contents(MODULES_PATH . 'contact_form/tmp/maillist.php'));
-					$numberOfEmail = count(explode(';', $maillist))-1;
+						//Simple check to see the amount of posts
+						$maillist = trim(file_get_contents(MODULES_PATH . 'contact_form/tmp/maillist.php'));
+						$numberOfEmail = count(explode(';', $maillist))-1;
+					}
 
 					if($numberOfEmail <= (int)$config['saveMail'])
 					{
-						if($handle = @fopen(MODULES_PATH . 'contact_form/tmp/maillist.php', $mode))
+						if($handle = fopen(MODULES_PATH . 'contact_form/tmp/maillist.php', $mode))
 						{
-							$mailstring = implode('~', $data) . ';';
+
+							$mailstring = '';
+
+							foreach($data as $value)
+								$mailstring .= '~' . $value;
+
+							$mailstring .= ';';
 							fwrite($handle, $mailstring . PHP_EOL);
 							fclose($handle);
 
-							\core\access\Redirect::Refresh('Mail has been send.','success');
+							\setNoticeSuccess('Mail has been send.','success');
 						}
 						else
 						{
@@ -50,28 +63,34 @@
 					{
 						$maillist = explode(';',$maillist);
 						array_pop($maillist);
-						array_push($maillist, implode('~',$data));
+
+						$mailstring = '';
+
+						foreach($data as $value)
+							$mailstring .= '~' . $value;
+
+						array_push($maillist, $mailstring);
 
 						foreach($maillist as $mail)
 						{
 							$mail = explode('~',$mail);
+
 							$subject = 'contact form message Sourjelly.';
 							$message = $mail[2] . PHP_EOL . $mail[0];
 							$headers = 'From: ' . $mail[1] . "\r\n" .
 									   'Reply-To:'  . $mail[1] . "\r\n" .
 									   'X-Mailer: PHP/' . phpversion();
 
-							if(mail($config['email'], $subject, $message,$headers))
-							{
-								$handle = fopen(MODULES_PATH . 'contact_form/tmp/maillist.php','w');
-								fwrite($handle, '');
-								fclose($handle);
-
-								\core\access\Redirect::Refresh('Mail has been send.','success');
-							}
-							else
-								\core\access\Redirect::Refresh('Something went wrong sending the mail');
+							mail($config['email'], $subject, $message,$headers);
+							
 						}
+
+						$handle = fopen(MODULES_PATH . 'contact_form/tmp/maillist.php','w');
+							fwrite($handle, '');
+							if(fclose($handle))
+								\setNoticeSuccess('Mail has been send.','success');
+							else
+								\setNotice('Something went wrong sending the mail');
 					}	
 				}
 				else
