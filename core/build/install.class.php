@@ -109,7 +109,7 @@
         final private function setSystemSettings()
         {
 
-        	$query = "SELECT * FROM `table_settings";
+        	$query = "SELECT * FROM `table_settings`";
         	
         	if($stmt = $this -> _link -> query($query))
         	{
