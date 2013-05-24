@@ -12,6 +12,7 @@
 		protected $_model;
 
 		protected static $_post;
+		protected static $_get;
 
 		/**
 		 * gets the name of the controller via the url, and cleanes it up, so that it can include, and start the model that belongs to the controller.
@@ -31,6 +32,7 @@
 			$this->_model = new $namespaced_model;
 
 			$this -> _post = \Post();
+			$this -> _get  = \Get();
 		}
 
 		/**

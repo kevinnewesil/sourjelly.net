@@ -8,18 +8,18 @@
 	 * this is where the magic happens. All the system shit is loaded here, the system actions are defined here, everything is saved and parsed here.
 	 * There's no other possibility then to go via this file. if you manage to invade this file and get into the system you're an idiot.
 	 * You'll ruin the whole system. Please keep using the f*cking Sourjelly class to save our lives.
+	 * 
 	 */
-	final class Sourjelly
+	final class Sourjelly extends \abstracts\Sourjelly_Abstract implements \interfaces\Sourjelly_Interface
 	{
-		// Protected static variables that have the objects of the system core.
 		protected static $_config;
 		protected static $_api;
 		protected static $_db;
 		protected static $_secure;
-		// Protected static variables that contain the code to build the pages for users/visitors.
+		
 		protected static $_al;
 		protected static $_wv;
-		// Protected static variables to set the rest of the views and settings.
+		
 		protected static $_settings;
 		protected static $_html;
 
@@ -33,31 +33,11 @@
 		 */
 		final public function __construct($ajax = false)
 		{
+
+			
+
 			// Set ajax for ajax request
 			$this -> _ajax = $ajax;
-
-			// Require the core files of the system.
-			// Sour jelly's back bone
-			require(CONFIG_PATH . 'config.class.php');
-			require(CDB_PATH . 'databaseBase.class.php');
-			require(CORE_PATH . 'helpers.php');
-
-			require(ACCESS_PATH . 'system.class.php');
-			require(ACCESS_PATH . 'redirect.class.php');
-			require(ACCESS_PATH . 'request.class.php');
-			require(ACCESS_PATH . 'secure.class.php');
-
-			require(BUILD_PATH . 'autoloader.class.php');
-			require(BUILD_PATH . 'template.class.php');
-			require(BUILD_PATH . 'htmlBase.class.php');
-			require(BUILD_PATH . 'module.class.php');
-			require(BUILD_PATH . 'webview.class.php');
-
-			require(SYSTEM_PATH . 'controller.class.php');
-			require(SYSTEM_PATH . 'model.class.php');
-			require(SYSTEM_PATH . 'simpleLoader.php');
-
-			require(API_PATH . 'api.class.php');
 
 			self::$_get  = \core\access\Request::returnGlobalObject('get');
 			self::$_post = \core\access\Request::returnGlobalObject('post');
@@ -88,20 +68,42 @@
 		}
 
 		/**
+		 * callFunctions This function calls the helper file, and executes basis user settings.
+		 * after that it uses the @class -> \config\Config , to set the user's system configuration right.
+		 */
+		final protected function beforeLoad()
+		{
+			//Call the /core/helpers.php functions for better code processing.
+			\core\setLogFile();
+			\core\removeMagicQoutes();
+			\core\unregisterGlobals();
+			\core\setTimezone();
+
+			return;
+		}
+
+		/**
 		 * CallClasses, calls the basic classes that start up the CMS system.
 		 * if the request is not from an Command line interface execute the webbuilder.
 		 * if there's a login request, resign to the login, else, autoload the controller, called by user. see @class -> \core\build\Autoloader
 		 */
-		final protected function callClasses()
+		final public function callClasses()
 		{
 			//Call for config and database class for rest of code.
-			self::$_config = new \config\Config;
-			self::$_db     = new \core\database\DatabaseBase;
-			self::$_api    = new \api\Api;
+			if(!is_object(self::$_api))
+			{
+				self::$_config = new \config\Config;
+				self::$_db     = new \core\database\DatabaseBase;
+				self::$_api    = new \api\Api;
+			}
+
 			//self::$_secure = new \core\access\Secure;
 
 			//Set user language.
 			$_SESSION['user_language'] = \api\Api::getUsers() -> getUserLanguageBySession();
+
+			// Pre define variables
+			$fun = array('','');
 
 			if (PHP_SAPI !== 'cli' && $this -> _ajax !== true) {
 				// Read the url and explode on index.php
@@ -117,42 +119,35 @@
 					//Check the system for critical requirements
 					if(!isset($_SESSION['system_warning']))
 						self::$_settings = new \core\access\System;
-		
-					// Set the html object to admin template
-					self::$_html = new HtmlBase('admin');
+
+					if(isset(self::$_get -> ajax) && self::$_get -> ajax == 'true')
+						// Set the html object to an empty template for not re-using the header.
+						self::$_html = new HtmlBase('empty');
+					else
+						// Set the html object to admin template
+						self::$_html = new HtmlBase('admin');
 				}
 				else
 					// Set the html object to the main template
 					self::$_html = new HtmlBase('main');
 
 				//Check for permissions again so that administrators don't have to be the only users on the website, and login is made possible.
-				if(isset($_SESSION['login']) || isset(self::$_get -> login ) && self::$_get -> login == 'login' || isset(self::$_post -> login) || \getApiUsers() -> getUserpermissionsBySession() > 1 || (isset($fun) && $fun[0] == 'auth' && (!isset($fun[1]) || $fun[1] == '')))
+				if($this -> checkForLogin($fun))
 					self::$_al = new \core\build\autoloader;
 				else
 					self::$_wv = new \core\build\Webview;
 			}
 
-			return;
+			return true;
 
-		}
-
-		/**
-		 * callFunctions This function calls the helper file, and executes basis user settings.
-		 * after that it uses the @class -> \config\Config , to set the user's system configuration right.
-		 */
-		final protected function beforeLoad()
-		{
-			//Call the /core/helpers.php functions for better code processing.
-			\core\setLogFile();
-			\core\removeMagicQoutes();
-			\core\unregisterGlobals();
-			\core\setTimezone();
 		}
 
 		final protected function callFunctions()
 		{
 			//Change the php.ini settings to the users ini settings
 			self::$_config -> setSystemSettings();
+
+			return;
 		}
 
 		/**
@@ -172,6 +167,8 @@
 			$callable = array($object , $function);
 			// Call the function with the params from the object.
 			call_user_func_array($callable, $params);
+
+			return;
 		}
 
 		/**
@@ -223,6 +220,9 @@
 			}
 		}
 
+		final public static function getAl(){ return self::$_al; }
+		final public static function getWv(){ return self::$_wv; }
+
 		final public static function getGet(){ return self::$_get; }
 		final public static function getPost(){ return self::$_post; }
 
@@ -237,10 +237,31 @@
 			return require(SYSTEM_PATH . $name . 'Compiler.class.php');
 		}
 
-		final private function finishSourjelly()
+		/**
+		 * function that runs on the end of sourjelly, that buils the html and shows it to the user
+		 * If the request is not made via ajax or command line interface this function is rendered
+		 */
+		final protected function finishSourjelly()
 		{	
 			if(!$this -> _ajax && PHP_SAPI !== 'cli')
 				// build the html!
 				self::getHtml()->Build();
+		}
+
+		/**
+		 * 
+		 */
+		final public function checkForLogin($fun)
+		{
+			$return = false;
+
+			if(isset($_SESSION['login']) && \getApiUsers() -> getUserpermissionsBySession() > 1)
+				$return = true;
+			else if( isset(self::$_get -> login) && self::$_get -> login != 'login' || $fun[0] != 'auth' || $fun[1] != 'login' )
+				$return = false;
+			else
+				$return = true;
+
+			return $return;
 		}
 	}

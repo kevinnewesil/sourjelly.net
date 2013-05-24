@@ -99,7 +99,8 @@
 			}
 			else
 			{
-				
+				$pageInfo['tcp']['title'] = $pageInfo['tcl']['titleVisibility'] == '1' ? '<h2>' . $pageInfo['tcp']['title'] . '</h2>' : '';
+
 				$replacers = array( $pageInfo['tcp']['title'], html_entity_decode($pageInfo['tcp']['content']),$menu,
 									$pageInfo['tcp']['metaTags'],$pageInfo['tcp']['metaDescription'],'Author',
 									$pageInfo['tcp']['contentClass'] , $pageInfo['tcp']['contentId'], 
@@ -108,11 +109,22 @@
 								  );
 			}
 
-			$replacers[2] = str_replace('{pages}',$menu,\Snippet('parts/navbar-fixed-top.html.tpl'));
+			$menuSettings = \GetApiLayoutNavigation() -> getPrimaryLayoutSettings();
+
+			$replacers[2] = str_replace(array('{pages}','{animation-direction}'),array($menu,$menuSettings['slideInAnimationStyle']),\Snippet('parts/navbar-fixed-top.html.tpl'));
+
+			$file = \Snippet('javascript_elements/' . $menuSettings['jsFunction'] . '-' . $menuSettings[$menuSettings['jsFunction'] . 'Trigger'] . '.html.tpl');
+
+			$replacers[2] = ($menuSettings['dynamicNavigation'] == '1') ? str_replace(array('{nav}','{toggle-box-text}'), array($replacers[2],$menuSettings['toggleTriggerText']) , $file) : $replacers[2] ;
 
 			$pageId = \api\Api::getPages() -> getIdFromTitle($this->_page);
 			\core\build\Sourjelly::getHtml()->modules($pageId);
 			\core\build\Sourjelly::getHtml()->assign($placeholders,$replacers);
 		
+		}
+
+		final protected function buildMenu()
+		{
+
 		}
 	}

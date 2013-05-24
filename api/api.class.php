@@ -31,13 +31,6 @@
 		 */
 		public function __construct()
 		{
-			require(API_PATH . 'local/pages.api.class.php');
-			require(API_PATH . 'local/users.api.class.php');
-			require(API_PATH . 'local/themes.api.class.php');
-			require(API_PATH . 'local/layout.api.class.php');
-			require(API_PATH . 'local/modules.api.class.php');
-			require(API_PATH . 'local/settings.api.class.php');
-
 			self::$_link     = \core\build\Sourjelly::getConfig('link');
 			
 			self::$_pages    = new \api\local\Api_pages(self::$_link);

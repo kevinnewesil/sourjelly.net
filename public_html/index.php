@@ -39,13 +39,11 @@
 	 *
 	 * @todo make dummy rows for tables in database for making sure the system won't crash on new install
 	 * @todo make extra security against updates via javascript 
-	 * 			| -> On first ajax request, parse password, and create session. 
+	 * 			| -> On first ajax request, parse password, and create session.
 	 * 			| -> On leave page destroy the password security session.
 	 * 
 	 * --BUGFIXES--
 	 * 
-	 * @todo @bug proper redirect after false login.
-	 * @todo @bug extra checks for rendering login screen on non login links via get request ?get=login.
 	 * 
 	 * --EXTRA--
 	 * 
@@ -65,7 +63,8 @@
 	
 	// Require config file which defines basic paths etc. & require the Sourjelly class !
 	require('../config/const.config.php');
-	require(BUILD_PATH . 'sourjelly.class.php');
+
+	require(CORE_PATH . 'require.php');
 	
 	// time to start the system...
 	new \core\build\Sourjelly;

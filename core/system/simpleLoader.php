@@ -59,3 +59,4 @@
 
 	if(!function_exists("Template")) { function Template($path){ return \core\build\Template::getTemplate($path); } }
 	if(!function_exists("Snippet")) { function Snippet($name, $path = NULL){ return \core\build\Template::getSnippet($name , $path); } }
+
