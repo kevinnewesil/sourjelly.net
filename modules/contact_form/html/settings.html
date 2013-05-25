@@ -19,7 +19,7 @@
 
 		$(".input-added").live('keyup',function(){
 			val = $(this)[0].value;
-			$(this).attr('name',val);
+			$(this).attr('name', 'inputs[]' + val);
 			$(this).parent().siblings('label').html(val);
 		});
 	});

@@ -18,6 +18,8 @@
 		$data -> sticky   = (isset($data -> sticky)   && $data -> sticky   == 'on') ? 1 : 0;
 		$data -> allPages = (isset($data -> allPages) && $data -> allPages == 'on') ? 1 : 0;
 
+		die(var_dump($data));
+
 		if(is_object($data) && !empty($data))
 			\config\Config::generateConfig($data);
 		else
