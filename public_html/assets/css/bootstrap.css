@@ -5221,7 +5221,7 @@ input[type="submit"].btn.btn-mini {
 
 .modal.fade.in {
   /* For model to work due to bug with multiple .CSS */
-  /*top: 10%;*/
+  top: 40% !important;
 }
 
 .modal-header {

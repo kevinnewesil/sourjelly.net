@@ -1,29 +1,30 @@
 table.tablesorter {
 	font-size: 12px;
-	background-color: #999999;
+	background-color: white;
 	width: 1024px;
-	border: 1px solid #000;
+	border: 1px solid white;
 }
 table.tablesorter th {
+	border-bottom: 1px solid #CCC
 	text-align: left;
 	padding: 5px;
-	background-color: #CCCCCC;
+	background-color: white;
 }
 table.tablesorter td {
-	color: #FFF;
+	color: #292d2f;
 	padding: 5px;
 }
 table.tablesorter .even {
-	background-color: #EEEEEE;
+	background-color: white;
 }
 table.tablesorter .odd {
-	background-color: #CCCCCC;
+	background-color: white;
 }
 table.tablesorter thead tr:not(:first-child) .header {
 	background-image: url(../img/bg.png);
 	background-repeat: no-repeat;
 	border-left: 1px solid #FFF;
-	border-right: 1px solid #000;
+	border-right: 1px solid white;
 	border-top: 1px solid #FFF;
 	padding-left: 30px;
 	padding-top: 8px;
