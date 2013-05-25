@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<!-- Include stylesheets -->
 		
-		<link rel="stylesheet" href="{assets}css/bootstrap.min.css" type="text/css">
+		<link rel="stylesheet" href="{assets}css/bootstrap.css" type="text/css">
 		<link rel="stylesheet" href="{assets}css/tablesorter.css" type="text/css">
 		<link rel="stylesheet" href="{assets}css/bootstrap-responsive.min.css" type="text/css">
 		<link rel="stylesheet/less" href="{assets}css/theme.less" type="text/css">
@@ -32,6 +32,8 @@
 		<script type="text/javascript" src="{assets}js/functions.js"></script>
 		<script type="text/javascript" src="{assets}js/less.js"></script>
 		<script type="text/javascript" src="{assets}js/redactor.js"></script>
+		<script type="text/javascript" src="{assets}js/cookie.js"></script>
+		<script type="text/javascript" src="{assets}js/mousemenu.js"></script>
 
 		<!-- Some random javascript -->
 		<script type="text/javascript">

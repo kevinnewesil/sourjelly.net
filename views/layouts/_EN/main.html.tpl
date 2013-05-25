@@ -12,7 +12,7 @@
 
 		<!-- Include stlesheets -->
 		<link rel="stylesheet" href="{assets}css/bootstrap.min.css"> <!-- The main bootstrap layout. -->
-		<link rel="stylesheet/less" href="{assets}css/theme.less"> <!-- The path to one's custom theme. -->
+		<link rel="stylesheet/less" href="{assets}css/theme.less">  <!-- The path to one's custom theme. -->
 		<link rel="stylesheet" href="{assets}css/custom.css"> <!-- custom css rules that overwrite the custom theme and the base layout. -->
 		<link rel="stylesheet" href="{assets}css/bootstrap-responsive.min.css"> <!-- The responsive design for cross platform browsing. -->
 
@@ -21,28 +21,7 @@
 		<script type="text/javascript"> less = { rootpath: "{assets}css/" }; </script> <!-- Set the root path of the themes. -->
 		<script type="text/javascript" src="{assets}js/less.js"></script> <!-- Include the less compiler to compile less to css. -->
 		<script type="text/javascript" src="{assets}js/bootstrap.min.js"></script> <!-- Include the twitter bootstrap js for executing bootstrap actions. -->
-		<script>
-		    $(document).ready(function() {
-                 $('#slideleftdiv button').click(function() {
-                    var $lefty = $(this).next();
-                    $lefty.animate({
-                      left: parseInt($lefty.css('left'),10) == 100 ?
-                        -$lefty.outerWidth() :
-                        100
-                    });
-                  });
-                });
-            // the div that folds open
-              $(document).ready(function(){
-                $('#showdiv').click(function() {
-                  $('.dropdowndiv').slideToggle(500, function() {
-                    // Animation complete.
-                  });
-                });
-              });
-              $('#showdiv').tooltip();
-              $('#admin-int').tooltip();
-        </script>
+		<script type="text/javascript" src="{assets}js/cookie.js"></script> <!-- Include the quety cookie plugin for usage of cookies client side. -->
         
         <!-- Dynamic style for user defined settings that overrules all other shit. is per  page defineable. -->
         <style type="text/css">
@@ -60,8 +39,7 @@
         </style>
 
 	</head>
-	<body>
-
+	<body style="padding-top:40px;">
 		<div id="container">
 		<div id="container main-cont">
 			<!-- Navigation settings / responsive design, collapses menu on smaller screens and makes them easily accessable for mobile devices. -->
@@ -69,9 +47,6 @@
 				<!-- tabs -> top / bottom / left / right | pills / list /stacked -> pills / list | -->
 				{navigation}
 			</nav>
-			<div class="dropdowndiv">
-				asd
-			</div>
 
 			<div class="container">
 				<div class="main-content">
@@ -79,10 +54,8 @@
 				    {notice} <!-- Displays system error messages -->
 					
 					<!-- Shows page title and content, and the modules connected to the pages. -->
-
 					<div class="content {contentClasses}" id="{contentIds}">
-						<h2 class="content-title">{title}</h2> <!-- The title of the page, dynamically inserted. -->
-					
+						{title}<!-- The title of the page, dynamically inserted. -->					
 						<span class="content-content">{content}</span> <!-- The content of the page, dynamically inserted. -->
 						
 					</div>

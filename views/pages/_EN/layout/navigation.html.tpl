@@ -10,6 +10,8 @@
 		if($("#js-function").val() == 'toggle')
 		{
 			$(".sj-hidden-toggle").css('display','block');
+			
+			$("#toggle-trigger").val() == 'text' ? $("#toggle-trigger-text").css('display','inline') : console.log('image') ;
 		}
 		else if($("#js-function").val() =='slideIn')
 		{
@@ -26,6 +28,7 @@
 
 		$(".sj-hidden-toggle").css('display','none');
 		$(".sj-hidden-slideIn").css('display','none');	
+		$("#toggle-trigger-text").css('display','none');
 	}
 
 	function saveNavigation(action,data)
@@ -86,6 +89,10 @@
 		$(".javascript-sort").change(function(){			
 			setInvisible(false);
 			changeVisibility();
+		});
+
+		$("#toggle-trigger").change(function(){
+			$(this).val() == 'text' ? $("#toggle-trigger-text").css('display','inline') : console.log('image') ;
 		});
 
 		// On submit of form.
@@ -211,10 +218,10 @@
 					<label for="animation-style" class="control-label">Toggle animation style</label>
 					<div class="controls">
 						<select name="toggleAnimationStyle" id="animation-style">
-							<option value="ltr">left to right</option>
-							<option value="rtl">Right to left</option>
-							<option value="utd">Up to down</option>
-							<option value="dtp">Down to up</option>
+							<option value="left">left to right</option>
+							<option value="right">Right to left</option>
+							<option value="top">Up to down</option>
+							<option value="bottom">Down to up</option>
 						</select>
 					</div>
 				</div>
@@ -223,11 +230,12 @@
 					<label for="toggle-trigger" class="control-label">Toggle trigger</label>
 					<div class="controls">
 						<select name="toggleTrigger" id="toggle-trigger">
-							<option value="box">Box</option>
-							<option value="image">Image</option>
-							<option value="logo">Logo</option>
 							<option value="text">Text</option>
+							<option value="image">Image</option>
 						</select>
+
+						<input type="text" name="toggleTriggerText" value="{toggleTriggerText_value}" placeholder="Text" id="toggle-trigger-text">
+						
 					</div>
 				</div>
 			</div>
@@ -237,10 +245,10 @@
 					<label for="slidein" class="control-label">Slide in animation style</label>
 					<div class="controls">
 						<select name="slideInAnimationStyle" id="slidein">
-							<option value="ltr">Left to right</option>
-							<option value="rtl">Right to left</option>
-							<option value="utd">Up to down</option>
-							<option value="dtu">Down to up</option>
+							<option value="left">Left to right</option>
+							<option value="right">Right to left</option>
+							<option value="top">Up to down</option>
+							<option value="bottom">Down to up</option>
 						</select>
 					</div>
 				</div>

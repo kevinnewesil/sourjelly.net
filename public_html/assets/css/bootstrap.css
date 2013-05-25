@@ -8,6 +8,7 @@
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
  */
 
+
 .clearfix {
   *zoom: 1;
 }
@@ -1961,7 +1962,7 @@ legend + .control-group {
 
 .form-horizontal .control-label {
   float: left;
-  width: 160px;
+  width: :;0px;
   padding-top: 5px;
   text-align: right;
 }
@@ -4355,9 +4356,10 @@ input[type="submit"].btn.btn-mini {
 
 .navbar {
   *position: relative;
-  *z-index: 2;
+  *z-index: 1 !important;
   margin-bottom: 20px;
   overflow: visible;
+  background-color: white !important;
 }
 
 .navbar-inner {
@@ -5220,7 +5222,7 @@ input[type="submit"].btn.btn-mini {
 
 .modal.fade.in {
   /* For model to work due to bug with multiple .CSS */
-  /*top: 10%;*/
+  /*top: 40% !important;*/
 }
 
 .modal-header {

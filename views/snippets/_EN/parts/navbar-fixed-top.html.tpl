@@ -1,4 +1,4 @@
-<div class="navbar navbar-fixed-top" >
+<div class="navbar navbar-fixed-top navbar-{animation-direction}" id="navigation">
 	<div class="container navbar-custom"> <!-- Give a padding-left to the navbar so it won't leave the screen on the left. -->
 		 <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
 			<span class="icon-bar"></span>
@@ -12,11 +12,6 @@
 		<div class="nav-collapse collapse pull-right">
 			<ul class="nav">
 				{pages} <!-- Placeholder with all the page titles for links -->
-				<li>
-                  <a href="#" id="showdiv" data-toggle="user-tooltip" data-placement="right" title="ajcvhall">
-                    <i class="icon-user"></i>
-                  </a>
-                </li>
 			</ul>
 		</div>
 	</div>
