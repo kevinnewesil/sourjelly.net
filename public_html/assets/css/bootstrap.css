@@ -8,14 +8,6 @@
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
  */
 
-.premode .row{
-}
-
-.span33{
-  margin:0px;
-  width:70px;
-}
-
 
 .clearfix {
   *zoom: 1;
@@ -5230,7 +5222,7 @@ input[type="submit"].btn.btn-mini {
 
 .modal.fade.in {
   /* For model to work due to bug with multiple .CSS */
-  top: 40% !important;
+  /*top: 40% !important;*/
 }
 
 .modal-header {

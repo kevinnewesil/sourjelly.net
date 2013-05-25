@@ -1,5 +1,5 @@
 <tr>
-	<td>{title}</td>
+	<td class="tdtitle">{title}</td>
 	<td>{created_at}</td>
 	<td>{updated_at}</td>
 	<td>{parent}</td>
@@ -25,13 +25,12 @@
 <div class="modal hide fade" id="prev_{id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		<h3 id="myModalLabel">Delete</h3>
+		<h3 id="myModalLabel">preview mode : {title}</h3>
 	</div>
 	<div class="modal-body">
 		{content}
 	</div>
 	<div class="modal-footer">
-		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-		<a href="{base}/crud/delete/{id}/?ns=controllers&amp;path=controller_path" title="verwijderen" class="btn btn-primary">Delete!</a>
+		<button class="btn" data-dismiss="modal" aria-hidden="true">close preview</button>
 	</div>
 </div>

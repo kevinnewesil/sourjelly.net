@@ -3,6 +3,7 @@ table.tablesorter {
 	background-color: white;
 	width: 1024px;
 	border: 1px solid white;
+	text-align: center;
 }
 table.tablesorter th {
 	border-bottom: 1px solid #CCC
@@ -11,9 +12,17 @@ table.tablesorter th {
 	background-color: white;
 }
 table.tablesorter td {
+	text-align: center;
 	color: #292d2f;
 	padding: 5px;
 }
+
+table.tablesorter td.tdtitle {
+	text-align: left;
+	color: #292d2f;
+	padding: 5px;
+}
+
 table.tablesorter .even {
 	background-color: white;
 }
