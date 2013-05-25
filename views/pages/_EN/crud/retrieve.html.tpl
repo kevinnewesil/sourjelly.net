@@ -10,11 +10,11 @@
 		</tr>
 		<tr>
 			<th>Title</th>
-			<th>Content</th>
 			<th>Created at</th>
 			<th>Last updated</th>
 			<th>Submenu (yes/no)</th>
 			<th>Edit</th>
+			<th>Content</th>
 			<th>Delete</th>
 		</tr>
 	</thead>
