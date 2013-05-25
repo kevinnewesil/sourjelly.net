@@ -14,14 +14,25 @@ $(document).ready(function(){
     });
 });
 
-document.addEventListener('contextmenu', function(e) {
-    $(".mouse-menu").css({
-        left : e.pageX,
-        top : e.pageY,
-        display : 'block',
-    });
+var test = 0;
 
-    e.preventDefault();
+//
+// kijkt of shift is ingedrukt, zoja: test =1 anders test =0
+// event listening for keydown
+//
+document.addEventListener('contextmenu', function(e) {
+
+    if(test == 0){
+        // if statement op e keycode gooien.
+
+        $(".mouse-menu").css({
+            left : e.pageX,
+            top : e.pageY,
+            display : 'block',
+        });
+
+        e.preventDefault();
+    }
 
 }, false);
 

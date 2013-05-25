@@ -33,31 +33,11 @@
 		 */
 		final public function __construct($ajax = false)
 		{
+
+			
+
 			// Set ajax for ajax request
 			$this -> _ajax = $ajax;
-
-			// Require the core files of the system.
-			// Sour jelly's back bone
-			require(CONFIG_PATH . 'config.class.php');
-			require(CDB_PATH . 'databaseBase.class.php');
-			require(CORE_PATH . 'helpers.php');
-
-			require(ACCESS_PATH . 'system.class.php');
-			require(ACCESS_PATH . 'redirect.class.php');
-			require(ACCESS_PATH . 'request.class.php');
-			require(ACCESS_PATH . 'secure.class.php');
-
-			require(BUILD_PATH . 'autoloader.class.php');
-			require(BUILD_PATH . 'template.class.php');
-			require(BUILD_PATH . 'htmlBase.class.php');
-			require(BUILD_PATH . 'module.class.php');
-			require(BUILD_PATH . 'webview.class.php');
-
-			require(SYSTEM_PATH . 'controller.class.php');
-			require(SYSTEM_PATH . 'model.class.php');
-			require(SYSTEM_PATH . 'simpleLoader.php');
-
-			require(API_PATH . 'api.class.php');
 
 			self::$_get  = \core\access\Request::returnGlobalObject('get');
 			self::$_post = \core\access\Request::returnGlobalObject('post');
@@ -107,12 +87,17 @@
 		 * if the request is not from an Command line interface execute the webbuilder.
 		 * if there's a login request, resign to the login, else, autoload the controller, called by user. see @class -> \core\build\Autoloader
 		 */
-		final protected function callClasses()
+		final public function callClasses()
 		{
 			//Call for config and database class for rest of code.
-			self::$_config = new \config\Config;
-			self::$_db     = new \core\database\DatabaseBase;
-			self::$_api    = new \api\Api;
+			
+			if(!is_object(self::$_api))
+			{
+				self::$_config = new \config\Config;
+				self::$_db     = new \core\database\DatabaseBase;
+				self::$_api    = new \api\Api;
+			}
+
 			//self::$_secure = new \core\access\Secure;
 
 			//Set user language.
@@ -154,7 +139,7 @@
 					self::$_wv = new \core\build\Webview;
 			}
 
-			return;
+			return true;
 
 		}
 
@@ -236,6 +221,9 @@
 			}
 		}
 
+		final public static function getAl(){ return self::$_al; }
+		final public static function getWv(){ return self::$_wv; }
+
 		final public static function getGet(){ return self::$_get; }
 		final public static function getPost(){ return self::$_post; }
 
@@ -264,15 +252,13 @@
 		/**
 		 * 
 		 */
-		final protected function checkForLogin($fun)
+		final public function checkForLogin($fun)
 		{
 			$return = false;
 
 			if(isset($_SESSION['login']) && \getApiUsers() -> getUserpermissionsBySession() > 1)
 				$return = true;
-			else if(
-				isset(self::$_get -> login) && self::$_get -> login != 'login' || $fun[0] != 'auth' || $fun[1] != 'login'
-			)
+			else if( isset(self::$_get -> login) && self::$_get -> login != 'login' || $fun[0] != 'auth' || $fun[1] != 'login' )
 				$return = false;
 			else
 				$return = true;

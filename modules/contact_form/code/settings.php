@@ -10,13 +10,15 @@
 	else
 		$config = array();
 
-	if(isset($data -> contact_form_submit) && $data -> contact_form_submit == 'save contact form settings')
+	if(isset($data -> contact_form_submit) && $data -> contact_form_submit == 'Save')
 	{
 
 		//Set the checkboxes as boulean.
 		$data -> captcha  = (isset($data -> captcha)  && $data -> captcha  == 'on') ? 1 : 0;
 		$data -> sticky   = (isset($data -> sticky)   && $data -> sticky   == 'on') ? 1 : 0;
 		$data -> allPages = (isset($data -> allPages) && $data -> allPages == 'on') ? 1 : 0;
+
+		die(var_dump($data));
 
 		if(is_object($data) && !empty($data))
 			\config\Config::generateConfig($data);

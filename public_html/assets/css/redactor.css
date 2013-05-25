@@ -38,7 +38,7 @@ body .redactor_box_fullscreen {
 	z-index: 1004;
 	outline: none;
 	border: none;
-	width: 100%;
+	width: 100% !important;
 }
 
 .redactor_editor,
