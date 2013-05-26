@@ -126,13 +126,16 @@
 		$("#activateModal").click(function(){
 			names = $(this).attr('class').split('-');
 			loadAjax(names[0],names[1]);
+
+			console.log($("#modal").find("form").css('background-color','red'));
+
 		});
 
-		 // $("#modal").find('input[type="submit"], input[type="submit"]').click(function(){
-		 // 	target = $("#modalSort").attr('class');
-		 // 	console.log(target);
-		 // 	return false;
-		 // });
+		$("#modal").find('input[type="submit"], input[type="submit"]').click(function(){
+			target = $("#modalSort").attr('class');
+			console.log(target);
+			return false;
+		});
 
 		 $(".close").click(function(){
 		 	window.location.reload();
