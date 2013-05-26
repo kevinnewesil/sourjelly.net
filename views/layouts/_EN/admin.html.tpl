@@ -18,10 +18,15 @@
 		
 		<script type="text/javascript" src="{assets}js/jquery.js"></script>
 		<script type="text/javascript">
+
+			ajaxPath = "{ajax}";
+			basePath = "{base}";
+
 		    less = {
 		        rootpath: "../assets/css/"
 		    };
-		</script>	
+		</script>
+
 		<script type="text/javascript" src="{assets}js/jquery-ui-1.9.1.custom.min.js"></script>
 		<script type="text/javascript" src="{assets}js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="{assets}js/sessions.js"></script>
