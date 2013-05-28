@@ -245,8 +245,12 @@
                         <div class="controls">
                             <label for="design_bump" class="checkbox"><input type="checkbox" name="design_bump" id="design_bump">
                                 Design bump
-                                 <input type="text" class="design_bump" name="design_bump" value="http://www.designbump.com/">
+                                
+                                <span class="hidden-input">
+                                    <input type="text" class="design_bump" name="design_bump" value="http://www.designbump.com/">
                                     Link to Design bump page
+                                </span>
+
                             </label>
                         </div>
                     </div>
@@ -361,7 +365,7 @@
                                 Ember app
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="amber_app" name="amber_app" value="http://www.amberapp.com/">
+                                    <input type="text" class="ember_app" name="ember_app" value="http://www.amberapp.com/">
                                     Link to ember page
                                 </span>
                             </label>
@@ -656,7 +660,7 @@
 
                     <div class="control-group">
                         <div class="controls">
-                            <label for="itune" class="checkbox"><input type="checkbox" name="itunes" id="itunes">
+                            <label for="itunes" class="checkbox"><input type="checkbox" name="itunes" id="itunes">
                                 Itunes
                                 
                                 <span class="hidden-input">
