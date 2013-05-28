@@ -33,19 +33,12 @@
 			\SjHtml() -> assign('{content}',$tmp);
 		}
 
-		final public function header()
-		{
-			\SjHtml() -> assign('{content}',\Template('layout/Header.html.tpl'));	
-		}
+		final public function header() { \SjHtml() -> assign('{content}',\Template('layout/Header.html.tpl')); }
 
-		final public function content()
-		{
-			\SjHtml() -> assign('{content}',\Template('layout/content.html.tpl'));
-		}
+		final public function content() { \SjHtml() -> assign('{content}',\Template('layout/content.html.tpl')); }
 
-		final public function footer()
-		{
-			\SjHtml() -> assign('{content}',\Template('layout/footer.html.tpl'));
-		}
+		final public function footer() { \SjHtml() -> assign('{content}',\Template('layout/footer.html.tpl')); }
+
+		final public function icons() { \SjHtml() -> assign('{content}',\Template('layout/icons.html.tpl')); }
 
 	}
