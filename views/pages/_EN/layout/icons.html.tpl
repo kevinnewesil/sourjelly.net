@@ -1313,7 +1313,19 @@
         </div>
         
         <div class="tab-pane" id="iconSettings">
-            <p>Howdy, I'm in Section 2.</p>
+            <form action="#" method="post" class="form form-horizontal">
+                <fieldset>
+                    <legend>Colours</legend>
+
+                    <div class="control-group">
+                        <label for="hover" class="control-label">Hover colour</label>
+                        <div class="controls">
+                            <input type="text" name="hover" id="hover" class="colourpicker">
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
         </div>
     </div>
 </div>

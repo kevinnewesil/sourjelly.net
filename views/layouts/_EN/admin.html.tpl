@@ -13,6 +13,7 @@
 		<link rel="stylesheet" href="{assets}css/custom.css" type="text/css">
 		<link rel="stylesheet" href="{assets}css/redactor.css" type="text/css">
 		<link rel="stylesheet" href="{assets}css/image-dropper.css" type="text/css">
+		<link rel="stylesheet" href="{assets}css/colourpicker.css" type="text/css">
 		
 		<!-- Include Javascript files -->
 		
@@ -39,6 +40,7 @@
 		<script type="text/javascript" src="{assets}js/redactor.js"></script>
 		<script type="text/javascript" src="{assets}js/cookie.js"></script>
 		<script type="text/javascript" src="{assets}js/mousemenu.js"></script>
+		<script type="text/javascript" src="{assets}js/colourpicker.js"></script>
 
 		<!-- Some random javascript -->
 		<script type="text/javascript">
@@ -64,6 +66,30 @@
 				$.session.delete("cacheReload");
 				alert("Cache flushed!");
 			}
+
+			$(".colourpicker").ColorPicker({
+				color: '#0000ff',
+
+				onShow: function (colpkr) {
+					$(colpkr).fadeIn(500);
+					return false;
+				},
+
+				onHide: function (colpkr) {
+					$(colpkr).fadeOut(500);
+					return false;
+				},
+
+				onBeforeShow: function () {
+					$(this).ColorPickerSetColor(this.value);
+					inputField = $(this);
+				},
+
+				onChange : function(hsb, hex, rgb)
+				{
+					$(inputField).val("#" + hex);
+				},
+			});
 		});
 		</script>
 

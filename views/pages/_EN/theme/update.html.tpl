@@ -38,43 +38,43 @@
 						<div class="control-group">
 							<label for="black" class="control-label">@black</label>
 							<div class="controls">
-								<input type="text" name="black" id="black" value="{black}">
+								<input type="text" name="black" id="black" value="{black}" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="gray" class="control-label">@gray</label>
 							<div class="controls">
-								<input type="text" name="gray" value='{gray}' id="gray">
+								<input type="text" name="gray" value='{gray}' id="gray" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="white" class="control-label">@white</label>
 							<div class="controls">
-								<input type="text" name="white" value='{white}' id="white">
+								<input type="text" name="white" value='{white}' id="white" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="grayDark" class="control-label">@grayDark</label>
 							<div class="controls">
-								<input type="text" name="grayDark" value='{grayDark}' id="grayDark">
+								<input type="text" name="grayDark" value='{grayDark}' id="grayDark" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="grayDarker" class="control-label">@grayDarker</label>
 							<div class="controls">
-								<input type="text" name="grayDarker" value='{grayDarker}' id="grayDarker">
+								<input type="text" name="grayDarker" value='{grayDarker}' id="grayDarker" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="grayLight" class="control-label">@grayLight</label>
 							<div class="controls">
-								<input type="text" name="grayLight" value='{grayLight}' id="grayLight">
+								<input type="text" name="grayLight" value='{grayLight}' id="grayLight" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="grayLighter" class="control-label">@grayLighter</label>
 							<div class="controls">
-								<input type="text" name="grayLighter" value='{grayLighter}' id="grayLighter">
+								<input type="text" name="grayLighter" value='{grayLighter}' id="grayLighter" class="colourpicker">
 							</div>
 						</div>
 					</div>
@@ -83,49 +83,49 @@
 						<div class="control-group">
 							<label for="blue" class="control-label">@blue</label>
 							<div class="controls">
-								<input type="text" name="blue" value='{blue}' id="blue">
+								<input type="text" name="blue" value='{blue}' id="blue" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="blueDark" class="control-label">@blueDark</label>
 							<div class="controls">
-								<input type="text" name="blueDark" value='{blueDark}' id="blueDark">
+								<input type="text" name="blueDark" value='{blueDark}' id="blueDark" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="green" class="control-label">@green</label>
 							<div class="controls">
-								<input type="text" name="green" value='{green}' id="green">
+								<input type="text" name="green" value='{green}' id="green" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="red" class="control-label">@red</label>
 							<div class="controls">
-								<input type="text" name="red" value='{red}' id="red">
+								<input type="text" name="red" value='{red}' id="red" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="yellow" class="control-label">@yellow</label>
 							<div class="controls">
-								<input type="text" name="yellow" value='{yellow}' id="yellow">
+								<input type="text" name="yellow" value='{yellow}' id="yellow" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="orange" class="control-label">@orange</label>
 							<div class="controls">
-								<input type="text" name="orange" value='{orange}' id="orange">
+								<input type="text" name="orange" value='{orange}' id="orange" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="pink" class="control-label">@pink</label>
 							<div class="controls">
-								<input type="text" name="pink" value='{pink}' id="pink">
+								<input type="text" name="pink" value='{pink}' id="pink" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="purple" class="control-label">@purple</label>
 							<div class="controls">
-								<input type="text" name="purple" value='{purple}' id="purple">
+								<input type="text" name="purple" value='{purple}' id="purple" class="colourpicker">
 							</div>
 						</div>
 					</div>
@@ -140,24 +140,24 @@
 				<div class="control-group">
 					<label for="bodyBackground" class="control-label">@bodyBackground</label>
 					<div class="controls">
-						<input type="text" name="bodyBackground" value='{bodyBackground}' id="bodyBackground">
+						<input type="text" name="bodyBackground" value='{bodyBackground}' id="bodyBackground" class="colourpicker">
 					</div>
 				</div><div class="control-group">
 					<label for="textColor" class="control-label">@textColor</label>
 					<div class="controls">
-						<input type="text" name="textColor" value='{textColor}' id="textColor">
+						<input type="text" name="textColor" value='{textColor}' id="textColor" class="colourpicker">
 					</div>
 
 				<!-- Links -->
 				</div><div class="control-group">
 					<label for="linkColor" class="control-label">@linkColor</label>
 					<div class="controls">
-						<input type="text" name="linkColor" value='{linkColor}' id="linkColor">
+						<input type="text" name="linkColor" value='{linkColor}' id="linkColor" class="colourpicker">
 					</div>
 				</div><div class="control-group">
 					<label for="linkColorHover" class="control-label">@linkColorHover</label>
 					<div class="controls">
-						<input type="text" name="linkColorHover" value='{linkColorHover}' id="linkColorHover">
+						<input type="text" name="linkColorHover" value='{linkColorHover}' id="linkColorHover" class="colourpicker">
 					</div>
 				</div>
 			</fieldset>	
@@ -302,7 +302,7 @@
 						<div class="control-group">
 							<label for="headingsColor" class="control-label">@headingsColor</label>
 							<div class="controls">
-								<input type="text" name="headingsColor" value="{headingsColor}" id="headingsColor">
+								<input type="text" name="headingsColor" value="{headingsColor}" id="headingsColor" class="colourpicker">
 							</div>
 						</div>
 					</div>
@@ -319,31 +319,31 @@
 						<div class="control-group">
 							<label for="btnBackground" class="control-label">@btnBackground</label>
 							<div class="controls">
-								<input type="text" name="btnBackground" value="{btnBackground}" id="btnBackground">
+								<input type="text" name="btnBackground" value="{btnBackground}" id="btnBackground" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="btnBackgroundHighlight" class="control-label">@btnBackgroundHighlight</label>
 							<div class="controls">
-								<input type="text" name="btnBackgroundHighlight" value="{btnBackgroundHighlight}" id="btnBackgroundHighlight">
+								<input type="text" name="btnBackgroundHighlight" value="{btnBackgroundHighlight}" id="btnBackgroundHighlight" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="btnBorder" class="control-label">@btnBorder</label>
 							<div class="controls">
-								<input type="text" name="btnBorder" value="{btnBorder}" id="btnBorder">
+								<input type="text" name="btnBorder" value="{btnBorder}" id="btnBorder" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="btnPrimaryBackground" class="control-label">@btnPrimaryBackground</label>
 							<div class="controls">
-								<input type="text" name="btnPrimaryBackground" value="{btnPrimaryBackground}" id="btnPrimaryBackground">
+								<input type="text" name="btnPrimaryBackground" value="{btnPrimaryBackground}" id="btnPrimaryBackground" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="btnPrimaryBackgroundHighlight" class="control-label">@btnPrimaryBackgroundHighlight</label>
 							<div class="controls">
-								<input type="text" name="btnPrimaryBackgroundHighlight" value="{btnPrimaryBackgroundHighlight}" id="btnPrimaryBackgroundHighlight">
+								<input type="text" name="btnPrimaryBackgroundHighlight" value="{btnPrimaryBackgroundHighlight}" id="btnPrimaryBackgroundHighlight" class="colourpicker">
 							</div>
 						</div>
 					</div>
@@ -352,31 +352,31 @@
 						<div class="control-group">
 							<label for="btnInfoBackground" class="control-label">@btnInfoBackground</label>
 							<div class="controls">
-								<input type="text" name="btnInfoBackground" value="{btnInfoBackground}" id="btnInfoBackground">
+								<input type="text" name="btnInfoBackground" value="{btnInfoBackground}" id="btnInfoBackground" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="btnInfoBackgroundHighlight" class="control-label">@btnInfoBackgroundHighlight</label>
 							<div class="controls">
-								<input type="text" name="btnInfoBackgroundHighlight" value="{btnInfoBackgroundHighlight}" id="btnInfoBackgroundHighlight">
+								<input type="text" name="btnInfoBackgroundHighlight" value="{btnInfoBackgroundHighlight}" id="btnInfoBackgroundHighlight" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="btnSuccessBackground" class="control-label">@btnSuccessBackground</label>
 							<div class="controls">
-								<input type="text" name="btnSuccessBackground" value="{btnSuccessBackground}" id="btnSuccessBackground">
+								<input type="text" name="btnSuccessBackground" value="{btnSuccessBackground}" id="btnSuccessBackground" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="btnSuccessBackgroundHighlight" class="control-label">@btnSuccessBackgroundHighlight</label>
 							<div class="controls">
-								<input type="text" name="btnSuccessBackgroundHighlight" value="{btnSuccessBackgroundHighlight}" id="btnSuccessBackgroundHighlight">
+								<input type="text" name="btnSuccessBackgroundHighlight" value="{btnSuccessBackgroundHighlight}" id="btnSuccessBackgroundHighlight" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="btnWarningBackground" class="control-label">@btnWarningBackground</label>
 							<div class="controls">
-								<input type="text" name="btnWarningBackground" value="{btnWarningBackground}" id="btnWarningBackground">
+								<input type="text" name="btnWarningBackground" value="{btnWarningBackground}" id="btnWarningBackground" class="colourpicker">
 							</div>
 						</div>
 					</div>
@@ -385,31 +385,31 @@
 						<div class="control-group">
 							<label for="btnWarningBackgroundHighlight" class="control-label">@btnWarningBackgroundHighlight</label>
 							<div class="controls">
-								<input type="text" name="btnWarningBackgroundHighlight" value="{btnWarningBackgroundHighlight}" id="btnWarningBackgroundHighlight">
+								<input type="text" name="btnWarningBackgroundHighlight" value="{btnWarningBackgroundHighlight}" id="btnWarningBackgroundHighlight" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="btnDangerBackground" class="control-label">@btnDangerBackground</label>
 							<div class="controls">
-								<input type="text" name="btnDangerBackground" value="{btnDangerBackground}" id="btnDangerBackground">
+								<input type="text" name="btnDangerBackground" value="{btnDangerBackground}" id="btnDangerBackground" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="btnDangerBackgroundHighlight" class="control-label">@btnDangerBackgroundHighlight</label>
 							<div class="controls">
-								<input type="text" name="btnDangerBackgroundHighlight" value="{btnDangerBackgroundHighlight}" id="btnDangerBackgroundHighlight">
+								<input type="text" name="btnDangerBackgroundHighlight" value="{btnDangerBackgroundHighlight}" id="btnDangerBackgroundHighlight" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="btnInverseBackground" class="control-label">@btnInverseBackground</label>
 							<div class="controls">
-								<input type="text" name="btnInverseBackground" value="{btnInverseBackground}" id="btnInverseBackground">
+								<input type="text" name="btnInverseBackground" value="{btnInverseBackground}" id="btnInverseBackground" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="btnInverseBackgroundHighlight" class="control-label">@btnInverseBackgroundHighlight</label>
 							<div class="controls">
-								<input type="text" name="btnInverseBackgroundHighlight" value="{btnInverseBackgroundHighlight}" id="btnInverseBackgroundHighlight">
+								<input type="text" name="btnInverseBackgroundHighlight" value="{btnInverseBackgroundHighlight}" id="btnInverseBackgroundHighlight" class="colourpicker">
 							</div>
 						</div>
 					</div>
@@ -426,28 +426,28 @@
 						<div class="control-group">
 							<label for="tableBackground" class="control-label">@tableBackground</label>
 							<div class="controls">
-								<input type="text" name="tableBackground" value="{tableBackground}" id="tableBackground">
+								<input type="text" name="tableBackground" value="{tableBackground}" id="tableBackground" class="colourpicker">
 							</div>
 						</div>
 
 						<div class="control-group">
 							<label for="tableBackgroundAccent" class="control-label">@tableBackgroundAccent</label>
 							<div class="controls">
-								<input type="text" name="tableBackgroundAccent" value="{tableBackgroundAccent}" id="tableBackgroundAccent">
+								<input type="text" name="tableBackgroundAccent" value="{tableBackgroundAccent}" id="tableBackgroundAccent" class="colourpicker">
 							</div>
 						</div>
 
 						<div class="control-group">
 							<label for="tableBackgroundHover" class="control-label">@tableBackgroundHover</label>
 							<div class="controls">
-								<input type="text" name="tableBackgroundHover" value="{tableBackgroundHover}" id="tableBackgroundHover">
+								<input type="text" name="tableBackgroundHover" value="{tableBackgroundHover}" id="tableBackgroundHover" class="colourpicker">
 							</div>
 						</div>
 
 						<div class="control-group">
 							<label for="tableBorder" class="control-label">@tableBorder</label>
 							<div class="controls">
-								<input type="text" name="tableBorder" value="{tableBorder}" id="tableBorder">
+								<input type="text" name="tableBorder" value="{tableBorder}" id="tableBorder" class="colourpicker">
 							</div>
 						</div>
 					</div>
@@ -457,7 +457,7 @@
 						<div class="control-group">
 							<label for="inputBackground" class="control-label">@inputBackground</label>
 							<div class="controls">
-								<input type="text" name="inputBackground" value="{inputBackground}" id="inputBackground">
+								<input type="text" name="inputBackground" value="{inputBackground}" id="inputBackground" class="colourpicker">
 							</div>
 						</div>
 
@@ -471,7 +471,7 @@
 						<div class="control-group">
 							<label for="inputBorder" class="control-label">@inputBorder</label>
 							<div class="controls">
-								<input type="text" name="inputBorder" value="{inputBorder}" id="inputBorder">
+								<input type="text" name="inputBorder" value="{inputBorder}" id="inputBorder" class="colourpicker">
 							</div>
 						</div>
 
@@ -485,14 +485,14 @@
 						<div class="control-group">
 							<label for="inputDisabledBackground" class="control-label">@inputDisabledBackground</label>
 							<div class="controls">
-								<input type="text" name="inputDisabledBackground" value="{inputDisabledBackground}" id="inputDisabledBackground">
+								<input type="text" name="inputDisabledBackground" value="{inputDisabledBackground}" id="inputDisabledBackground" class="colourpicker">
 							</div>
 						</div>
 
 						<div class="control-group">
 							<label for="formActionsBackground" class="control-label">@formActionsBackground</label>
 							<div class="controls">
-								<input type="text" name="formActionsBackground" value="{formActionsBackground}" id="formActionsBackground">
+								<input type="text" name="formActionsBackground" value="{formActionsBackground}" id="formActionsBackground" class="colourpicker">
 							</div>
 						</div>
 					</div>
@@ -523,63 +523,63 @@
 						<div class="control-group">
 							<label for="navbarBackgroundHighlight" class="control-label">@navbarBackgroundHighlight</label>
 							<div class="controls">
-								<input type="text" name="navbarBackgroundHighlight" value="{navbarBackgroundHighlight}" id="navbarBackgroundHighlight">
+								<input type="text" name="navbarBackgroundHighlight" value="{navbarBackgroundHighlight}" id="navbarBackgroundHighlight" class="colourpicker">
 							</div>
 						</div>
 
 						<div class="control-group">
 							<label for="navbarBackground" class="control-label">@navbarBackground</label>
 							<div class="controls">
-								<input type="text" name="navbarBackground" value="{navbarBackground}" id="navbarBackground">
+								<input type="text" name="navbarBackground" value="{navbarBackground}" id="navbarBackground" class="colourpicker">
 							</div>
 						</div>
 
 						<div class="control-group">
 							<label for="navbarBorder" class="control-label">@navbarBorder</label>
 							<div class="controls">
-								<input type="text" name="navbarBorder" value="{navbarBorder}" id="navbarBorder">
+								<input type="text" name="navbarBorder" value="{navbarBorder}" id="navbarBorder" class="colourpicker">
 							</div>
 						</div>
 
 						<div class="control-group">
 							<label for="navbarText" class="control-label">@navbarText</label>
 							<div class="controls">
-								<input type="text" name="navbarText" value="{navbarText}" id="navbarText">
+								<input type="text" name="navbarText" value="{navbarText}" id="navbarText" class="colourpicker">
 							</div>
 						</div>
 
 						<div class="control-group">
 							<label for="navbarLinkColor" class="control-label">@navbarLinkColor</label>
 							<div class="controls">
-								<input type="text" name="navbarLinkColor" value="{navbarLinkColor}" id="navbarLinkColor">
+								<input type="text" name="navbarLinkColor" value="{navbarLinkColor}" id="navbarLinkColor" class="colourpicker">
 							</div>
 						</div>
 
 						<div class="control-group">
 							<label for="navbarLinkColorHover" class="control-label">@navbarLinkColorHover</label>
 							<div class="controls">
-								<input type="text" name="navbarLinkColorHover" value="{navbarLinkColorHover}" id="navbarLinkColorHover">
+								<input type="text" name="navbarLinkColorHover" value="{navbarLinkColorHover}" id="navbarLinkColorHover" class="colourpicker">
 							</div>
 						</div>
 
 						<div class="control-group">
 							<label for="navbarLinkColorActive" class="control-label">@navbarLinkColorActive</label>
 							<div class="controls">
-								<input type="text" name="navbarLinkColorActive" value="{navbarLinkColorActive}" id="navbarLinkColorActive">
+								<input type="text" name="navbarLinkColorActive" value="{navbarLinkColorActive}" id="navbarLinkColorActive" class="colourpicker">
 							</div>
 						</div>
 
 						<div class="control-group">
 							<label for="navbarLinkBackgroundHover" class="control-label">@navbarLinkBackgroundHover</label>
 							<div class="controls">
-								<input type="text" name="navbarLinkBackgroundHover" value="{navbarLinkBackgroundHover}" id="navbarLinkBackgroundHover">
+								<input type="text" name="navbarLinkBackgroundHover" value="{navbarLinkBackgroundHover}" id="navbarLinkBackgroundHover" class="colourpicker">
 							</div>
 						</div>
 
 						<div class="control-group">
 							<label for="navbarLinkBackgroundActive" class="control-label">@navbarLinkBackgroundActive</label>
 							<div class="controls">
-								<input type="text" name="navbarLinkBackgroundActive" value="{navbarLinkBackgroundActive}" id="navbarLinkBackgroundActive">
+								<input type="text" name="navbarLinkBackgroundActive" value="{navbarLinkBackgroundActive}" id="navbarLinkBackgroundActive" class="colourpicker">
 							</div>
 						</div>
 
@@ -594,7 +594,7 @@
 						<div class="control-group">
 							<label for="navbarBrandColor" class="control-label">@navbarBrandColor</label>
 							<div class="controls">
-								<input type="text" name="navbarBrandColor" value="{navbarBrandColor}" id="navbarBrandColor">
+								<input type="text" name="navbarBrandColor" value="{navbarBrandColor}" id="navbarBrandColor" class="colourpicker">
 							</div>
 						</div>
 
@@ -605,105 +605,105 @@
 						<div class="control-group">
 							<label for="navbarInverseBackground" class="control-label">@navbarInverseBackground</label>
 							<div class="controls">
-								<input type="text" name="navbarInverseBackground" value="{navbarInverseBackground}" id="navbarInverseBackground">
+								<input type="text" name="navbarInverseBackground" value="{navbarInverseBackground}" id="navbarInverseBackground" class="colourpicker">
 							</div>
 						</div>
 
 						<div class="control-group">
 							<label for="navbarInverseBackgroundHighlight" class="control-label">@navbarInverseBackgroundHighlight</label>
 							<div class="controls">
-								<input type="text" name="navbarInverseBackgroundHighlight" value="{navbarInverseBackgroundHighlight}" id="navbarInverseBackgroundHighlight">
+								<input type="text" name="navbarInverseBackgroundHighlight" value="{navbarInverseBackgroundHighlight}" id="navbarInverseBackgroundHighlight" class="colourpicker">
 							</div>
 						</div>
 
 						<div class="control-group">
 							<label for="navbarInverseBorder" class="control-label">@navbarInverseBorder</label>
 							<div class="controls">
-								<input type="text" name="navbarInverseBorder" value="{navbarInverseBorder}" id="navbarInverseBorder">
+								<input type="text" name="navbarInverseBorder" value="{navbarInverseBorder}" id="navbarInverseBorder" class="colourpicker">
 							</div>
 						</div>
 
 						<div class="control-group">
 							<label for="navbarInverseText" class="control-label">@navbarInverseText</label>
 							<div class="controls">
-								<input type="text" name="navbarInverseText" value="{navbarInverseText}" id="navbarInverseText">
+								<input type="text" name="navbarInverseText" value="{navbarInverseText}" id="navbarInverseText" class="colourpicker">
 							</div>
 						</div>
 
 						<div class="control-group">
 							<label for="navbarInverseLinkColor" class="control-label">@navbarInverseLinkColor</label>
 							<div class="controls">
-								<input type="text" name="navbarInverseLinkColor" value="{navbarInverseLinkColor}" id="navbarInverseLinkColor">
+								<input type="text" name="navbarInverseLinkColor" value="{navbarInverseLinkColor}" id="navbarInverseLinkColor" class="colourpicker">
 							</div>
 						</div>
 
 						<div class="control-group">
 							<label for="navbarInverseLinkColorHover" class="control-label">@navbarInverseLinkColorHover</label>
 							<div class="controls">
-								<input type="text" name="navbarInverseLinkColorHover" value="{navbarInverseLinkColorHover}" id="navbarInverseLinkColorHover">
+								<input type="text" name="navbarInverseLinkColorHover" value="{navbarInverseLinkColorHover}" id="navbarInverseLinkColorHover" class="colourpicker">
 							</div>
 						</div>
 
 						<div class="control-group">
 							<label for="navbarInverseLinkColorActive" class="control-label">@navbarInverseLinkColorHover</label>
 							<div class="controls">
-								<input type="text" name="navbarInverseLinkColorActive" value="{navbarInverseLinkColorHover}" id="navbarInverseLinkColorActive">
+								<input type="text" name="navbarInverseLinkColorActive" value="{navbarInverseLinkColorHover}" id="navbarInverseLinkColorActive" class="colourpicker">
 							</div>
 						</div>
 
 						<div class="control-group">
 							<label for="navbarInverseLinkBackgroundHover" class="control-label">@navbarInverseLinkBackgroundHover</label>
 							<div class="controls">
-								<input type="text" name="navbarInverseLinkBackgroundHover" value="{navbarInverseLinkBackgroundHover}" id="navbarInverseLinkBackgroundHover">
+								<input type="text" name="navbarInverseLinkBackgroundHover" value="{navbarInverseLinkBackgroundHover}" id="navbarInverseLinkBackgroundHover" class="colourpicker">
 							</div>
 						</div>
 
 						<div class="control-group">
 							<label for="navbarInverseLinkBackgroundActive" class="control-label">@navbarInverseLinkBackgroundActive</label>
 							<div class="controls">
-								<input type="text" name="navbarInverseLinkBackgroundActive" value="{navbarInverseLinkBackgroundActive}" id="navbarInverseLinkBackgroundActive">
+								<input type="text" name="navbarInverseLinkBackgroundActive" value="{navbarInverseLinkBackgroundActive}" id="navbarInverseLinkBackgroundActive" class="colourpicker">
 							</div>
 						</div>
 
 						<div class="control-group">
 							<label for="navbarInverseSearchBackground" class="control-label">@navbarInverseSearchBackground</label>
 							<div class="controls">
-								<input type="text" name="navbarInverseSearchBackground" value="{navbarInverseSearchBackground}" id="navbarInverseSearchBackground">
+								<input type="text" name="navbarInverseSearchBackground" value="{navbarInverseSearchBackground}" id="navbarInverseSearchBackground" class="colourpicker">
 							</div>
 						</div>
 
 						<div class="control-group">
 							<label for="navbarInverseSearchBackgroundFocus" class="control-label">@navbarInverseSearchBackgroundFocus</label>
 							<div class="controls">
-								<input type="text" name="navbarInverseSearchBackgroundFocus" value="{navbarInverseSearchBackgroundFocus}" id="navbarInverseSearchBackgroundFocus">
+								<input type="text" name="navbarInverseSearchBackgroundFocus" value="{navbarInverseSearchBackgroundFocus}" id="navbarInverseSearchBackgroundFocus" class="colourpicker">
 							</div>
 						</div>
 
 						<div class="control-group">
 							<label for="navbarInverseSearchBorder" class="control-label">@navbarInverseSearchBorder</label>
 							<div class="controls">
-								<input type="text" name="navbarInverseSearchBorder" value="{navbarInverseSearchBorder}" id="navbarInverseSearchBorder">
+								<input type="text" name="navbarInverseSearchBorder" value="{navbarInverseSearchBorder}" id="navbarInverseSearchBorder" class="colourpicker">
 							</div>
 						</div>
 
 						<div class="control-group">
 							<label for="navbarInverseSearchidColor" class="control-label">@navbarInverseSearchidColor</label>
 							<div class="controls">
-								<input type="text" name="navbarInverseSearchidColor" value="{navbarInverseSearchidColor}" id="navbarInverseSearchidColor">
+								<input type="text" name="navbarInverseSearchidColor" value="{navbarInverseSearchidColor}" id="navbarInverseSearchidColor" class="colourpicker">
 							</div>
 						</div>
 
 						<div class="control-group">
 							<label for="navbarInverseBrandColor" class="control-label">@navbarInverseBrandColor</label>
 							<div class="controls">
-								<input type="text" name="navbarInverseBrandColor" value="{navbarInverseBrandColor}" id="navbarInverseBrandColor">
+								<input type="text" name="navbarInverseBrandColor" value="{navbarInverseBrandColor}" id="navbarInverseBrandColor" class="colourpicker">
 							</div>
 						</div>
 
 						<div class="control-group">
 							<label for="navbarInverseSearchPlaceholderColor" class="control-label">@navbarInverseSearchPlaceholderColor</label>
 							<div class="controls">
-								<input type="text" name="navbarInverseSearchPlaceholderColor" value="{navbarInverseSearchPlaceholderColor}" id="navbarInverseSearchPlaceholderColor">
+								<input type="text" name="navbarInverseSearchPlaceholderColor" value="{navbarInverseSearchPlaceholderColor}" id="navbarInverseSearchPlaceholderColor" class="colourpicker">
 							</div>
 						</div>
 					</div>
@@ -713,63 +713,63 @@
 						<div class="control-group">
 							<label for="dropdownBackground" class="control-label">@dropdownBackground</label>
 							<div class="controls">
-								<input type="text" name="dropdownBackground" value="{dropdownBackground}" id="dropdownBackground">
+								<input type="text" name="dropdownBackground" value="{dropdownBackground}" id="dropdownBackground" class="colourpicker">
 							</div>
 						</div>
 
 						<div class="control-group">
 							<label for="dropdownBorder" class="control-label">@dropdownBorder</label>
 							<div class="controls">
-								<input type="text" name="dropdownBorder" value="{dropdownBorder}" id="dropdownBorder">
+								<input type="text" name="dropdownBorder" value="{dropdownBorder}" id="dropdownBorder" >
 							</div>
 						</div>
 
 						<div class="control-group">
 							<label for="dropdownDividerTop" class="control-label">@dropdownDividerTop</label>
 							<div class="controls">
-								<input type="text" name="dropdownDividerTop" value="{dropdownDividerTop}" id="dropdownDividerTop">
+								<input type="text" name="dropdownDividerTop" value="{dropdownDividerTop}" id="dropdownDividerTop" class="colourpicker" >
 							</div>
 						</div>
 
 						<div class="control-group">
 							<label for="dropdownDividerBottom" class="control-label">@dropdownDividerBottom</label>
 							<div class="controls">
-								<input type="text" name="dropdownDividerBottom" value="{dropdownDividerBottom}" id="dropdownDividerBottom">
+								<input type="text" name="dropdownDividerBottom" value="{dropdownDividerBottom}" id="dropdownDividerBottom" class="colourpicker">
 							</div>
 						</div>
 
 						<div class="control-group">
 							<label for="dropdownLinkColor" class="control-label">@dropdownLinkColor</label>
 							<div class="controls">
-								<input type="text" name="dropdownLinkColor" value="{dropdownLinkColor}" id="dropdownLinkColor">
+								<input type="text" name="dropdownLinkColor" value="{dropdownLinkColor}" id="dropdownLinkColor" class="colourpicker">
 							</div>
 						</div>
 
 						<div class="control-group">
 							<label for="dropdownLinkColorHover" class="control-label">@dropdownLinkColorHover</label>
 							<div class="controls">
-								<input type="text" name="dropdownLinkColorHover" value="{dropdownLinkColorHover}" id="dropdownLinkColorHover">
+								<input type="text" name="dropdownLinkColorHover" value="{dropdownLinkColorHover}" id="dropdownLinkColorHover" class="colourpicker">
 							</div>
 						</div>
 
 						<div class="control-group">
 							<label for="dropdownLinkColorActive" class="control-label">@dropdownLinkColorActive</label>
 							<div class="controls">
-								<input type="text" name="dropdownLinkColorActive" value="{dropdownLinkColorActive}" id="dropdownLinkColorActive">
+								<input type="text" name="dropdownLinkColorActive" value="{dropdownLinkColorActive}" id="dropdownLinkColorActive" class="colourpicker">
 							</div>
 						</div>
 
 						<div class="control-group">
 							<label for="dropdownLinkBackgroundActive" class="control-label">@dropdownLinkBackgroundActive</label>
 							<div class="controls">
-								<input type="text" name="dropdownLinkBackgroundActive" value="{dropdownLinkBackgroundActive}" id="dropdownLinkBackgroundActive">
+								<input type="text" name="dropdownLinkBackgroundActive" value="{dropdownLinkBackgroundActive}" id="dropdownLinkBackgroundActive" class="colourpicker">
 							</div>
 						</div>
 
 						<div class="control-group">
 							<label for="dropdownLinkBackgroundHover" class="control-label">@dropdownLinkBackgroundHover</label>
 							<div class="controls">
-								<input type="text" name="dropdownLinkBackgroundHover" value="{dropdownLinkBackgroundHover}" id="dropdownLinkBackgroundHover">
+								<input type="text" name="dropdownLinkBackgroundHover" value="{dropdownLinkBackgroundHover}" id="dropdownLinkBackgroundHover" class="colourpicker">
 							</div>
 						</div>
 					</div>
@@ -835,19 +835,19 @@
 						<div class="control-group">
 							<label for="paginationBackground" class="control-label">@paginationBackground</label>
 							<div class="controls">
-								<input type="text" name="paginationBackground" value="{paginationBackground}" id="paginationBackground">
+								<input type="text" name="paginationBackground" value="{paginationBackground}" id="paginationBackground" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="paginationBorder" class="control-label">@paginationBorder</label>
 							<div class="controls">
-								<input type="text" name="paginationBorder" value="{paginationBorder}" id="paginationBorder">
+								<input type="text" name="paginationBorder" value="{paginationBorder}" id="paginationBorder" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="paginationActiveBackground" class="control-label">@paginationActiveBackground</label>
 							<div class="controls">
-								<input type="text" name="paginationActiveBackground" value="{paginationActiveBackground}" id="paginationActiveBackground">
+								<input type="text" name="paginationActiveBackground" value="{paginationActiveBackground}" id="paginationActiveBackground" class="colourpicker">
 							</div>
 						</div>
 					</div>
@@ -857,19 +857,19 @@
 						<div class="control-group">
 							<label for="heroUnitBackground" class="control-label">@heroUnitBackground</label>
 							<div class="controls">
-								<input type="text" name="heroUnitBackground" value="{heroUnitBackground}" id="heroUnitBackground">
+								<input type="text" name="heroUnitBackground" value="{heroUnitBackground}" id="heroUnitBackground" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="heroUnitHeadingColor" class="control-label">@heroUnitHeadingColor</label>
 							<div class="controls">
-								<input type="text" name="heroUnitHeadingColor" value="{heroUnitHeadingColor}" id="heroUnitHeadingColor">
+								<input type="text" name="heroUnitHeadingColor" value="{heroUnitHeadingColor}" id="heroUnitHeadingColor" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="heroUnitLeadColor" class="control-label">@heroUnitLeadColor</label>
 							<div class="controls">
-								<input type="text" name="heroUnitLeadColor" value="{heroUnitLeadColor}" id="heroUnitLeadColor">
+								<input type="text" name="heroUnitLeadColor" value="{heroUnitLeadColor}" id="heroUnitLeadColor" class="colourpicker">
 							</div>
 						</div>
 					</div>
@@ -886,19 +886,19 @@
 						<div class="control-group">
 							<label for="warningText" class="control-label">@warningText</label>
 							<div class="controls">
-								<input type="text" name="warningText" value="{warningText}" id="warningText">
+								<input type="text" name="warningText" value="{warningText}" id="warningText" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="warningBackground" class="control-label">@warningBackground</label>
 							<div class="controls">
-								<input type="text" name="warningBackground" value="{warningBackground}" id="warningBackground">
+								<input type="text" name="warningBackground" value="{warningBackground}" id="warningBackground" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="warningBorder" class="control-label">@warningBorder</label>
 							<div class="controls">
-								<input type="text" name="warningBorder" value="{warningBorder}" id="warningBorder">
+								<input type="text" name="warningBorder" value="{warningBorder}" id="warningBorder" class="colourpicker">
 							</div>
 						</div>
 					</div>
@@ -906,19 +906,19 @@
 						<div class="control-group">
 							<label for="errorText" class="control-label">@errorText</label>
 							<div class="controls">
-								<input type="text" name="errorText" value="{errorText}" id="errorText">
+								<input type="text" name="errorText" value="{errorText}" id="errorText" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="errorBackground" class="control-label">@errorBackground</label>
 							<div class="controls">
-								<input type="text" name="errorBackground" value="{errorBackground}" id="errorBackground">
+								<input type="text" name="errorBackground" value="{errorBackground}" id="errorBackground" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="errorBorder" class="control-label">@errorBorder</label>
 							<div class="controls">
-								<input type="text" name="errorBorder" value="{errorBorder}" id="errorBorder">
+								<input type="text" name="errorBorder" value="{errorBorder}" id="errorBorder" class="colourpicker">
 							</div>
 						</div>
 					</div>
@@ -926,19 +926,19 @@
 						<div class="control-group">
 							<label for="successText" class="control-label">@successText</label>
 							<div class="controls">
-								<input type="text" name="successText" value="{successText}" id="successText">
+								<input type="text" name="successText" value="{successText}" id="successText" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="successBackground" class="control-label">@successBackground</label>
 							<div class="controls">
-								<input type="text" name="successBackground" value="{successBackground}" id="successBackground">
+								<input type="text" name="successBackground" value="{successBackground}" id="successBackground" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="successBorder" class="control-label">@successBorder</label>
 							<div class="controls">
-								<input type="text" name="successBorder" value="{successBorder}" id="successBorder">
+								<input type="text" name="successBorder" value="{successBorder}" id="successBorder" class="colourpicker">
 							</div>
 						</div>
 					</div>
@@ -946,19 +946,19 @@
 						<div class="control-group">
 							<label for="infoText" class="control-label">@infoText</label>
 							<div class="controls">
-								<input type="text" name="infoText" value="{infoText}" id="infoText">
+								<input type="text" name="infoText" value="{infoText}" id="infoText" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="infoBackground" class="control-label">@infoBackground</label>
 							<div class="controls">
-								<input type="text" name="infoBackground" value="{infoBackground}" id="infoBackground">
+								<input type="text" name="infoBackground" value="{infoBackground}" id="infoBackground" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="infoBorder" class="control-label">@infoBorder</label>
 							<div class="controls">
-								<input type="text" name="infoBorder" value="{infoBorder}" id="infoBorder">
+								<input type="text" name="infoBorder" value="{infoBorder}" id="infoBorder" class="colourpicker">
 							</div>
 						</div>
 					</div>
@@ -975,13 +975,13 @@
 						<div class="control-group">
 							<label for="tooltipColor" class="control-label">@tooltipColor</label>
 							<div class="controls">
-								<input type="text" name="tooltipColor" value="{tooltipColor}" id="tooltipColor">
+								<input type="text" name="tooltipColor" value="{tooltipColor}" id="tooltipColor" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="tooltipBackground" class="control-label">@tooltipBackground</label>
 							<div class="controls">
-								<input type="text" name="tooltipBackground" value="{tooltipBackground}" id="tooltipBackground">
+								<input type="text" name="tooltipBackground" value="{tooltipBackground}" id="tooltipBackground" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
@@ -993,7 +993,7 @@
 						<div class="control-group">
 							<label for="tooltipArrowColor" class="control-label">@tooltipArrowColor</label>
 							<div class="controls">
-								<input type="text" name="tooltipArrowColor" value="{tooltipArrowColor}" id="tooltipArrowColor">
+								<input type="text" name="tooltipArrowColor" value="{tooltipArrowColor}" id="tooltipArrowColor" class="colourpicker">
 							</div>
 						</div>
 					</div>
@@ -1003,7 +1003,7 @@
 						<div class="control-group">
 							<label for="popoverBackground" class="control-label">@popoverBackground</label>
 							<div class="controls">
-								<input type="text" name="popoverBackground" value="{popoverBackground}" id="popoverBackground">
+								<input type="text" name="popoverBackground" value="{popoverBackground}" id="popoverBackground" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
@@ -1015,7 +1015,7 @@
 						<div class="control-group">
 							<label for="popoverArrowColor" class="control-label">@popoverArrowColor</label>
 							<div class="controls">
-								<input type="text" name="popoverArrowColor" value="{popoverArrowColor}" id="popoverArrowColor">
+								<input type="text" name="popoverArrowColor" value="{popoverArrowColor}" id="popoverArrowColor" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
@@ -1198,13 +1198,13 @@
 						<div class="control-group">
 							<label for="idText" class="control-label">@idText</label>
 							<div class="controls">
-								<input type="text" name="idText" value="{idText}" id="idText">
+								<input type="text" name="idText" value="{idText}" id="idText" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
 							<label for="placeholderText" class="control-label">@placeholderText</label>
 							<div class="controls">
-								<input type="text" name="placeholderText" value="{placeholderText}" id="placeholderText">
+								<input type="text" name="placeholderText" value="{placeholderText}" id="placeholderText" class="colourpicker">
 							</div>
 						</div>
 					</div>
@@ -1214,7 +1214,7 @@
 						<div class="control-group">
 							<label for="hrBorder" class="control-label">@hrBorder</label>
 							<div class="controls">
-								<input type="text" name="hrBorder" value="{hrBorder}" id="hrBorder">
+								<input type="text" name="hrBorder" value="{hrBorder}" id="hrBorder" class="colourpicker">
 							</div>
 						</div>
 						<div class="control-group">
@@ -1227,7 +1227,7 @@
 						<div class="control-group">
 							<label for="wellBackground" class="control-label">@wellBackground</label>
 							<div class="controls">
-								<input type="text" name="wellBackground" value="{wellBackground}" id="wellBackground">
+								<input type="text" name="wellBackground" value="{wellBackground}" id="wellBackground" class="colourpicker">
 							</div>
 						</div>
 					</div>
