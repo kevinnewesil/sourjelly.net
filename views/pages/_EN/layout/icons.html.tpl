@@ -721,7 +721,7 @@
                     <div class="control-group">
                         <div class="controls">
                             <label for="virb" class="checkbox"><input type="checkbox" name="virb" id="virb">
-                                
+                                Virb
                             </label>
                         </div>
                     </div>
