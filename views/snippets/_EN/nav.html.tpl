@@ -66,6 +66,8 @@
 				<li><a href="{base}/themes/newTheme/?ns=controllers&amp;path=controller_path" title="Create new theme">Create theme</a></li>
 			</ul>
 		</li>
+
+		<li><a href="{base}/layouts/icons/?ns=controllers&amp;path=controller_path" title="Icon selector">Icons</a></li>
 	</ul>
 
 </li>
