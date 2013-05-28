@@ -13,7 +13,7 @@
 		<li><a data-toggle="tab" href="#lJ"><i class="icon-wrench"></i> Tooltips</a></li>
 		<li><a data-toggle="tab" href="#lK"><i class="icon-th"></i> Grid</a></li>
 		<li><a data-toggle="tab" href="#lL"><i class="icon-th-large"></i> Grid fluid</a></li>
-		<li><a data-toggle="tab" href="#lM"><i class="icon-plus"></i> extra</a></li>
+		<li><a data-toggle="tab" href="#lN"><i class="icon-plus"></i> extra</a></li>
 	</ul>
 	<div class="tab-content">
 		<div id="lA" class="tab-pane active">
@@ -1237,13 +1237,6 @@
 </div>
 
 	
-
-	
-
-	
-
-
-
 
 
 	<fieldset>
