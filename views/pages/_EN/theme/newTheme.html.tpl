@@ -1,4 +1,4 @@
-<h2>Create a theme</h2>
+ <h2>Create a theme</h2>
 <hr>
 <form action="{base}/themes/create/?ns=controllers&amp;path=controller_path" class="form themeForm" method="post">
 	<fieldset>

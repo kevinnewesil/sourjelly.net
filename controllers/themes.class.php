@@ -44,10 +44,7 @@
 		/**
 		 * gets the html for creating a new theme... That is all.
 		 */
-		public function newTheme()
-		{
-			\core\build\Sourjelly::getHtml()->assign('{content}',\core\build\Template::getTemplate('theme/newTheme.html.tpl'));
-		}
+		public function newTheme() { \core\build\Sourjelly::getHtml()->assign('{content}',\core\build\Template::getTemplate('theme/newTheme.html.tpl')); }
 
 		/**
 		 * This function is a little bit difficult, as it parses between approx 150 and 200 POST values.

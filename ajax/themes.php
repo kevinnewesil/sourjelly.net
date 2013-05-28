@@ -5,7 +5,7 @@
 
 	// Require the system files.
 	require_once('../config/const.config.php');
-	require_once('../core/build/Sourjelly.class.php');
+	require_once('../core/require.php');
 
 	// Start the system
 	new \core\build\Sourjelly(true);

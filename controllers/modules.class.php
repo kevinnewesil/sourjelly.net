@@ -42,26 +42,32 @@
 		{
 			$rows = '';
 
-			$mainTmp      = \core\build\Template::getTemplate('module/overview.html.tpl');
+			$mainTmp      = "";
 			$rowsTmp      = \core\build\Template::getTemplate('module/tablerow.html.tpl');
 			$modules 	  = \Api\Api::getModules() -> getAllModules();
 			$placeholders = array('{name}','{description}','{uploaded_at}','{match}','{position}','{active}','{id}');
 
-			foreach($modules as $module)
+			if(empty($modules))
+				\setNoticeNoModules('We have not detected any installed modules, we advise you to download some in our awesome community!');
+			else
 			{
-				if(isset($module['active']) && $module['active'] == 1)
-					$module['active'] = 'Yes';
-				else
-					$module['active'] = 'No';
+				$mainTmp = \core\build\Template::getTemplate('module/overview.html.tpl');
 
-				$replacers = array($module['title'],$module['description'],$module['created_at'], $module['pages'],$module['position'],$module['active'],$module['id']);
-				$rows .= str_replace($placeholders, $replacers ,$rowsTmp);
+				foreach($modules as $module)
+				{
+					if(isset($module['active']) && $module['active'] == 1)
+						$module['active'] = 'Yes';
+					else
+						$module['active'] = 'No';
+
+					$replacers = array($module['title'],$module['description'],$module['created_at'], $module['pages'],$module['position'],$module['active'],$module['id']);
+					$rows .= str_replace($placeholders, $replacers ,$rowsTmp);
+				}
+
+				$mainTmp = str_replace('{rows}',$rows,$mainTmp);
 			}
 
-			$mainTmp = str_replace('{rows}',$rows,$mainTmp);
-
 			\core\build\Sourjelly::getHtml()->assign('{content}',$mainTmp);
-
 		}
 
 		/**

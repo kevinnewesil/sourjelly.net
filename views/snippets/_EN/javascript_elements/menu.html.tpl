@@ -4,18 +4,18 @@
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">pages</a>
 
 			<ul class="dropdown-menu">
-				<li><a href="#modalToggle" class="crud-create" data-toggle="modal">Create</a></li>
-				<li><a href="#modalToggle" class="crud-overview" data-toggle="modal">Overview</a></li>
-				<li><a href="#modalToggle" class="crud-menu" data-toggle="modal">Menu</a></li>
-				<li><a href="#modalToggle" class="crud-deleted" data-toggle="modal">Deleted</a></li>
+				<li><a href="#modalToggle" class="crud-create" data-toggle="modal" id="activateModal">Create</a></li>
+				<li><a href="#modalToggle" class="crud-overview" data-toggle="modal" id="activateModal">Overview</a></li>
+				<li><a href="#modalToggle" class="crud-menu" data-toggle="modal" id="activateModal">Menu</a></li>
+				<li><a href="#modalToggle" class="crud-deleted" data-toggle="modal" id="activateModal">Deleted</a></li>
 				
 				<li class="divider"></li>
 				<li class="disabled"><a href="#">Images</a></li>
 				<li class="divider"></li>
 
-				<li><a href="#modalToggle" class="crud-upload" data-toggle="modal">Upload</a></li>
-				<li><a href="#modalToggle" class="crud-images" data-toggle="modal">Overview</a></li>
-				<li><a href="#modalToggle" class="crud-cropper" data-toggle="modal">Crop</a></li>
+				<li><a href="#modalToggle" class="crud-upload" data-toggle="modal" id="activateModal">Upload</a></li>
+				<li><a href="#modalToggle" class="crud-images" data-toggle="modal" id="activateModal">Overview</a></li>
+				<li><a href="#modalToggle" class="crud-cropper" data-toggle="modal" id="activateModal">Crop</a></li>
 			</ul>
 		</li>
 
@@ -23,10 +23,10 @@
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">Modules</a>
 
 			<ul class="dropdown-menu">
-				<li><a href="#">Install</a></li>
-				<li><a href="#">Overview</a></li>
-				<li><a href="#">Settings</a></li>
-				<li><a href="#">Deleted</a></li>
+				<li><a href="#modalToggle" class="modules-create" data-toggle="modal" id="activateModal">Install</a></li>
+				<li><a href="#modalToggle" class="modules-overview" data-toggle="modal" id="activateModal">Overview</a></li>
+				<li><a href="#modalToggle" class="modules-settings" data-toggle="modal" id="activateModal">Settings</a></li>
+				<li><a href="#modalToggle" class="modules-deleted" data-toggle="modal" id="activateModal">Deleted</a></li>
 			</ul>
 
 		</li>
@@ -41,30 +41,30 @@
 
 					<ul class="dropdown-menu">
 						
-						<li class="dropdown-submenu">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Navigation</a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Sort</a></li>
-								<li><a href="#">Styling</a></li>
-								<li><a href="#">Properties</a></li>
-							</ul>
-						</li>
-
-						<li><a href="#">Header</a></li>
-						<li><a href="#">Footer</a></li>
-						<li><a href="#">Content</a></li>
+						<li><a href="#modalToggle" class="layouts-navigation" data-toggle="modal" id="activateModal">Navigation</a></li>
+						<li><a href="#modalToggle" class="layouts-header" data-toggle="modal" id="activateModal">Header</a></li>
+						<li><a href="#modalToggle" class="layouts-footer" data-toggle="modal" id="activateModal">Footer</a></li>
+						<li><a href="#modalToggle" class="layouts-content" data-toggle="modal" id="activateModal">Content</a></li>
 					</ul>
 				</li>
 
-				<li><a href="#">Themes</a></li>
+				<li class="dropdown-submenu">
+					<a href="#">Themes</a>
+
+					<ul class="dropdown-menu">
+						<li><a href="#modalToggle" class="themes-index" data-toggle="modal" id="activateModal">Selection</a></li>
+						<li><a href="#modalToggle" class="themes-upload" data-toggle="modal" id="activateModal">Upload</a></li>
+						<li><a href="#modalToggle" class="themes-create" data-toggle="modal" id="activateModal">Create</a></li>
+					</ul>
+				</li>
 			</ul>
 		</li>
 
 		<li class="dropdown-submenu">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings</a>
 			<ul class="dropdown-menu">
-				<li><a href="#">Basic system settings</a></li>
-				<li><a href="#">Social media settings</a></li>
+				<li><a href="#modalToggle" class="settings-index" data-toggle="modal" id="activateModal">Basic system settings</a></li>
+				<li><a href="#modalToggle" class="settings-social" data-toggle="modal" id="activateModal">Social media settings</a></li>
 			</ul>
 		</li>
 
@@ -120,63 +120,22 @@
 
 <script>
 
-    function loadAjax(controllerName,functionName)
-    {
-
-        $.ajax({
-            url : '/sourjelly.net/public_html/index.php/' + controllerName + '/' + functionName + '/?ns=controllers&path=controller_path&ajax=true',
-            dataType : "html",
-            type : "get",
-
-            success : function(data)
-            {	
-                $(".inner-modal").html(data);
-                $("#modalSort").attr('class',controllerName + '-' + functionName)
-
-                $("#modalToggle").on('hidden',function(){
-                	$(this).modal('show');
-                });
-            }
-        });
-    };
-
 	$(document).ready(function(){
-
 		// gets
 
-		 $(".crud-create").click(function(){
-	        loadAjax('crud','create');
-	    });
+		$("#activateModal").on("click",function(){
+			names = $(this).attr('class').split('-');
+			loadAjax(names[0],names[1]);
+			console.log(names);
 
-		 $(".crud-overview").click(function(){
-		 	loadAjax('crud','retrieve');
-		 });
+			console.log($("#modal").find("form").css('background-color','red'));
+			return false;
+		});
 
-		 $(".crud-menu").click(function(){
-			loadAjax('crud','order');	
-		 });
-
-		 $(".crud-deleted").click(function(){
-			loadAjax('crud','deleted');
-		 });
-
-		 $(".crud-upload").click(function(){
-			loadAjax('crud','upload');
-		 });
-
-		 $(".crud-images").click(function(){
-			loadAjax('crud','images');
-		 });
-
-		 $(".crud-deleted").click(function(){
-			loadAjax('crud','cropper');
-		 });
-
-		 $("#modal").find('input[type="submit"], input[type="submit"]').click(function(){
-		 	target = $("#modalSort").attr('class');
-		 	console.log(target);
-		 	return false;
-		 })
+		$("#modal").find('input[type="submit"], input[type="submit"]').on("click",function(){
+			target = $("#modalSort").attr('class');
+			return false;
+		});
 
 		 $(".close").click(function(){
 		 	window.location.reload();

@@ -1,6 +1,6 @@
 $(document).ready(function(){
     $.ajax({
-        url : '/sourjelly.net/ajax/mouse_menu.php',
+        url : ajaxPath + 'mouse_menu.php',
         data : {
             action : 'load-menu-html',
         },
@@ -22,7 +22,8 @@ var test = 0;
 //
 document.addEventListener('contextmenu', function(e) {
 
-    if(test == 0){
+    if(test == 0)
+    {
         // if statement op e keycode gooien.
 
         $(".mouse-menu").css({
@@ -44,3 +45,22 @@ $(document).click(function(evt){
         $(".mouse-menu").css('display','none');
 });
 
+function loadAjax(controllerName,functionName)
+{
+
+    $.ajax({
+        url : basePath + "/" + controllerName + '/' + functionName + '/?ns=controllers&path=controller_path&ajax=true',
+        dataType : "html",
+        type : "get",
+
+        success : function(data)
+        {   
+            $(".inner-modal").html(data);
+            $("#modalSort").attr('class',controllerName + '-' + functionName)
+
+            $("#modalToggle").on('hidden',function(){
+                $(this).modal('show');
+            });
+        }
+    });
+};
