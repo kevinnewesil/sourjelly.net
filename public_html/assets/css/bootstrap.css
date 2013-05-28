@@ -1,4 +1,4 @@
-/*!
+e/*!
  * Bootstrap v2.3.0
  *
  * Copyright 2012 Twitter, Inc
@@ -2283,7 +2283,7 @@ table th[class*="span"],
   *margin-right: .3em;
   line-height: 14px;
   vertical-align: text-top;
-  background-image: url("../img/glyphicons-halflings.png");
+  background-image: url("../img/glyphicons-halflings.png")!important;
   background-position: 14px 14px;
   background-repeat: no-repeat;
 }
