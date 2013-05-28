@@ -1,19 +1,20 @@
 <form action="{base}/themes/update/{id}/?ns=controllers&amp;path=controller_path" class="form themeForm" method="post">	
 <div class="tabbable tabs-left">
 	<ul class="nav nav-tabs">
-		<li class="active"><a data-toggle="tab" href="#lA"><i class="icon-remove"></i> Info</a></li>
-		<li><a data-toggle="tab" href="#lB"><i class="icon-bullhorn"></i> Colours</a></li>
-		<li><a data-toggle="tab" href="#lC"><i class="icon-wrench"></i> Scaffolding</a></li>
-		<li><a data-toggle="tab" href="#lD"><i class="icon-wrench"></i> Typography</a></li>
-		<li><a data-toggle="tab" href="#lE"><i class="icon-wrench"></i> Buttons</a></li>
-		<li><a data-toggle="tab" href="#lF"><i class="icon-wrench"></i> Tables</a></li>
-		<li><a data-toggle="tab" href="#lG"><i class="icon-wrench"></i> Navs</a></li>
-		<li><a data-toggle="tab" href="#lH"><i class="icon-wrench"></i> Z-index</a></li>
-		<li><a data-toggle="tab" href="#lI"><i class="icon-wrench"></i> Form</a></li>
-		<li><a data-toggle="tab" href="#lJ"><i class="icon-wrench"></i> Tooltips</a></li>
-		<li><a data-toggle="tab" href="#lK"><i class="icon-th"></i> Grid</a></li>
-		<li><a data-toggle="tab" href="#lL"><i class="icon-th-large"></i> Grid fluid</a></li>
-		<li><a data-toggle="tab" href="#lN"><i class="icon-plus"></i> extra</a></li>
+		<li class="active"><a data-toggle="tab" href="#lA"><i class="icon-remove"></i> Info</a></li> <!-- klopt -->
+		<li><a data-toggle="tab" href="#lB"><i class="icon-bullhorn"></i> Colours</a></li> <!-- klopt -->
+		<li><a data-toggle="tab" href="#lC"><i class="icon-wrench"></i> Scaffolding</a></li> <!-- kloptt -->
+		<li><a data-toggle="tab" href="#lD"><i class="icon-wrench"></i> Typography</a></li> <!-- klopt -->
+		<li><a data-toggle="tab" href="#lE"><i class="icon-wrench"></i> Buttons</a></li> <!-- klopt -->
+		<li><a data-toggle="tab" href="#lF"><i class="icon-wrench"></i> Tables</a></li> <!-- klopt // Dit is tables en deels Forms voor input fields.-->
+		<li><a data-toggle="tab" href="#lG"><i class="icon-wrench"></i> Navs</a></li> <!-- klopt -->
+		<li><a data-toggle="tab" href="#lH"><i class="icon-wrench"></i> Z-index</a></li> <!-- klopt -->
+		<!-- klopt niet hier moet nog eentje komen voor pagenation en hero unit..... --> 
+		<li><a data-toggle="tab" href="#lI"><i class="icon-wrench"></i> Form</a></li> <!-- klopt niet omdat hero unit mist.. -->
+		<li><a data-toggle="tab" href="#lJ"><i class="icon-wrench"></i> Tooltips</a></li> <!-- klopt niet moet LK zijn -->
+		<li><a data-toggle="tab" href="#lK"><i class="icon-th"></i> Grid</a></li> <!-- href klopt niet moet LL zijn -->
+		<li><a data-toggle="tab" href="#lL"><i class="icon-th-large"></i> Grid fluid</a></li> <!-- deze href klopt niet.. HREF van fluid grid is LM.. -->
+		<li><a data-toggle="tab" href="#lN"><i class="icon-plus"></i> extra</a></li> <!-- klopt -->
 	</ul>
 	<div class="tab-content">
 		<div id="lA" class="tab-pane active">
