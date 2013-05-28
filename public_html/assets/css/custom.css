@@ -121,13 +121,10 @@
 }
 
 
-
-
-
-
-
-
+/***********************************************************************************************************************************************/
 /* ICONS */
+
+/* Black circle icons */
 
 i.circle-500px , i.circle-about-menu ,i.circle-add-this, i.circle-amazon,i.circle-aol, i.circle-app-store-alt, i.circle-app-store, i.circle-apple,
 i.circle-bebo, i.circle-behance, i.circle-bing,i.circle-blip,i.circle-blogger , i.circle-coroflot ,i.circle-daytum,i.circle-delicious,
@@ -149,394 +146,101 @@ i.circle-yelp , i.circle-youtube {
 
 /* POSITONS OF ICONS IN SPRITE */
 
-i.circle-500px {
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -50px -50px;
-}
-
-i.circle-about-menu {
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -100px -50px;
-}
-
-i.circle-add-this {
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -150px -50px;
-}
-
-i.circle-amazon {
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -200px -50px;
-}
-
-i.circle-aol{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -250px -50px;
-}
-
-i.circle-app-store-alt{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -300px -50px;
-}
-
-i.circle-app-store{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -350px -50px;
-}
-
-i.circle-apple{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -400px -50px;
-}
-
-i.circle-bebo {
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -450px -50px;
-}
-
-i.circle-behance{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -50px -100px;
-}
-
-i.circle-bing{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -100px -100px;
-}
-
-i.circle-blip{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -150px -100px;
-}
-
-i.circle-blogger {
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -200px -100px;
-}
-
-i.circle-coroflot{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -250px -100px;
-}
-
-i.circle-daytum{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -300px -100px;
-}
-
-i.circle-delicious{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -350px -100px;
-}
-
-i.circle-design-bump {
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -400px -100px;
-}
-
-i.circle-designfloat{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -450px -100px;
-}
-
-i.circle-deviant-art{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -50px -150px;
-}
-
-i.circle-digg-alt{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -100px -150px;
-}
-
-i.circle-dig {
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -150px -150px;
-}
-
-i.circle-dripple{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -200px -150px;
-}
-
-i.circle-drupal{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -250px -150px;
-}
-
-i.circle-ebay{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -300px -150px;
-}
-
-i.circle-email {
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -350px -150px;
-}
-
-i.circle-ember-app{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -400px -150px;
-}
-
-i.circle-etsy{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -450px -150px;
-}
-
-i.circle-facebook{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -50px -200px;
-}
-
-i.circle-feed-burner {
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -100px -200px;
-}
-
-i.circle-flickr{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -150px -200px;
-}
-
-i.circle-foodspotting{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -200px -200px;
-}
-
-i.circle-forrst{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -250px -200px;
-}
-
-i.circle-foursquare {
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -300px -200px;
-}
-
-i.circle-friendsfeed{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -350px -200px;
-}
-
-i.circle-friendstar{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -400px -200px;
-}
-
-i.circle-gdgt{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -450px -200px;
-}
-
-i.circle-github {
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -50px -250px;
-}
-
-i.circle-google-buzz{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -100px -250px;
-}
-
-i.circle-google-talk{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -150px -250px;
-}
-
-i.circle-gowalla-pin{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -200px -250px;
-}
-
-i.circle-gowalla {
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -250px -250px;
-}
-
-i.circle-grooveshark{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -300px -250px;
-}
-
-i.circle-heart{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -350px -250px;
-}
-
-i.circle-hyves{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -400px -250px;
-}
-
-i.circle-icondock {
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -450px -250px;
-}
-
-i.circle-icq{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -50px -300px;
-}
-
-i.circle-identica{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -100px -300px;
-}
-
-i.circle-imessage{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -150px -300px;
-}
-
-i.circle-itunes {
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -200px -300px;
-}
-
-i.circle-last-fm{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -250px -300px;
-}
-
-i.circle-linkedin{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -300px -300px;
-}
-
-i.circle-meetup{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -350px -300px;
-}
-
-i.circle-metacafe {
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -400px -300px;
-}
-
-i.circle-mixx{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -450px -300px;
-}
-
-i.circle-mobileme{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -50px -350px;
-}
-
-i.circle-mr-wong{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -100px -350px;
-}
-
-i.circle-msn {
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -150px -350px;
-}
-
-i.circle-myspace{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -200px -350px;
-}
-
-i.circle-newsvine{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -250px -350px;
-}
-
-i.circle-paypal{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -300px -350px;
-}
-
-i.circle-photobucket {
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -350px -350px;
-}
-
-i.circle-picasa{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -400px -350px;
-}
-
-i.circle-pinterest{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -450px -350px;
-}
-
-i.circle-podcast{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -50px -400px;
-}
-
-i.circle-posterous {
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -100px -400px;
-}
-
-i.circle-qik{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -150px -400px;
-}
-
-i.circle-quora{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -200px -400px;
-}
-
-i.circle-reddit{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -250px -400px;
-}
-
-i.circle-retweet {
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -300px -400px;
-}
-
-i.circle-rss{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -350px -400px;
-}
-
-i.circle-scribd{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -400px -400px;
-}
-
-i.circle-share-this{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -450px -400px;
-}
-
-i.circle-skype {
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -50px -450px;
-}
-
-i.circle-slashdot{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -100px -450px;
-}
-
-i.circle-slideshare{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -150px -450px;
-}
-
-i.circle-smugmug{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -200px -450px;
-}
-
-i.circle-sound-cloud {
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -250px -450px;
-}
-
-i.circle-spotify{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -300px -450px;
-}
-
-i.circle-squidoo{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -350px -450px;
-}
-
-i.circle-stackoverflow{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -400px -450px;
-}
-
-i.circle-star {
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -450px -450px;
-}
-
-i.circle-stumbleupon{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -50px -500px;
-}
-
-i.circle-technorati{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -100px -500px;
-}
-
-i.circle-tumblr{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -150px -500px;
-}
-
-i.circle-twitter-bird {
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -200px -500px;
-}
-
-i.circle-twitter{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -250px -500px;
-}
-
-i.circle-viddler{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -300px -500px;
-}
-
-i.circle-vimeo{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -350px -500px;
-}
-
-i.circle-virb {
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -400px -500px;
-}
-
-i.circle-w3{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -450px -500px;
-}
-
-i.circle-wikipedia{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -50px -550px;
-}
-
-i.circle-windows{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -100px -550px;
-}
-
-i.circle-wordpress {
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -150px -550px;
-}
-
-i.circle-xing{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -200px -550px;
-}
-
-i.circle-yahoo-buzz{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -250px -550px;
-}
-
-i.circle-yahoo{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -300px -550px;
-}
-
-i.circle-yelp {
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -350px -550px;
-}
-
-i.circle-youtube{
-	background: url('../img/icons/social-icons-black-circle.png') no-repeat -400px -550px;
-}
+i.circle-500px { background: url('../img/icons/social-icons-black-circle.png') no-repeat -50px -50px; }
+i.circle-about-menu { background: url('../img/icons/social-icons-black-circle.png') no-repeat -100px -50px; }
+i.circle-add-this { background: url('../img/icons/social-icons-black-circle.png') no-repeat -150px -50px; }
+i.circle-amazon { background: url('../img/icons/social-icons-black-circle.png') no-repeat -200px -50px; }
+i.circle-aol{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -250px -50px; }
+i.circle-app-store-alt{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -300px -50px; }
+i.circle-app-store{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -350px -50px; }
+i.circle-apple{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -400px -50px; }
+i.circle-bebo { background: url('../img/icons/social-icons-black-circle.png') no-repeat -450px -50px; }
+i.circle-behance{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -50px -100px; }
+i.circle-bing{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -100px -100px; }
+i.circle-blip{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -150px -100px; }
+i.circle-blogger { background: url('../img/icons/social-icons-black-circle.png') no-repeat -200px -100px; }
+i.circle-coroflot{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -250px -100px; }
+i.circle-daytum{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -300px -100px; }
+i.circle-delicious{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -350px -100px; }
+i.circle-design-bump { background: url('../img/icons/social-icons-black-circle.png') no-repeat -400px -100px; }
+i.circle-designfloat{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -450px -100px; }
+i.circle-deviant-art{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -50px -150px; }
+i.circle-digg-alt{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -100px -150px; }
+i.circle-dig { background: url('../img/icons/social-icons-black-circle.png') no-repeat -150px -150px; }
+i.circle-dripple{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -200px -150px; }
+i.circle-drupal{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -250px -150px; }
+i.circle-ebay{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -300px -150px; }
+i.circle-email { background: url('../img/icons/social-icons-black-circle.png') no-repeat -350px -150px; }
+i.circle-ember-app{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -400px -150px; }
+i.circle-etsy{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -450px -150px; }
+i.circle-facebook{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -50px -200px; }
+i.circle-feed-burner { background: url('../img/icons/social-icons-black-circle.png') no-repeat -100px -200px; }
+i.circle-flickr{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -150px -200px; }
+i.circle-foodspotting{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -200px -200px; }
+i.circle-forrst{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -250px -200px; }
+i.circle-foursquare { background: url('../img/icons/social-icons-black-circle.png') no-repeat -300px -200px; }
+i.circle-friendsfeed{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -350px -200px; }
+i.circle-friendstar{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -400px -200px; }
+i.circle-gdgt{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -450px -200px; }
+i.circle-github { background: url('../img/icons/social-icons-black-circle.png') no-repeat -50px -250px; }
+i.circle-google-buzz{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -100px -250px; }
+i.circle-google-talk{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -150px -250px; }
+i.circle-gowalla-pin{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -200px -250px; }
+i.circle-gowalla { background: url('../img/icons/social-icons-black-circle.png') no-repeat -250px -250px; }
+i.circle-grooveshark{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -300px -250px; }
+i.circle-heart{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -350px -250px; }
+i.circle-hyves{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -400px -250px; }
+i.circle-icondock { background: url('../img/icons/social-icons-black-circle.png') no-repeat -450px -250px; }
+i.circle-icq{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -50px -300px; }
+i.circle-identica{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -100px -300px; }
+i.circle-imessage{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -150px -300px; }
+i.circle-itunes { background: url('../img/icons/social-icons-black-circle.png') no-repeat -200px -300px; }
+i.circle-last-fm{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -250px -300px; }
+i.circle-linkedin{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -300px -300px; }
+i.circle-meetup{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -350px -300px; }
+i.circle-metacafe { background: url('../img/icons/social-icons-black-circle.png') no-repeat -400px -300px; }
+i.circle-mixx{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -450px -300px; }
+i.circle-mobileme{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -50px -350px; }
+i.circle-mr-wong{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -100px -350px; }
+i.circle-msn { background: url('../img/icons/social-icons-black-circle.png') no-repeat -150px -350px; }
+i.circle-myspace{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -200px -350px; }
+i.circle-newsvine{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -250px -350px; }
+i.circle-paypal{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -300px -350px; }
+i.circle-photobucket { background: url('../img/icons/social-icons-black-circle.png') no-repeat -350px -350px; }
+i.circle-picasa{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -400px -350px; }
+i.circle-pinterest{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -450px -350px; }
+i.circle-podcast{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -50px -400px; }
+i.circle-posterous { background: url('../img/icons/social-icons-black-circle.png') no-repeat -100px -400px; }
+i.circle-qik{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -150px -400px; }
+i.circle-quora{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -200px -400px; }
+i.circle-reddit{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -250px -400px; }
+i.circle-retweet { background: url('../img/icons/social-icons-black-circle.png') no-repeat -300px -400px; }
+i.circle-rss{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -350px -400px; }
+i.circle-scribd{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -400px -400px; }
+i.circle-share-this{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -450px -400px; }
+i.circle-skype { background: url('../img/icons/social-icons-black-circle.png') no-repeat -50px -450px; }
+i.circle-slashdot{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -100px -450px; }
+i.circle-slideshare{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -150px -450px; }
+i.circle-smugmug{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -200px -450px; }
+i.circle-sound-cloud { background: url('../img/icons/social-icons-black-circle.png') no-repeat -250px -450px; }
+i.circle-spotify{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -300px -450px;}
+i.circle-squidoo{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -350px -450px; }
+i.circle-stackoverflow{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -400px -450px; }
+i.circle-star { background: url('../img/icons/social-icons-black-circle.png') no-repeat -450px -450px; }
+i.circle-stumbleupon{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -50px -500px; }
+i.circle-technorati{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -100px -500px; }
+i.circle-tumblr{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -150px -500px; }
+i.circle-twitter-bird { background: url('../img/icons/social-icons-black-circle.png') no-repeat -200px -500px; }
+i.circle-twitter{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -250px -500px; }
+i.circle-viddler{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -300px -500px; }
+i.circle-vimeo{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -350px -500px; }
+i.circle-virb { background: url('../img/icons/social-icons-black-circle.png') no-repeat -400px -500px; }
+i.circle-w3{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -450px -500px; }
+i.circle-wikipedia{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -50px -550px; }
+i.circle-windows{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -100px -550px; }
+i.circle-wordpress { background: url('../img/icons/social-icons-black-circle.png') no-repeat -150px -550px; }
+i.circle-xing{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -200px -550px; }
+i.circle-yahoo-buzz{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -250px -550px; }
+i.circle-yahoo{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -300px -550px; }
+i.circle-yelp { background: url('../img/icons/social-icons-black-circle.png') no-repeat -350px -550px; }
+i.circle-youtube{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -400px -550px; }
