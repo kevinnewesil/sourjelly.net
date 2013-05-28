@@ -123,17 +123,17 @@
 	$(document).ready(function(){
 		// gets
 
-		$("#activateModal").click(function(){
+		$("#activateModal").on("click",function(){
 			names = $(this).attr('class').split('-');
 			loadAjax(names[0],names[1]);
+			console.log(names);
 
 			console.log($("#modal").find("form").css('background-color','red'));
-
+			return false;
 		});
 
-		$("#modal").find('input[type="submit"], input[type="submit"]').click(function(){
+		$("#modal").find('input[type="submit"], input[type="submit"]').on("click",function(){
 			target = $("#modalSort").attr('class');
-			console.log(target);
 			return false;
 		});
 
