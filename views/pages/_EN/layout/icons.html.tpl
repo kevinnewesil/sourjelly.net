@@ -36,9 +36,9 @@
                                 
                                 500px
                                 <i class="circle-500px"></i>
-                                
+
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
+                                    <input type="text" class="500px" name="link[500px]" value="http://www.500px.com/">
                                     Link to 500px page
                                 </span>
 
@@ -52,8 +52,8 @@
                                 About me
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="about_me" name="link[about_me]" value="http://www.aboutme.com/">
+                                    Link to About me page
                                 </span>
                             </label>
                         </div>
@@ -65,8 +65,8 @@
                                 Add this
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="add_this" name="add_this" value="http://www.addthis.com/">
+                                    Link to add this page
                                 </span>
                             </label>
                         </div>
@@ -78,8 +78,8 @@
                                 Amazon
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="amazon" name="amazon" value="http://www.amazon.com/">
+                                    Link to Amazon page
                                 </span>
                             </label>
                         </div>
@@ -91,8 +91,8 @@
                                 Aol
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="aol" name="aol" value="http://www.aol.com/">
+                                    Link to Aol page
                                 </span>
                             </label>
                         </div>
@@ -104,8 +104,8 @@
                                 App store alternative
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="app_store_alt" name="app_store_alt" value="http://www.appstore.com/">
+                                    Link to App store page
                                 </span>
                             </label>
                         </div>
@@ -117,8 +117,8 @@
                                 App store
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="app_store" name="app_store" value="http://www.appstore.com/">
+                                    Link to App store page
                                 </span>
                             </label>
                         </div>
@@ -130,8 +130,8 @@
                                 Apple
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="apple" name="apple" value="http://www.apple.com/">
+                                    Link to Apple page
                                 </span>
                             </label>
                         </div>
@@ -143,8 +143,8 @@
                                 Bebo
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="bebo" name="bebo" value="http://www.bebo.com/">
+                                    Link to Bebo page
                                 </span>
                             </label>
                         </div>
@@ -156,8 +156,8 @@
                                 Behance
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="behance" name="behance" value="http://www.behance.com/">
+                                    Link to Behance page
                                 </span>
                             </label>
                         </div>
@@ -169,8 +169,8 @@
                                 Bing
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="bing" name="bing" value="http://www.bing.com/">
+                                    Link to Bing page
                                 </span>
                             </label>
                         </div>
@@ -182,8 +182,8 @@
                                 Blip
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="blip" name="blip" value="http://www.blip.com/">
+                                    Link to Blip page
                                 </span>
                             </label>
                         </div>
@@ -195,8 +195,8 @@
                                 Blogger
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="blogger" name="blogger" value="http://www.blogger.com/">
+                                    Link to Blogger page
                                 </span>
                             </label>
                         </div>
@@ -208,8 +208,8 @@
                                 Coroflot
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="coroflot" name="coroflot" value="http://www.coroflot.com/">
+                                    Link to Coroflot page
                                 </span>
                             </label>
                         </div>
@@ -221,8 +221,8 @@
                                 Daytum
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="daytum" name="daytum" value="http://www.daytum.com/">
+                                    Link to Daytum page
                                 </span>
                             </label>
                         </div>
@@ -234,8 +234,8 @@
                                 Delicious
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="delicious" name="delicious" value="http://www.delicious.com/">
+                                    Link to Delicious page
                                 </span>
                             </label>
                         </div>
@@ -245,8 +245,8 @@
                         <div class="controls">
                             <label for="design_bump" class="checkbox"><input type="checkbox" name="design_bump" id="design_bump">
                                 Design bump
-                                 <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                 <input type="text" class="design_bump" name="design_bump" value="http://www.designbump.com/">
+                                    Link to Design bump page
                             </label>
                         </div>
                     </div>
@@ -257,8 +257,8 @@
                                 Designfloat
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="designfloat" name="designfloat" value="http://www.designfloat.com/">
+                                    Link to Designfloat page
                                 </span>
                             </label>
                         </div>
@@ -270,8 +270,8 @@
                                 Deviant art
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="deviant_art" name="deviant_art" value="http://www.deviantart.com/">
+                                    Link to deviant art page
                                 </span>
                             </label>
                         </div>
@@ -283,8 +283,8 @@
                                 Digg alt
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="digg_alt" name="digg_alt" value="http://www.digg.com/">
+                                    Link to Digg alt page
                                 </span>
                             </label>
                         </div>
@@ -296,8 +296,8 @@
                                 Digg
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="digg" name="digg" value="http://www.digg.com/">
+                                    Link to Digg page
                                 </span>
                             </label>
                         </div>
@@ -309,8 +309,8 @@
                                 Dripple
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="dripple" name="dripple" value="http://www.dripple.com/">
+                                    Link to Dripple page
                                 </span>
                             </label>
                         </div>
@@ -322,8 +322,8 @@
                                 Drupal
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="drupal" name="drupal" value="http://www.drupal.com/">
+                                    Link to Drupal page
                                 </span>
                             </label>
                         </div>
@@ -335,8 +335,8 @@
                                 Ebay
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="ebay" name="ebay" value="http://www.ebay.com/">
+                                    Link to Ebay page
                                 </span>
                             </label>
                         </div>
@@ -348,8 +348,8 @@
                                 Email
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="email" name="email" value="email@domain.ext">
+                                    Email address
                                 </span>
                             </label>
                         </div>
@@ -361,8 +361,8 @@
                                 Ember app
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="amber_app" name="amber_app" value="http://www.amberapp.com/">
+                                    Link to ember page
                                 </span>
                             </label>
                         </div>
@@ -374,8 +374,8 @@
                                 Etsy
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="etsy" name="etsy" value="http://www.etsy.com/">
+                                    Link to Etsy page
                                 </span>
                             </label>
                         </div>
@@ -387,8 +387,8 @@
                                 Facebook
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="facebook" name="facebook" value="http://www.fb.com/">
+                                    Link to Facebook page
                                 </span>
                             </label>
                         </div>
@@ -400,8 +400,8 @@
                                 Feed burner
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="feed_burner" name="feed_burner" value="http://www.feedburner.com/">
+                                    Link to Feed burner page
                                 </span>
                             </label>
                         </div>
@@ -413,8 +413,8 @@
                                 Flickr
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="flickr" name="flickr" value="http://www.flickr.com/">
+                                    Link to Flickr page
                                 </span>
                             </label>
                         </div>
@@ -426,8 +426,8 @@
                                 Foodspotting
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="foodspotting" name="foodspotting" value="http://www.foodspotting.com/">
+                                    Link to Foodspotting page
                                 </span>
                             </label>
                         </div>
@@ -439,8 +439,8 @@
                                 Forrst
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="forrst" name="forrst" value="http://www.forrst.com/">
+                                    Link to Forrst page
                                 </span>
                             </label>
                         </div>
@@ -452,8 +452,8 @@
                                 Foursquare
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="foursquare" name="foursquare" value="http://www.foursquare.com/">
+                                    Link to Fourquare page
                                 </span>
                             </label>
                         </div>
@@ -465,8 +465,8 @@
                                 Friendsfeed
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="friendsfeed" name="friendsfeed" value="http://www.friendsfeed.com/">
+                                    Link to Friendsfeed page
                                 </span>
                             </label>
                         </div>
@@ -478,8 +478,8 @@
                                 Friendstar
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="friendstar" name="friendstar" value="http://www.friendstar.com/">
+                                    Link to Friendstar page
                                 </span>
                             </label>
                         </div>
@@ -491,8 +491,8 @@
                                 Gdgt
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="gdgt" name="gdgt" value="http://www.gdgt.com/">
+                                    Link to Gdgt page
                                 </span>
                             </label>
                         </div>
@@ -504,8 +504,8 @@
                                 Github
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="github" name="github" value="http://www.github.com/">
+                                    Link to Github page
                                 </span>
                             </label>
                         </div>
@@ -517,8 +517,8 @@
                                 Google buzz
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="google_buzz" name="google_buzz" value="http://www.googlebuzz.com/">
+                                    Link to Google buzz page
                                 </span>
                             </label>
                         </div>
@@ -530,8 +530,8 @@
                                 Google talk
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="google_talk" name="google_talk" value="http://www.googletalk.com/">
+                                    Link to Google talk page
                                 </span>
                             </label>
                         </div>
@@ -543,8 +543,8 @@
                                 Gowalla pin
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="gowalla_pin" name="gowalla_pin" value="http://www.gowalla.com/">
+                                    Link to Gowalla page
                                 </span>
                             </label>
                         </div>
@@ -556,8 +556,8 @@
                                 Gowalla
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="gowalla" name="gowalla" value="http://www.gowalla.com/">
+                                    Link to Gowalla page
                                 </span>
                             </label>
                         </div>
@@ -569,8 +569,8 @@
                                 Grooveshark
                                  
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="grooveshark" name="grooveshark" value="http://www.grooveshark.com/">
+                                    Link to Grooveshark page
                                 </span>
                             </label>
                         </div>
@@ -582,8 +582,8 @@
                                 Heart
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="heart" name="heart" value="http://www.heart.com/">
+                                    Link to Heart page
                                 </span>
                             </label>
                         </div>
@@ -595,8 +595,8 @@
                                 Hyves
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="hyves" name="hyves" value="http://www.hyves.nl/">
+                                    Link to Hyves page
                                 </span>
                             </label>
                         </div>
@@ -608,8 +608,8 @@
                                 Icondock
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="icondock" name="icondock" value="http://www.icondock.com/">
+                                    Link to Icondock page
                                 </span>
                             </label>
                         </div>
@@ -621,8 +621,8 @@
                                 Icq
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="icq" name="icq" value="http://www.icq.com/">
+                                    Link to Icq page
                                 </span>
                             </label>
                         </div>
@@ -634,8 +634,8 @@
                                 Identica
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="identica" name="identica" value="http://www.identica.com/">
+                                    Link to Identica page
                                 </span>
                             </label>
                         </div>
@@ -647,8 +647,8 @@
                                 Imessage
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="imessage" name="imessage" value="http://www.imessage.com/">
+                                    Link to Imessage page
                                 </span>
                             </label>
                         </div>
@@ -656,12 +656,12 @@
 
                     <div class="control-group">
                         <div class="controls">
-                            <label for="itune" class="checkbox"><input type="checkbox" name="itune" id="itune">
-                                Itune
+                            <label for="itune" class="checkbox"><input type="checkbox" name="itunes" id="itunes">
+                                Itunes
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="itunes" name="itunes" value="http://www.itunes.com/">
+                                    Link to Itunes page
                                 </span>
                             </label>
                         </div>
@@ -669,12 +669,12 @@
 
                     <div class="control-group">
                         <div class="controls">
-                            <label for="last.fm" class="checkbox"><input type="checkbox" name="last.fm" id="last.fm">
+                            <label for="last_fm" class="checkbox"><input type="checkbox" name="last_fm" id="last_fm">
                                 Last.fm
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="last_fm" name="last_fm" value="http://www.lastfm.com/">
+                                    Link to Last.fm page
                                 </span>
                             </label>
                         </div>
@@ -686,8 +686,8 @@
                                 Linkedin
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="linkedin" name="linkedin" value="http://www.linkedin.com/">
+                                    Link to Linkedin page
                                 </span>
                             </label>
                         </div>
@@ -699,8 +699,8 @@
                                 Meetup
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="meetup" name="meetup" value="http://www.meetup.com/">
+                                    Link to Meetup page
                                 </span>
                             </label>
                         </div>
@@ -712,8 +712,8 @@
                                 Metacafe
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="metacafe" name="metacafe" value="http://www.metacafe.com/">
+                                    Link to Metacafe page
                                 </span>
                             </label>
                         </div>
@@ -725,8 +725,8 @@
                                 Mixx
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="mixx" name="mixx" value="http://www.mixx.com/">
+                                    Link to Mixx page
                                 </span>
                             </label>
                         </div>
@@ -738,8 +738,8 @@
                                 Mobileme
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="mobileme" name="mobileme" value="http://www.mobileme.com/">
+                                    Link to Mobileme page
                                 </span>
                             </label>
                         </div>
@@ -751,8 +751,8 @@
                                 Mr wong
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="mr_wong" name="mr_wong" value="http://www.mrwong.com/">
+                                    Link to Mr wong page
                                 </span>
                             </label>
                         </div>
@@ -764,8 +764,8 @@
                                 Msn
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="msn" name="msn" value="http://www.msn.com/">
+                                    Link to Msn page
                                 </span>
                             </label>
                         </div>
@@ -777,8 +777,8 @@
                                 Myspace
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="myspace" name="myspace" value="http://www.myspace.com/">
+                                    Link to Myspace page
                                 </span>
                             </label>
                         </div>
@@ -790,8 +790,8 @@
                                 Newsvine
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="newsvine" name="newsvine" value="http://www.newsvine.com/">
+                                    Link to Newsvine page
                                 </span>
                             </label>
                         </div>
@@ -803,8 +803,8 @@
                                 Paypal
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="paypal" name="paypal" value="http://www.paypal.com/">
+                                    Link to Paypal page
                                 </span>
                             </label>
                         </div>
@@ -816,8 +816,8 @@
                                 Photobucket
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="photobucket" name="photobucket" value="http://www.photobucket.com/">
+                                    Link to Photobucket page
                                 </span>
                             </label>
                         </div>
@@ -829,8 +829,8 @@
                                 Picasa
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="picasa" name="picasa" value="http://www.picasa.com/">
+                                    Link to Picasa page
                                 </span>
                             </label>
                         </div>
@@ -842,8 +842,8 @@
                                 Pinterest
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="pinterest" name="pinterest" value="http://www.pinterest.com/">
+                                    Link to Pinterest page
                                 </span>
                             </label>
                         </div>
@@ -855,8 +855,8 @@
                                 Podcast
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="podcast" name="podcast" value="http://www.podcast.com/">
+                                    Link to Podcast page
                                 </span>
                             </label>
                         </div>
@@ -868,8 +868,8 @@
                                 Posterous
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="posterous" name="posterous" value="http://www.posterous.com/">
+                                    Link to Posterous page
                                 </span>
                             </label>
                         </div>
@@ -881,8 +881,8 @@
                                 Qik
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="qik" name="qik" value="http://www.qik.com/">
+                                    Link to Qik page
                                 </span>
                             </label>
                         </div>
@@ -894,8 +894,8 @@
                                 Qoura
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="quora" name="quora" value="http://www.quora.com/">
+                                    Link to Qoura page
                                 </span>
                             </label>
                         </div>
@@ -907,8 +907,8 @@
                                 Reddit
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="reddit" name="reddit" value="http://www.reddit.com/">
+                                    Link to Reddit page
                                 </span>
                             </label>
                         </div>
@@ -920,8 +920,8 @@
                                 Retweet
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="retweet" name="retweet" value="http://www.retweet.com/">
+                                    Link to Retweet page
                                 </span>
                             </label>
                         </div>
@@ -933,8 +933,8 @@
                                 Rss
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="rss" name="rss" value="http://www.rss.com/">
+                                    Link to Rss page
                                 </span>
                             </label>
                         </div>
@@ -946,8 +946,8 @@
                                 Scribd
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="scribd" name="scribd" value="http://www.scribd.com/">
+                                    Link to Scribd page
                                 </span>
                             </label>
                         </div>
@@ -959,8 +959,8 @@
                                 Share this
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="share_this" name="share_this" value="http://www.sharethis.com/">
+                                    Link to Share this page
                                 </span>
                             </label>
                         </div>
@@ -972,8 +972,8 @@
                                 Skype
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="skype" name="skype" value="http://www.skype.com/">
+                                    Link to Skype
                                 </span>
                             </label>
                         </div>
@@ -985,8 +985,8 @@
                                 Slashdot
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="slashdot" name="slashdot" value="http://www.slashdot.com/">
+                                    Link to Slashdot page
                                 </span>
                             </label>
                         </div>
@@ -998,8 +998,8 @@
                                 Slideshare
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="slideshare" name="slideshare" value="http://www.slideshare.com/">
+                                    Link to Slideshare page
                                 </span>
                             </label>
                         </div>
@@ -1011,8 +1011,8 @@
                                 Smugmug
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="smugmug" name="smugmug" value="http://www.smugmug.com/">
+                                    Link to Smugmug page
                                 </span>
                             </label>
                         </div>
@@ -1024,8 +1024,8 @@
                                 Sound cloud
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="sound_cloud" name="sound_cloud" value="http://www.soundcloud.com/">
+                                    Link to Soundcloud page
                                 </span>
                             </label>
                         </div>
@@ -1037,8 +1037,8 @@
                                 Spotify
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="spotify" name="spotify" value="http://www.spotify.com/">
+                                    Link to Spotify page
                                 </span>
                             </label>
                         </div>
@@ -1050,8 +1050,8 @@
                                 Squidoo
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="squidoo" name="squidoo" value="http://www.squidoo.com/">
+                                    Link to Squidoo page
                                 </span>
                             </label>
                         </div>
@@ -1063,8 +1063,8 @@
                                 Stackoverflow
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="stackoverflow" name="stackoverflow" value="http://www.stackoverflow.com/">
+                                    Link to Stackoverflow page
                                 </span>
                             </label>
                         </div>
@@ -1076,8 +1076,8 @@
                                 Star
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="star" name="star" value="http://www.star.com/">
+                                    Link to Star page
                                 </span>
                             </label>
                         </div>
@@ -1089,8 +1089,8 @@
                                 Stumbleupon
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="stumbleupon" name="stumbleupon" value="http://www.stumbleupon.com/">
+                                    Link to Stumbleupon page
                                 </span>
                             </label>
                         </div>
@@ -1102,8 +1102,8 @@
                                 Technorati
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="technorati" name="technorati" value="http://www.technorati.com/">
+                                    Link to Technorati page
                                 </span>
                             </label>
                         </div>
@@ -1115,8 +1115,8 @@
                                 Tumblr
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="tumblr" name="tumblr" value="http://www.tumblr.com/">
+                                    Link to Tumblr page
                                 </span>
                             </label>
                         </div>
@@ -1128,8 +1128,8 @@
                                 Twitter bird
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="twitter_bird" name="twitter_bird" value="http://www.twitter.com/">
+                                    Link to Twiter page
                                 </span>
                             </label>
                         </div>
@@ -1141,8 +1141,8 @@
                                 Twitter
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="twitter" name="twitter" value="http://www.twitter.com/">
+                                    Link to Twitter page
                                 </span>
                             </label>
                         </div>
@@ -1154,8 +1154,8 @@
                                 Viddler
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="viddler" name="viddler" value="http://www.viddler.com/">
+                                    Link to Viddler page
                                 </span>
                             </label>
                         </div>
@@ -1167,8 +1167,8 @@
                                 Vimeo
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="vimeo" name="vimeo" value="http://www.vimeo.com/">
+                                    Link to Vimeo page
                                 </span>
                             </label>
                         </div>
@@ -1180,8 +1180,8 @@
                                 Virb
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="virb" name="virb" value="http://www.virb.com/">
+                                    Link to Virb page
                                 </span>
                             </label>
                         </div>
@@ -1193,8 +1193,8 @@
                                 W3
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="w3" name="w3" value="http://www.w3.org/">
+                                    Link to W3 page
                                 </span>
                             </label>
                         </div>
@@ -1206,8 +1206,8 @@
                                 Wikipedia
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="wikipedia" name="wikipedia" value="http://www.wikipedia.com/">
+                                    Link to Wikipedia page
                                 </span>
                             </label>
                         </div>
@@ -1219,8 +1219,8 @@
                                 Windows
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="windows" name="windows" value="http://www.windows.com/">
+                                    Link to Windows page
                                 </span>
                             </label>
                         </div>
@@ -1232,8 +1232,8 @@
                                 Wordpress
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="wordpress" name="wordpress" value="http://www.wordpress.com/">
+                                    Link to Wordpress page
                                 </span>
                             </label>
                         </div>
@@ -1245,8 +1245,8 @@
                                 Xing
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="xing" name="xing" value="http://www.xing.com/">
+                                    Link to Xing page
                                 </span>
                             </label>
                         </div>
@@ -1258,8 +1258,8 @@
                                 Yahoo buzz
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="yahoo_buzz" name="yahoo_buzz" value="http://www.yahoo.com/">
+                                    Link to Yahoo buzz page
                                 </span>
                             </label>
                         </div>
@@ -1271,8 +1271,8 @@
                                 Yahoo
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="yahoo" name="yahoo" value="http://www.yahoo.com/">
+                                    Link to Yahoo page
                                 </span>
                             </label>
                         </div>
@@ -1284,8 +1284,8 @@
                                 Yelp
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="yelp" name="yelp" value="http://www.yelp.com/">
+                                    Link to Yelp page
                                 </span>
                             </label>
                         </div>
@@ -1297,8 +1297,8 @@
                                 Youtube
                                 
                                 <span class="hidden-input">
-                                    <input type="text" class="500px" name="500px" value="http://www.500px.com/">
-                                    Link to 500px page
+                                    <input type="text" class="youtube" name="youtube" value="http://www.youtube.com/">
+                                    Link to Youtube page
                                 </span>
                             </label>
                         </div>
