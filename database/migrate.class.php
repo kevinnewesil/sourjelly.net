@@ -4,7 +4,6 @@
 	{
 		final public function __construct()
 		{
-			new \core\build\Sourjelly;
 
 			//\core\build\Sourjelly::getDb()->createDatabase('cms');
 
@@ -31,7 +30,7 @@
 					'password'      => 'string',
 					'DoB'           => 'date',
 					'registered_at' => 'string',
-					'active'        => 'int',
+					'active'        => 'string',
 					'dev'           => 'int',
 					'permissions'   => 'int',
 					'lang'          => 'string'

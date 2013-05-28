@@ -33,6 +33,7 @@
 	if(!function_exists("SetNoticeSuccess")) { function SetNoticeSuccess($notice){ $_SESSION['notice'] = $notice; $_SESSION['notice_sort'] = 'success'; } }
 	if(!function_exists("SetNoticeError")) { function SetNoticeError($notice){ $_SESSION['notice'] = $notice; $_SESSION['notice_sort'] = 'error'; } }
 	if(!function_exists("SetNoticeInfo")) { function SetNoticeInfo($notice){ $_SESSION['notice'] = $notice; $_SESSION['notice_sort'] = 'info'; } }
+	if(!function_exists("SetNoticeNoModules")) { function SetNoticeNoModules($notice){ $_SESSION['notice'] = $notice; $_SESSION['notice_sort'] = 'no-modules'; } }
 
 	/**
 	 * Api calls
@@ -59,3 +60,4 @@
 
 	if(!function_exists("Template")) { function Template($path){ return \core\build\Template::getTemplate($path); } }
 	if(!function_exists("Snippet")) { function Snippet($name, $path = NULL){ return \core\build\Template::getSnippet($name , $path); } }
+

@@ -190,12 +190,12 @@
 
 			foreach($pages as $page)
 			{
-				if($page['has_parent'] == '0')
-						$page['has_parent'] = 'Nee';
+				if($page['hasParent'] == '0')
+						$page['hasParent'] = 'Nee';
 					else
-						$page['has_parent'] = 'Ja';
+						$page['hasParent'] = 'Ja';
 
-				$replacers = array($page['title'],$page['content'],$page['created_at'],$page['updated_at'],$page['has_parent'],$page['id']);
+				$replacers = array($page['title'],$page['content'],$page['created_at'],$page['updated_at'],$page['hasParent'],$page['id']);
 				$rows .= str_replace($placeholdersRow,$replacers,$webTableRow);
 			}
 
