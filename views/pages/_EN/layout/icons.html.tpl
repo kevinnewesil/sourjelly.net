@@ -20,7 +20,7 @@
             <a href="#enableIcons" data-toggle="tab">Enable icons</a>
         </li>
         <li>
-            <a href="#iconsPosition" data-toggle="tab">Icons position</a>
+            <a href="#iconSettings" data-toggle="tab">Icons Settings</a>
         </li>
     </ul>
 
@@ -1312,7 +1312,7 @@
             </form>
         </div>
         
-        <div class="tab-pane" id="iconsPosition">
+        <div class="tab-pane" id="iconSettings">
             <p>Howdy, I'm in Section 2.</p>
         </div>
     </div>
