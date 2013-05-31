@@ -15,11 +15,7 @@
 		{
 			parent::__construct();
 
-			if(isset($this -> _post -> submit))
-			{
-				$function = 'post_' . $this -> _post -> submit;
-				$this -> $function();
-			}
+			if(isset($this -> _post -> submit)) $this -> _model -> {$this -> _post -> submit}();
 		}
 
 		/**
@@ -28,15 +24,12 @@
 		public function create()
 		{
 			$parent    = '';
-			$menuitems = \api\Api::getMenuItems();
 			$tmp       = \Template('crud/create.html.tpl');
 			$selectTmp = \Snippet('selectOption.html.tpl');
 
-			foreach($menuitems as $menuitem => $submenu)
-				$parent .= str_replace( array('{optionvalue}','{optionname}'), array($menuitem,$menuitem), $selectTmp);
+			foreach(\api\Api::getMenuItems() as $menuitem => $submenu) $parent .= str_replace( array('{optionvalue}','{optionname}'), array($menuitem,$menuitem), $selectTmp);
 
-			$tmp = str_replace('{pagesoptions}',$parent,$tmp);
-			\SjHtml() -> assign('{content}',$tmp);
+			\SjHtml() -> assign('{content}' , str_replace('{pagesoptions}',$parent,$tmp) );
 		}
 
 		/**
@@ -47,22 +40,17 @@
 
 			$webTable        = \Template('crud/retrieve.html.tpl');
 			$webTableRow     = \Template('crud/retrieveRow.html.tpl');
-			$pages           = \getApiPages() -> getAllPages();
+
 			$placeholdersRow = array('{title}','{content}','{created_at}','{updated_at}','{parent}','{id}');
 			$rows            = '';
 
-			foreach($pages as $page)
+			foreach(\getApiPages() -> getAllPages() as $page)
 			{
-				if($page[4] == '0')
-						$page[4] = 'Nee';
-					else
-						$page[4] = 'Ja';
-
+				$page[4] = $page[4] == '0' ? 'Nee' : 'Ja';
 				$rows .= str_replace($placeholdersRow,$page,$webTableRow);
 			}
 
-			$tables = str_replace('{rows}',$rows,$webTable);
-			\SjHtml() -> assign('{content}',$tables);
+			\SjHtml() -> assign('{content}',  str_replace('{rows}',$rows,$webTable) );
 		}
 
 		/**
@@ -207,37 +195,25 @@
 		 * function that checks the ID of an page, and redirects to the crud model to delete the page
 		 * @see  \model\Crud
 		 */
-		public function delete() { if($this-> _model -> delete()) \SetNoticeSuccess('Page succesfully deleted'); }
+		public function delete() { $this-> _model -> delete(); }
 
 
 		/**
 		 * Function that calls for the crud model to unset a deprecated flag on a page.
 		 * @see \models\Crud
 		 */
-		public function undoDelete() { if($this-> _model ->undoDelete()) \SetNoticeSuccess('Page succesfully activated'); }
-
-		/**
-		 * Calls for the crud model -> create function, to execute creating a new page.
-		 * @see \models\Crud -> create
-		 */
-		public function post_create() { if($this-> _model -> create()) \SetNoticeSuccess('Page succesfully created'); }
-
-		/**
-		 * Parses and sets the data of a page that's going to be updated, and calls for the crud model -> update function to update the page.
-		 * @see \models\Crud -> update
-		 */
-		public function post_update() { if($this-> _model -> update()) \SetNoticeSuccess('Page updated successfully'); }
+		public function undoDelete() { $this-> _model ->undoDelete(); }
 
 		/**
 		 * Loads the template file and makes it possible to upload (multiple) image(s) to server. easy as click 'nd drag. handled by javascript/ajax.
 		 */
 		public function upload() { \SjHtml()->assign('{content}', \Template('crud/images/upload.html.tpl')); }
 
-        public function images() { \SjHtml() -> assign('{content}', \Template('crud/images/overview.html.tpl')); }
+		public function images() { \SjHtml() -> assign('{content}', \Template('crud/images/overview.html.tpl')); }
 
 
-        public function cropper()
-        {
+		public function cropper()
+		{
 
-        }
+		}
 	}

@@ -9,12 +9,7 @@
 	*/
 	final class Layouts extends \core\system\Controller
 	{
-
-		final public function __construct()
-		{
-			parent::__construct();
-		}
-
+		final public function __construct() { parent::__construct(); }
 		
 		final public function navigation()
 		{
