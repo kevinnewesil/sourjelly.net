@@ -15,7 +15,7 @@
 		if($key == "input")
 			$inputs .= str_replace( $inputPlaceholders, array('a', $value['name'], 'text', "message[" . $value['name'] . "]", 'a',$value['placeholder']), $inputLayout);
 		if($key == 'file')
-			$inputs .= str_replace( $inputPlaceholders, array('a', $value['name'], 'file', "message[" . $value['name'] . "]", 'a',''), $inputLayout);
+			$inputs .= str_replace( $inputPlaceholders, array('a', $value['name'], 'file', "file[]", 'a',''), $inputLayout);
 		if($key == 'textarea')
 			$inputs .= str_replace( $textareaPlaceholders, array('a', $value['name'], "message[" . $value['name'] . "]", 'a'), $textareaLayout);
 	}
