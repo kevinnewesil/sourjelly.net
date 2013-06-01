@@ -176,7 +176,7 @@
 			if($zipExtractor->extractTo(MODULES_PATH));
 			{
 				$zipExtractor->close();
-				\Api\Api::insertInto('table_modules',array('title','description','active','deprecated'),array($name[0],$this -> _post -> description,1,0),'ssii');
+				\Api\Api::insertInto('table_modules',array('title','description','active','deprecated'),array($name[0],$this -> _modal -> _post -> description,1,0),'ssii');
 
 				//Clean up _MACOSX users shit.
 				if(is_dir(MODULES_PATH . '__MACOSX'))
