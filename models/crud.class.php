@@ -80,6 +80,7 @@
 				if(!\api\Api::insertInto('table_content_roles',array('cid','roleId'),array($contentId,'1'),'ii')) return false;
 
 				// Return true on success
+				\setNoticeSuccess("Page created successfully");
 				return true;
 			}
 
@@ -133,6 +134,7 @@
 			\api\Api::updateTable('table_content_properties',$table_content_properties_rows,$table_content_properties_values,array('id' => $this->getId()));
 			\api\Api::updateTable('table_content_layout',$table_content_layout_rows,$table_content_layout_values,array('id' => $this->getId()));
 
+			\setNoticeSuccess("Page updated successfully");
 			return true;
 		}
 
@@ -140,21 +142,13 @@
 		 * Gets the page that is reqested, and places a deprecated flag on it.
 		 * @return boolean return true if deprecated flag was placed
 		 */
-		final public function delete()
-		{
-			// Update the table to set a deprecated flag on the right row.
-			return \api\Api::updateTable('table_content',array('deprecated'),array('1'),array('id' => $this -> getId()));
-		}
+		final public function delete() { \api\Api::updateTable('table_content',array('deprecated'),array('1'),array('id' => $this -> getId())) == true ? \setNoticeSucces("page deleted successfully") : \setNotice('error deleting page'); }
 
 		/**
 		 * Gets the requested page details, and removes the deprecated flag from that page.
 		 * @return boolean return true if deprecated flag was removes succesfully
 		 */
-		final public function undoDelete()
-		{
-			// Update the table to remove the deprecated flag from the right row
-			return \api\Api::updateTable('table_content',array('deprecated'),array('0'),array('id' => $this -> getId()));
-		}
+		final public function undoDelete() { return \api\Api::updateTable('table_content',array('deprecated'),array('0'),array('id' => $this -> getId())) == true ? \setNoticeSuccess("page returned to normal") : \setNotice('error restoring page'); }
 
 		/**
 		 * gets the ID of the page that should be edited.
@@ -166,9 +160,6 @@
 			$rawUrl = explode('/index.php/',$_SERVER['REQUEST_URI']);
 			$parts = explode('/',$rawUrl[1]);
 			
-			if(is_numeric($parts[2]))
-				return $parts[2];
-			else
-				return NULL;
+			return is_numeric($parts[2]) ? $parts[2] : NULL ;
 		}
 	}

@@ -41,7 +41,7 @@
 		private function createQuery($rows)
 		{
 			if(!is_array($rows))
-				\core\access\Redirect::Home('Wrong values parsed to the __unique model function, $rows Must be an array','error');
+				\core\access\Redirect::Refresh('Wrong values parsed to the __unique model function, $rows Must be an array','error');
 
 			//predefine.
 			$select = "SELECT ";

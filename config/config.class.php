@@ -94,8 +94,18 @@
 
 			//Set the Basic variables needed for the config file to be written. Module name, config file layout, placeholders , and predefine of config content var.
 			$moduleInfo   = \api\Api::getModules() -> getModuleById(); 
-			$configLayout = \core\build\Template::getSnippet('configLayout.html.tpl');
+
+			$configLayout = \core\build\Template::getSnippet('config/configLayout.html.tpl');
+			$subConfigLayout = \core\build\Template::getSnippet('config/subConfigLayout.html.tpl');
+			$subsubConfigLayout = \core\build\Template::getSnippet('config/subsubConfigLayout.html.tpl');
+			$dimension4ConfigLayout = \core\build\Template::getSnippet('config/4thDimensionConfigLayout.html.tpl');
+
 			$placeholders = array( '{varname}' , '{varvalue}' );
+			$subplaceholders = array( '{varname}', '{subvarname}' , '{varvalue}' );
+			$subsubplaceholders = array( '{varname}', '{subvarname}','{subsubvarname}' , '{varvalue}' );
+			$dimension4placeholders = array( '{varname}', '{subvarname}','{subsubvarname}' ,'{4thDimensionVar}', '{varvalue}' );
+
+
 			$configFile   = "<?php  \n\r\n\r" ;
 
 			//Check the folder permissions of the Module
@@ -103,7 +113,37 @@
 
 			//Foreach user inputted variables for the config file, make a string with the config variables set in the config layout
 			foreach ($vars as $varname => $varvalue)
-				$configFile .= str_replace( $placeholders , array($varname , $varvalue ) , $configLayout );
+			{
+				if(is_array($varvalue))
+				{
+					foreach($varvalue as $subkey => $subvalue)
+					{
+						if(is_array($subvalue))
+						{
+							foreach($subvalue as $subsubkey => $subsubvalue)
+							{
+								if(is_array($subsubvalue))
+								{
+									foreach($subsubvalue as $dimension4key => $dimension4value)
+									{
+										$configFile .= str_replace( $dimension4placeholders , array($varname,$subkey,$subsubkey ,$dimension4key, $dimension4value ) , $dimension4ConfigLayout );
+									}
+								}
+								else{
+									$configFile .= str_replace( $subsubplaceholders , array($varname,$subkey,$subsubkey , $subsubvalue ) , $subsubConfigLayout );
+								}
+							}
+						}
+						else{
+							$configFile .= str_replace( $subplaceholders , array($varname,$subkey , $subvalue ) , $subsubConfigLayout );
+						}
+					}
+				}
+				else
+				{
+					$configFile .= str_replace( $placeholders , array($varname , $varvalue ) , $configLayout );
+				}
+			}
 
 			// Return the config variable for usage in the system
 			$configFile .= " \n\r\n\r\t " . 'return $config;';

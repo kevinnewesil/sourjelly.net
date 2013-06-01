@@ -34,16 +34,14 @@
 		final public function __construct($ajax = false)
 		{
 
-			
-
 			// Set ajax for ajax request
 			$this -> _ajax = $ajax;
 
 			self::$_get  = \core\access\Request::returnGlobalObject('get');
 			self::$_post = \core\access\Request::returnGlobalObject('post');
 
-            $this -> startSourjelly();
-            $this -> finishSourjelly();
+		            $this -> startSourjelly();
+		            $this -> finishSourjelly();
 		}
 
 		/**

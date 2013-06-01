@@ -1,4 +1,4 @@
-<form class="form" method="post" action="http://localhost/sourjelly.net/public_html/index.php/asd">
+<form class="form" method="post" action="http://localhost/sourjelly.net/public_html/index.php/asd" enctype="multipart/form-data">
 	<fieldset>
 		<legend>Contact me!</legend>
 
@@ -19,11 +19,13 @@
 		<div class="control-group">
 			<label class="control-label" for="message">Message</label>
 			<div class="controls">
-				<textarea id="message" name="message" value="" rows="10" cols="30">
+				<textarea id="message" name="message[main]" value="" rows="10" cols="30">
 
 				</textarea>
 			</div>
 		</div>
+
+		{inputs}
 
 		<div class="control-group">
 			<div class="controls">

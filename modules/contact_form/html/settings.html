@@ -9,7 +9,39 @@
 				<div class=\"control-group\">\
 					<label for=\"\" class=\"control-label\">label</label>\
 					<div class=\"controls\">\
-						<input type=\"text\" name=\"input\" value=\"\" class=\"input-added input-" + amount + "\">\
+						<input type=\"text\" name=\"input[input][name]\" value=\"\" class=\"input-added input-" + amount + "\">\
+					</div>\
+				</div>\
+				<div class=\"control-group\">\
+					<label for=\"\" class=\"control-label\">placeholder</label>\
+					<div class=\"controls\">\
+						<input type=\"text\" name=\"input[input][placeholder]\" value=\"\">\
+					</div>\
+				</div>\
+			");
+
+			amount = amount + 1;
+		});
+
+		$("#addTextarea").click(function(){
+			$(".formControls").append("\
+				<div class=\"control-group\">\
+					<label for=\"\" class=\"control-label\">label</label>\
+					<div class=\"controls\">\
+						<textarea name=\"input[textarea][name]\" value=\"\" class=\"input-added input-" + amount + "\"></textarea>\
+					</div>\
+				</div>\
+			");
+
+			amount = amount + 1;
+		});
+
+		$("#addFileField").click(function(){
+			$(".formControls").append("\
+				<div class=\"control-group\">\
+					<label for=\"\" class=\"control-label\">Attachement</label>\
+					<div class=\"controls\">\
+						<input type=\"text\" name=\"input[file][name]\" value=\"\" class=\"input-added input-" + amount + "\">\
 					</div>\
 				</div>\
 			");
@@ -19,7 +51,7 @@
 
 		$(".input-added").live('keyup',function(){
 			val = $(this)[0].value;
-			$(this).attr('name', 'inputs[]' + val);
+			// $(this).attr('name', 'inputs[]' + val);
 			$(this).parent().siblings('label').html(val);
 		});
 	});
@@ -47,11 +79,28 @@
 
 	<fieldset class="formControls">
 		<legend>Form controls</legend>
-
+		
+		<!-- Add input field -->
 		<div class="control-group">
 			<label for="addInput" class="control-label">Add input field</label>
 			<div class="controls input">
 				<a href="#" class="btn btn-primary btn-large" id="addInput">Add input</a>
+			</div>
+		</div>
+		
+		<!-- Add textarea -->
+		<div class="control-group">
+			<label for="addInput" class="control-label">Add textarea</label>
+			<div class="controls textarea">
+				<a href="#" class="btn btn-primary btn-large" id="addTextarea">Add textarea</a>
+			</div>
+		</div>
+
+		<!-- Add file input -->
+		<div class="control-group">
+			<label for="addInput" class="control-label">Add file field</label>
+			<div class="controls file">
+				<a href="#" class="btn btn-primary btn-large" id="addFileField">Add file field</a>
 			</div>
 		</div>
 

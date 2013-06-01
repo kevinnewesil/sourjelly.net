@@ -18,6 +18,13 @@
 				die('1');
 			}
 
+			$messageString = '';
+
+			foreach($data -> message as $value)
+				$messageString .= $value . PHP_EOL;
+
+			$data -> message = $messageString;
+
 			if(strlen($data -> email) > 9 && strlen($data -> message) > 9 && strlen($data -> message) < 501)
 			{
 				if(filter_var($data -> email,FILTER_VALIDATE_EMAIL))
@@ -75,11 +82,27 @@
 						{
 							$mail = explode('~',$mail);
 
+							die(var_dump($_FILES));
+
+
+
 							$subject = 'contact form message Sourjelly.';
 							$message = $mail[2] . PHP_EOL . $mail[0];
-							$headers = 'From: ' . $mail[1] . "\r\n" .
-									   'Reply-To:'  . $mail[1] . "\r\n" .
-									   'X-Mailer: PHP/' . phpversion();
+
+							$headers = 'From: ' . $mail[1] . "\r\n";
+							$headers .= 'Reply-To:'  . $mail[1] . "\r\n" ;
+							$headers .= "\r\nContent-Type: multipart/mixed; boundary=\"PHP-mixed-".$random_hash."\""; 
+
+							if(isset($_FILES) && !empty($_FILES))
+							{
+								foreach($_FILES['message']['name'] as $key => $value)
+								{
+									die(var_dump($value));
+									
+								}
+							}
+
+							$headers .= 'X-Mailer: PHP/' . phpversion();
 
 							mail($config['email'], $subject, $message,$headers);
 							
