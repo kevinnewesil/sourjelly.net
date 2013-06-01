@@ -98,6 +98,7 @@
 								foreach($_FILES['message']['name'] as $key => $value)
 								{
 									die(var_dump($value));
+									
 								}
 							}
 
