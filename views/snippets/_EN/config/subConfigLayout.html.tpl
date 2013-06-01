@@ -1,0 +1,1 @@
+	$config['{varname}']['{subvarname}'] = '{varvalue}';
