@@ -23,6 +23,19 @@
 	
 		});
 
+		$(".checkbox").click(function(){
+			if($(this).children(".image-front").css('left')=='-64px')
+			{
+				$(this).children(".image-front").css('left','0');
+				$(this).siblings("input[type=\"checkbox\"]").prop("checked",false);
+			}
+			else
+			{
+				$(this).children(".image-front").css('left','-64px');
+				$(this).siblings("input[type=\"checkbox\"]").prop("checked",true);
+			}
+		});
+
 		$("option").click(function(){
 			value = $(this).val();
 			name  = $(this).parent().attr('name');
@@ -87,7 +100,11 @@
 						<abbr title="Show script errors on screen">Display errors</abbr>
 					</label>
 					<div class="controls">
-						<input type="checkbox" name="displayErrors" {checked_displayErrors}>
+						<div class="checkbox">
+							<img src="{assets}img/uploads/toggle_on_off_slider_button.png" alt="" class="image-front">
+							<img src="{assets}img/uploads/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
+						</div>
+						<input class="hidden_checkbox" type="checkbox" name="displayErrors" {checked_displayErrors}>
 					</div>
 				</div>
 

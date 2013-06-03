@@ -244,3 +244,24 @@ i.circle-yahoo-buzz{ background: url('../img/icons/social-icons-black-circle.png
 i.circle-yahoo{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -300px -550px; }
 i.circle-yelp { background: url('../img/icons/social-icons-black-circle.png') no-repeat -350px -550px; }
 i.circle-youtube{ background: url('../img/icons/social-icons-black-circle.png') no-repeat -400px -550px; }
+
+
+
+/* SETTINGS CSS */
+.hidden_checkbox{
+	visibility:hidden;
+}
+
+.image-front, .image-back{
+	position:relative;
+	left:0;
+	top:0;
+}
+
+.image-front{
+	z-index: 2;
+}
+.image-back{
+	z-index:1;
+	left:-150px;
+}
