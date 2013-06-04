@@ -4,6 +4,11 @@
 		var value = '';
 		var name  = '';
 
+		$("input[type=\"checkbox\"]").each(function(){
+			if($(this).is(":checked"))
+				$(this).siblings(".checkbox").children(".image-front").css('left','-64px');
+		});
+
 		//Set the value of the input field into a global variable value. Make sure it's empty.
 		$("input").change(function(){
 			value = '';
@@ -28,11 +33,15 @@
 			{
 				$(this).children(".image-front").css('left','0');
 				$(this).siblings("input[type=\"checkbox\"]").prop("checked",false);
+				name = $(this).siblings("input[type=\"checkbox\"]").attr('name');
+				sendQuickRequest('0',name);
 			}
 			else
 			{
 				$(this).children(".image-front").css('left','-64px');
 				$(this).siblings("input[type=\"checkbox\"]").prop("checked",true);
+				name = $(this).siblings("input[type=\"checkbox\"]").attr('name');
+				sendQuickRequest('1',name);
 			}
 		});
 
