@@ -55,7 +55,7 @@
 
 		function sendQuickRequest(inputValue,inputName){
 			$.ajax({
-				url : "{ajax}/settings.php",
+				url : "{ajax}settings.php",
 				type : "POST",
 				dataType : "json",
 				data : {
@@ -122,7 +122,11 @@
 						<abbr title="Show errors that occure on server startup">Display start-up errors</abbr>
 					</label>
 					<div class="controls">
-						<input type="checkbox" name="displayStartupErrors" {checked_displayStartupErrors}>
+						<div class="checkbox">
+							<img src="{assets}img/uploads/toggle_on_off_slider_button.png" alt="" class="image-front">
+							<img src="{assets}img/uploads/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
+						</div>
+						<input class="hidden_checkbox" type="checkbox" name="displayStartupErrors" {checked_displayStartupErrors}>
 					</div>
 				</div>
 
@@ -131,7 +135,11 @@
 						<abbr title="Log errors into a file on your server">Log errors</abbr>
 					</label>
 					<div class="controls">
-						<input type="checkbox" name="logErrors" {checked_logErrors}>
+						<div class="checkbox">
+							<img src="{assets}img/uploads/toggle_on_off_slider_button.png" alt="" class="image-front">
+							<img src="{assets}img/uploads/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
+						</div>
+						<input class="hidden_checkbox" type="checkbox" name="logErrors" {checked_logErrors}>
 					</div>
 				</div>
 
@@ -140,7 +148,11 @@
 						<abbr title="Show the full trace of an error.">Track errors</abbr>
 					</label>
 					<div class="controls">
-						<input type="checkbox" name="trackErrors" {checked_trackErrors}>
+						<div class="checkbox">
+							<img src="{assets}img/uploads/toggle_on_off_slider_button.png" alt="" class="image-front">
+							<img src="{assets}img/uploads/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
+						</div>
+						<input class="hidden_checkbox" type="checkbox" name="trackErrors" {checked_trackErrors}>
 					</div>
 				</div>
 
@@ -149,7 +161,11 @@
 						<abbr title="Show errors in the HTML code">Html errors</abbr>
 					</label>
 					<div class="controls">
-						<input type="checkbox" name="htmlErrors" {checked_htmlErrors}>
+						<div class="checkbox">
+							<img src="{assets}img/uploads/toggle_on_off_slider_button.png" alt="" class="image-front">
+							<img src="{assets}img/uploads/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
+						</div>
+						<input class="hidden_checkbox" type="checkbox" name="htmlErrors" {checked_htmlErrors}>
 					</div>
 				</div>
 			</fieldset>
@@ -213,7 +229,11 @@
 						<abbr title="Allowed the usage of code in HTML as defined in the documentation (Can increase loading time)">Toggle embedded html</abbr>
 					</label>
 					<div class="controls">
-						<input type="checkbox" name="embeddedHtml" {checked_embeddedHtml}>
+						<div class="checkbox">
+							<img src="{assets}img/uploads/toggle_on_off_slider_button.png" alt="" class="image-front">
+							<img src="{assets}img/uploads/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
+						</div>
+						<input class="hidden_checkbox" type="checkbox" name="embeddedHtml" {checked_embeddedHtml}>
 					</div>
 				</div>
 
@@ -222,7 +242,11 @@
 						<abbr title="Save all the visitors IP adresses in the database">Toggle ip-monitoring</abbr>
 					</label>
 					<div class="controls">
-						<input type="checkbox" name="ipMonitoring" {checked_ipMonitoring}>
+						<div class="checkbox">
+							<img src="{assets}img/uploads/toggle_on_off_slider_button.png" alt="" class="image-front">
+							<img src="{assets}img/uploads/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
+						</div>
+						<input class="hidden_checkbox" type="checkbox" name="ipMonitoring" {checked_ipMonitoring}>
 					</div>
 				</div>
 
@@ -231,7 +255,11 @@
 						<abbr title="The timezone you are currently in: 'Europe/Amsterdam'">Timezone</abbr>
 					</label>
 					<div class="controls">
-						<input type="text" name="timezone" id="timezone" value="{timezone}" placeholder="Europe/Amsterdam">
+						<div class="checkbox">
+							<img src="{assets}img/uploads/toggle_on_off_slider_button.png" alt="" class="image-front">
+							<img src="{assets}img/uploads/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
+						</div>
+						<input class="hidden_checkbox" type="text" name="timezone" id="timezone" value="{timezone}" placeholder="Europe/Amsterdam">
 					</div>
 				</div>
 
