@@ -255,11 +255,7 @@
 						<abbr title="The timezone you are currently in: 'Europe/Amsterdam'">Timezone</abbr>
 					</label>
 					<div class="controls">
-						<div class="checkbox">
-							<img src="{assets}img/uploads/toggle_on_off_slider_button.png" alt="" class="image-front">
-							<img src="{assets}img/uploads/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
-						</div>
-						<input class="hidden_checkbox" type="text" name="timezone" id="timezone" value="{timezone}" placeholder="Europe/Amsterdam">
+						<input type="text" name="timezone" id="timezone" value="{timezone}" placeholder="Europe/Amsterdam">
 					</div>
 				</div>
 
@@ -279,6 +275,8 @@
 		</div>
 	</div>
 </div>
+
+<!-- Do some testing if this form still 100% works , delete this bloody comment out of the html !! -->
 
 <!--<form action="{base}/settings/update/?ns=controllers&amp;path=controller_path" class="form form-horizontal" id="form" method="POST" onSubmit="parseLogin();return false;" class="settings">
 	<fieldset>
