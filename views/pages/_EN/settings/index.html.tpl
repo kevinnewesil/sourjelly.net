@@ -4,6 +4,11 @@
 		var value = '';
 		var name  = '';
 
+		$("input[type=\"checkbox\"]").each(function(){
+			if($(this).is(":checked"))
+				$(this).siblings(".checkbox").children(".image-front").css('left','-64px');
+		});
+
 		//Set the value of the input field into a global variable value. Make sure it's empty.
 		$("input").change(function(){
 			value = '';
@@ -23,6 +28,23 @@
 	
 		});
 
+		$(".checkbox").click(function(){
+			if($(this).children(".image-front").css('left')=='-64px')
+			{
+				$(this).children(".image-front").css('left','0');
+				$(this).siblings("input[type=\"checkbox\"]").prop("checked",false);
+				name = $(this).siblings("input[type=\"checkbox\"]").attr('name');
+				sendQuickRequest('0',name);
+			}
+			else
+			{
+				$(this).children(".image-front").css('left','-64px');
+				$(this).siblings("input[type=\"checkbox\"]").prop("checked",true);
+				name = $(this).siblings("input[type=\"checkbox\"]").attr('name');
+				sendQuickRequest('1',name);
+			}
+		});
+
 		$("option").click(function(){
 			value = $(this).val();
 			name  = $(this).parent().attr('name');
@@ -33,7 +55,7 @@
 
 		function sendQuickRequest(inputValue,inputName){
 			$.ajax({
-				url : "{ajax}/settings.php",
+				url : "{ajax}settings.php",
 				type : "POST",
 				dataType : "json",
 				data : {
@@ -87,7 +109,11 @@
 						<abbr title="Show script errors on screen">Display errors</abbr>
 					</label>
 					<div class="controls">
-						<input type="checkbox" name="displayErrors" {checked_displayErrors}>
+						<div class="checkbox">
+							<img src="{assets}img/uploads/toggle_on_off_slider_button.png" alt="" class="image-front">
+							<img src="{assets}img/uploads/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
+						</div>
+						<input class="hidden_checkbox" type="checkbox" name="displayErrors" {checked_displayErrors}>
 					</div>
 				</div>
 
@@ -96,7 +122,11 @@
 						<abbr title="Show errors that occure on server startup">Display start-up errors</abbr>
 					</label>
 					<div class="controls">
-						<input type="checkbox" name="displayStartupErrors" {checked_displayStartupErrors}>
+						<div class="checkbox">
+							<img src="{assets}img/uploads/toggle_on_off_slider_button.png" alt="" class="image-front">
+							<img src="{assets}img/uploads/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
+						</div>
+						<input class="hidden_checkbox" type="checkbox" name="displayStartupErrors" {checked_displayStartupErrors}>
 					</div>
 				</div>
 
@@ -105,7 +135,11 @@
 						<abbr title="Log errors into a file on your server">Log errors</abbr>
 					</label>
 					<div class="controls">
-						<input type="checkbox" name="logErrors" {checked_logErrors}>
+						<div class="checkbox">
+							<img src="{assets}img/uploads/toggle_on_off_slider_button.png" alt="" class="image-front">
+							<img src="{assets}img/uploads/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
+						</div>
+						<input class="hidden_checkbox" type="checkbox" name="logErrors" {checked_logErrors}>
 					</div>
 				</div>
 
@@ -114,7 +148,11 @@
 						<abbr title="Show the full trace of an error.">Track errors</abbr>
 					</label>
 					<div class="controls">
-						<input type="checkbox" name="trackErrors" {checked_trackErrors}>
+						<div class="checkbox">
+							<img src="{assets}img/uploads/toggle_on_off_slider_button.png" alt="" class="image-front">
+							<img src="{assets}img/uploads/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
+						</div>
+						<input class="hidden_checkbox" type="checkbox" name="trackErrors" {checked_trackErrors}>
 					</div>
 				</div>
 
@@ -123,7 +161,11 @@
 						<abbr title="Show errors in the HTML code">Html errors</abbr>
 					</label>
 					<div class="controls">
-						<input type="checkbox" name="htmlErrors" {checked_htmlErrors}>
+						<div class="checkbox">
+							<img src="{assets}img/uploads/toggle_on_off_slider_button.png" alt="" class="image-front">
+							<img src="{assets}img/uploads/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
+						</div>
+						<input class="hidden_checkbox" type="checkbox" name="htmlErrors" {checked_htmlErrors}>
 					</div>
 				</div>
 			</fieldset>
@@ -187,7 +229,11 @@
 						<abbr title="Allowed the usage of code in HTML as defined in the documentation (Can increase loading time)">Toggle embedded html</abbr>
 					</label>
 					<div class="controls">
-						<input type="checkbox" name="embeddedHtml" {checked_embeddedHtml}>
+						<div class="checkbox">
+							<img src="{assets}img/uploads/toggle_on_off_slider_button.png" alt="" class="image-front">
+							<img src="{assets}img/uploads/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
+						</div>
+						<input class="hidden_checkbox" type="checkbox" name="embeddedHtml" {checked_embeddedHtml}>
 					</div>
 				</div>
 
@@ -196,7 +242,11 @@
 						<abbr title="Save all the visitors IP adresses in the database">Toggle ip-monitoring</abbr>
 					</label>
 					<div class="controls">
-						<input type="checkbox" name="ipMonitoring" {checked_ipMonitoring}>
+						<div class="checkbox">
+							<img src="{assets}img/uploads/toggle_on_off_slider_button.png" alt="" class="image-front">
+							<img src="{assets}img/uploads/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
+						</div>
+						<input class="hidden_checkbox" type="checkbox" name="ipMonitoring" {checked_ipMonitoring}>
 					</div>
 				</div>
 
@@ -225,6 +275,8 @@
 		</div>
 	</div>
 </div>
+
+<!-- Do some testing if this form still 100% works , delete this bloody comment out of the html !! -->
 
 <!--<form action="{base}/settings/update/?ns=controllers&amp;path=controller_path" class="form form-horizontal" id="form" method="POST" onSubmit="parseLogin();return false;" class="settings">
 	<fieldset>
