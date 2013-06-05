@@ -3,6 +3,9 @@
 
 		var value = '';
 		var name  = '';
+		var prompt = false;
+		var inputNameGlobal = '';
+		var inputValueGlobal = '';
 
 		$("input[type=\"checkbox\"]").each(function(){
 			if($(this).is(":checked"))
@@ -10,7 +13,7 @@
 		});
 
 		//Set the value of the input field into a global variable value. Make sure it's empty.
-		$("input").change(function(){
+		$("#settingForm input").change(function(){
 			value = '';
 			name  = '';
 
@@ -29,6 +32,7 @@
 		});
 
 		$(".checkbox").click(function(){
+
 			if($(this).children(".image-front").css('left')=='-64px')
 			{
 				$(this).children(".image-front").css('left','0');
@@ -53,15 +57,27 @@
 
 		});
 
-		function sendQuickRequest(inputValue,inputName){
+		function sendQuickRequest(inputValue,inputName)
+		{	
+			inputNameGlobal = inputName;
+			inputValueGlobal = inputValue;
+
+			if(prompt == false)
+			{
+				promptPassword();
+				return false;
+			}
+
+			// console.log(inputNameGlobal);
+
 			$.ajax({
-				url : "{ajax}settings.php",
+				url : ajaxPath + "settings.php",
 				type : "POST",
 				dataType : "json",
 				data : {
 					action : "saveInput",
-					name : inputName,
-					value : inputValue,
+					name : inputNameGlobal,
+					value : inputValueGlobal,
 				},
 				success : function(data){
 					if(data.update == true)
@@ -71,15 +87,59 @@
 				}
 			});
 		}
+
+		function promptPassword()
+		{
+			$(".login-prompt").css('display','inline');
+			$("body").append("<div class=\"dark-overlay\"></div>")
+		}
+
+		$("#login-form").submit(function(){
+
+			$.ajax({
+				url : ajaxPath + 'settings.php',
+				type : "post",
+				dataType : 'json',
+				data : {
+					action : "checkLogin",
+					password : $("#password").val(),
+				},
+
+				success : function(data)
+				{
+					if(data['checkLogin'] == true)
+					{
+						$(".login-prompt").css('display','none');
+						prompt = true;
+						$(".dark-overlay").remove();
+						sendQuickRequest(inputValueGlobal,inputNameGlobal);
+					}
+					else
+					{	
+						$(".error").remove();
+						$(".login-prompt").append("<span class=\"error\">Password wrong.. try again</span>");
+					}
+				}
+			});
+
+			
+
+			return false;
+		});
 	});
 </script>
 
-<div class="login" style="display:none;">
-	<form action="" method="post" class="form form-horizontal" id="login-form" onSubmit="checkLogin(); return false;">
+<div class="login login-prompt" style="display:none;">
+	<form action="#" method="post" class="form" id="login-form">
 		<div class="control-group">
-			<label for="password" class="control-label">Password</label>
+			<label for="password" class="control-label">Type password to continue...</label>
 			<div class="controls">
 				<input type="password" name="password" id="password" value="" placeholder="Password">
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<input type="submit" name="submit" id="submit" value="Go" class="btn btn-primary btn-large">
 			</div>
 		</div>
 	</form>	
@@ -98,8 +158,11 @@
 		<li>
 			<a data-toggle="tab" href="#lC"><i class="icon-wrench"></i> Common settings</a>
 		</li>
+		<li class="disabled">
+			<a data-toggle="tab" href="#" > <i class="icon-heart"></i> Save settings</a>
+		</li>
 	</ul>
-	<div class="tab-content">
+	<div class="tab-content settings" id="settingForm">
 		<div id="lA" class="tab-pane active">
 			<fieldset>
 				<legend>Errors</legend>

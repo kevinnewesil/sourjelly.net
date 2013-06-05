@@ -57,8 +57,8 @@
 		 */
 		final public static function Refresh($notice = NULL,$sort = 'warning')
 		{
-			if(isset($_SESSION['system_reset']) && $_SESSION['system_reset'] !== true)
-			{
+			// if(isset($_SESSION['system_reset']) && $_SESSION['system_reset'] !== true)
+			// {
 				$notice != NULL ? $_SESSION['notice'] = $notice : '';
 				$_SESSION['notice_sort'] = $sort;
 
@@ -67,9 +67,9 @@
 
 				header('location:' . $_SERVER['REQUEST_URI']);
 				exit();
-			}
-			else
-				unset($_SESSION['system_reset']);
+			// }
+			// else
+				// unset($_SESSION['system_reset']);
 		}
 
 		/**

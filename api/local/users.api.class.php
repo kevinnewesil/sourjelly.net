@@ -91,21 +91,21 @@
 				$stmt -> bind_result($id,$firstname,$lastname,$username,$email,$password,$dob,$registered_at,$active,$dev,$permissions,$lang);
 
 				while($row = $stmt -> fetch()){
-                        $ret = array('id'	     => $id,
-                                     'firstname'     => $firstname,
-                                     'lastname'      => $lastname,
-                                     'username'      => $username,
-                                     'email'         => $email,
-                                     'password'      => $password,
-                                     'DoB'           => $dob,
-                                     'registered_at' => $registered_at,
-                                     'active'        => $active,
-                                     'dev'           => $dev,
-                                     'permissions'    => $permissions,
-                                     'lang'          => $lang
-                                    );
-                }
-                $stmt->close();
+				$ret = array('id'	     => $id,
+					         'firstname'     => $firstname,
+					         'lastname'      => $lastname,
+					         'username'      => $username,
+					         'email'         => $email,
+					         'password'      => $password,
+					         'DoB'           => $dob,
+					         'registered_at' => $registered_at,
+					         'active'        => $active,
+					         'dev'           => $dev,
+					         'permissions'    => $permissions,
+					         'lang'          => $lang
+				        );
+				}
+				$stmt->close();
 
 			}
 			else
@@ -139,18 +139,18 @@
 				if($stmt -> num_rows > 0)
 					while($row = $stmt -> fetch()){
 						$ret = array($id,
-							     'firstname'     => $firstname,
-							     'lastname'      => $lastname,
-							     'username'      => $username,
-							     'email'         => $email,
-							     'password'      => $password,
-							     'dob'           => $dob,
-	     						 'registered_at' => $registered_at,
-							     'active'        => $active,
-							     'dev'           => $dev,
-	                             'permissions'   => $permissions,
-							     'lang'          => $lang
-						            );
+							'firstname'     => $firstname,
+							'lastname'      => $lastname,
+							'username'      => $username,
+							'email'         => $email,
+							'password'      => $password,
+							'dob'           => $dob,
+							'registered_at' => $registered_at,
+							'active'        => $active,
+							'dev'           => $dev,
+							'permissions'   => $permissions,
+							'lang'          => $lang
+						);
 					}
 				else
 				{
@@ -176,20 +176,24 @@
 		 */
 		public function getUserpermissionsBySession()
 		{
-			$permissions = '';
+			$permission = '';
 
 			$query = "SELECT `permissions` FROM `table_users` WHERE CONCAT(firstname , ' ' , lastname) = ?";
 			
 			if($stmt = self::$_link->prepare($query))
 			{
 				if(!\api\Api::checkQuery($query))
-					\core\access\Redirect::Home('Something went wrong with the query.');
+					\Refresh('Something went wrong with the query.');
 
-				$stmt->bind_param('s',$_SESSION['login']);
-				$stmt->execute();
-				$stmt->bind_result($permissions);
-				$stmt->fetch();
-				$stmt->close();
+				$stmt -> bind_param('s',$_SESSION['login']);
+				$stmt -> execute();
+				$stmt -> bind_result($permissions);
+				$stmt -> store_result();
+
+				while($row = $stmt -> fetch())
+					(string)$permission = $permissions;
+
+				$stmt -> close();
 			}
 			else
 			{
@@ -197,7 +201,7 @@
 				return false;
 			}
 
-			return (string)$permissions;
+			return (string)$permission;
 		}
 
 		/**
@@ -229,7 +233,7 @@
 			$query = "SELECT `lang` FROM `table_users` WHERE CONCAT(firstname , ' ' , lastname) = ?";
 
 			if(!\api\Api::checkQuery($query))
-					\core\access\Redirect::Home('Something went wrong with the query.');
+				\core\access\Redirect::Home('Something went wrong with the query.');
 
 			if($stmt = self::$_link->prepare($query))
 			{
@@ -246,5 +250,38 @@
 			}
 
 			return !empty($lang) ? (string) $lang : '_EN';
+		}
+
+		public function getUserByPassword()
+		{
+			$userData = $this -> getUserBySession();
+			$post = \Post();
+			$passwordString = sha1($userData['firstname'] . '-' . $post -> password . '-' . $userData['registered_at']);
+
+			$query = "SELECT `id` FROM `table_users` WHERE `password` = ?";
+
+			if(!\api\Api::checkQuery($query))
+			{
+				\setNotice('there was some nasty things going on in the query..');
+				return false;
+			}
+
+			if($stmt = self::$_link -> prepare($query))
+			{
+				$stmt -> bind_param('s',$passwordString);
+				$stmt -> execute();
+				$stmt -> bind_result($id);
+				$stmt -> store_result();
+
+				$rows = $stmt -> num_rows;
+
+				$stmt -> close();
+			}
+			else{
+				\setNotice('The query is fucked');
+				return false;
+			}
+
+			return $rows == '1' ? true : false;
 		}
 	}

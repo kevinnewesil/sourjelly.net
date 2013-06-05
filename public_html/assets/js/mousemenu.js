@@ -1,3 +1,5 @@
+var shift = 0;
+
 $(document).ready(function(){
     $.ajax({
         url : ajaxPath + 'mouse_menu.php',
@@ -14,15 +16,24 @@ $(document).ready(function(){
     });
 });
 
-var test = 0;
+
+
+$(document).keydown(function(event){
+    if(event.which == 16)
+        shift = 1;
+});
+
+$(document).keyup(function(){
+    shift = 0;
+});
 
 //
-// kijkt of shift is ingedrukt, zoja: test =1 anders test =0
+// kijkt of shift is ingedrukt, zoja: shift =1 anders shift =0
 // event listening for keydown
 //
 document.addEventListener('contextmenu', function(e) {
 
-    if(test == 0)
+    if(shift == 0)
     {
         // if statement op e keycode gooien.
 
@@ -34,6 +45,7 @@ document.addEventListener('contextmenu', function(e) {
 
         e.preventDefault();
     }
+    test = 0;
 
 }, false);
 
@@ -57,10 +69,6 @@ function loadAjax(controllerName,functionName)
         {   
             $(".inner-modal").html(data);
             $("#modalSort").attr('class',controllerName + '-' + functionName)
-
-            $("#modalToggle").on('hidden',function(){
-                $(this).modal('show');
-            });
         }
     });
 };
