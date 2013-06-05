@@ -128,7 +128,9 @@
 			loadAjax(names[0],names[1]);
 			console.log(names);
 
-			console.log($("#modal").find("form").css('background-color','red'));
+			$("#modal").find("form").each(function(){
+				$(this).css('background-color','red !important');
+			});
 			return false;
 		});
 

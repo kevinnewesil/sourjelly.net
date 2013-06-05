@@ -16,6 +16,15 @@ $(document).ready(function(){
 
 var test = 0;
 
+$(document).keydown(function(event){
+    if(event.which == 16)
+        test = 1;
+});
+
+$(document).keyup(function(){
+    test = 0;
+});
+
 //
 // kijkt of shift is ingedrukt, zoja: test =1 anders test =0
 // event listening for keydown
@@ -34,6 +43,7 @@ document.addEventListener('contextmenu', function(e) {
 
         e.preventDefault();
     }
+    test = 0;
 
 }, false);
 
