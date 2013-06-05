@@ -74,10 +74,6 @@
 
 <div id="modalToggle" class="modal hide fade">
 	<span class="" id="modalSort"></span>
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		<br><br>
-	</div>
 	<div id="modal" class="inner-modal"></div>
 </div>
 
@@ -126,22 +122,13 @@
 		$("#activateModal").on("click",function(){
 			names = $(this).attr('class').split('-');
 			loadAjax(names[0],names[1]);
-			console.log(names);
-
-			$("#modal").find("form").each(function(){
-				$(this).css('background-color','red !important');
-			});
-			return false;
+			return true;
 		});
 
 		$("#modal").find('input[type="submit"], input[type="submit"]').on("click",function(){
 			target = $("#modalSort").attr('class');
 			return false;
 		});
-
-		 $(".close").click(function(){
-		 	window.location.reload();
-		 });
 
 		 // $("body").click(function(e){
 		 // 	if($("#modalToggle").css('display') == 'block')
