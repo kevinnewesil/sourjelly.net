@@ -1316,7 +1316,7 @@
             <form action="#" method="post" class="form form-horizontal">
                 <fieldset>
                     <legend>Colours</legend>
-
+                    the game
                     <div class="control-group">
                         <label for="hover" class="control-label">Hover colour</label>
                         <div class="controls">
