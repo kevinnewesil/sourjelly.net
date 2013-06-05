@@ -265,3 +265,27 @@ i.circle-youtube{ background: url('../img/icons/social-icons-black-circle.png') 
 	z-index:1;
 	left:-150px;
 }
+
+.login-prompt{
+	position:absolute;
+	top:10%;
+	left:40%;
+	z-index:1080;
+	background-color:#FFFFFF;
+	opacity: 1;
+	border-radius: 15px;
+	text-align: center;
+	padding:20px 5px 0 5px;
+
+}
+
+.dark-overlay{
+	z-index:1070;
+	opacity: 0.75;
+	background-color:#000000;
+	width:100%;
+	height:100%;
+	position:absolute;
+	top:0;
+	left:0;
+}

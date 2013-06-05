@@ -3,6 +3,9 @@
 
 		var value = '';
 		var name  = '';
+		var prompt = false;
+		var inputNameGlobal = '';
+		var inputValueGlobal = '';
 
 		$("input[type=\"checkbox\"]").each(function(){
 			if($(this).is(":checked"))
@@ -29,6 +32,7 @@
 		});
 
 		$(".checkbox").click(function(){
+
 			if($(this).children(".image-front").css('left')=='-64px')
 			{
 				$(this).children(".image-front").css('left','0');
@@ -54,6 +58,16 @@
 		});
 
 		function sendQuickRequest(inputValue,inputName){
+			
+			if(prompt == false)
+			{
+				promptPassword();
+				inputNameGlobal = inputName;
+				inputValueGlobal = inputValue;
+
+				return false;
+			}
+
 			$.ajax({
 				url : "{ajax}settings.php",
 				type : "POST",
@@ -71,15 +85,56 @@
 				}
 			});
 		}
+
+		function promptPassword()
+		{
+			$(".login-prompt").css('display','inline');
+			$("body").append("<div class=\"dark-overlay\"></div>")
+		}
+
+		$("#login-form").submit(function(){
+
+			$.ajax({
+				url : '{ajax}settings.php',
+				type : "post",
+				dataType : 'json',
+				data : {
+					action : "checkLogin",
+					password : $("#password").val(),
+				},
+
+				success : function(data)
+				{
+					if(data[0] == true)
+					{
+						$("body").remove(".dark-overlay");
+						$(".login-prompt").css('display','none');
+						prompt = true;
+						sendQuickRequest(inputValueGlobal,inputNameGlobal);
+					}
+					else
+					{
+						$(".login-prompt").prepand("Password wrong.. try again");
+					}
+				}
+			});
+
+			return false;
+		});
 	});
 </script>
 
-<div class="login" style="display:none;">
-	<form action="" method="post" class="form form-horizontal" id="login-form" onSubmit="checkLogin(); return false;">
+<div class="login login-prompt" style="display:none;">
+	<form action="#" method="post" class="form" id="login-form">
 		<div class="control-group">
-			<label for="password" class="control-label">Password</label>
+			<label for="password" class="control-label">Type password to continue...</label>
 			<div class="controls">
 				<input type="password" name="password" id="password" value="" placeholder="Password">
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<input type="submit" name="submit" id="submit" value="Go" class="btn btn-primary btn-large">
 			</div>
 		</div>
 	</form>	

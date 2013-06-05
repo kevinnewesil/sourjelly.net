@@ -45,6 +45,10 @@
 			else
 				$return['update'] = false;
 			break;
+
+		case 'checkLogin':
+			die(var_dump('checklogin'));
+			break;
 	}
 
 	// Return a json of the return array for Javascript messages on success/failure.
