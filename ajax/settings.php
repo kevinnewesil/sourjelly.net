@@ -47,7 +47,7 @@
 			break;
 
 		case 'checkLogin':
-			die(var_dump('checklogin'));
+			$return['checkLogin'] = \getApiUsers() -> getUserByPassword();
 			break;
 	}
 

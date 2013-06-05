@@ -13,7 +13,7 @@
 		});
 
 		//Set the value of the input field into a global variable value. Make sure it's empty.
-		$("input").change(function(){
+		$("#settingForm input").change(function(){
 			value = '';
 			name  = '';
 
@@ -57,25 +57,27 @@
 
 		});
 
-		function sendQuickRequest(inputValue,inputName){
-			
+		function sendQuickRequest(inputValue,inputName)
+		{	
+			inputNameGlobal = inputName;
+			inputValueGlobal = inputValue;
+
 			if(prompt == false)
 			{
 				promptPassword();
-				inputNameGlobal = inputName;
-				inputValueGlobal = inputValue;
-
 				return false;
 			}
 
+			// console.log(inputNameGlobal);
+
 			$.ajax({
-				url : "{ajax}settings.php",
+				url : ajaxPath + "settings.php",
 				type : "POST",
 				dataType : "json",
 				data : {
 					action : "saveInput",
-					name : inputName,
-					value : inputValue,
+					name : inputNameGlobal,
+					value : inputValueGlobal,
 				},
 				success : function(data){
 					if(data.update == true)
@@ -95,7 +97,7 @@
 		$("#login-form").submit(function(){
 
 			$.ajax({
-				url : '{ajax}settings.php',
+				url : ajaxPath + 'settings.php',
 				type : "post",
 				dataType : 'json',
 				data : {
@@ -105,19 +107,22 @@
 
 				success : function(data)
 				{
-					if(data[0] == true)
+					if(data['checkLogin'] == true)
 					{
-						$("body").remove(".dark-overlay");
 						$(".login-prompt").css('display','none');
 						prompt = true;
+						$(".dark-overlay").remove();
 						sendQuickRequest(inputValueGlobal,inputNameGlobal);
 					}
 					else
-					{
-						$(".login-prompt").prepand("Password wrong.. try again");
+					{	
+						$(".error").remove();
+						$(".login-prompt").append("<span class=\"error\">Password wrong.. try again</span>");
 					}
 				}
 			});
+
+			
 
 			return false;
 		});
@@ -155,179 +160,181 @@
 		</li>
 	</ul>
 	<div class="tab-content">
-		<div id="lA" class="tab-pane active">
-			<fieldset>
-				<legend>Errors</legend>
+		<form action="#" class="form form-horizontal settings" id="settingForm" method="post">
+			<div id="lA" class="tab-pane active">
+				<fieldset>
+					<legend>Errors</legend>
 
-				<div class="control-group">
-					<label for="displayErrors" class="control-label">
-						<abbr title="Show script errors on screen">Display errors</abbr>
-					</label>
-					<div class="controls">
-						<div class="checkbox">
-							<img src="{assets}img/uploads/toggle_on_off_slider_button.png" alt="" class="image-front">
-							<img src="{assets}img/uploads/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
+					<div class="control-group">
+						<label for="displayErrors" class="control-label">
+							<abbr title="Show script errors on screen">Display errors</abbr>
+						</label>
+						<div class="controls">
+							<div class="checkbox">
+								<img src="{assets}img/uploads/toggle_on_off_slider_button.png" alt="" class="image-front">
+								<img src="{assets}img/uploads/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
+							</div>
+							<input class="hidden_checkbox" type="checkbox" name="displayErrors" {checked_displayErrors}>
 						</div>
-						<input class="hidden_checkbox" type="checkbox" name="displayErrors" {checked_displayErrors}>
 					</div>
-				</div>
 
-				<div class="control-group">
-					<label for="displayStartupErrors" class="control-label">
-						<abbr title="Show errors that occure on server startup">Display start-up errors</abbr>
-					</label>
-					<div class="controls">
-						<div class="checkbox">
-							<img src="{assets}img/uploads/toggle_on_off_slider_button.png" alt="" class="image-front">
-							<img src="{assets}img/uploads/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
+					<div class="control-group">
+						<label for="displayStartupErrors" class="control-label">
+							<abbr title="Show errors that occure on server startup">Display start-up errors</abbr>
+						</label>
+						<div class="controls">
+							<div class="checkbox">
+								<img src="{assets}img/uploads/toggle_on_off_slider_button.png" alt="" class="image-front">
+								<img src="{assets}img/uploads/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
+							</div>
+							<input class="hidden_checkbox" type="checkbox" name="displayStartupErrors" {checked_displayStartupErrors}>
 						</div>
-						<input class="hidden_checkbox" type="checkbox" name="displayStartupErrors" {checked_displayStartupErrors}>
 					</div>
-				</div>
 
-				<div class="control-group">
-					<label for="logErrors" class="control-label">
-						<abbr title="Log errors into a file on your server">Log errors</abbr>
-					</label>
-					<div class="controls">
-						<div class="checkbox">
-							<img src="{assets}img/uploads/toggle_on_off_slider_button.png" alt="" class="image-front">
-							<img src="{assets}img/uploads/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
+					<div class="control-group">
+						<label for="logErrors" class="control-label">
+							<abbr title="Log errors into a file on your server">Log errors</abbr>
+						</label>
+						<div class="controls">
+							<div class="checkbox">
+								<img src="{assets}img/uploads/toggle_on_off_slider_button.png" alt="" class="image-front">
+								<img src="{assets}img/uploads/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
+							</div>
+							<input class="hidden_checkbox" type="checkbox" name="logErrors" {checked_logErrors}>
 						</div>
-						<input class="hidden_checkbox" type="checkbox" name="logErrors" {checked_logErrors}>
 					</div>
-				</div>
 
-				<div class="control-group">
-					<label for="trackErrors" class="control-label">
-						<abbr title="Show the full trace of an error.">Track errors</abbr>
-					</label>
-					<div class="controls">
-						<div class="checkbox">
-							<img src="{assets}img/uploads/toggle_on_off_slider_button.png" alt="" class="image-front">
-							<img src="{assets}img/uploads/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
+					<div class="control-group">
+						<label for="trackErrors" class="control-label">
+							<abbr title="Show the full trace of an error.">Track errors</abbr>
+						</label>
+						<div class="controls">
+							<div class="checkbox">
+								<img src="{assets}img/uploads/toggle_on_off_slider_button.png" alt="" class="image-front">
+								<img src="{assets}img/uploads/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
+							</div>
+							<input class="hidden_checkbox" type="checkbox" name="trackErrors" {checked_trackErrors}>
 						</div>
-						<input class="hidden_checkbox" type="checkbox" name="trackErrors" {checked_trackErrors}>
 					</div>
-				</div>
 
-				<div class="control-group">
-					<label for="htmlErrors" class="control-label">
-						<abbr title="Show errors in the HTML code">Html errors</abbr>
-					</label>
-					<div class="controls">
-						<div class="checkbox">
-							<img src="{assets}img/uploads/toggle_on_off_slider_button.png" alt="" class="image-front">
-							<img src="{assets}img/uploads/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
+					<div class="control-group">
+						<label for="htmlErrors" class="control-label">
+							<abbr title="Show errors in the HTML code">Html errors</abbr>
+						</label>
+						<div class="controls">
+							<div class="checkbox">
+								<img src="{assets}img/uploads/toggle_on_off_slider_button.png" alt="" class="image-front">
+								<img src="{assets}img/uploads/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
+							</div>
+							<input class="hidden_checkbox" type="checkbox" name="htmlErrors" {checked_htmlErrors}>
 						</div>
-						<input class="hidden_checkbox" type="checkbox" name="htmlErrors" {checked_htmlErrors}>
 					</div>
-				</div>
-			</fieldset>
-		</div>
-		<div id="lB" class="tab-pane">
-			<fieldset>
-				<legend>Limits</legend>
+				</fieldset>
+			</div>
+			<div id="lB" class="tab-pane">
+				<fieldset>
+					<legend>Limits</legend>
 
-				<div class="control-group">
-					<label for="maxExecutionTime" class="control-label">
-						<abbr title="The maximum time a script is allowed to run for"> Max execution time </abbr>
-					</label>
-					<div class="controls">
-						<input type="text" name="maxExecutionTime" id="maxExecutionTime" value="{maxExecutionTime}" placeholder="300">
-					</div>
-				</div>
-
-				<div class="control-group">
-					<label for="memoryLimit" class="control-label">
-						<abbr title="The maximum allowed number of memory the system can use">Memory limit</abbr>
-					</label>
-					<div class="controls">
-						<input type="text" name="memoryLimit" id="memoryLimit" value="{memoryLimit}" placeholder="50">
-					</div>
-				</div>
-
-				<div class="control-group">
-					<label for="postMaxSize" class="control-label">
-						<abbr title="The maximum amount of data a form can submit">Max post size</abbr>
-					</label>
-					<div class="controls">
-						<input type="text" name="postMaxSize" id="postMaxSize" value="{postMaxSize}" placeholder="250">
-					</div>
-				</div>
-
-				<div class="control-group">
-					<label for="uploadMaxFilesize" class="control-label">
-						<abbr title="The maximum size a posted file may be">Upload max file size</abbr>
-					</label>
-					<div class="controls">
-						<input type="text" name="uploadMaxFilesize" id="uploadMaxFilesize" value="{uploadMaxFilesize}" placeholder="250">
-					</div>
-				</div>
-
-				<div class="control-group">
-					<label for="maxFileUploads" class="control-label">
-						<abbr title="The maximum number of file that can be uploaded at the same time">Max file uploads</abbr>
-					</label>
-					<div class="controls">
-						<input type="text" name="maxFileUploads" id="maxFileUploads" value="{maxFileUploads}" placeholder="5">
-					</div>
-				</div>
-			</fieldset>
-		</div>
-		<div id="lC" class="tab-pane">
-			<fieldset>
-				<legend>Common settings</legend>
-
-				<div class="control-group">
-					<label for="embeddedHtml" class="control-label">
-						<abbr title="Allowed the usage of code in HTML as defined in the documentation (Can increase loading time)">Toggle embedded html</abbr>
-					</label>
-					<div class="controls">
-						<div class="checkbox">
-							<img src="{assets}img/uploads/toggle_on_off_slider_button.png" alt="" class="image-front">
-							<img src="{assets}img/uploads/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
+					<div class="control-group">
+						<label for="maxExecutionTime" class="control-label">
+							<abbr title="The maximum time a script is allowed to run for"> Max execution time </abbr>
+						</label>
+						<div class="controls">
+							<input type="text" name="maxExecutionTime" id="maxExecutionTime" value="{maxExecutionTime}" placeholder="300">
 						</div>
-						<input class="hidden_checkbox" type="checkbox" name="embeddedHtml" {checked_embeddedHtml}>
 					</div>
-				</div>
 
-				<div class="control-group">
-					<label for="ipMonitoring" class="control-label">
-						<abbr title="Save all the visitors IP adresses in the database">Toggle ip-monitoring</abbr>
-					</label>
-					<div class="controls">
-						<div class="checkbox">
-							<img src="{assets}img/uploads/toggle_on_off_slider_button.png" alt="" class="image-front">
-							<img src="{assets}img/uploads/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
+					<div class="control-group">
+						<label for="memoryLimit" class="control-label">
+							<abbr title="The maximum allowed number of memory the system can use">Memory limit</abbr>
+						</label>
+						<div class="controls">
+							<input type="text" name="memoryLimit" id="memoryLimit" value="{memoryLimit}" placeholder="50">
 						</div>
-						<input class="hidden_checkbox" type="checkbox" name="ipMonitoring" {checked_ipMonitoring}>
 					</div>
-				</div>
 
-				<div class="control-group">
-					<label for="timezone" class="control-label">
-						<abbr title="The timezone you are currently in: 'Europe/Amsterdam'">Timezone</abbr>
-					</label>
-					<div class="controls">
-						<input type="text" name="timezone" id="timezone" value="{timezone}" placeholder="Europe/Amsterdam">
+					<div class="control-group">
+						<label for="postMaxSize" class="control-label">
+							<abbr title="The maximum amount of data a form can submit">Max post size</abbr>
+						</label>
+						<div class="controls">
+							<input type="text" name="postMaxSize" id="postMaxSize" value="{postMaxSize}" placeholder="250">
+						</div>
 					</div>
-				</div>
 
-				<div class="control-group">
-					<label for="lang" class="control-label">
-						<abbr title="Your favorite lang for the admin system.">Language</abbr>
-					</label>
-					<div class="controls">
-						<select name="lang">
-							<option value="_NL">Dutch</option>
-							<option value="_EN" selected="selected">English</option>
-						</select>
+					<div class="control-group">
+						<label for="uploadMaxFilesize" class="control-label">
+							<abbr title="The maximum size a posted file may be">Upload max file size</abbr>
+						</label>
+						<div class="controls">
+							<input type="text" name="uploadMaxFilesize" id="uploadMaxFilesize" value="{uploadMaxFilesize}" placeholder="250">
+						</div>
 					</div>
-				</div>
 
-			</fieldset>
-		</div>
+					<div class="control-group">
+						<label for="maxFileUploads" class="control-label">
+							<abbr title="The maximum number of file that can be uploaded at the same time">Max file uploads</abbr>
+						</label>
+						<div class="controls">
+							<input type="text" name="maxFileUploads" id="maxFileUploads" value="{maxFileUploads}" placeholder="5">
+						</div>
+					</div>
+				</fieldset>
+			</div>
+			<div id="lC" class="tab-pane">
+				<fieldset>
+					<legend>Common settings</legend>
+
+					<div class="control-group">
+						<label for="embeddedHtml" class="control-label">
+							<abbr title="Allowed the usage of code in HTML as defined in the documentation (Can increase loading time)">Toggle embedded html</abbr>
+						</label>
+						<div class="controls">
+							<div class="checkbox">
+								<img src="{assets}img/uploads/toggle_on_off_slider_button.png" alt="" class="image-front">
+								<img src="{assets}img/uploads/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
+							</div>
+							<input class="hidden_checkbox" type="checkbox" name="embeddedHtml" {checked_embeddedHtml}>
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label for="ipMonitoring" class="control-label">
+							<abbr title="Save all the visitors IP adresses in the database">Toggle ip-monitoring</abbr>
+						</label>
+						<div class="controls">
+							<div class="checkbox">
+								<img src="{assets}img/uploads/toggle_on_off_slider_button.png" alt="" class="image-front">
+								<img src="{assets}img/uploads/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
+							</div>
+							<input class="hidden_checkbox" type="checkbox" name="ipMonitoring" {checked_ipMonitoring}>
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label for="timezone" class="control-label">
+							<abbr title="The timezone you are currently in: 'Europe/Amsterdam'">Timezone</abbr>
+						</label>
+						<div class="controls">
+							<input type="text" name="timezone" id="timezone" value="{timezone}" placeholder="Europe/Amsterdam">
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label for="lang" class="control-label">
+							<abbr title="Your favorite lang for the admin system.">Language</abbr>
+						</label>
+						<div class="controls">
+							<select name="lang">
+								<option value="_NL">Dutch</option>
+								<option value="_EN" selected="selected">English</option>
+							</select>
+						</div>
+					</div>
+
+				</fieldset>
+			</div>
+		</form>
 	</div>
 </div>
 
