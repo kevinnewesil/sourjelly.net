@@ -23,7 +23,7 @@
 			<!-- Making it possible to access multiple files and upload folder in webkit and firefox. -->
 			<input type="text" name="description" value="" placeholder="Description">
 			<br>
-			<input type="file" name="file" class="file input" multiple="" mozdirectory="" webkitdirectory="" directory="" />
+			<input type="file" name="file" class="file input" multiple="" />
 			<br/><br/>
 			<input type="submit" name="submit" value="submit" class="btn btn-primary btn-large"/>
 		</div>
