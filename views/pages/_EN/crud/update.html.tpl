@@ -1,3 +1,9 @@
+<!--  
+	The CLASS redactor is used to render the wysiwig text editor
+	file : sourjelly.net/public_html/assets/js/plugins/redactor.js 
+		called via : sourjelly.net/public_html/assets/js/extensions/admin.js
+-->
+
 <form action="{base}/crud/update/{id}/?ns=controllers&amp;path=controller_path" method="post" class="form form-horizontal">
 
 	<div class="row">

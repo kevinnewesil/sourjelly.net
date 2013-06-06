@@ -1,3 +1,7 @@
+<!--  
+	CLASS tablesorter is used to activate the table sorter javascript plugin
+	javascript file: sourjelly.net/public_html/assets/js/plugins/tablesorter.js
+-->
 <table class="table tablesorter">
 	<thead>
 		<tr>
