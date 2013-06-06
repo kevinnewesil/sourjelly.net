@@ -17,11 +17,11 @@
 		<link rel="stylesheet" href="{assets}css/bootstrap-responsive.min.css"> <!-- The responsive design for cross platform browsing. -->
 
 		<!-- Include Javascript files -->
-		<script type="text/javascript" src="{assets}js/jquery.js"></script> <!-- Require Jquery.js making it possible to run other jquery files. -->
+		<script type="text/javascript" src="{assets}js/libs/jquery.js"></script> <!-- Require Jquery.js making it possible to run other jquery files. -->
 		<script type="text/javascript"> less = { rootpath: "{assets}css/" }; </script> <!-- Set the root path of the themes. -->
-		<script type="text/javascript" src="{assets}js/less.js"></script> <!-- Include the less compiler to compile less to css. -->
-		<script type="text/javascript" src="{assets}js/bootstrap.min.js"></script> <!-- Include the twitter bootstrap js for executing bootstrap actions. -->
-		<script type="text/javascript" src="{assets}js/cookie.js"></script> <!-- Include the quety cookie plugin for usage of cookies client side. -->
+		<script type="text/javascript" src="{assets}js/libs/less.js"></script> <!-- Include the less compiler to compile less to css. -->
+		<script type="text/javascript" src="{assets}js/libs/bootstrap.min.js"></script> <!-- Include the twitter bootstrap js for executing bootstrap actions. -->
+		<script type="text/javascript" src="{assets}js/extensions/cookie.js"></script> <!-- Include the quety cookie plugin for usage of cookies client side. -->
         
         <!-- Dynamic style for user defined settings that overrules all other shit. is per  page defineable. -->
         <style type="text/css">
