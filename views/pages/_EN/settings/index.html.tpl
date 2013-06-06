@@ -55,8 +55,8 @@
 					</label>
 					<div class="controls">
 						<div class="checkbox">
-							<img src="{assets}img/uploads/toggle_on_off_slider_button.png" alt="" class="image-front">
-							<img src="{assets}img/uploads/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
+							<img src="{assets}img/settings/toggle_on_off_slider_button.png" alt="" class="image-front">
+							<img src="{assets}img/settings/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
 						</div>
 						<input class="hidden_checkbox" type="checkbox" name="displayStartupErrors" {checked_displayStartupErrors}>
 					</div>
@@ -68,8 +68,8 @@
 					</label>
 					<div class="controls">
 						<div class="checkbox">
-							<img src="{assets}img/uploads/toggle_on_off_slider_button.png" alt="" class="image-front">
-							<img src="{assets}img/uploads/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
+							<img src="{assets}img/settings/toggle_on_off_slider_button.png" alt="" class="image-front">
+							<img src="{assets}img/settings/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
 						</div>
 						<input class="hidden_checkbox" type="checkbox" name="logErrors" {checked_logErrors}>
 					</div>
@@ -81,8 +81,8 @@
 					</label>
 					<div class="controls">
 						<div class="checkbox">
-							<img src="{assets}img/uploads/toggle_on_off_slider_button.png" alt="" class="image-front">
-							<img src="{assets}img/uploads/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
+							<img src="{assets}img/settings/toggle_on_off_slider_button.png" alt="" class="image-front">
+							<img src="{assets}img/settings/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
 						</div>
 						<input class="hidden_checkbox" type="checkbox" name="trackErrors" {checked_trackErrors}>
 					</div>
@@ -94,8 +94,8 @@
 					</label>
 					<div class="controls">
 						<div class="checkbox">
-							<img src="{assets}img/uploads/toggle_on_off_slider_button.png" alt="" class="image-front">
-							<img src="{assets}img/uploads/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
+							<img src="{assets}img/settings/toggle_on_off_slider_button.png" alt="" class="image-front">
+							<img src="{assets}img/settings/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
 						</div>
 						<input class="hidden_checkbox" type="checkbox" name="htmlErrors" {checked_htmlErrors}>
 					</div>
@@ -143,11 +143,11 @@
 				</div>
 
 				<div class="control-group">
-					<label for="maxFileUploads" class="control-label">
-						<abbr title="The maximum number of file that can be uploaded at the same time">Max file uploads</abbr>
+					<label for="maxFilesettings" class="control-label">
+						<abbr title="The maximum number of file that can be uploaded at the same time">Max file settings</abbr>
 					</label>
 					<div class="controls">
-						<input type="text" name="maxFileUploads" id="maxFileUploads" value="{maxFileUploads}" placeholder="5">
+						<input type="text" name="maxFilesettings" id="maxFilesettings" value="{maxFilesettings}" placeholder="5">
 					</div>
 				</div>
 			</fieldset>
@@ -162,8 +162,8 @@
 					</label>
 					<div class="controls">
 						<div class="checkbox">
-							<img src="{assets}img/uploads/toggle_on_off_slider_button.png" alt="" class="image-front">
-							<img src="{assets}img/uploads/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
+							<img src="{assets}img/settings/toggle_on_off_slider_button.png" alt="" class="image-front">
+							<img src="{assets}img/settings/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
 						</div>
 						<input class="hidden_checkbox" type="checkbox" name="embeddedHtml" {checked_embeddedHtml}>
 					</div>
@@ -175,8 +175,8 @@
 					</label>
 					<div class="controls">
 						<div class="checkbox">
-							<img src="{assets}img/uploads/toggle_on_off_slider_button.png" alt="" class="image-front">
-							<img src="{assets}img/uploads/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
+							<img src="{assets}img/settings/toggle_on_off_slider_button.png" alt="" class="image-front">
+							<img src="{assets}img/settings/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
 						</div>
 						<input class="hidden_checkbox" type="checkbox" name="ipMonitoring" {checked_ipMonitoring}>
 					</div>
