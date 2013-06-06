@@ -134,7 +134,7 @@
 			\api\Api::updateTable('table_content_properties',$table_content_properties_rows,$table_content_properties_values,array('id' => $this->getId()));
 			\api\Api::updateTable('table_content_layout',$table_content_layout_rows,$table_content_layout_values,array('id' => $this->getId()));
 
-			\setNoticeSuccess("Page updated successfully");
+			\SetNoticeSuccess("Page updated successfully");
 			return true;
 		}
 
@@ -142,13 +142,25 @@
 		 * Gets the page that is reqested, and places a deprecated flag on it.
 		 * @return boolean return true if deprecated flag was placed
 		 */
-		final public function delete() { \api\Api::updateTable('table_content',array('deprecated'),array('1'),array('id' => $this -> getId())) == true ? \setNoticeSucces("page deleted successfully") : \setNotice('error deleting page'); }
+		final public function delete()
+		{
+			\api\Api::updateTable('table_content',array('deprecated'),array('1'),array('id' => $this -> getId())) == true ? 
+				\Go(HOME_PATH . "/crud/retrieve/?ns=controllers&path=controller_path", "page deleted successfully",'success') 
+			:
+				\Go(HOME_PATH . "/crud/retrieve/?ns=controllers&path=controller_path", 'error deleting page');
+		}
 
 		/**
 		 * Gets the requested page details, and removes the deprecated flag from that page.
 		 * @return boolean return true if deprecated flag was removes succesfully
 		 */
-		final public function undoDelete() { return \api\Api::updateTable('table_content',array('deprecated'),array('0'),array('id' => $this -> getId())) == true ? \setNoticeSuccess("page returned to normal") : \setNotice('error restoring page'); }
+		final public function undoDelete()
+		{
+			return \api\Api::updateTable('table_content',array('deprecated'),array('0'),array('id' => $this -> getId())) == true ?
+				\Go(HOME_PATH . "/crud/deleted/?ns=controllers&path=controller_path" , "page returned to normal",'success')
+			:
+				\Go(HOME_PATH . "/crud/deleted/?ns=controllers&path=controller_path" , 'error restoring page');
+		}
 
 		/**
 		 * gets the ID of the page that should be edited.

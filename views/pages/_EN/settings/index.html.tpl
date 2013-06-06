@@ -143,11 +143,11 @@
 				</div>
 
 				<div class="control-group">
-					<label for="maxFilesettings" class="control-label">
-						<abbr title="The maximum number of file that can be uploaded at the same time">Max file settings</abbr>
+					<label for="maxFileUploads" class="control-label">
+						<abbr title="The maximum number of file that can be uploaded at the same time">Max file uploads</abbr>
 					</label>
 					<div class="controls">
-						<input type="text" name="maxFilesettings" id="maxFilesettings" value="{maxFilesettings}" placeholder="5">
+						<input type="text" name="maxFileUploads" id="maxFileUploads" value="{maxFileUploads}" placeholder="5">
 					</div>
 				</div>
 			</fieldset>

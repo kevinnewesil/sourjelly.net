@@ -29,7 +29,7 @@
 	 * Session handling
 	 */
 
-	if(!function_exists("SetNotice")) { function SetNotice($notice){ $_SESSION['notice'] = $notice; }}
+	if(!function_exists("SetNotice")) { function SetNotice($notice){ $_SESSION['notice'] = $notice; $_SESSION['notice_sort'] = 'warning';}}
 	if(!function_exists("SetNoticeSuccess")) { function SetNoticeSuccess($notice){ $_SESSION['notice'] = $notice; $_SESSION['notice_sort'] = 'success'; } }
 	if(!function_exists("SetNoticeError")) { function SetNoticeError($notice){ $_SESSION['notice'] = $notice; $_SESSION['notice_sort'] = 'error'; } }
 	if(!function_exists("SetNoticeInfo")) { function SetNoticeInfo($notice){ $_SESSION['notice'] = $notice; $_SESSION['notice_sort'] = 'info'; } }
