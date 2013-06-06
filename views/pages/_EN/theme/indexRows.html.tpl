@@ -1,6 +1,6 @@
 <tr>
 	<td>{title}</td>
-	<td class="active" id="activate~{id}~{title}">{active}</td>
+	<td class="activate-theme" id="activate~{id}~{title}">{active}</td>
 	<td><a href="{base}/themes/update/{id}/?ns=controllers&amp;path=controller_path" class="btn" title="aanpassen"><i class="icon icon-wrench"></i></a></td>
 	<td><a href="#{id}" role="button" class="btn btn-inverse" data-toggle="modal"><i class="icon icon-trash icon-white"></i></a></td>
 	<td><a href="#" role="button" class="btn btn-primary" class="download" id="download_id"><i class="icon icon-circle-arrow-down"></i></a></td>

@@ -1,14 +1,3 @@
-<script type="text/javascript">
-	$(document).ready(function(){
-		$('.redactor').redactor({ minHeight: 250 });
-
-		$(".empty-form").click(function(){
-			$("textarea").html('');
-			$(".redactor_editor").html('');
-		});
-	});
-</script>
-
 <form method="post" action="{base}/crud/create/?ns=controllers&amp;path=controller_path" class="form form-horizontal">
 	<legend>Create page</legend>
 	

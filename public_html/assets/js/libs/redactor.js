@@ -135,7 +135,7 @@ var RLANG = {
 			focus: false,
 			tabindex: false,
 			autoresize: true,
-			minHeight: false,
+			minHeight: 250,
 			fixed: false,
 			fixedTop: 0, // pixels
 			fixedBox: false,

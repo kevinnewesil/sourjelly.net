@@ -15,6 +15,10 @@
 
 	$demo_mode = false;
 	$upload_dir =  $_SERVER['DOCUMENT_ROOT'] . ASSETS_PATH . 'img/uploads/';
+
+	if(!is_dir($upload_dir))
+		mkdir($upload_dir);
+
 	$allowed_ext = array('jpg','jpeg','png','gif');
 
 	if(strtolower($_SERVER['REQUEST_METHOD']) != 'post'){

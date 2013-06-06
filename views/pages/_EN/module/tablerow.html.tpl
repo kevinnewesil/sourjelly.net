@@ -2,7 +2,7 @@
 	<td>{name}</td>
 	<td>{description}</td>
 	<td>{uploaded_at}</td>
-	<td class="active" id="activate_{id}">{active}</td>
+	<td class="activate_module" id="activate_{id}">{active}</td>
 	<td>{match}</td>
 	<td>{position}</td>
 	<td><a href="{base}/modules/settings/{id}/?ns=controllers&amp;path=controller_path" class="btn" title="aanpassen"><i class="icon icon-wrench"></i></a></td>

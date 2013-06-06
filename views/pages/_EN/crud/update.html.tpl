@@ -1,14 +1,3 @@
-<script type="text/javascript">
-	$(document).ready(function(){
-		$('.redactor').redactor({ minHeight: 250 });
-		
-		$(".empty-form").click(function(){
-			$("textarea").html('');
-			$(".redactor_editor").html('');
-		});
-	});
-</script>
-
 <form action="{base}/crud/update/{id}/?ns=controllers&amp;path=controller_path" method="post" class="form form-horizontal">
 
 	<div class="row">

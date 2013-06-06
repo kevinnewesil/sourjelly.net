@@ -17,81 +17,51 @@
 		
 		<!-- Include Javascript files -->
 		
-		<script type="text/javascript" src="{assets}js/jquery.js"></script>
+		<script type="text/javascript" src="{assets}js/libs/jquery.js"></script>
+
+		<!-- Javascript to define all placeholders into global variables -->
 		<script type="text/javascript">
 
-			ajaxPath = "{ajax}";
-			basePath = "{base}";
+			// Define placeholders used in javascript through the system.
+			ajaxPath   = "{ajax}";
+			basePath   = "{base}";
+			assetsPath = "{assets}";
+			
+			navigationPlaceholders = [
+				'{positionFromHeader_value}',
+				'{zIndex_value}',
+				'{jsFunction_value}',
+				'{toggleAnimationStyle_value}',
+				'{toggleTrigger_value}',
+				'{slideInAnimationStyle_value}',
+			];
 
 		    less = {
 		        rootpath: "../assets/css/"
 		    };
 		</script>
-
-		<script type="text/javascript" src="{assets}js/jquery-ui-1.9.1.custom.min.js"></script>
-		<script type="text/javascript" src="{assets}js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="{assets}js/sessions.js"></script>
-		<script type="text/javascript" src="{assets}js/tablesorter.js"></script>
-		<script type="text/javascript" src="{assets}js/admin-nav.js"></script>
-		<script type="text/javascript" src="{assets}js/shorten.js"></script>
-		<script type="text/javascript" src="{assets}js/playsound.js"></script>
-		<script type="text/javascript" src="{assets}js/functions.js"></script>
-		<script type="text/javascript" src="{assets}js/less.js"></script>
-		<script type="text/javascript" src="{assets}js/redactor.js"></script>
-		<script type="text/javascript" src="{assets}js/cookie.js"></script>
-		<script type="text/javascript" src="{assets}js/mousemenu.js"></script>
-		<script type="text/javascript" src="{assets}js/colourpicker.js"></script>
-
-		<!-- Some random javascript -->
-		<script type="text/javascript">
-		$(document).ready(function(){
-
-			$("#search_form").submit(function(){
-				if ($("#search").val() == 'hahgay'){
-					$.playSound('{assets}sounds/hahgay.mp3');
-				    return false;
-				} else if ($("#search").val() == 'tell me a joke'){
-					$.playSound('{assets}sounds/drumjoke.mp3');
-					return false;
-				}
-			});
-
-			$('.flushCache').click(function(){
-				$.session.set("cacheReload", "true");
-				window.location.reload(true);
-			});
-
-			if($.session.get("cacheReload") && $.session.get("cacheReload") == "true")
-			{
-				$.session.delete("cacheReload");
-				alert("Cache flushed!");
-			}
-
-			$(".colourpicker").ColorPicker({
-				color: '#0000ff',
-
-				onShow: function (colpkr) {
-					$(colpkr).fadeIn(500);
-					return false;
-				},
-
-				onHide: function (colpkr) {
-					$(colpkr).fadeOut(500);
-					return false;
-				},
-
-				onBeforeShow: function () {
-					$(this).ColorPickerSetColor(this.value);
-					inputField = $(this);
-				},
-
-				onChange : function(hsb, hex, rgb)
-				{
-					$(inputField).val("#" + hex);
-				},
-			});
-		});
-		</script>
+	
+		<!-- Load all the javascript!! start loading the main javascript libraries -->
+		<script type="text/javascript" src="{assets}js/libs/jquery-ui-1.9.1.custom.min.js"></script>
+		<script type="text/javascript" src="{assets}js/libs/bootstrap.min.js"></script>
+		<script type="text/javascript" src="{assets}js/libs/less.js"></script>
+		<script type="text/javascript" src="{assets}js/libs/redactor.js"></script>
+		<script type="text/javascript" src="{assets}js/libs/jquery_filedrop.js"></script>
+		
+		<!-- Load all plugins  -->
+		<script type="text/javascript" src="{assets}js/plugins/sessions.js"></script>
+		<script type="text/javascript" src="{assets}js/plugins/tablesorter.js"></script>
+		<script type="text/javascript" src="{assets}js/plugins/shorten.js"></script>
+		<script type="text/javascript" src="{assets}js/plugins/colourpicker.js"></script>
+		<script type="text/javascript" src="{assets}js/plugins/filedrop_script.js"></script>
+	
+		<!-- Load all extentions -->
+		<script type="text/javascript" src="{assets}js/extensions/admin.js"></script>
+		<script type="text/javascript" src="{assets}js/extensions/admin-nav.js"></script>
+		<script type="text/javascript" src="{assets}js/extensions/playsound.js"></script>
+		<script type="text/javascript" src="{assets}js/extensions/functions.js"></script>
+		<script type="text/javascript" src="{assets}js/extensions/cookie.js"></script>
+		<script type="text/javascript" src="{assets}js/extensions/mousemenu.js"></script>
 
 	</head>
 	<body>
@@ -114,21 +84,17 @@
 
 								{login}
 							</div>
+
 							<!-- Search bar layout bugs on larger bar -->
-							    <form method="post" action="{base}/search/index/?ns=controllers&amp;path=controller_path" id="search_form" class="navbar-form form-search pull-right">
-								   	 <div class="input-append">
-										<input type="text" class="span2 search-query" name="search" value="" placeholder="Search" id="search">
-										<button type="submit" class="btn">Search</button>
-									</div>
-							    </form>
+							<form method="post" action="#" id="search_form" class="navbar-form form-search pull-right">
+								<div class="input-append">
+									<input type="text" class="span2 search-query" name="search" value="" placeholder="Search" id="search">
+									<button type="submit" class="btn">Search</button>
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>
-
-				<!-- BUGS BUGS BUGS -->
-				<!-- <div class="pull pull-down">
-					<i class="icon-arrow-down icon-white"></i>
-				</div> -->
 			</nav>
 
 			<div class="container">
@@ -137,6 +103,7 @@
 				<div class="content">
 					{content}
 				</div>
+
 				<footer>
 					<!-- &copy; SourJelly 2012. powered by KevinNewesil. -->
 				</footer>

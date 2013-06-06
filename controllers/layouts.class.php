@@ -23,9 +23,10 @@
 				$replacers[]    = ($key == 'dynamicNavigation' || $key = 'alwaysVisible' && $value == '1') ? 'checked="checked"' : $value;
 			}
 
-			$tmp = str_replace($placeholders, $replacers, \Template('layout/navigation.html.tpl'));
+			
 
-			\SjHtml() -> assign('{content}',$tmp);
+			\SjHtml() -> assign('{content}',\Template('layout/navigation.html.tpl'));
+			\sjHtml() -> assign($placeholders, $replacers);
 		}
 
 		final public function header() { \SjHtml() -> assign('{content}',\Template('layout/Header.html.tpl')); }

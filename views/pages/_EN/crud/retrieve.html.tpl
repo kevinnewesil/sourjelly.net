@@ -1,8 +1,3 @@
-<script type="text/javascript">
-	$(document).ready(function(){
-		$('.tablesorter').tablesorter();
-	});
-</script>
 <table class="table tablesorter">
 	<thead>
 		<tr>
