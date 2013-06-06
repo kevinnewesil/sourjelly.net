@@ -136,6 +136,8 @@
 				if(is_dir(MODULES_PATH . '__MACOSX'))
 					rmdir(MODULES_PATH . '__MACOSX');
 
+				unlink(MODULES_PATH . $name[0] . DS . $fileName);
+
 				\core\access\Redirect::Refresh('Module succesfully installed','success');
 			}
 
