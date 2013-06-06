@@ -255,7 +255,7 @@ $(document).ready(function(){
 
 	});
 
-	$(".checkbox").click(function(){
+	$("#settingForm .checkbox").click(function(){
 
 		if($(this).children(".image-front").css('left')=='-64px')
 		{
@@ -273,7 +273,7 @@ $(document).ready(function(){
 		}
 	});
 
-	$("option").click(function(){
+	$("#settingForm option").click(function(){
 		value = $(this).val();
 		name  = $(this).parent().attr('name');
 

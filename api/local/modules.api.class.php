@@ -38,7 +38,6 @@
 
 			if($stmt = self::$_link->query($query))
 			{
-
 				if($stmt -> num_rows !== 0)
 				{
 					while($row = $stmt -> fetch_assoc())
@@ -113,13 +112,15 @@
 				if(!\api\Api::checkQuery($query))
 					\core\access\Redirect::Home('Something went wrong with the query.');
 
-				$stmt->execute();
+				$stmt -> execute();
 				$stmt -> store_result();
 
-				$stmt->bind_result($title,$content,$created_at,$updated_at,$has_parent,$active,$id);
-
+				$stmt -> bind_result($title,$content,$created_at,$pages,$position,$active,$id);
+				
 				while($row = $stmt->fetch())
-					$pageArray[] = $row;
+				{
+					$pageArray[] = array($title,$content,$created_at,$pages,$position,$active,$id);
+				}
 
 				$stmt->close();
 			}
