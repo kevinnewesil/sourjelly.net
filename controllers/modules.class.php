@@ -27,8 +27,11 @@
 		 */
 		public function create()
 		{
-			if(isset($_FILES['file']))
+
+			if(isset($_FILES['file']) && !empty($_FILES['file']['name']))
 				$this->upload();
+			else if(\Post() !== false)
+				$this -> _model -> viaUrl();
 
 			$page = \core\build\Template::getTemplate('module/index.html.tpl');
 			\core\build\Sourjelly::getHtml()->assign('{content}',$page);
@@ -128,14 +131,6 @@
 			$tmp = str_replace('{rows}',$rows,$tmp);
 
 			\core\build\Sourjelly::getHtml() -> assign('{content}',$tmp);
-		}
-
-		/**
-		 * This function has yet to become a masterpiece , but as the current state is, I can't build it yet D:
-		 */
-		protected function viaUrl()
-		{
-
 		}
 
 		/**

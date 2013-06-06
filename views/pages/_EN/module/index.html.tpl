@@ -13,6 +13,8 @@
 			<br>
 			<input type="text" name="url" value="" placeholder="Link naar download"/>
 			<br/><br/>
+			<input type="text" name="description_url" value="" placeholder="Description">
+
 			<input type="submit" name="submit" value="submit" class="btn btn-primary btn-large"/>
 		</div>
 

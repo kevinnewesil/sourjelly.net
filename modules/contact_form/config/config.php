@@ -1,6 +1,6 @@
 <?php  
 
-	$config['email'] = 'kevin@sourjelly.net';
+	$config['email'] = 'kevin@sourjelly.net';
 	$config['saveMail'] = '0';
 	$config['input']['input']['name'] = 'slet';
 	$config['input']['input']['placeholder'] = 'hoer';
@@ -10,6 +10,5 @@
 	$config['captcha'] = '0';
 	$config['sticky'] = '0';
 	$config['allPages'] = '0';
- 
 
-	 return $config;
+	return $config;
