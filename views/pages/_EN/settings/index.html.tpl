@@ -42,8 +42,8 @@
 					</label>
 					<div class="controls">
 						<div class="checkbox">
-							<img src="{assets}img/uploads/toggle_on_off_slider_button.png" alt="" class="image-front">
-							<img src="{assets}img/uploads/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
+							<img src="{assets}img/settings/toggle_on_off_slider_button.png" alt="" class="image-front">
+							<img src="{assets}img/settings/toggle_on_off_slider_background.png" alt="click to toggle error display" class="image-back">
 						</div>
 						<input class="hidden_checkbox" type="checkbox" name="displayErrors" {checked_displayErrors}>
 					</div>
