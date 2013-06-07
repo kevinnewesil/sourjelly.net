@@ -1,18 +1,3 @@
-<script type="text/javascript">
-
-	$(document).ready(function(){
-
-		$(".sj-hidden").css('display','none');
-
-		$("." + $("#navigationSort").val()).css('display','block');
-
-		$("#navigationSort").change(function(){
-			$(".sj-hidden").css('display','none');
-			$("." + $("#navigationSort").val()).css('display','block');
-		});
-	});
-</script>
-
 <form class="form form-horizontal" method="post" action="{base}/layouts/header/?ns=controllers&amp;path=controller_path">
 	<fieldset>
 		<legend>Basics</legend>
@@ -28,13 +13,13 @@
 			</div>
 		</div>
 
-		<div class="sj-hidden slider">
+		<div class="sj-hidden-header slider">
 			<div class="well">
 				{images}
 			</div>
 		</div>
 	
-		<div class="sj-hidden text control-group">
+		<div class="sj-hidden-header text control-group">
 			<label for="headerText" class="control-label"></label>
 			<div class="controls">
 				<input type="text" id="">

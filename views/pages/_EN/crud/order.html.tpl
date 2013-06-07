@@ -1,39 +1,8 @@
-<script type="text/javascript">
-
-	$(document).ready(function(){
-
-		var sorted = [];
-
-		$(".sortable , .subsortable").sortable({
-			update: function( event, ui ) {
-		 		getAllItems();
-			}
-		});
-
-		$(".update").click(function(){
-			$.ajax({
-		 		url : '{ajax}menuSorter.php',
-		 		type : 'post',
-		 		data : {
-		 			menuArr : sorted,
-		 		},
-		 		success : function(data){
-		 			alert("Menu volgorde succesvol upgedate");
-		 		}
-		 	});
-		});
-
-		function getAllItems(){
-			sorted = [];
-			
-			$('.sortable li').each(function(){
-	 			sorted.push($(this).attr("id"));
-	 		});
-		};
-
-	});
-
-</script>
+<!-- 
+	the CLASS sortable is used to make the sortable function possible via javascript
+	css file : sourjelly.net/public_html/assets/css/custom.css
+	javascript file: sourjelly.net/public_html/assets/js/extensions/admin.js
+-->
 
 <h2>Menu order</h2>
 

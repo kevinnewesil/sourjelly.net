@@ -27,8 +27,11 @@
 		 */
 		public function create()
 		{
-			if(isset($_FILES['file']))
-				$this->upload();
+
+			if(isset($_FILES['file']) && !empty($_FILES['file']['name']))
+				$this -> _model -> upload();
+			else if(\Post() !== false)
+				$this -> _model -> viaUrl();
 
 			$page = \core\build\Template::getTemplate('module/index.html.tpl');
 			\core\build\Sourjelly::getHtml()->assign('{content}',$page);
@@ -128,65 +131,6 @@
 			$tmp = str_replace('{rows}',$rows,$tmp);
 
 			\core\build\Sourjelly::getHtml() -> assign('{content}',$tmp);
-		}
-
-		/**
-		 * This function has yet to become a masterpiece , but as the current state is, I can't build it yet D:
-		 */
-		protected function viaUrl()
-		{
-
-		}
-
-		/**
-		 * This functions expects a zip or anything compressed. Moves it to the module folder, extracts it, and cleans up the mess after.
-		 */
-		protected function upload()
-		{
-			$fileName      = $_FILES['file']['name'];
-			$fileType      = $_FILES['file']['type'];
-			$source        = $_FILES['file']['tmp_name'];
-
-			$name          = explode(".", $fileName);
-			$path          = MODULES_PATH . $name[0];
-			$acceptedTypes = array('application/zip', 'application/x-zip-compressed', 'multipart/x-zip', 'application/x-compressed');
-			
-			if(!in_array($fileType, $acceptedTypes,true) || strtolower($name[1]) !== 'zip')
-				\core\access\Redirect::Refresh('file does not have right extension');
-
-			if(is_dir($path))
-				\core\access\Redirect::Refresh('There is already a module with this name.');
-
-			if(!mkdir($path))
-				\core\access\Redirect::Refresh('Error creating folder for module.');
-
-			if(!move_uploaded_file($source, $path . DS . $fileName))
-			{
-				rmdir($path);
-				\core\access\Redirct::Refresh('Could not re-locate uploaded file to destination folder.');
-			}
-
-			$zipExtractor = new \ZipArchive;
-
-			$extracted = $zipExtractor->open($path . DS . $fileName);
-
-			if(!$extracted)
-				\core\access\Redirect::Refresh('could not open compressed file');
-
-			if($zipExtractor->extractTo(MODULES_PATH));
-			{
-				$zipExtractor->close();
-				\Api\Api::insertInto('table_modules',array('title','description','active','deprecated'),array($name[0],$this -> _modal -> _post -> description,1,0),'ssii');
-
-				//Clean up _MACOSX users shit.
-				if(is_dir(MODULES_PATH . '__MACOSX'))
-					rmdir(MODULES_PATH . '__MACOSX');
-
-				\core\access\Redirect::Refresh('Module succesfully installed','success');
-			}
-
-			\core\access\Redirect::Refresh('could not extract module');
-
 		}
 
 		/**

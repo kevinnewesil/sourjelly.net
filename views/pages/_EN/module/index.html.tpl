@@ -13,6 +13,8 @@
 			<br>
 			<input type="text" name="url" value="" placeholder="Link naar download"/>
 			<br/><br/>
+			<input type="text" name="description_url" value="" placeholder="Description">
+
 			<input type="submit" name="submit" value="submit" class="btn btn-primary btn-large"/>
 		</div>
 
@@ -21,7 +23,7 @@
 			<!-- Making it possible to access multiple files and upload folder in webkit and firefox. -->
 			<input type="text" name="description" value="" placeholder="Description">
 			<br>
-			<input type="file" name="file" class="file input" multiple="" mozdirectory="" webkitdirectory="" directory="" />
+			<input type="file" name="file" class="file input" multiple="" />
 			<br/><br/>
 			<input type="submit" name="submit" value="submit" class="btn btn-primary btn-large"/>
 		</div>

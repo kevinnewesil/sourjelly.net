@@ -20,16 +20,16 @@
 	 * Redirects
 	 */
 
-	if(!function_exists("Refresh")) { function Refresh($notice,$sort = "notice") { \core\access\Redirect::Refresh($notice,$sort); } }
-	if(!function_exists("Go")) { function Go($path,$notice,$sort = "notice") { \core\access\Redirect::To($path,$notice,$sort); } }
-	if(!function_exists("GoHome")) { function GoHome($notice,$sort = "notice") { \core\access\Redirect::Home($notice,$sort); } }
-	if(!function_exists("GoBack")) { function GoBack($notice,$sort = "notice") { \core\access\Redirect::Back($notice,$sort); } }
+	if(!function_exists("Refresh")) { function Refresh($notice,$sort = "warning") { \core\access\Redirect::Refresh($notice,$sort); } }
+	if(!function_exists("Go")) { function Go($path,$notice,$sort = "warning") { \core\access\Redirect::To($path,$notice,$sort); } }
+	if(!function_exists("GoHome")) { function GoHome($notice,$sort = "warning") { \core\access\Redirect::Home($notice,$sort); } }
+	if(!function_exists("GoBack")) { function GoBack($notice,$sort = "warning") { \core\access\Redirect::Back($notice,$sort); } }
 
 	/**
 	 * Session handling
 	 */
 
-	if(!function_exists("SetNotice")) { function SetNotice($notice){ $_SESSION['notice'] = $notice; }}
+	if(!function_exists("SetNotice")) { function SetNotice($notice){ $_SESSION['notice'] = $notice; $_SESSION['notice_sort'] = 'warning';}}
 	if(!function_exists("SetNoticeSuccess")) { function SetNoticeSuccess($notice){ $_SESSION['notice'] = $notice; $_SESSION['notice_sort'] = 'success'; } }
 	if(!function_exists("SetNoticeError")) { function SetNoticeError($notice){ $_SESSION['notice'] = $notice; $_SESSION['notice_sort'] = 'error'; } }
 	if(!function_exists("SetNoticeInfo")) { function SetNoticeInfo($notice){ $_SESSION['notice'] = $notice; $_SESSION['notice_sort'] = 'info'; } }

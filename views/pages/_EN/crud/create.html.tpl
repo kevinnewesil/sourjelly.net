@@ -1,14 +1,8 @@
-<script type="text/javascript">
-	$(document).ready(function(){
-		$('.redactor').redactor({ minHeight: 250 });
-
-		$(".empty-form").click(function(){
-			$("textarea").html('');
-			$(".redactor_editor").html('');
-		});
-	});
-</script>
-
+<!--  
+	The CLASS redactor is used to render the wysiwig text editor
+	file : sourjelly.net/public_html/assets/js/plugins/redactor.js 
+		called via : sourjelly.net/public_html/assets/js/extensions/admin.js
+-->
 <form method="post" action="{base}/crud/create/?ns=controllers&amp;path=controller_path" class="form form-horizontal">
 	<legend>Create page</legend>
 	

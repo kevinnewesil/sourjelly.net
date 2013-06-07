@@ -184,7 +184,7 @@
 					else
 						$page['hasParent'] = 'Ja';
 
-				$replacers = array($page['title'],$page['content'],$page['created_at'],$page['updated_at'],$page['hasParent'],$page['id']);
+				$replacers = array($page['title'],html_entity_decode($page['content']),$page['created_at'],$page['updated_at'],$page['hasParent'],$page['id']);
 				$rows .= str_replace($placeholdersRow,$replacers,$webTableRow);
 			}
 
