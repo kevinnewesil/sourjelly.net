@@ -316,8 +316,10 @@
 			{
 				if(!self::checkQuery($query,'UPDATE'))
 					\core\access\Redirect::Home('Something went wrong with the query.');
-				
+
 				$stmt->execute();
+
+				die($query);
 				if($stmt->affected_rows > 0 )
 				{
 					$stmt->close();

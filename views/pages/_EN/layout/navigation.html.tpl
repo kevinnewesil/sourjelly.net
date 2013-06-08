@@ -60,19 +60,6 @@
 						</select>
 					</div>
 				</div>
-
-				<div class="control-group">
-					<label for="toggle-trigger" class="control-label">Toggle trigger</label>
-					<div class="controls">
-						<select name="toggleTrigger" id="toggle-trigger">
-							<option value="text">Text</option>
-							<option value="image">Image</option>
-						</select>
-
-						<input type="text" name="toggleTriggerText" value="{toggleTriggerText_value}" placeholder="Text" id="toggle-trigger-text">
-						
-					</div>
-				</div>
 			</div>
 
 			<div class="sj-hidden-slideIn">
@@ -87,6 +74,19 @@
 						</select>
 					</div>
 				</div>
+			</div>
+		</div>
+	
+		<div class="control-group">
+			<label for="toggle-trigger" class="control-label">Brand</label>
+			<div class="controls">
+				<select name="toggleTrigger" id="toggle-trigger">
+					<option value="text">Text</option>
+					<option value="image">Image</option>
+				</select>
+
+				<input type="text" name="toggleTriggerText" value="{toggleTriggerText_value}" placeholder="Text" id="toggle-trigger-text">
+				
 			</div>
 		</div>
 

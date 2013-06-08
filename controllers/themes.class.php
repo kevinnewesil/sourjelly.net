@@ -97,6 +97,15 @@
 
 		/**
 		 * This function is yet to be build.
+		 * @return [type] [description]
+		 */
+		final public function download()
+		{
+
+		}
+
+		/**
+		 * This function is yet to be build.
 		 */
 		public function upload()
 		{
