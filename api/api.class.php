@@ -319,7 +319,6 @@
 
 				$stmt->execute();
 
-				die($query);
 				if($stmt->affected_rows > 0 )
 				{
 					$stmt->close();
