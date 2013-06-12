@@ -146,7 +146,7 @@
 
 	<div class="control-group">
 		<div class="controls">
-			<button type="submit" name="submit" value="create" class="btn btn-primary btn-large">Create page</button>
+			<input type="submit" name="submit" value="create" class="btn btn-primary btn-large">
 			<button type="reset" class="btn btn-inverse btn-large empty-form">Empty form</button>
 		</div>
 	</div>
