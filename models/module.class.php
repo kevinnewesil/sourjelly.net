@@ -67,7 +67,7 @@
 			fclose($fh);
 
 			$zipExtractor = new \ZipArchive;
-
+ 
 			if(!$extracted = $zipExtractor -> open($filePath . '.' . $fileType))
 				\Refresh('Could not open compressed file');
 

@@ -1,7 +1,7 @@
 <?php
 
 	$content = file_get_contents(MODULES_PATH . 'contact_form/html/settings.html');
-	$placeholders = array('{email}','{saveMail}','{captcha}','{sticky}','{allPages}');
+	$placeholders = array('{email}','{saveMail}','{captcha}','{sticky}','{allPages}','{allready_added_fields}');
 
 	$data = \Post();
 
@@ -32,6 +32,35 @@
 		($config['sticky'] === '1') ? 'checked="checked"' : '' ,
 		($config['allPages'] === '1') ? 'checked="checked"' : '' ,
 	);
+
+	$inputs = '';
+
+	$inputLayout = \Snippet('form/input.html.tpl');
+	$textareaLayout = \Snippet('form/textarea.html.tpl');
+
+	$inputPlaceholders = array('{id}','{label}','{type}','{name}','{class}','{placeholder}','{value}');
+	$textareaPlaceholders = array('{id}','{label}','{name}','{class}','{html}');
+
+	foreach ($config['input'] as $key => $value) {
+		if($key == "input")
+		{
+			$inputs .= str_replace( $inputPlaceholders, array('', $value['name'], 'text', "input[input][name]", 'input-added',$value['placeholder'],$value['name']), $inputLayout);
+			$inputs .= str_replace( $inputPlaceholders, array('', $value['placeholder'], 'text', "input[input][placeholder]",'input-added','',$value['placeholder']),$inputLayout);
+			$inputs .= "<hr>";
+		}
+		if($key == 'file')
+		{
+			$inputs .= str_replace( $inputPlaceholders, array('', $value['name'], 'text', "input[file][name]", 'input-added','',$value['name']), $inputLayout);
+			$inputs .= "<hr>";
+		}
+		if($key == 'textarea')
+		{
+			$inputs .= str_replace( $textareaPlaceholders, array('', $value['name'] , 'input[textarea][name]','input-added',$value['name']), $textareaLayout);
+			$inputs .= "<hr>";
+		}
+	}
+
+	$replacers[] = $inputs;
 
 	$content = str_replace($placeholders, $replacers, $content);
 
