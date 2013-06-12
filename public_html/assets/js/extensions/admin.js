@@ -313,7 +313,7 @@ $(document).ready(function(){
 
 	var li = [];
 
-	$(document.body).keydown(function (evt) {
+	$(document).keydown(function (evt) {
 		
 		if((li[0] == 91 || li[0] == 17) && evt.keyCode == 83)
 		{
