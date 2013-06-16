@@ -46,6 +46,16 @@ $(document).ready(function(){
 		}
 	});
 
+	// ---------------------------------------------------------------------------------------------- ||
+	// Twitter bootstrap tooltip
+	// ---------------------------------------------------------------------------------------------- ||
+	$('tooltip-element').tooltip();
+	$('tooltip-element-bottom').tooltip({
+		placement : "bottom",
+		title : "Click here"
+	});
+
+
 	$(".update").click(function(){
 		$.ajax({
 	 		url : ajaxPath + 'menuSorter.php',

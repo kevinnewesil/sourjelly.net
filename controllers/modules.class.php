@@ -20,6 +20,16 @@
 			require_once(MODEL_PATH . 'module.class.php');
 			$this->_model = new \models\Module;
 		}
+		
+		/**
+		 * [new description]
+		 * @return [type] [description]
+		 */
+		public function newModule()
+		{
+			$this -> _model -> create();
+			\To(HOME_PATH . "modules/create/?ns=controllers&path=controller_path");
+		}
 
 		/**
 		 * Calls the html and renders is for an admin to create a module.

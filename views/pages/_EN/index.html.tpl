@@ -4,6 +4,103 @@
 		This system is build on Javascript, and you have it disabled. Please enable javascript to continue working with this system.
 	</p>
 </noscript>
+
+<!-- Hier moe een toeltip komme -->
+<a href="#documentation" data-toggle="modal" title="Documentation">
+	<img src="{assets}/img/bubble.png" alt="Documentation">
+</a>
+
+
+<div id="documentation" class="modal hide fade">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h3>Modal header</h3>
+	</div>
+
+	<div class="modal-body">
+		
+		<div class="tabbable"> <!-- Only required for left/right tabs -->
+			
+
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="#usage" data-toggle="tab" title="Usage">Usage</a></li>
+				<li><a href="#tab2" data-toggle="tab">Section 2</a></li>
+			</ul>
+			
+
+			<div class="tab-content">
+				<div class="tab-pane active" id="usage">
+					
+					<div id="usage">
+
+						
+
+						<h2> <a id="basicUsage" title="Basic usage">Basic usage</a> </h2>
+							<p>
+								The basic usage of Sourjelly is no different than any other CMS system, even though the way of using it differs from the 
+								rest.
+								The normal basic actions are standard embedded into the system, and extends can be added as modules. read the 
+								documentation below to get
+								to know everything about it.
+								<br>
+								Html pages can be build via the 'pages' tab, content can be added, menus can be created, submenus, and menu orderes can 
+								be decided. 
+								<br>
+								Adding modules is as simple as click &amp; drag. After trying it a few times,adding and configuring modules will be 
+								piece of a cake.
+								<br>
+								SourJelly CMS also has it's own build-in; Twitter bootstrap based; theme-editor. Which are explained in the screencasts 
+								that you can find
+								On the original website of <a href="http://www.sourjelly.net/">Sourjelly.</a>
+								<br>
+								If you're still having troubles working with SourJelly CMS, Don't worry, we're allready setting up a massive community 
+								and creating a form and FaQ
+								Where all the questions you have will be answered.
+							</p>
+						<h2> <a id="advancedUsage" title="Advanced usage">Advanced usage</a> </h2>
+							<p>
+								If you're more familair with HTML and CSS you can edit the pages to your own wishes.
+								The main layout of all visitor pages is stored in in the /views/layouts folders under main.html.tpl.
+								<br>
+								All the html have twitter bootstrap classes, which makes it easier to add custom CSS.
+								We added a file, in the public/assets/css folder, which is called custom.css this file can be used to add custom CSS 
+								rules which you can't add
+								via the theme editor, or want completly different.
+								<br>
+								SourJelly CMS also has an embedded HTML feauture in which you can add lines of text which will be converted into valid 
+								HTML code.
+								<br> A list of supported embedded HTML and the translation from the compiler.
+								<ul class="no-style">
+									<li>&#123;&#123; link_to =&gt; pagetitle &#125;&#125; -&gt; created a hyperlink to the page for visitors.</li>
+									<li>
+										&#123;&#123; link_to =&gt; pagetitle , class =&gt; tagclass , id =&gt; tagid &#125;&#125; -&gt; 
+										All embedded html can have all the normal html attributes, which will be
+										translated via the compiler into valid HTML rules -&gt; class = "tagclass" id = "tagid" etc. 
+									</li>
+								</ul>
+								You can give up to 4 attributes with an element at the same time!
+							</p>
+						<hr>
+					</div>
+
+				</div>
+				
+				<div class="tab-pane" id="tab2">
+					<p>Howdy, I'm in Section 2.</p>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="modal-footer">
+		<a href="#" class="btn">Close</a>
+	</div>			
+</div>
+
+
+
+<!-- 
 <br>
 	<div class="affix-menu">
 		<ul class="well nav nav-list span3" style="max-width:40%;">
@@ -127,46 +224,7 @@
 	</div>
 
 <div class="content pull-right span8">
-	<div id="usage">
-		<h2> <a id="basicUsage" title="Basic usage">Basic usage</a> </h2>
-			<p>
-				The basic usage of Sourjelly is no different than any other CMS system, even though the way of using it differs from the rest.
-				The normal basic actions are standard embedded into the system, and extends can be added as modules. read the documentation below to get
-				to know everything about it.
-				<br>
-				Html pages can be build via the 'pages' tab, content can be added, menus can be created, submenus, and menu orderes can be decided. 
-				<br>
-				Adding modules is as simple as click &amp; drag. After trying it a few times,adding and configuring modules will be piece of a cake.
-				<br>
-				SourJelly CMS also has it's own build-in; Twitter bootstrap based; theme-editor. Which are explained in the screencasts that you can find
-				On the original website of <a href="http://www.sourjelly.net/">Sourjelly.</a>
-				<br>
-				If you're still having troubles working with SourJelly CMS, Don't worry, we're allready setting up a massive community and creating a form and FaQ
-				Where all the questions you have will be answered.
-			</p>
-		<h2> <a id="advancedUsage" title="Advanced usage">Advanced usage</a> </h2>
-			<p>
-				If you're more familair with HTML and CSS you can edit the pages to your own wishes.
-				The main layout of all visitor pages is stored in in the /views/layouts folders under main.html.tpl.
-				<br>
-				All the html have twitter bootstrap classes, which makes it easier to add custom CSS.
-				We added a file, in the public/assets/css folder, which is called custom.css this file can be used to add custom CSS rules which you can't add
-				via the theme editor, or want completly different.
-				<br>
-				SourJelly CMS also has an embedded HTML feauture in which you can add lines of text which will be converted into valid HTML code.
-				<br> A list of supported embedded HTML and the translation from the compiler.
-				<ul class="no-style">
-					<li>&#123;&#123; link_to =&gt; pagetitle &#125;&#125; -&gt; created a hyperlink to the page for visitors.</li>
-					<li>
-						&#123;&#123; link_to =&gt; pagetitle , class =&gt; tagclass , id =&gt; tagid &#125;&#125; -&gt; 
-						All embedded html can have all the normal html attributes, which will be
-						translated via the compiler into valid HTML rules -&gt; class = "tagclass" id = "tagid" etc. 
-					</li>
-				</ul>
-				You can give up to 4 attributes with an element at the same time!
-			</p>
-			<hr>
-	</div>
+	
 
 	<div id="paginas">
 		<h2><a id="paginas">Pages</a></h2>
@@ -710,3 +768,4 @@ include: MODULES_PATH/slider/code/imageSaver.php
 	</div>
 	<hr>
 </div>
+ -->

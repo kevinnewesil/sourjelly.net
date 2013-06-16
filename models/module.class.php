@@ -14,6 +14,11 @@
 			parent::__construct();
 		}
 
+		final public function create()
+		{
+			die(var_dump(\Post()));
+		}
+
 		/**
 		 * Checks for what module is selected, and places a deprecated flag onto the row in the database
 		 * @return boolean return true on successfull update.
