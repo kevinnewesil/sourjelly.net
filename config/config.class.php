@@ -86,8 +86,22 @@
 		 * @param  array $vars the variables that should come into the config file
 		 * @return -     return is a redirect with message for user.
 		 */
-		public function generateConfig($vars)
+		public function generateConfig($vars,$append = false)
 		{
+			if($append === false)
+			{
+				$configFile   = "<?php  \n\r\n\r" ;
+			}
+			else if ($append === true)
+			{
+				$configFile   = "\n\r\n\r" ;
+			}
+			else
+			{
+				\setNoticeError("The file 'config.php' for the module : " . $moduleInfo[0][0] . " Couldn't be created..");
+				return false;
+			}
+
 			//Simple check if $vars actually is an array, if not parse error and redirect user.
 			if(!is_array($vars))
 				\Refresh("The vars you want to pass trough the config generator should be an array.");
@@ -104,9 +118,6 @@
 			$subplaceholders = array( '{varname}', '{subvarname}' , '{varvalue}' );
 			$subsubplaceholders = array( '{varname}', '{subvarname}','{subsubvarname}' , '{varvalue}' );
 			$dimension4placeholders = array( '{varname}', '{subvarname}','{subsubvarname}' ,'{4thDimensionVar}', '{varvalue}' );
-
-
-			$configFile   = "<?php  \n\r\n\r" ;
 
 			//Check the folder permissions of the Module
 			//$info = \core\access\System::getpermissionss( MODULES_PATH . $moduleInfo[0][0] );
@@ -154,8 +165,24 @@
 					\core\access\Redirect::Refresh("Couldn't create config folder, check the writing access of your domain root folder");
 
 			//Open a config file, and write the config lines into the config file, which will be created if not existsting
-			$fileHandle = fopen(MODULES_PATH . $moduleInfo[0][0] . '/config/config.php' , 'w+');
-			fwrite($fileHandle, $configFile);
+			
+
+			if($append === false)
+			{
+				$fileHandle = fopen(MODULES_PATH . $moduleInfo[0][0] . '/config/config.php' , 'w+');
+				fwrite($fileHandle, $configFile);
+			}
+			else if ($append === true)
+			{	
+				$fileHandle = fopen(MODULES_PATH . $moduleInfo[0][0] . '/config/config.php' , 'r');
+				$file = fread($fileHandle,8192);
+				fclose($fileHandle);
+
+				$configContent = str_replace('return $config;',$configFile,$file);
+				$fileHandle = fopen(MODULES_PATH . $moduleInfo[0][0] . '/config/config.php' , 'w+');
+				fwrite($fileHandle, $configContent);
+			}
+
 			fclose($fileHandle);
 
 			//Final checks if everything worked, if the file exists and the update was between a minute ago and a minute later, the file has been updated.
@@ -166,7 +193,6 @@
 					\setNoticeError("Config file couldn't not be overwritten");
 			else
 				\setNoticeError("The file 'config.php' for the module : " . $moduleInfo[0][0] . " Couldn't be created..");
-
 		}
 
 		/**

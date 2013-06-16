@@ -152,7 +152,7 @@
 	
 	<div class="control-group">
 		<div class="controls">
-			<button type="submit" name="submit" value="update" class="btn btn-primary btn-large" id="update">Update page</button>
+			<input type="submit" name="submit" value="Update" class="btn btn-primary btn-large" id="update">
 			<button type="reset" class="btn btn-inverse btn-large empty-form">Empty form</button>
 		</div>
 	</div>	
