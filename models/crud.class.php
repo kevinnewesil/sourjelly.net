@@ -112,7 +112,7 @@
 
 			// Define the table rows
 			$table_content_rows            = array('front','back','menuVisibility','public');
-			$table_content_properties_rows = array('cId','title','content','hasParent','parentId','menuOrder','metaTags','metaDescription','contentClass','contentId');
+			$table_content_properties_rows = array('cId','title','content','hasParent','parentId','metaTags','metaDescription','contentClass','contentId');
 			$table_content_layout_rows     = array('cId','contentTextAlign','titleTextAlign','titleFontSize','titleVisibility');
 
 			// Pre-define the basic content table variables.
@@ -123,7 +123,7 @@
 				'1'
 			);
 
-			$table_content_properties_values = array($this -> getId() ,$update -> title, $update -> content, $update -> hasParent,$update-> parentId , '0' ,
+			$table_content_properties_values = array($this -> getId() ,$update -> title, $update -> content, $update -> hasParent,$update-> parentId ,
 													 $update -> metaTags,$update -> metaDescription, $update -> contentClass,$this -> getId() );
 
 			$table_content_layout_values = array($this -> getId() , $update -> contentTextAlign , $update -> titleTextAlign , $update -> fontSize ,
