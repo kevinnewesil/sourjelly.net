@@ -101,7 +101,7 @@
 			{
 				$pageInfo['tcp']['title'] = $pageInfo['tcl']['titleVisibility'] == '1' ? '<h2>' . $pageInfo['tcp']['title'] . '</h2>' : '';
 
-				$replacers = array( $pageInfo['tcp']['title'], html_entity_decode($pageInfo['tcp']['content']),$menu,
+				$replacers = array( $pageInfo['tcp']['title'], stripslashes(html_entity_decode($pageInfo['tcp']['content'])),$menu,
 									$pageInfo['tcp']['metaTags'],$pageInfo['tcp']['metaDescription'],'Author',
 									$pageInfo['tcp']['contentClass'] , $pageInfo['tcp']['contentId'], 
 									$pageInfo['tcl']['contentTextAlign'],$pageInfo['tcl']['titleVisibility'],$pageInfo['tcl']['titleTextAlign'],

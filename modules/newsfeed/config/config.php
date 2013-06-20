@@ -30,4 +30,10 @@
 	$config['post']['4']['content'] = '<p>the game</p>';
  
 
+	 
+
+	$config['post']['5']['title'] = 'news item';
+	$config['post']['5']['content'] = 'news item text<br><p><br></p>';
+ 
+
 	 return $config;

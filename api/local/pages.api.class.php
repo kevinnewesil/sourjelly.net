@@ -177,6 +177,7 @@
 					  FROM `table_content_properties` as tcp
 					  LEFT JOIN `table_content` as tc ON tc.id = tcp.cId
 					  RIGHT JOIN `table_content_layout` as tcl ON tc.id = tcl.cId
+					  ORDER BY `menuOrder` ASC
 					  LIMIT 1";
 			
 			if($stmt = self::$_link->prepare($query))

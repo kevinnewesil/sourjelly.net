@@ -21,9 +21,8 @@
 		
 		<div class="tabbable"> <!-- Only required for left/right tabs -->
 			
-
 			<ul class="nav nav-tabs">
-				<li class="active"><a href="#usage" data-toggle="tab" title="Usage">Usage</a></li>
+				<li class="active"><a href="#usage" data-toggle="tab" title="Usage" id="usage" name="top">Usage</a></li>
 				<li><a href="#tab2" data-toggle="tab">Section 2</a></li>
 			</ul>
 			
@@ -33,7 +32,10 @@
 					
 					<div id="usage">
 
-						
+						<ul class="nav nav-pills">
+							<li class="active"><a href="#basicUsage" title="Basic Usage">Basic usage</a></li>
+							<li><a href="#advancedUsage" title="Advanced Usage">Advanced Usage</a></li>
+						</ul>
 
 						<h2> <a id="basicUsage" title="Basic usage">Basic usage</a> </h2>
 							<p>
@@ -80,6 +82,8 @@
 								</ul>
 								You can give up to 4 attributes with an element at the same time!
 							</p>
+
+							<a href="#top">Back to top</a>
 						<hr>
 					</div>
 

@@ -47,6 +47,8 @@
 			foreach(\getApiPages() -> getAllPages() as $page)
 			{
 				$page[4] = $page[4] == '0' ? 'Nee' : 'Ja';
+				$page[1] = stripslashes(html_entity_decode($page[1]));
+
 				$rows .= str_replace($placeholdersRow,$page,$webTableRow);
 			}
 
@@ -114,17 +116,18 @@
 			}
 
 			$replacers = array($page['tcp']['id'],$page['tcp']['title'],$options, $page['tc']['created_at'], $frontend, $backend,
-					     	$visible, $page['tcp']['metaTags'], $page['tcp']['metaDescription'],$titleVis, 
-						(strpos($page['tcl']['contentTextAlign'], 'left') !== false ) ? 'selected="selected"' : '' ,
-						(strpos($page['tcl']['contentTextAlign'], 'right') !== false ) ? 'selected="selected"' : '' , 
-						(strpos($page['tcl']['contentTextAlign'], 'center') !== false ) ? 'selected="selected"' : '' ,
-						(strpos($page['tcl']['contentTextAlign'], 'justify') !== false ) ? 'selected="selected"' : '' ,
-						(strpos($page['tcl']['titleTextAlign'], 'left') !== false ) ? 'selected="selected"' : '' ,
-						(strpos($page['tcl']['titleTextAlign'], 'right') !== false ) ? 'selected="selected"' : '' , 
-						(strpos($page['tcl']['titleTextAlign'], 'center') !== false ) ? 'selected="selected"' : '' ,
-						(strpos($page['tcl']['titleTextAlign'], 'justify') !== false ) ? 'selected="selected"' : '' ,
-						$page['tcl']['titleFontSize'], $page['tcp']['contentId'], $page['tcp']['contentClass'], $page['tcp']['content']
-					     );
+						     	$visible, $page['tcp']['metaTags'], $page['tcp']['metaDescription'],$titleVis, 
+								(strpos($page['tcl']['contentTextAlign'], 'left') !== false ) ? 'selected="selected"' : '' ,
+								(strpos($page['tcl']['contentTextAlign'], 'right') !== false ) ? 'selected="selected"' : '' , 
+								(strpos($page['tcl']['contentTextAlign'], 'center') !== false ) ? 'selected="selected"' : '' ,
+								(strpos($page['tcl']['contentTextAlign'], 'justify') !== false ) ? 'selected="selected"' : '' ,
+								(strpos($page['tcl']['titleTextAlign'], 'left') !== false ) ? 'selected="selected"' : '' ,
+								(strpos($page['tcl']['titleTextAlign'], 'right') !== false ) ? 'selected="selected"' : '' , 
+								(strpos($page['tcl']['titleTextAlign'], 'center') !== false ) ? 'selected="selected"' : '' ,
+								(strpos($page['tcl']['titleTextAlign'], 'justify') !== false ) ? 'selected="selected"' : '' ,
+								$page['tcl']['titleFontSize'], $page['tcp']['contentId'], $page['tcp']['contentClass'], 
+								stripslashes(html_entity_decode($page['tcp']['content']))
+						    );
 			
 			$tmp = str_replace($placeholders,$replacers,$tmp);
 			\SjHtml() -> assign('{content}',$tmp);
