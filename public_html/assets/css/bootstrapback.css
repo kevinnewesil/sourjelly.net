@@ -14,6 +14,11 @@
 .clearfix {
   *zoom: 1;
 }
+/* bugfix form different area than content lays underneath added div wrapper */
+.divcontactform{
+  width:100%;
+  margin-top:40px;
+}
 
 .clearfix:before,
 .clearfix:after {
