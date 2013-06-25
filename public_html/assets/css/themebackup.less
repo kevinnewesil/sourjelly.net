@@ -17,6 +17,24 @@ body{
   border: 1px solid #e5e5e5;
   .border-radius(@baseBorderRadius);
 }
+.accordion-heading {
+  border-bottom: 0;
+}
+.accordion-heading .accordion-toggle {
+  display: block;
+  padding: 8px 15px;
+}
+
+// General toggle styles
+.accordion-toggle {
+  cursor: pointer;
+}
+
+// Inner needs the styles because you can't animate properly with any styles on the element
+.accordion-inner {
+  padding: 9px 15px;
+  border-top: 1px solid #e5e5e5;
+}
 
 //
 // Alerts
@@ -38,6 +56,9 @@ body{
 .alert h4 {
   // Specified for the h4 to prevent conflicts of changing @headingsColor
   color: @warningText;
+}
+.alert h4 {
+  margin: 0;
 }
 
 // Adjust close link position
@@ -83,7 +104,17 @@ body{
 // Block alerts
 // -------------------------
 
-
+.alert-block {
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+.alert-block > p,
+.alert-block > ul {
+  margin-bottom: 0;
+}
+.alert-block p + p {
+  margin-top: 5px;
+}
 
 //
 // Wells
@@ -132,6 +163,9 @@ body{
 }
 
 // Space out series of button groups
+.btn-group + .btn-group {
+  margin-left: 5px;
+}
 
 // Optional: Group multiple button groups together for a toolbar
 .btn-toolbar {
@@ -195,6 +229,19 @@ body{
 }
 
 // On hover/focus/active, bring the proper btn to front
+.btn-group > .btn:hover,
+.btn-group > .btn:focus,
+.btn-group > .btn:active,
+.btn-group > .btn.active {
+  z-index: 2;
+}
+
+// On active and open, don't show outline
+.btn-group .dropdown-toggle:active,
+.btn-group.open .dropdown-toggle {
+  outline: 0;
+}
+
 
 
 // Split button dropdowns
@@ -207,6 +254,22 @@ body{
   .box-shadow(~"inset 1px 0 0 rgba(255,255,255,.125), inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05)");
   *padding-top: 5px;
   *padding-bottom: 5px;
+}
+.btn-group > .btn-mini + .dropdown-toggle {
+  padding-left: 5px;
+  padding-right: 5px;
+  *padding-top: 2px;
+  *padding-bottom: 2px;
+}
+.btn-group > .btn-small + .dropdown-toggle {
+  *padding-top: 5px;
+  *padding-bottom: 4px;
+}
+.btn-group > .btn-large + .dropdown-toggle {
+  padding-left: 12px;
+  padding-right: 12px;
+  *padding-top: 7px;
+  *padding-bottom: 7px;
 }
 
 .btn-group.open {
@@ -242,6 +305,32 @@ body{
   }
 }
 
+
+// Reposition the caret
+.btn .caret {
+  margin-top: 8px;
+  margin-left: 0;
+}
+// Carets in other button sizes
+.btn-large .caret {
+  margin-top: 6px;
+}
+.btn-large .caret {
+  border-left-width:  5px;
+  border-right-width: 5px;
+  border-top-width:   5px;
+}
+.btn-mini .caret,
+.btn-small .caret {
+  margin-top: 8px;
+}
+// Upside down carets for .dropup
+.dropup .btn-large .caret {
+  border-bottom-width: 5px;
+}
+
+
+
 // Account for other colors
 .btn-primary,
 .btn-warning,
@@ -270,6 +359,10 @@ body{
   max-width: 100%;
   .border-radius(0);
 }
+.btn-group-vertical > .btn + .btn {
+  margin-left: 0;
+  margin-top: -1px;
+}
 .btn-group-vertical > .btn:first-child {
   .border-radius(@baseBorderRadius @baseBorderRadius 0 0);
 }
@@ -288,6 +381,31 @@ body{
 // --------------------------------------------------
 
 
+// Quick floats
+.pull-right {
+  float: right;
+}
+.pull-left {
+  float: left;
+}
+
+// Toggling content
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+}
+
+// Visibility
+.invisible {
+  visibility: hidden;
+}
+
+// For Affix plugin
+.affix {
+  position: fixed;
+}
 
 //
 // Typography
@@ -397,12 +515,22 @@ ul, ol {
   padding: 0;
   margin: 0 0 @baseLineHeight / 2 25px;
 }
-
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+  margin-bottom: 0;
+}
 li {
   line-height: @baseLineHeight;
 }
 
-
+// Remove default list styles
+ul.unstyled,
+ol.unstyled {
+  margin-left: 0;
+  list-style: none;
+}
 
 // Single-line list items
 ul.inline,
