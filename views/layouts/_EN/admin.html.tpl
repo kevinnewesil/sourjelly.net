@@ -62,6 +62,7 @@
 		<script type="text/javascript" src="{assets}js/extensions/functions.js"></script>
 		<script type="text/javascript" src="{assets}js/extensions/cookie.js"></script>
 		<script type="text/javascript" src="{assets}js/extensions/mousemenu.js"></script>
+		<script type="text/javascript" src="{assets}js/extensions/keybindings.js"></script>
 
 	</head>
 	<body>

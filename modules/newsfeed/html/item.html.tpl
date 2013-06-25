@@ -1,3 +1,9 @@
-{title}
+<div id="{count}">
+	<div class="title">
+		{title}
+	</div>
 
-{content}
+	<div class="content">
+		{content}
+	</div>
+</div>

@@ -321,25 +321,6 @@ $(document).ready(function(){
 		return false;
 	});
 
-	var li = [];
-
-	$(document).keydown(function (evt) {
-		
-		if((li[0] == 91 || li[0] == 17) && evt.keyCode == 83)
-		{
-			evt.preventDefault();
-
-			$(".redactor").closest("form").find("input[type=submit]").click();
-		}
-
-		if(li.length == 2)
-			li = [];
-
-		li.push(evt.keyCode);
-	});
-
-	
-
 	// ---------------------------------------------------------------------------------------------- ||
 	// End of document.ready function
 	// ---------------------------------------------------------------------------------------------- ||

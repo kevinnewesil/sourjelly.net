@@ -159,7 +159,7 @@
 				$this->Themes();
 				$settings = \core\build\Sourjelly::getApi() -> getSettings() -> getSystemSettings();
 
-				if($settings['embeddedHtml'] === "1")
+				if($settings['embeddedHtml'] == "1")
 				{
 					\core\build\Sourjelly::loadCompilers('embed');
 
@@ -174,5 +174,21 @@
 			}
 			else
 				die('The layout for this page could not even be found.. What have you done?!');
+		}
+
+		final public function emberCompiler($layout = null)
+		{
+			$settings = \core\build\Sourjelly::getApi() -> getSettings() -> getSystemSettings();
+
+			if($settings['embeddedHtml'] === "1")
+			{
+				\core\build\Sourjelly::loadCompilers('embed');
+
+				$compiler = new \core\system\EmbedCompiler;
+				if($layout != null)
+					$this -> layout = $compiler -> decompile($this -> layout);
+				else
+					return $layout = $compiler -> decompile($layout);
+			}
 		}
 	}

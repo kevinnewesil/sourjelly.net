@@ -83,7 +83,7 @@
 								You can give up to 4 attributes with an element at the same time!
 							</p>
 
-							<a href="#top">Back to top</a>
+							
 						<hr>
 					</div>
 
@@ -98,6 +98,7 @@
 	</div>
 
 	<div class="modal-footer">
+		<a href="#top" class="btn pull-left">Back to top</a>
 		<a href="#" class="btn">Close</a>
 	</div>			
 </div>

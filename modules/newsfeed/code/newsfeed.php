@@ -6,9 +6,9 @@
 	$itemsTmp = file_get_contents(MODULES_PATH . 'newsfeed/html/item.html.tpl');
 	$items = '';
 
-	foreach($config['post'] as $posts)
+	foreach($config['post'] as $key => $posts)
 	{
-		$items .= str_replace(array('{title}','{content}'), array($posts['title'], $posts['content']),$itemsTmp );
+		$items .= str_replace(array('{title}','{content}','{count}'), array($posts['title'], $posts['content'],$key+1),$itemsTmp );
 	}
 
 	$content = str_replace('{items}',$items,$tmp);
