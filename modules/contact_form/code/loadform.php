@@ -8,9 +8,13 @@
 
 	$inputLayout = \Snippet('form/input.html.tpl');
 	$textareaLayout = \Snippet('form/textarea.html.tpl');
+	$selectLayout = \Snippet('form/select.html.tpl');
+	$optionLayout = \Snippet('form/option.html.tpl');
 
 	$inputPlaceholders = array('{id}','{label}','{type}','{name}','{class}','{placeholder}','{value}');
 	$textareaPlaceholders = array('{id}','{label}','{name}','{class}','{html}');
+	$selectPlaceholders = array('{name}','{class}','{id}','{options}');
+	$optionPlaceholders = array('{value}','{name}');
 
 	foreach($config as $key => $value)
 	{

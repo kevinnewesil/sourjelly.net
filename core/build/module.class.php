@@ -17,6 +17,10 @@
 		 */
 		public function __construct($modules)
 		{
+
+			if($modules == NULL)
+				return false;
+			
 			if(!empty($modules))
 				if(!is_array($modules))
 					\core\access\Redirect::home('No proper modules defined.');
