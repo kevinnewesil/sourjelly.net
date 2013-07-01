@@ -116,31 +116,31 @@
 					while($stmt->fetch())
 					{
 						$return = array(
-								  	'tcp' => array(
-										'id'      => $id,
-										'title'   => $title,
-										'content' => $content,
-										'hasParent' => $hasParent,
-										'parentId' => $parentId,
-										'metaTags' => $metaTags,
-										'metaDescription' => $metaDescription,
-										'contentClass' => $contentClass,
-										'contentId' => $contentId,
-									),
-									'tcl' => array(
-										'contentTextAlign' => $contentTextAlign,
-										'titleVisibility' => $titleVisibility,
-										'titleTextAlign' => $titleTextAlign,
-										'titleFontSize' => $titleFontSize,
-									),
-									'tc'  => array(
-										'front' => $front,
-										'back' => $back,
-										'public' => $public,
-										'menuVisibility' => $menuVisibility,
-										'created_at' => $created_at,
-										'updated_at' => $updated_at,
-									),
+						  	'tcp' => array(
+								'id'      => $id,
+								'title'   => $title,
+								'content' => $content,
+								'hasParent' => $hasParent,
+								'parentId' => $parentId,
+								'metaTags' => $metaTags,
+								'metaDescription' => $metaDescription,
+								'contentClass' => $contentClass,
+								'contentId' => $contentId,
+							),
+							'tcl' => array(
+								'contentTextAlign' => $contentTextAlign,
+								'titleVisibility' => $titleVisibility,
+								'titleTextAlign' => $titleTextAlign,
+								'titleFontSize' => $titleFontSize,
+							),
+							'tc'  => array(
+								'front' => $front,
+								'back' => $back,
+								'public' => $public,
+								'menuVisibility' => $menuVisibility,
+								'created_at' => $created_at,
+								'updated_at' => $updated_at,
+							),
 						);
 					}
 				}
@@ -196,31 +196,31 @@
 					while($stmt->fetch())
 					{
 						$return = array(
-								  	'tcp' => array(
-										'id'      => $id,
-										'title'   => $title,
-										'content' => $content,
-										'hasParent' => $hasParent,
-										'parentId' => $parentId,
-										'metaTags' => $metaTags,
-										'metaDescription' => $metaDescription,
-										'contentClass' => $contentClass,
-										'contentId' => $contentId,
-									),
-									'tcl' => array(
-										'contentTextAlign' => $contentTextAlign,
-										'titleVisibility' => $titleVisibility,
-										'titleTextAlign' => $titleTextAlign,
-										'titleFontSize' => $titleFontSize,
-									),
-									'tc'  => array(
-										'front' => $front,
-										'back' => $back,
-										'public' => $public,
-										'menuVisibility' => $menuVisibility,
-										'created_at' => $created_at,
-										'updated_at' => $updated_at,
-									),
+						  	'tcp' => array(
+								'id'              => $id,
+								'title'           => $title,
+								'content'         => $content,
+								'hasParent'       => $hasParent,
+								'parentId'        => $parentId,
+								'metaTags'        => $metaTags,
+								'metaDescription' => $metaDescription,
+								'contentClass'    => $contentClass,
+								'contentId'       => $contentId,
+							),
+							'tcl' => array(
+								'contentTextAlign' => $contentTextAlign,
+								'titleVisibility'  => $titleVisibility,
+								'titleTextAlign'   => $titleTextAlign,
+								'titleFontSize'    => $titleFontSize,
+							),
+							'tc'  => array(
+								'front'          => $front,
+								'back'           => $back,
+								'public'         => $public,
+								'menuVisibility' => $menuVisibility,
+								'created_at'     => $created_at,
+								'updated_at'     => $updated_at,
+							),
 						);
 					}
 				}

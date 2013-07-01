@@ -140,7 +140,10 @@
 		 */
 		public function getModuleByPageId($pageId)
 		{
-			$query = "SELECT `title`,`position` FROM `table_modules` WHERE";
+			if($pageId == NULL)
+				return false;
+			
+			$query = "SELECT `id`,`title`,`position` FROM `table_modules` WHERE";
 			$i     = 0;
 			$ret   = array();
 
@@ -161,7 +164,7 @@
 			}
 			else
 			{
-				$query .= "`pages` = '" . $pageId ."' ";
+				$query .= "`pages` LIKE '%" . $pageId ."%' ";
 			}
 
 			$query .= "AND `active` = '1' AND `deprecated` != '1'";

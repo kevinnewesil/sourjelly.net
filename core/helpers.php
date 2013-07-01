@@ -133,3 +133,19 @@
 			return $colored_string;
 		}
 	}
+	
+	class helpers{
+		
+		public static function getPageTitleFromPageId($pageId = NULL)
+		{
+			
+			$url = explode('/',$_SERVER['REQUEST_URI']);
+			
+			if($pageId == NULL)
+				$pageData = \getApiPages() -> getPage(0,$url[count($url)-1]);
+			else
+				$pageData = \getApiPages() -> getPage($pageId);
+
+			return $pageData['tcp']['title'];
+		}
+	}

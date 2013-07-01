@@ -23,6 +23,7 @@
 
 			foreach($modules as $module)
 			{
+
 				$name = strtolower($module['title']);
 				$position = strtolower($module['position']);
 
@@ -42,7 +43,7 @@
 		/**
 		 * Uses the code from the module to get a clean html page, to render to the user.
 		 */
-		final public function getHtml()
+		final public function getHtml($pageId)
 		{	
 			if(!empty($this->_includeClean))
 			{
@@ -55,6 +56,7 @@
 					$content = implode('<br>', $content);
 
 				\core\build\Sourjelly::getHtml()->assign('{moduleHtml}',$content);
+				\core\build\Sourjelly::getHtml()->assign('{pageId}',\core\Helpers::getPageTitleFromPageId($pageId));
 			}
 			else
 			{

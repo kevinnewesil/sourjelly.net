@@ -131,9 +131,9 @@
 		 */
 		final public function modules($pageId)
 		{
-			$modules     = \api\Api::getModules() -> getModuleByPageId($pageId);;
+			$modules     = \api\Api::getModules() -> getModuleByPageId($pageId);
 			$moduleClass = new \core\build\Modules($modules);
-			$html        = $moduleClass -> getHtml();
+			$html        = $moduleClass -> getHtml($pageId);
 			
 		}
 
@@ -168,7 +168,6 @@
 				}
 
 				$this->basePaths();
-
 				
 				echo ($this->layout);
 			}
@@ -176,7 +175,7 @@
 				die('The layout for this page could not even be found.. What have you done?!');
 		}
 
-		final public function emberCompiler($layout = null)
+		final public function embedCompiler($layout = null)
 		{
 			$settings = \core\build\Sourjelly::getApi() -> getSettings() -> getSystemSettings();
 
