@@ -11,18 +11,34 @@
 
 	$config['contact_form'][2]['input']['textarea']['name'] = 'Bericht:';
 
-	$config['offerte'][0]['input']['select']['name'] = 'Soort:';
-	$config['offerte'][1]['input']['option']['name'] = 'Bedrijf';
-	$config['offerte'][1]['input']['option']['value'] = 'bedrijf';
-	$config['offerte'][2]['input']['option']['name'] = 'Patriculier';
-	$config['offerte'][2]['input']['option']['value'] = 'patriculier';
-	$config['offerte'][3]['input']['option']['name'] = 'Organisatie';
-	$config['offerte'][3]['input']['option']['value'] = 'organisatie';
+	$config['offerte']['select'][0]['name'] = 'Soort:';
+	$config['offerte']['option'][0][1]['name'] = 'Bedrijf';
+	$config['offerte']['option'][0][1]['value'] = 'bedrijf';
+	$config['offerte']['option'][0][2]['name'] = 'Patriculier';
+	$config['offerte']['option'][0][2]['value'] = 'patriculier';
+	$config['offerte']['option'][0][3]['name'] = 'Organisatie';
+	$config['offerte']['option'][0][3]['value'] = 'organisatie';
 
-	$config['offerte'][0]['input']['input']['name'] = 'bedrijfsnaam:';
-	$config['offerte'][0]['input']['input']['placeholder'] = 'Bedrijfsnaam';
+	$config['offerte']['input'][1]['name'] = 'bedrijfsnaam:';
+	$config['offerte']['input'][1]['placeholder'] = 'Bedrijfsnaam';
 
-	$config['contact_form_submit'] = 'Save';
+	$config['offerte']['input'][2]['name'] = 'straat:';
+	$config['offerte']['input'][2]['placeholder'] = 'Straat';
+
+	$config['offerte']['input'][3]['name'] = 'huisnummer:';
+	$config['offerte']['input'][3]['placeholder'] = 'Huisnummer';
+
+	$config['offerte']['input'][4]['name'] = 'Postcode:';
+	$config['offerte']['input'][4]['placeholder'] = '1234 AB';
+
+	$config['offerte']['input'][5]['name'] = 'Plaats:';
+	$config['offerte']['input'][5]['placeholder'] = 'plaats';
+
+	$config['offerte']['checkbox'][6]['name'] = 'Controle_kleine_blusmiddelen';
+	$config['offerte']['checkbox'][6]['title'] = 'Controle kleine klusmiddelen';
+
+	$config['offerte']['input'][7]['name'] = 'aantal:';
+	$config['offerte']['input'][7]['placeholder'] = 'aantal';
 
 	$config['captcha'] = '0';
 	$config['sticky'] = '0';
