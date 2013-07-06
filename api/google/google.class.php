@@ -50,7 +50,7 @@
 
 		public function resetToken()
 		{
-
+			
 		}
 
 		public function getGoogleDateTimeEvent($timestamp, $timezone = 'Europe/London')

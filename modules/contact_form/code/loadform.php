@@ -33,26 +33,6 @@
 
 	$options = '';
 
-	// foreach($config as $key => $value)
-	// {
-	// 	if($key == $url[count($url)-1])
-	// 	{
-	// 		foreach($value as $subkey => $result)
-	// 		{
-	// 			foreach($result['input'] as $resultkey => $subresult)
-	// 			{
-	// 				if($resultkey == 'input')
-	// 					$inputs .= str_replace( $inputPlaceholders, array('id', $subresult['name'], 'text', "message[" . $subresult['name'] . "]", 'class',$subresult['placeholder'],''), $inputLayout);
-	// 				if($resultkey == 'file')
-	// 					$inputs .= str_replace( $inputPlaceholders, array('', $subresult['name'], 'file', "file[]", '','',''), $inputLayout);
-	// 				if($resultkey == 'textarea')
-	// 					$inputs .= str_replace( $textareaPlaceholders, array('', $subresult['name'], "message[" . $subresult['name'] . "]", '',''), $textareaLayout);
-	// 			}
-	// 		}
-	// 	}
-	// }
-
-
 	foreach($config as $key => $value)
 	{
 		if($key !== $url[count($url)-1])
