@@ -2,9 +2,14 @@
     $(document).ready(function(){
         var fbJson = {fbJson};
 
-        fbJson.each(function(index,value){
-            console.log(index,value);
+        $.each(fbJson,function(index,value)
+        {
+            console.log(value);
+
+            // Bug in realtime checkboxes.. cause there's a bug in there it wont check em
+            $('input[name=' + value + ']').attr("checked","checked");
         });
+
     });
 </script>
 
@@ -55,7 +60,7 @@
                             <div class="control-group">
                                 <label for="appSecret" class="control-label">App secret</label>
                                 <div class="controls">
-                                    <input type="text" name="appSecret" id="appSecret" value="appSecret">
+                                    <input type="text" name="appSecret" id="appSecret" value="{appSecret}">
                                 </div>
                             </div>
 
@@ -77,7 +82,7 @@
                             <div class="control-group">
                                 <div class="controls">
                                     <label class="checkbox">
-                                        <input type="checkbox" name="email" id="" checked="checked"> Email
+                                        <input type="checkbox" name="email" id="" > Email
                                     </label>
                                 </div>
                             </div>
@@ -85,42 +90,42 @@
                             <div class="control-group">
                                 <div class="controls">
                                     <label class="checkbox">
-                                        <input type="checkbox" name="read_friendlists" id="" checked="checked"> Read friendlist
+                                        <input type="checkbox" name="read_friendlists" id="" > Read friendlist
                                     </label>
                                 </div>
                                 <div class="controls">
                                     <label class="checkbox">
-                                        <input type="checkbox" name="read_insights" id="" checked="checked"> Read insights
+                                        <input type="checkbox" name="read_insights" id="" > Read insights
                                     </label>
                                 </div>
                                 <div class="controls">
                                     <label class="checkbox">
-                                        <input type="checkbox" name="read_mailbox" id="" checked="checked"> Read mailbox
+                                        <input type="checkbox" name="read_mailbox" id="" > Read mailbox
                                     </label>
                                 </div>
                                 <div class="controls">
                                     <label class="checkbox">
-                                        <input type="checkbox" name="read_requests" id="" checked="checked"> read Friend requests
+                                        <input type="checkbox" name="read_requests" id="" > read Friend requests
                                     </label>
                                 </div>
                                 <div class="controls">
                                     <label class="checkbox">
-                                        <input type="checkbox" name="read_stream" id="" checked="checked"> Read news feed
+                                        <input type="checkbox" name="read_stream" id="" > Read news feed
                                     </label>
                                 </div>
                                 <div class="controls">
                                     <label class="checkbox">
-                                        <input type="checkbox" name="xmpp_login" id="" checked="checked"> Chat
+                                        <input type="checkbox" name="xmpp_login" id="" > Chat
                                     </label>
                                 </div>
                                 <div class="controls">
                                     <label class="checkbox">
-                                        <input type="checkbox" name="user_online_presence" id="" checked="checked"> online status
+                                        <input type="checkbox" name="user_online_presence" id="" > online status
                                     </label>
                                 </div>
                                 <div class="controls">
                                     <label class="checkbox">
-                                        <input type="checkbox" name="friends_online_presence" id="" checked="checked"> Friends online status
+                                        <input type="checkbox" name="friends_online_presence" id="" > Friends online status
                                     </label>
                                 </div>
                             </div>
@@ -130,32 +135,32 @@
                             <div class="control-group">
                                 <div class="controls">
                                     <label class="checkbox">
-                                        <input type="checkbox" name="ads_management" id="" checked="checked"> Adds
+                                        <input type="checkbox" name="ads_management" id="" > Adds
                                     </label>
                                 </div>
                                 <div class="controls">
                                     <label class="checkbox">
-                                        <input type="checkbox" name="create_event" id="" checked="checked"> Create events
+                                        <input type="checkbox" name="create_event" id="" > Create events
                                     </label>
                                 </div>
                                 <div class="controls">
                                     <label class="checkbox">
-                                        <input type="checkbox" name="manage_friendlists" id="" checked="checked"> Manage friendlists
+                                        <input type="checkbox" name="manage_friendlists" id="" > Manage friendlists
                                     </label>
                                 </div>
                                 <div class="controls">
                                     <label class="checkbox">
-                                        <input type="checkbox" name="manage_notifications" id="" checked="checked"> Manage notifications
+                                        <input type="checkbox" name="manage_notifications" id="" > Manage notifications
                                     </label>
                                 </div>
                                 <div class="controls">
                                     <label class="checkbox">
-                                        <input type="checkbox" name="publish_actions" id="" checked="checked"> Publish actions
+                                        <input type="checkbox" name="publish_actions" id="" > Publish actions
                                     </label>
                                 </div>
                                 <div class="controls">
                                     <label class="checkbox">
-                                        <input type="checkbox" name="rsvp_event" id="" checked="checked"> RSVP events
+                                        <input type="checkbox" name="rsvp_event" id="" > RSVP events
                                     </label>
                                 </div>
                             </div>
@@ -241,137 +246,67 @@
                             <div class="control-group">
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="user_about_me" id="" checked="checked"> User about me
+                                        <input type="checkbox" name="user_about_me" id="" > User about me
                                     </label>
                                 </div>
 
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="user_activities" id="" checked="checked"> User activities
+                                        <input type="checkbox" name="user_activities" id="" > User activities
                                     </label>
                                 </div>
 
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="user_birthday" id="" checked="checked"> User birthday
+                                        <input type="checkbox" name="user_birthday" id="" > User birthday
                                     </label>
                                 </div>
 
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="user_checkins" id="" checked="checked"> User checkins
+                                        <input type="checkbox" name="user_checkins" id="" > User checkins
                                     </label>
                                 </div>
 
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="user_education_history" id="" checked="checked"> User education history
+                                        <input type="checkbox" name="user_education_history" id="" > User education history
                                     </label>
                                 </div>
 
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="user_events" id="" checked="checked"> User events
+                                        <input type="checkbox" name="user_events" id="" > User events
                                     </label>
                                 </div>
 
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="user_groups" id="" checked="checked"> User groups
+                                        <input type="checkbox" name="user_groups" id="" > User groups
                                     </label>
                                 </div>
 
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="user_hometown" id="" checked="checked"> User hometown
+                                        <input type="checkbox" name="user_hometown" id="" > User hometown
                                     </label>
                                 </div>
 
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="user_interests" id="" checked="checked"> User interests
+                                        <input type="checkbox" name="user_interests" id="" > User interests
                                     </label>
                                 </div>
 
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="user_likes" id="" checked="checked"> User likes
+                                        <input type="checkbox" name="user_likes" id="" > User likes
                                     </label>
                                 </div>
 
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="user_location" id="" checked="checked"> User location
-                                    </label>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="span3">
-                            <div class="control-group">
-                                <div class="controls">
-                                    <label for="" class="checkbox">
-                                        <input type="checkbox" name="user_notes" id="" checked="checked"> User notes
-                                    </label>
-                                </div>
-
-                                <div class="controls">
-                                    <label for="" class="checkbox">
-                                        <input type="checkbox" name="user_photos" id="" checked="checked"> User photos
-                                    </label>
-                                </div>
-
-                                <div class="controls">
-                                    <label for="" class="checkbox">
-                                        <input type="checkbox" name="user_questions" id="" checked="checked"> User questions
-                                    </label>
-                                </div>
-
-                                <div class="controls">
-                                    <label for="" class="checkbox">
-                                        <input type="checkbox" name="user_relationships" id="" checked="checked"> User relationships
-                                    </label>
-                                </div>
-
-                                <div class="controls">
-                                    <label for="" class="checkbox">
-                                        <input type="checkbox" name="user_relationship_details" id="" checked="checked"> User relationship details
-                                    </label>
-                                </div>
-
-                                <div class="controls">
-                                    <label for="" class="checkbox">
-                                        <input type="checkbox" name="user_religion_politics" id="" checked="checked"> User religion &amp; politics
-                                    </label>
-                                </div>
-
-                                <div class="controls">
-                                    <label for="" class="checkbox">
-                                        <input type="checkbox" name="user_status" id="" checked="checked"> User status
-                                    </label>
-                                </div>
-
-                                <div class="controls">
-                                    <label for="" class="checkbox">
-                                        <input type="checkbox" name="user_subscriptions" id="" checked="checked"> User subscriptions
-                                    </label>
-                                </div>
-
-                                <div class="controls">
-                                    <label for="" class="checkbox">
-                                        <input type="checkbox" name="user_videos" id="" checked="checked"> User videos
-                                    </label>
-                                </div>
-
-                                <div class="controls">
-                                    <label for="" class="checkbox">
-                                        <input type="checkbox" name="user_website" id="" checked="checked"> User websites
-                                    </label>
-                                </div>
-
-                                <div class="controls">
-                                    <label for="" class="checkbox">
-                                        <input type="checkbox" name="user_work_history" id="" checked="checked"> User work history
+                                        <input type="checkbox" name="user_location" id="" > User location
                                     </label>
                                 </div>
 
@@ -381,67 +316,67 @@
                             <div class="control-group">
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="" id="" checked="checked"> Friend about me
+                                        <input type="checkbox" name="user_notes" id="" > User notes
                                     </label>
                                 </div>
 
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="" id="" checked="checked"> Friend activities
+                                        <input type="checkbox" name="user_photos" id="" > User photos
                                     </label>
                                 </div>
 
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="" id="" checked="checked"> Friend birthday
+                                        <input type="checkbox" name="user_questions" id="" > User questions
                                     </label>
                                 </div>
 
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="" id="" checked="checked"> Friend checkins
+                                        <input type="checkbox" name="user_relationships" id="" > User relationships
                                     </label>
                                 </div>
 
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="" id="" checked="checked"> Friend education history
+                                        <input type="checkbox" name="user_relationship_details" id="" > User relationship details
                                     </label>
                                 </div>
 
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="" id="" checked="checked"> Friend events
+                                        <input type="checkbox" name="user_religion_politics" id="" > User religion &amp; politics
                                     </label>
                                 </div>
 
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="" id="" checked="checked"> Friend groups
+                                        <input type="checkbox" name="user_status" id="" > User status
                                     </label>
                                 </div>
 
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="" id="" checked="checked"> Friend hometown
+                                        <input type="checkbox" name="user_subscriptions" id="" > User subscriptions
                                     </label>
                                 </div>
 
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="" id="" checked="checked"> Friend interests
+                                        <input type="checkbox" name="user_videos" id="" > User videos
                                     </label>
                                 </div>
 
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="" id="" checked="checked"> Friend likes
+                                        <input type="checkbox" name="user_website" id="" > User websites
                                     </label>
                                 </div>
 
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="" id="" checked="checked"> Friend location
+                                        <input type="checkbox" name="user_work_history" id="" > User work history
                                     </label>
                                 </div>
 
@@ -451,67 +386,137 @@
                             <div class="control-group">
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="" id="" checked="checked"> Friend notes
+                                        <input type="checkbox" name="" id="" > Friend about me
                                     </label>
                                 </div>
 
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="" id="" checked="checked"> Friend photos
+                                        <input type="checkbox" name="" id="" > Friend activities
                                     </label>
                                 </div>
 
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="" id="" checked="checked"> Friend questions
+                                        <input type="checkbox" name="" id="" > Friend birthday
                                     </label>
                                 </div>
 
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="" id="" checked="checked"> Friend relationships
+                                        <input type="checkbox" name="" id="" > Friend checkins
                                     </label>
                                 </div>
 
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="" id="" checked="checked"> Friend relationship details
+                                        <input type="checkbox" name="" id="" > Friend education history
                                     </label>
                                 </div>
 
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="" id="" checked="checked"> Friend religion &amp; politics
+                                        <input type="checkbox" name="" id="" > Friend events
                                     </label>
                                 </div>
 
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="" id="" checked="checked"> Friend status
+                                        <input type="checkbox" name="" id="" > Friend groups
                                     </label>
                                 </div>
 
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="" id="" checked="checked"> Friend subscriptions
+                                        <input type="checkbox" name="" id="" > Friend hometown
                                     </label>
                                 </div>
 
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="" id="" checked="checked"> Friend videos
+                                        <input type="checkbox" name="" id="" > Friend interests
                                     </label>
                                 </div>
 
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="" id="" checked="checked"> Friend websites
+                                        <input type="checkbox" name="" id="" > Friend likes
                                     </label>
                                 </div>
 
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="" id="" checked="checked"> Friend work history
+                                        <input type="checkbox" name="" id="" > Friend location
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="span3">
+                            <div class="control-group">
+                                <div class="controls">
+                                    <label for="" class="checkbox">
+                                        <input type="checkbox" name="" id="" > Friend notes
+                                    </label>
+                                </div>
+
+                                <div class="controls">
+                                    <label for="" class="checkbox">
+                                        <input type="checkbox" name="" id="" > Friend photos
+                                    </label>
+                                </div>
+
+                                <div class="controls">
+                                    <label for="" class="checkbox">
+                                        <input type="checkbox" name="" id="" > Friend questions
+                                    </label>
+                                </div>
+
+                                <div class="controls">
+                                    <label for="" class="checkbox">
+                                        <input type="checkbox" name="" id="" > Friend relationships
+                                    </label>
+                                </div>
+
+                                <div class="controls">
+                                    <label for="" class="checkbox">
+                                        <input type="checkbox" name="" id="" > Friend relationship details
+                                    </label>
+                                </div>
+
+                                <div class="controls">
+                                    <label for="" class="checkbox">
+                                        <input type="checkbox" name="" id="" > Friend religion &amp; politics
+                                    </label>
+                                </div>
+
+                                <div class="controls">
+                                    <label for="" class="checkbox">
+                                        <input type="checkbox" name="" id="" > Friend status
+                                    </label>
+                                </div>
+
+                                <div class="controls">
+                                    <label for="" class="checkbox">
+                                        <input type="checkbox" name="" id="" > Friend subscriptions
+                                    </label>
+                                </div>
+
+                                <div class="controls">
+                                    <label for="" class="checkbox">
+                                        <input type="checkbox" name="" id="" > Friend videos
+                                    </label>
+                                </div>
+
+                                <div class="controls">
+                                    <label for="" class="checkbox">
+                                        <input type="checkbox" name="" id="" > Friend websites
+                                    </label>
+                                </div>
+
+                                <div class="controls">
+                                    <label for="" class="checkbox">
+                                        <input type="checkbox" name="" id="" > Friend work history
                                     </label>
                                 </div>
 
