@@ -16,12 +16,12 @@
 	switch($data -> medium)
 	{
 		case 'facebook':
+			
+			$fb = new \api\SjFacebook;
 
 			break;
 
 		case 'google' :
-
-			
 
 			break;
 

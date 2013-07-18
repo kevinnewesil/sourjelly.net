@@ -31,6 +31,10 @@
 
 	require(API_PATH . 'api.class.php');
 
+	// Require social media APIs
+	require(API_PATH . 'facebook/facebook.class.php');
+	require(API_PATH . 'google/google.class.php');
+
 	require(INTERFACE_PATH . 'sourjelly.interface.php');
 	require(ABSTRACTS_PATH . 'sourjelly.abstract.php');
 	require(BUILD_PATH . 'sourjelly.class.php');

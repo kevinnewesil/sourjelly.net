@@ -17,6 +17,8 @@
 			$this -> table_ip();
 			$this -> table_google_api();
 			$this -> table_layout();
+
+			$this -> table_facebook();
 		}
 
 		final protected function table_users()
@@ -208,6 +210,19 @@
 					'toggleTrigger'         => 'string',
 					'toggleTriggerText'		=> 'string',
 					'slideInAnimationStyle' => 'string',
+				)
+			);
+		}
+
+		final protected function table_facebook()
+		{
+			\core\build\Sourjelly::getDb() -> createTable("table_facebook",
+				array(
+					'uId' => 'int',
+					'scope' => 'text',
+					'appName' => 'string',
+					'appId' => 'string',
+					'appSecret' => 'string',
 				)
 			);
 		}
