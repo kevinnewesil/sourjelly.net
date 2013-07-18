@@ -1,3 +1,13 @@
+<script type="text/javascript">
+    $(document).ready(function(){
+        var fbJson = {fbJson};
+
+        fbJson.each(function(index,value){
+            console.log(index,value);
+        });
+    });
+</script>
+
 <div class="tabbable">
     <ul class="nav nav-tabs">
         <li class="active"><a href="#facebook" data-toggle="tab">Facebook</a></li>
@@ -23,7 +33,7 @@
                             <div class="control-group">
                                 <label for="appName" class="control-label">App name</label>
                                 <div class="controls">
-                                    <input type="text" name="appName" id="appName">
+                                    <input type="text" name="appName" id="appName" value="{appName}">
                                 </div>
                             </div>
 
@@ -34,7 +44,7 @@
                             <div class="control-group">
                                 <label for="appId" class="control-label">App id</label>
                                 <div class="controls">
-                                    <input type="text" name="appId" id="appId">
+                                    <input type="text" name="appId" id="appId" value="{appId}">
                                 </div>
                             </div>
 
@@ -45,7 +55,7 @@
                             <div class="control-group">
                                 <label for="appSecret" class="control-label">App secret</label>
                                 <div class="controls">
-                                    <input type="text" name="appSecret" id="appSecret">
+                                    <input type="text" name="appSecret" id="appSecret" value="appSecret">
                                 </div>
                             </div>
 

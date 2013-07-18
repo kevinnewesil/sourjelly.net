@@ -78,6 +78,9 @@
         	if(isset($this -> _post -> medium))
         		$this -> _model -> {$this -> _post -> medium}();
 
+        	$placeholdersFacebook = array();
+        	$replacersFacebook = array();
+
 			\SjHtml()->Assign('{content}', \Template('settings/socialmedia.html.tpl') ); 
         }
 	}
