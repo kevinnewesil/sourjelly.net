@@ -1,5 +1,4 @@
 <form action="{base}/auth/login/?path=access_path&amp;ns=access&amp;login=login" class="form-horizontal" method="post">
-
 	 <div class="control-group">
 		<label class="control-label" for="inputEmail">Email / Username:</label>
 		<div class="controls">
