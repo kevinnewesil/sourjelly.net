@@ -13,33 +13,6 @@
 		public function __construct()
 		{
 			require(API_PATH . 'facebook/sdk_facebook.php');
-
-			$this -> _facebook = new \Facebook(
-				array(
-					'appId'  => '150590158433728',
-					'secret' => '3562978d4fd1c9e31a695c7bb6b4573a',
-				)
-			);
-
-			$user = $this -> _facebook -> getUser();
-
-			if($user === 0)
-			{
-				$this -> setLoginParams();
-			}
-		}
-
-		private function setLoginParams()
-		{
-			$this -> _loginParams = array(
-				'scope' => $this -> getScope(),
-				'redirect_uri' => 'http://localhost/sourjelly.net/public_html/index.php/settings/social/?ns=controllers&path=controller_path'	
-			);
-		}
-
-		private function getScope()
-		{
-			
 		}
 
 		public static function getSettings()
@@ -54,5 +27,38 @@
 						$return[] = $row;
 
 			return $return;
+		}
+
+		public function connect()
+		{
+			$this -> _facebook = new \Facebook(
+				array(
+					'appId'  => '150590158433728',
+					'secret' => '3562978d4fd1c9e31a695c7bb6b4573a',
+				)
+			);
+
+			$user = $this -> _facebook -> getUser();
+
+			if($user === 0)
+			{
+				$this -> setLoginParams();
+			}
+		}	
+
+		private function setLoginParams()
+		{
+			$this -> _loginParams = array(
+				'scope' => $this -> getScope(),
+				'redirect_uri' => \core\Helpers::GetCurrentUrl()	
+			);
+		}
+
+		private function getScope()
+		{
+			
+			$settings = \controllers\Settings::getSettings('facebook');
+
+			return $settings['scope'];
 		}
 	}

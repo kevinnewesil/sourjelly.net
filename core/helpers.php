@@ -171,4 +171,9 @@
 
 			return $id;
 		}
+
+		public static function getCurrentUrl()
+		{
+			die(var_dump($_SERVER));
+		}
 	}

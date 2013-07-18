@@ -90,7 +90,7 @@
 			\SjHtml()->Assign('{content}', $template ); 
         }
 
-        public function getSettings($medium)
+        public static function getSettings($medium)
         {
         	$link = \sjConfig() -> getLink();
         	$res = false;
