@@ -311,7 +311,7 @@
 
 				$j++;  
 			}
-			
+
 			if($stmt = self::$_link->prepare($query))
 			{
 				if(!self::checkQuery($query,'UPDATE'))

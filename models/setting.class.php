@@ -46,5 +46,35 @@
 			else
 				return false;
 		}
+
+		final public function facebook()
+		{
+			$data = \Post();
+			$scopeString  = '';
+
+			foreach($data as $name => $value)
+				if($value === "on")
+					$scopeString .= $name . ', ';
+
+			
+			if(\api\SjFacebook::getSettings())
+				if(
+					\api\Api::insertInto("table_facebook",array('uId','scope','appName','appId','appSecret'), 
+						array(\core\helpers::getCurrentLoggedInUserId(), $scopeString, $data -> appName , $data -> appId, $data -> appSecret ),
+						"ssss"
+					))
+					\setNoticeSuccess("Facebook settings saved");
+				else
+					\SetNotice("Something went wrong saving the Facebook settings");
+			else
+				if(
+					\api\Api::updateTable("table_facebook",array('scope','appName','appId','appSecret'),
+						array($scopeString, $data -> appName, $data -> appId , $data -> appSecret),
+						array("uId" => \core\helpers::getCurrentLoggedInUserId())
+					))
+					\SetNoticeSuccess("Facebook settings updated");
+				else
+					\SetNotice("something went wrong updating the current Facebook settings");
+		}
 	
 	}

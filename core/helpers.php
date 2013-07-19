@@ -148,4 +148,32 @@
 
 			return $pageData['tcp']['title'];
 		}
+
+		public static function getCurrentLoggedInUserId()
+		{
+			$query = "SELECT `id` FROM `table_users` WHERE CONCAT(firstname , ' ' , lastname) = ?";
+
+			$link = \SjConfig() -> getLink();
+
+			if($stmt = $link -> prepare($query))
+			{
+				$stmt -> bind_param('s',$_SESSION['login']);
+				$stmt -> execute();
+
+				$stmt -> bind_result($id);
+
+				while($row = $stmt -> fetch())
+					$id = $id;
+
+				$stmt -> close();
+
+			}
+
+			return $id;
+		}
+
+		public static function getCurrentUrl()
+		{
+			die(var_dump($_SERVER));
+		}
 	}

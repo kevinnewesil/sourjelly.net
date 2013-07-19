@@ -12,16 +12,26 @@
 
 	//Collect the post data
 	$data = \Post();
+	$return = false;
 
 	switch($data -> medium)
 	{
 		case 'facebook':
+			
+			$fb = new \api\SjFacebook;
+
+			if(!$fb -> connect())
+			{
+				$return = "Either you are allready connected or the connection data is wrong";
+			}
+			else
+			{
+				$return = "Facebook connection made successfully";
+			}
 
 			break;
 
 		case 'google' :
-
-			
 
 			break;
 
@@ -29,3 +39,5 @@
 			return false;
 			break;
 	}
+
+	return json_encode($return);
