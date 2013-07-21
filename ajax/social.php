@@ -19,14 +19,15 @@
 		case 'facebook':
 			
 			$fb = new \api\SjFacebook;
+			$con = $fb -> connect();
 
-			if(!$fb -> connect())
+			if(!is_array($con))
 			{
 				$return = "Either you are allready connected or the connection data is wrong";
 			}
 			else
 			{
-				$return = "Facebook connection made successfully";
+				$return = $con;
 			}
 
 			break;
@@ -40,4 +41,4 @@
 			break;
 	}
 
-	return json_encode($return);
+	die(json_encode($return));

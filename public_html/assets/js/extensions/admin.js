@@ -337,7 +337,7 @@ $(document).ready(function(){
 	// Google
 	// ---------------------------------------------------------------------------------------------- ||
 
-	$(".btn-facebook").click(function(){
+	$(".btn-google").click(function(){
 		admin.socialAjax('google');
 	});
 
@@ -502,7 +502,16 @@ var admin = {
 			dataType : "json",
 			data : {
 				medium : media
-			}
+			},
+			success : function(data){
+				if (typeof data.loginUrl != 'undefined') {
+				  window.location.replace(data.loginUrl);
+				}
+				else
+				{
+					alert(data);
+				}
+			},
 		});
 	},
 

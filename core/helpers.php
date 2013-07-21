@@ -174,6 +174,6 @@
 
 		public static function getCurrentUrl()
 		{
-			die(var_dump($_SERVER));
+			return $_SERVER['HTTP_REFERER'];
 		}
 	}

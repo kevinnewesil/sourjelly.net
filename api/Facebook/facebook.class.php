@@ -43,7 +43,11 @@
 			if($user === 0)
 			{
 				$this -> setLoginParams();
+				$loginUrl = $this -> _facebook -> getLoginUrl($this -> _loginParams);
+				return array('loginUrl' => $loginUrl);
 			}
+
+
 		}	
 
 		private function setLoginParams()
@@ -56,7 +60,9 @@
 
 		private function getScope()
 		{
-			
+			if(!class_exists("\\controllers\\Settings"))
+				require(CONTROLLER_PATH . 'settings.class.php');
+
 			$settings = \controllers\Settings::getSettings('facebook');
 
 			return $settings['scope'];
