@@ -246,6 +246,13 @@
 					'value' => 'string'
 				)
 			);
+
+			\core\build\Sourjelly::getDb() -> createTable("table_Aframework_special_chars",
+				array(
+					'char' => 'string',
+					'desc' => 'string'
+				)
+			);
 		}
 
 		final protected function table_facebook()
