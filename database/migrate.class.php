@@ -17,6 +17,8 @@
 			$this -> table_ip();
 			$this -> table_google_api();
 			$this -> table_layout();
+
+			$this -> table_aFramework();
 		}
 
 		final protected function table_users()
@@ -208,6 +210,37 @@
 					'toggleTrigger'         => 'string',
 					'toggleTriggerText'		=> 'string',
 					'slideInAnimationStyle' => 'string',
+				)
+			);
+		}
+
+		final protected function table_aFramework()
+		{
+			\core\build\Sourjelly::getDb() -> createTable("table_Aframework_html",
+				array(
+					'tags' => 'string',
+					'attr' => 'string',
+					'class' => 'int'
+				)
+			);
+
+			\core\build\Sourjelly::getDb() -> createTable("table_Aframework_css",
+				array(
+					'class' => 'string',
+					'attr' => 'int',
+					'val' => 'int'
+				)
+			);
+
+			\core\build\Sourjelly::getDb() -> createTable("table_Aframework_css_attributes",
+				array(
+					'attribute' => 'string'
+				)
+			);
+
+			\core\build\Sourjelly::getDb() -> createTable("table_Aframework_css_values",
+				array(
+					'values' => 'string'
 				)
 			);
 		}
