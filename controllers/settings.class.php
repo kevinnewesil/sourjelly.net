@@ -75,6 +75,33 @@
         
         public function social()
         {
-			\SjHtml()->Assign('{content}', \Template('settings/socialmedia.html.tpl') ); 
+        	if(isset($this -> _post -> medium))
+        		$this -> _model -> {$this -> _post -> medium}();
+
+        	$template = \Template('settings/socialmedia.html.tpl');
+        	$facebookSettings = $this -> getSettings('facebook');
+
+        	$placeholdersFacebook = array('{fbJson}','{appName}','{appId}','{appSecret}');
+
+        	$replacersFacebook = array(json_encode(explode(',',trim($facebookSettings['scope']))) , $facebookSettings['appName'] , $facebookSettings['appId'] , $facebookSettings['appSecret']);
+
+        	$template = str_replace($placeholdersFacebook,$replacersFacebook,$template);
+
+			\SjHtml()->Assign('{content}', $template ); 
+        }
+
+        public static function getSettings($medium)
+        {
+        	$link = \sjConfig() -> getLink();
+        	$res = false;
+
+        	if($stmt = $link -> query("SELECT * FROM `table_" . $medium ."`;"))
+        	{
+        		$res = $stmt -> fetch_assoc();
+        		$stmt -> close();
+        		
+        	}
+
+        	return $res;
         }
 	}

@@ -1,6 +1,6 @@
-<?php namespace api\google; if(!defined("DS")) die('no direct script access');
+<?php namespace api; if(!defined("DS")) die('no direct script access');
 
-	class Google exents \api\Api
+	class SjGoogle
 	{
 		protected $_token;
 		protected $_email;

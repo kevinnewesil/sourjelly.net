@@ -19,6 +19,9 @@
 			$this -> table_layout();
 
 			$this -> table_aFramework();
+
+			$this -> table_facebook();
+
 		}
 
 		final protected function table_users()
@@ -241,6 +244,19 @@
 			\core\build\Sourjelly::getDb() -> createTable("table_Aframework_css_values",
 				array(
 					'values' => 'string'
+				)
+			);
+		}
+
+		final protected function table_facebook()
+		{
+			\core\build\Sourjelly::getDb() -> createTable("table_facebook",
+				array(
+					'uId' => 'int',
+					'scope' => 'text',
+					'appName' => 'string',
+					'appId' => 'string',
+					'appSecret' => 'string',
 				)
 			);
 		}
