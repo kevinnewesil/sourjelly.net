@@ -243,7 +243,7 @@
 
 			\core\build\Sourjelly::getDb() -> createTable("table_Aframework_css_values",
 				array(
-					'values' => 'string'
+					'value' => 'string'
 				)
 			);
 		}
