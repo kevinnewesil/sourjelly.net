@@ -249,8 +249,8 @@
 
 			\core\build\Sourjelly::getDb() -> createTable("table_Aframework_special_chars",
 				array(
-					'char' => 'string',
-					'desc' => 'string'
+					'characters' => 'string',
+					'description' => 'string'
 				)
 			);
 		}
