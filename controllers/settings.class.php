@@ -39,6 +39,7 @@
 				'{checked_ipMonitoring}',
 				'{timezone}',
 			);
+			
 			$replacers = array(
 				$settings['displayErrors'] == 1 ? 'checked="checked"' : '',
 				$settings['displayStartupErrors'] == 1 ? 'checked="checked"' : '',
