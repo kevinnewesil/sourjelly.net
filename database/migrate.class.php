@@ -223,27 +223,35 @@
 				array(
 					'tags' => 'string',
 					'attr' => 'string',
-					'class' => 'int'
+					'class' => 'string',
 				)
 			);
 
 			\core\build\Sourjelly::getDb() -> createTable("table_Aframework_css",
 				array(
 					'class' => 'string',
-					'attr' => 'int',
-					'val' => 'int'
+					'sId' => 'string',
+					'aId' => 'string',
 				)
 			);
 
-			\core\build\Sourjelly::getDb() -> createTable("table_Aframework_css_attributes",
+			\core\build\Sourjelly::getDb() -> createTable("table_Aframework_css_states",
 				array(
-					'attribute' => 'string'
+					'state' => 'string',
+				)
+			);
+
+
+			\core\build\Sourjelly::getDb() -> createTable("table_Aframework_css_properties",
+				array(
+					'property' => 'string',
+					'vId' => 'string',
 				)
 			);
 
 			\core\build\Sourjelly::getDb() -> createTable("table_Aframework_css_values",
 				array(
-					'value' => 'string'
+					'value' => 'string',
 				)
 			);
 
