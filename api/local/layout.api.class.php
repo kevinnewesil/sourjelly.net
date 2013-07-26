@@ -10,12 +10,7 @@
 	 */
 	class Api_layout
 	{
-		protected static $_link;
-
-		protected static $_header;
-		protected static $_footer;
-		protected static $_content;
-		protected static $_navigation;
+		protected $_link;
 
 		/**
 		 * Sets the link to the database from the Main \api\Api class into this smaller api class.
@@ -23,37 +18,26 @@
 		 */
 		public function __construct($link)
 		{
-			self::$_link = $link;
+			$this -> _link = $link;
 
-			require(API_PATH . 'local/layout/header.api.class.php');
-			require(API_PATH . 'local/layout/footer.api.class.php');
-			require(API_PATH . 'local/layout/content.api.class.php');
-			require(API_PATH . 'local/layout/navigation.api.class.php');
-
-			self::$_header     = new \api\local\layout\Api_layout_header(self::$_link);
-			self::$_footer     = new \api\local\layout\Api_layout_footer(self::$_link);
-			self::$_content    = new \api\local\layout\Api_layout_content(self::$_link);
-			self::$_navigation = new \api\local\layout\Api_layout_navigation(self::$_link);
 		}
 
-		public static function getHeader()
+		public function getDoctype($tags)
 		{
-			return self::$_header;
-		}
+			$query   = "SELECT `attr` FROM `table_Aframework_html` WHERE `tags` = ?";
+			$doctype = false;
 
-		public static function getFooter()
-		{
-			return self::$_footer;
-		}
+			if($stmt = $this -> _link -> prepare($query))
+			{
+				$stmt -> bind_param('s',$tags);
+				$stmt -> execute();
+				$stmt -> bind_result($doctype);
 
-		public static function getContent()
-		{
-			return self::$_content;
-		}
+				while($row = $stmt -> fetch())
+					$doctype = $doctype;
+			}
 
-		public static function getNavigation()
-		{
-			return self::$_navigation;
+			return $doctype;
 		}
 
 	}
