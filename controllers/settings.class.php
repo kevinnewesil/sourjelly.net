@@ -39,7 +39,7 @@
 				'{checked_ipMonitoring}',
 				'{timezone}',
 			);
-			
+
 			$replacers = array(
 				$settings['displayErrors'] == 1 ? 'checked="checked"' : '',
 				$settings['displayStartupErrors'] == 1 ? 'checked="checked"' : '',
@@ -84,7 +84,7 @@
 
         	$placeholdersFacebook = array('{fbJson}','{appName}','{appId}','{appSecret}');
 
-        	$replacersFacebook = array(json_encode(explode(',',trim($facebookSettings['scope']))) , $facebookSettings['appName'] , $facebookSettings['appId'] , $facebookSettings['appSecret']);
+        	$replacersFacebook = array(json_encode(explode(',',trim(str_replace('.','-',$facebookSettings['scope'])))) , $facebookSettings['appName'] , $facebookSettings['appId'] , $facebookSettings['appSecret']);
 
         	$template = str_replace($placeholdersFacebook,$replacersFacebook,$template);
 

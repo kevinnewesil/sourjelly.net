@@ -176,37 +176,37 @@
 
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="user_actions.music" id=""> User realtime music
+                                        <input type="checkbox" name="user_actions-music" id=""> User realtime music
                                     </label>
                                 </div>
 
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="friends_actions.music" id=""> Friends realtime music
+                                        <input type="checkbox" name="friends_actions-music" id=""> Friends realtime music
                                     </label>
                                 </div>
 
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="user_actions.news" id=""> User realtime news
+                                        <input type="checkbox" name="user_actions-news" id=""> User realtime news
                                     </label>
                                 </div>
 
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="friends_actions.news" id=""> Friends realtime news
+                                        <input type="checkbox" name="friends_actions-news" id=""> Friends realtime news
                                     </label>
                                 </div>
 
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="user_actions.video" id=""> User realtime videos
+                                        <input type="checkbox" name="user_actions-video" id=""> User realtime videos
                                     </label>
                                 </div>
 
                                 <div class="controls">
                                     <label for="" class="checkbox">
-                                        <input type="checkbox" name="friends_actions.video" id=""> Friends realtime videos
+                                        <input type="checkbox" name="friends_actions-video" id=""> Friends realtime videos
                                     </label>
                                 </div>
 

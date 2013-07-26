@@ -54,7 +54,7 @@
 
 			foreach($data as $name => $value)
 				if($value === "on")
-					$scopeString .= $name . ', ';
+					$scopeString .= str_replace('-','.',$name) . ', ';
 
 			
 			if(\api\SjFacebook::getSettings())
