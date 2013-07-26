@@ -133,6 +133,14 @@
 			return $colored_string;
 		}
 	}
+
+	if(!function_exists('__H'))
+	{
+		function __H($string)
+		{
+			return "<" . $string . ">";
+		}
+	}
 	
 	class helpers{
 		
