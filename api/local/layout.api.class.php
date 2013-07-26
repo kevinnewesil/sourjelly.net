@@ -47,9 +47,9 @@
 			$attrString = "";
 			$attrNames  = $this -> getAttrFromTag("base");
 			$attrArray  = explode(',', $attrNames);
-			
+
 			foreach($attrArray as $key => $attrName)
-				$attrString .= $attrName . "=\"" . $attr[$key] . "\"";
+				if(isset($attr[$key])) $attrString .= $attrName . "=\"" . $attr[$key] . "\" ";
 
 			return \core\__H("base " . $attrString);
 
