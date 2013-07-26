@@ -24,20 +24,53 @@
 
 		public function getDoctype($tags)
 		{
-			$query   = "SELECT `attr` FROM `table_Aframework_html` WHERE `tags` = ?";
-			$doctype = false;
+			return $this -> getAttrFromTag($tags);
+		}
+
+		public function getHead($attr = NULL)
+		{
+			$attrNames = $this -> getAttrFromTag("head");
+
+			return \core\__H("head " . ($attr !== NULL ? $attrNames . "=\"" . $attr . "\"" : ""));
+		}
+
+		public function getTitle($attr = NULL)
+		{
+			return \core\__H("title") . "test" . "\r\n" . \core\__H("/title");
+		}
+
+		public function getBase($attr = NULL)
+		{
+
+			if($attr == NULL || !is_array($attr)) return \core\__H("base");
+
+			$attrString = "";
+			$attrNames  = $this -> getAttrFromTag("base");
+			$attrArray  = explode(',', $attrNames);
+			
+			foreach($attrArray as $key => $attrName)
+				$attrString .= $attrName . "=\"" . $attr[$key] . "\"";
+
+			return \core\__H("base " . $attrString);
+
+		}
+
+		public function getAttrFromTag($tags)
+		{
+			$query   = "SELECT `attr` FROM `table_Aframework_html` WHERE `tags` = ? ";
+			$attr = false;
 
 			if($stmt = $this -> _link -> prepare($query))
 			{
 				$stmt -> bind_param('s',$tags);
 				$stmt -> execute();
-				$stmt -> bind_result($doctype);
+				$stmt -> bind_result($attr);
 
 				while($row = $stmt -> fetch())
-					$doctype = $doctype;
+					$attr = $attr;
 			}
 
-			return $doctype;
+			return $attr;
 		}
 
 	}
