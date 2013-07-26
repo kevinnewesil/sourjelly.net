@@ -24,20 +24,37 @@
 
 		public function getDoctype($tags)
 		{
-			$query   = "SELECT `attr` FROM `table_Aframework_html` WHERE `tags` = ?";
-			$doctype = false;
+			return $this -> getAttrFromTag($tags);
+		}
+
+		public function getHead($attr = NULL)
+		{
+			$attrNames = $this -> getAttrFromTag("head");
+
+			return \core\__H("head " . ($attr !== NULL ? $attrNames . "=\"" . $attr . "\"" : ""));
+		}
+
+		public function getTitle($attr = NULL)
+		{
+			return \core\__H("title") . "test" . "\r\n" . \core\__H("/title");
+		}
+
+		public function getAttrFromTag($tags)
+		{
+			$query   = "SELECT `attr` FROM `table_Aframework_html` WHERE `tags` = ? ";
+			$attr = false;
 
 			if($stmt = $this -> _link -> prepare($query))
 			{
 				$stmt -> bind_param('s',$tags);
 				$stmt -> execute();
-				$stmt -> bind_result($doctype);
+				$stmt -> bind_result($attr);
 
 				while($row = $stmt -> fetch())
-					$doctype = $doctype;
+					$attr = $attr;
 			}
 
-			return $doctype;
+			return $attr;
 		}
 
 	}

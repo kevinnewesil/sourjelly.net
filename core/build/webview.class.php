@@ -12,15 +12,63 @@
 		 * Pre renders all the data that is needed to get the info for the page the visitor is currently on.
 		 */
 		
+		private $_htmlType;
 		private $_doctype;
 		
 
-		final public function __construct()
+		final public function __construct($htmlType = NULL)
 		{
-			$this -> _doctype = \getApiLayout() -> getDoctype('html4-strict');
 
-			die(\core\__H($this -> _doctype));
-		}		
+			if($htmlType == NULL)
+				$this -> _htmlType = "html4-strict";
+
+			$this -> _doctype = \core\__H(\getApiLayout() -> getDoctype($this -> _htmlType));
+			$this -> _head    = $this -> head();
+
+			$this -> build();
+			exit();
+		}
+
+		final private function head()
+		{
+			// Get html head and assign attribute values
+			$head  = \getApiLayout() -> getHead($this -> getHeadAttr());
+
+			// Get html hed title and assign the attribute values
+			$head .= getApiLayout() -> getTitle( $this -> getTitleAttr());
+
+			$head .= \core\__H("/head");
+
+			return $head;
+		}
+
+		// Html head only has profile attr, doesn't work on html 5, return currentl domain as value
+		final private function getHeadAttr()
+		{
+			return $this -> _htmlType !== "html5" ? \core\Helpers::getDomain() : "" ;
+		}
+
+		final private function getTitleAttr()
+		{
+			# Return all attributes as hard coded for now
+		}
+
+
+
+		final private function build()
+		{
+			echo $this -> _doctype;
+
+			echo \core\__H("html");
+
+			echo $this -> _head;
+
+
+
+			echo \core\__H("/html");
+
+			exit();
+		}
 
 		// final public function __construct()
 		// {

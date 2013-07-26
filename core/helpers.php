@@ -138,7 +138,7 @@
 	{
 		function __H($string)
 		{
-			return "<" . $string . ">";
+			return "<" . $string . ">" . "\r\n";
 		}
 	}
 	
@@ -183,5 +183,10 @@
 		public static function getCurrentUrl()
 		{
 			return $_SERVER['HTTP_REFERER'];
+		}
+
+		public static function getDomain()
+		{
+			return 'http://' . $_SERVER['HTTP_HOST'];
 		}
 	}
