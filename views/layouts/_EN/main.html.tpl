@@ -2,26 +2,33 @@
 <html>
 	<head>
 		<title>Sourjelly.net</title> <!-- The title of your personal website. -->
-		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" > <!-- The charset of the website. (making it possible to use letters and special characters) -->
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-		<!-- Set user defined meta data. -->
-		<meta name="keywords" content="{metaTags}"> <!-- Set the keywords for the page for SEO -->
-		<meta name="description" content="{metaDescription}"> <!-- Set the description of the page for SEO -->
-		<meta name="author" content="{pageAuthor}"> <!-- Set who ever wrote the page. -->
-
+		<base href="">
 		<!-- Include stlesheets -->
 		<link rel="stylesheet" href="{assets}css/bootstrap.min.css"> <!-- The main bootstrap layout. -->
 		<link rel="stylesheet/less" href="{assets}css/theme.less">  <!-- The path to one's custom theme. -->
 		<link rel="stylesheet" href="{assets}css/custom.css"> <!-- custom css rules that overwrite the custom theme and the base layout. -->
-		<link rel="stylesheet" href="{assets}css/bootstrap-responsive.min.css"> <!-- The responsive design for cross platform browsing. -->
+		<link rel="stylesheet" href="{assets}css/bootstrap-responsive.min.css">
+
+		 <!-- The responsive design for cross platform browsing. -->
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8"> <!-- The charset of the website. (making it possible to use letters and special characters) -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- ***********************************
+			- Set user defined meta data.
+			- Set the keywords for the page for SEO.
+			- Set the description of the page for SEO. 
+			- Set who ever wrote the page.
+		************************************ -->
+		<meta name="keywords" content="{metaTags}"> 
+		<meta name="description" content="{metaDescription}">
+		<meta name="author" content="{pageAuthor}">
 
 		<!-- Include Javascript files -->
-		<script type="text/javascript" src="{assets}js/libs/jquery.js"></script> <!-- Require Jquery.js making it possible to run other jquery files. -->
-		<script type="text/javascript"> less = { rootpath: "{assets}css/" }; </script> <!-- Set the root path of the themes. -->
-		<script type="text/javascript" src="{assets}js/libs/less.js"></script> <!-- Include the less compiler to compile less to css. -->
-		<script type="text/javascript" src="{assets}js/libs/bootstrap.min.js"></script> <!-- Include the twitter bootstrap js for executing bootstrap actions. -->
-		<script type="text/javascript" src="{assets}js/extensions/cookie.js"></script> <!-- Include the quety cookie plugin for usage of cookies client side. -->
+		<script type ="text/javascript" src="{assets}js/libs/jquery.js"></script> <!-- Require Jquery.js making it possible to run other jquery files. -->
+		<script type ="text/javascript"> less = { rootpath: "{assets}css/" }; </script> <!-- Set the root path of the themes. -->
+		<script type ="text/javascript" src="{assets}js/libs/less.js"></script> <!-- Include the less compiler to compile less to css. -->
+		<script type ="text/javascript" src="{assets}js/libs/bootstrap.min.js"></script> <!-- Include the twitter bootstrap js for executing bootstrap actions. -->
+		<script type ="text/javascript" src="{assets}js/extensions/cookie.js"></script> <!-- Include the quety cookie plugin for usage of cookies client side. -->
         
         <!-- Dynamic style for user defined settings that overrules all other shit. is per  page defineable. -->
         <style type="text/css">
