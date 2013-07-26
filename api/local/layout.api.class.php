@@ -39,6 +39,22 @@
 			return \core\__H("title") . "test" . "\r\n" . \core\__H("/title");
 		}
 
+		public function getBase($attr = NULL)
+		{
+
+			if($attr == NULL || !is_array($attr)) return \core\__H("base");
+
+			$attrString = "";
+			$attrNames  = $this -> getAttrFromTag("base");
+			$attrArray  = explode(',', $attrNames);
+			
+			foreach($attrArray as $key => $attrName)
+				$attrString .= $attrName . "=\"" . $attr[$key] . "\"";
+
+			return \core\__H("base " . $attrString);
+
+		}
+
 		public function getAttrFromTag($tags)
 		{
 			$query   = "SELECT `attr` FROM `table_Aframework_html` WHERE `tags` = ? ";

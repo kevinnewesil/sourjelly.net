@@ -32,11 +32,9 @@
 		final private function head()
 		{
 			// Get html head and assign attribute values
-			$head  = \getApiLayout() -> getHead($this -> getHeadAttr());
-
-			// Get html hed title and assign the attribute values
-			$head .= getApiLayout() -> getTitle( $this -> getTitleAttr());
-
+			$head  = \getApiLayout() -> getHead( $this -> getHeadAttr() );
+			$head .= \getApiLayout() -> getTitle( $this -> getTitleAttr() );
+			$head .= \getApiLayout() -> getBase( $this -> getBaseAttr() );
 			$head .= \core\__H("/head");
 
 			return $head;
@@ -51,6 +49,12 @@
 		final private function getTitleAttr()
 		{
 			# Return all attributes as hard coded for now
+		}
+
+		final private function getBaseAttr()
+		{
+			#retun all attributes as hardcoded for now
+			return array(\core\Helpers::getDomain(), "_SELF");
 		}
 
 
