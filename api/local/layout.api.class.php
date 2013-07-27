@@ -69,7 +69,7 @@
 
 		public function getNoScript()
 		{
-
+			return \core\__H("noscript") . ("This system is build on javascript please enable it before continuing") . \core\__H("/noscript");
 		}
 
 		public function getAttrFromTag($tags)
