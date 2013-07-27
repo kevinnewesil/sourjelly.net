@@ -231,7 +231,7 @@
 				array(
 					'class' => 'string',
 					'sId' => 'string',
-					'aId' => 'string',
+					'pId' => 'string',
 				)
 			);
 

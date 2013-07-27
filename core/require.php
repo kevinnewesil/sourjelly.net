@@ -28,6 +28,7 @@
 	require(API_PATH . 'local/layout.api.class.php');
 	require(API_PATH . 'local/modules.api.class.php');
 	require(API_PATH . 'local/settings.api.class.php');
+	require(API_PATH . 'local/css.api.class.php');
 
 	require(API_PATH . 'api.class.php');
 

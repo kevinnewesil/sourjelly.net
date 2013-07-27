@@ -21,6 +21,7 @@
 		protected static $_settings;
 		protected static $_themes;
 		protected static $_layout;
+		protected static $_css
 
 		protected static $_insertId;
 
@@ -33,12 +34,14 @@
 		{
 			self::$_link     = \core\build\Sourjelly::getConfig('link');
 			
+			self::$_css 	 = new \api\local\Api_css(self::$_link);
 			self::$_pages    = new \api\local\Api_pages(self::$_link);
 			self::$_users    = new \api\local\Api_users(self::$_link);
 			self::$_themes   = new \api\local\Api_themes(self::$_link);
 			self::$_layout   = new \api\local\Api_layout(self::$_link);
 			self::$_modules  = new \api\local\Api_modules(self::$_link);
 			self::$_settings = new \api\local\Api_settings(self::$_link);
+
 		}
 
 		/**

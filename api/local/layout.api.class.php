@@ -19,7 +19,6 @@
 		public function __construct($link)
 		{
 			$this -> _link = $link;
-
 		}
 
 		public function getDoctype($tags)
