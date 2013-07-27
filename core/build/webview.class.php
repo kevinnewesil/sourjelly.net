@@ -69,7 +69,25 @@
 			return array(\core\Helpers::getDomain(), "_SELF");
 		}
 
+		final private function getHeadLinks()
+		{
+			return array();
+		}
 
+		final private function getHeadMeta()
+		{
+			return array();
+		}
+
+		final private function getHeadScript()
+		{
+			return array();
+		}
+
+		final private function getNoScriptAttr()
+		{
+			
+		}
 
 		final private function build()
 		{
@@ -79,6 +97,22 @@
 
 			echo $this -> _head;
 
+
+			#hardcoded for test
+			
+			echo \core\__H("body");
+
+			echo \core\__H("div");
+
+			echo \core\__H("p");
+
+			echo 'lorem ipsum shit';
+
+			echo \core\__H("/p");
+
+			echo \core\__H("/div");
+
+			echo \core\__H("/body");
 
 
 			echo \core\__H("/html");

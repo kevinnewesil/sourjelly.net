@@ -72,4 +72,9 @@
 			return $attr;
 		}
 
+		public function getNoScript()
+		{
+			
+		}
+
 	}
