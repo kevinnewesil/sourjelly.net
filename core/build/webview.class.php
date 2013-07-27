@@ -43,7 +43,7 @@
 				$head .= \getApiLayout() -> getMeta($metaAttr);
 
 			foreach($this -> getHeadScript() as $scriptAttr)
-				$head .= \getApiLayout -> getScript($scriptAttr);
+				$head .= \getApiLayout() -> getScript($scriptAttr);
 
 			$head .= \getApiLayout() -> getNoScript($this -> getNoScriptAttr());
 
