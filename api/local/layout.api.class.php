@@ -48,7 +48,7 @@
 			$attrArray  = explode(',', $attrNames);
 
 			foreach($attrArray as $key => $attrName)
-				if(isset($attr[$key])) $attrString .= $attrName . "=\"" . $attr[$key] . "\" ";
+				(isset($attr[$key]) && $attr[$key] !== "") ? $attrString .= $this -> assign($attrName,$attr[$key]) : "" ;
 
 			return \core\__H("base " . $attrString);
 
@@ -60,9 +60,8 @@
 			$attrNames  = $this -> getAttrFromTag("meta");
 			$attrArray  = explode(',', $attrNames);
 
-			foreach ($attrArray as $key => $attrName) {
-				if(isset($attr[$key]) && $attr[$key] !== "") $attrString .= $attrName . "=\"" . $attr[$key] . "\" ";
-			}
+			foreach ($attrArray as $key => $attrName)
+				(isset($attr[$key]) && $attr[$key] !== "") ? $attrString .= $this -> assign($attrName,$attr[$key]) : "" ;
 
 			return \core\__H("meta " . $attrString);
 		}
@@ -70,6 +69,11 @@
 		public function getNoScript()
 		{
 			return \core\__H("noscript") . ("This system is build on javascript please enable it before continuing") . \core\__H("/noscript");
+		}
+
+		public function assign($attrName,$attrValue)
+		{
+			return (isset($attrValue) && $attrValue !== "") ? $attrName . "=\"" . $attrValue . "\" " : "";
 		}
 
 		public function getAttrFromTag($tags)
