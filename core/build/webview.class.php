@@ -35,6 +35,18 @@
 			$head  = \getApiLayout() -> getHead( $this -> getHeadAttr() );
 			$head .= \getApiLayout() -> getTitle( $this -> getTitleAttr() );
 			$head .= \getApiLayout() -> getBase( $this -> getBaseAttr() );
+
+			foreach($this -> getHeadLinks() as $linkAttr)
+				$head .= \getApiLayout() -> getLink( $linkAttr );
+
+			foreach($this -> getHeadMeta() as $metaAttr)
+				$head .= \getApiLayout() -> getMeta($metaAttr);
+
+			foreach($this -> getHeadScript() as $scriptAttr)
+				$head .= \getApiLayout -> getScript($scriptAttr);
+
+			$head .= \getApiLayout() -> getNoScript($this -> getNoScriptAttr());
+
 			$head .= \core\__H("/head");
 
 			return $head;

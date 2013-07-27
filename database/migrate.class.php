@@ -16,8 +16,6 @@
 			$this -> table_themes();
 			$this -> table_ip();
 			$this -> table_google_api();
-			$this -> table_layout();
-
 			$this -> table_aFramework();
 
 			$this -> table_facebook();
@@ -200,22 +198,22 @@
 			);
 		}
 
-		final protected function table_layout()
-		{
-			\core\build\Sourjelly::getDb() -> createTable("table_layout_navigation",
-				array(
-					'alwaysVisible'			=> 'int',
-					'dynamicNavigation'     => 'int',
-					'zIndex'                => 'int',
-					'positionFromHeader'    => 'string',
-					'jsFunction'            => 'string',
-					'toggleAnimationStyle'  => 'string',
-					'toggleTrigger'         => 'string',
-					'toggleTriggerText'		=> 'string',
-					'slideInAnimationStyle' => 'string',
-				)
-			);
-		}
+		// final protected function table_layout()
+		// {
+		// 	\core\build\Sourjelly::getDb() -> createTable("table_layout_navigation",
+		// 		array(
+		// 			'alwaysVisible'			=> 'int',
+		// 			'dynamicNavigation'     => 'int',
+		// 			'zIndex'                => 'int',
+		// 			'positionFromHeader'    => 'string',
+		// 			'jsFunction'            => 'string',
+		// 			'toggleAnimationStyle'  => 'string',
+		// 			'toggleTrigger'         => 'string',
+		// 			'toggleTriggerText'		=> 'string',
+		// 			'slideInAnimationStyle' => 'string',
+		// 		)
+		// 	);
+		// }
 
 		final protected function table_aFramework()
 		{

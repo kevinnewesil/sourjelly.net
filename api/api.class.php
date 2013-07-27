@@ -21,7 +21,7 @@
 		protected static $_settings;
 		protected static $_themes;
 		protected static $_layout;
-		protected static $_css
+		protected static $_css;
 
 		protected static $_insertId;
 
