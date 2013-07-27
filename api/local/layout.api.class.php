@@ -54,16 +54,14 @@
 
 		}
 
+		public function getLink($attr)
+		{
+			return \core\__H("link " . $this -> simpleAssign($attr,"link"));
+		}
+
 		public function getMeta($attr)
 		{
-			$attrString = "";
-			$attrNames  = $this -> getAttrFromTag("meta");
-			$attrArray  = explode(',', $attrNames);
-
-			foreach ($attrArray as $key => $attrName)
-				(isset($attr[$key]) && $attr[$key] !== "") ? $attrString .= $this -> assign($attrName,$attr[$key]) : "" ;
-
-			return \core\__H("meta " . $attrString);
+			return \core\__H("meta " . $this -> simpleAssign($attr,"meta"));
 		}
 
 		public function getNoScript()
@@ -92,6 +90,18 @@
 			}
 
 			return $attr;
+		}
+
+		public function simpleAssign($attr,$tag)
+		{
+			$attrString = "";
+			$attrNames  = $this -> getAttrFromTag($tag);
+			$attrArray  = explode(',', $attrNames);
+
+			foreach ($attrArray as $key => $attrName)
+				(isset($attr[$key]) && $attr[$key] !== "") ? $attrString .= $this -> assign($attrName,$attr[$key]) : "" ;
+
+			return $attrString;
 		}
 
 	}

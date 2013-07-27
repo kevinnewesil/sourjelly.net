@@ -45,7 +45,7 @@
 			foreach($this -> getHeadScript() as $scriptAttr)
 				$head .= \getApiLayout() -> getScript($scriptAttr);
 
-			$head .= \getApiLayout() -> getNoScript($this -> getNoScriptAttr());
+			$head .= \getApiLayout() -> getNoScript();
 
 			$head .= \core\__H("/head");
 
@@ -71,7 +71,16 @@
 
 		final private function getHeadLinks()
 		{
-			return array();
+			return array(
+				array(
+					$this -> _htmlType !== "html" ? "UTF-8" : "", # charset if not html 5
+					ASSETS_PATH . "css" . DS . "style.css", # href
+					"","", # Href lang and media empty for now
+					"stylesheet", #rel
+					"","","", # rev, sizes and target empty for now
+					"text/css", #type attribute
+				),
+			);
 		}
 
 		final private function getHeadMeta()
@@ -90,11 +99,6 @@
 		final private function getHeadScript()
 		{
 			return array();
-		}
-
-		final private function getNoScriptAttr()
-		{
-			
 		}
 
 		final private function build()
