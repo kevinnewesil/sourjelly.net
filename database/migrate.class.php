@@ -253,6 +253,14 @@
 				)
 			);
 
+			\core\build\Sourjelly::getDb() -> createTable("table_Aframework_css_links",
+				array(
+					'cId' => 'int',
+					'pId' => 'int',
+					'vId' => 'int',
+				)
+			);
+
 			\core\build\Sourjelly::getDb() -> createTable("table_Aframework_special_chars",
 				array(
 					'characters' => 'string',
