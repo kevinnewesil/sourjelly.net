@@ -30,12 +30,12 @@
 		{
 			$attrNames = $this -> getAttrFromTag("head");
 
-			return \core\__H("head" . ( ($attr != NULL) ? " " . $attrNames . "=\"" . $attr . "\"" : ""));
+			return \core\__H("head" . ( ($attr != NULL) ? " " . $attrNames . "=\"" . $attr . "\"" : ""),1);
 		}
 
 		public function getTitle($attr = NULL)
 		{
-			return \core\__H("title") . "test" . "\r\n" . \core\__H("/title");
+			return \core\__H("title") . \core\__T(3) . "Sourjelly" . "\r\n" . \core\__H("/title");
 		}
 
 		public function getBase($attr = NULL)
@@ -66,7 +66,7 @@
 
 		public function getNoScript()
 		{
-			return \core\__H("noscript") . ("This system is build on javascript please enable it before continuing") . \core\__H("/noscript");
+			return \core\__H("noscript") . \core\__T(3) . ("This system is build on javascript please enable it before continuing \r\n") . \core\__H("/noscript");
 		}
 
 		public function assign($attrName,$attrValue)

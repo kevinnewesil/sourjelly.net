@@ -22,7 +22,7 @@
 			if($htmlType == NULL)
 				$this -> _htmlType = "html5";
 
-			$this -> _doctype = \core\__H(\getApiLayout() -> getDoctype($this -> _htmlType));
+			$this -> _doctype = \core\__H(\getApiLayout() -> getDoctype($this -> _htmlType),0);
 			$this -> _head    = $this -> head();
 
 			$this -> build();
@@ -47,7 +47,7 @@
 
 			$head .= \getApiLayout() -> getNoScript();
 
-			$head .= \core\__H("/head");
+			$head .= \core\__H("/head",1);
 
 			return $head;
 		}
@@ -105,29 +105,29 @@
 		{
 			echo $this -> _doctype;
 
-			echo \core\__H("html");
+			echo \core\__H("html",0);
 
 			echo $this -> _head;
 
 
 			#hardcoded for test
 			
-			echo \core\__H("body");
+			echo \core\__H("body",1);
 
 			echo \core\__H("div");
 
 			echo \core\__H("p");
 
-			echo 'lorem ipsum shit';
+			echo \core\__T(3) . 'lorem ipsum shit' . "\r\n";
 
 			echo \core\__H("/p");
 
 			echo \core\__H("/div");
 
-			echo \core\__H("/body");
+			echo \core\__H("/body",1);
 
 
-			echo \core\__H("/html");
+			echo \core\__H("/html",0);
 
 			exit();
 		}

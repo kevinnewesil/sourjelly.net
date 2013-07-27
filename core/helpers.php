@@ -136,9 +136,29 @@
 
 	if(!function_exists('__H'))
 	{
-		function __H($string)
+		function __H($string,$count = 2)
 		{
-			return "<" . $string . ">" . "\r\n";
+			$tabs = '';
+
+			for ($i=0; $i < $count; $i++) { 
+				$tabs .= "\t";
+			}
+
+			return $tabs . "<" . $string . ">" . "\r\n";
+		}
+	}
+
+	if(!function_exists('__T'))
+	{
+		function __T($count = 2)
+		{
+			$tabs = '';
+
+			for ($i=0; $i < $count; $i++) { 
+				$tabs .= "\t";
+			}
+
+			return $tabs;
 		}
 	}
 	
