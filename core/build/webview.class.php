@@ -20,7 +20,7 @@
 		{
 
 			if($htmlType == NULL)
-				$this -> _htmlType = "html4-strict";
+				$this -> _htmlType = "html5";
 
 			$this -> _doctype = \core\__H(\getApiLayout() -> getDoctype($this -> _htmlType));
 			$this -> _head    = $this -> head();
@@ -76,7 +76,15 @@
 
 		final private function getHeadMeta()
 		{
-			return array();
+			return array(
+				array('','test','','application-name'),
+				array('','Alain en Kevin','','author'),
+				array('','test','','description'),
+				array('','test','','generator'),
+				array('','test','','keywords'),
+				
+				($this -> _htmlType == "html5") ? array('UTF-8','text/html; charset=UTF-8','content-type') : "",
+			);
 		}
 
 		final private function getHeadScript()

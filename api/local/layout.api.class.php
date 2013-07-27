@@ -30,7 +30,7 @@
 		{
 			$attrNames = $this -> getAttrFromTag("head");
 
-			return \core\__H("head " . ($attr !== NULL ? $attrNames . "=\"" . $attr . "\"" : ""));
+			return \core\__H("head" . ( ($attr != NULL) ? " " . $attrNames . "=\"" . $attr . "\"" : ""));
 		}
 
 		public function getTitle($attr = NULL)
@@ -54,6 +54,24 @@
 
 		}
 
+		public function getMeta($attr)
+		{
+			$attrString = "";
+			$attrNames  = $this -> getAttrFromTag("meta");
+			$attrArray  = explode(',', $attrNames);
+
+			foreach ($attrArray as $key => $attrName) {
+				if(isset($attr[$key]) && $attr[$key] !== "") $attrString .= $attrName . "=\"" . $attr[$key] . "\" ";
+			}
+
+			return \core\__H("meta " . $attrString);
+		}
+
+		public function getNoScript()
+		{
+
+		}
+
 		public function getAttrFromTag($tags)
 		{
 			$query   = "SELECT `attr` FROM `table_Aframework_html` WHERE `tags` = ? ";
@@ -70,11 +88,6 @@
 			}
 
 			return $attr;
-		}
-
-		public function getNoScript()
-		{
-			
 		}
 
 	}
