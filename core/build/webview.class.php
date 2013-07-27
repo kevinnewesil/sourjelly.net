@@ -116,11 +116,11 @@
 
 			echo \core\__H("div");
 
-			echo \core\__H("p");
+			echo \core\__H("p",3);
 
-			echo \core\__T(3) . 'lorem ipsum shit' . "\r\n";
+			echo \core\__T(4) . 'lorem ipsum shit' . "\r\n";
 
-			echo \core\__H("/p");
+			echo \core\__H("/p",3);
 
 			echo \core\__H("/div");
 
