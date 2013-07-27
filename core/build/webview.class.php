@@ -14,6 +14,8 @@
 		
 		private $_htmlType;
 		private $_doctype;
+
+		private $_head;
 		
 
 		final public function __construct($htmlType = NULL)
@@ -36,7 +38,7 @@
 			$head .= \getApiLayout() -> getTitle( $this -> getTitleAttr() );
 			$head .= \getApiLayout() -> getBase( $this -> getBaseAttr() );
 
-			foreach($this -> getHeadLinks() as $linkAttr)
+			foreach($this -> getHeadLinks() as $linkAttr )
 				$head .= \getApiLayout() -> getLink( $linkAttr );
 
 			foreach($this -> getHeadMeta() as $metaAttr)
