@@ -14,6 +14,24 @@
 			$this -> _link = $link;
 		}
 
+		public function getAllGroups()
+		{
+			$res = false;
+			$query = "SELECT `id`,`groupName` FROM `table_Aframework_css_property_groups`";
+
+			if($this = $this -> _link -> query($query))
+			{
+				while($row = $stmt -> fetch_assoc())
+				{
+					$res[] = $row;
+				}
+
+				$stmt -> close();
+			}
+
+			return $res;
+		}
+
 		public function getAllProperties()
 		{
 			$res = false;
@@ -24,6 +42,58 @@
 					  FROM `table_Aframework_css_properties`
 					  INNER JOIN `table_Aframework_css_property_groups`
 					  ON `table_Aframework_css_properties`.`gId` = `table_Aframework_css_property_groups`.`id`; ";
+
+			if($stmt = $this -> _link -> query($query))
+			{
+				while($row = $stmt -> fetch_assoc())
+				{
+					$res[] = $row;
+				}
+
+				$stmt -> close();
+			}
+
+			return $res;
+		}
+
+		public function getAllPropertiesByGroupId($gId)
+		{
+			$res = false;
+			$query = "SELECT table_Aframework_css_properties.`id` as pId,
+							 table_Aframework_css_properties.`vId` as vIds,
+							 table_Aframework_css_properties.`property`,
+							 table_Aframework_css_property_groups.`groupName`
+					  FROM `table_Aframework_css_properties`
+					  INNER JOIN `table_Aframework_css_property_groups`
+					  ON `table_Aframework_css_properties`.`gId` = `table_Aframework_css_property_groups`.`id`
+					  WHERE `gId` = ?; ";
+
+			if($stmt = $this -> _link -> prepare($query))
+			{
+				$stmt -> bind_param("i"	,$pId);
+				$stmt -> execute();
+				$result = $stmt -> get_result();
+
+				while($row = $result -> fetch_assoc())
+					$res[] = $row;
+
+				$stmt -> close();
+			}
+
+			return $res;
+		}
+
+		public function getAllPropertiesWithoutGroup()
+		{
+			$res = false;
+			$query = "SELECT table_Aframework_css_properties.`id` as pId,
+							 table_Aframework_css_properties.`vId` as vIds,
+							 table_Aframework_css_properties.`property`,
+							 table_Aframework_css_property_groups.`groupName`
+					  FROM `table_Aframework_css_properties`
+					  INNER JOIN `table_Aframework_css_property_groups`
+					  ON `table_Aframework_css_properties`.`gId` = `table_Aframework_css_property_groups`.`id`
+					  WHERE `gId` = 0; ";
 
 			if($stmt = $this -> _link -> query($query))
 			{
