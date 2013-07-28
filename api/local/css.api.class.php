@@ -17,7 +17,10 @@
 		public function getAllProperties()
 		{
 			$res = false;
-			$query = "SELECT `id` as pId , table_Aframework_css_properties.`property` , table_Aframework_css_property_groups.`groupName`
+			$query = "SELECT table_Aframework_css_properties.`id` as pId,
+							 table_Aframework_css_properties.`vId` as vIds,
+							 table_Aframework_css_properties.`property`,
+							 table_Aframework_css_property_groups.`groupName`
 					  FROM `table_Aframework_css_properties`
 					  INNER JOIN `table_Aframework_css_property_groups`
 					  ON `table_Aframework_css_properties`.`gId` = `table_Aframework_css_property_groups`.`id`; ";
