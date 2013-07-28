@@ -266,6 +266,7 @@
 			\core\build\Sourjelly::getDb() -> createTable("table_Aframework_css_property_groups",
 				array(
 					'groupName' => 'string',
+					'belongsTo' => 'int',
 				)
 			);
 

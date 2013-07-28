@@ -14,4 +14,14 @@
 			$this -> _link = $link;
 
 		}
+
+		private function matchPropertyValue($class = "", $classId = 0)
+		{
+
+		}
+
+		private function matchPropertyGroup($class = "", $classId = 0)
+		{
+			$query = "SELECT `groupName` FROM `table_Aframework_css_property_groups` WHERE `gId` = (SELECT ``) ";
+		}
 	}
