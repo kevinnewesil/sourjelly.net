@@ -17,8 +17,10 @@
 
 		final public function index()
 		{
-			# hier begint je /index page met htjml inladen enzo
-			# 
+			$parent    = '';
+			$tmp       = \Template('aframework/index.html.tpl');
+
+			\SjHtml() -> assign('{content}',$tmp);
 		}
 
 		
