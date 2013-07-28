@@ -19,7 +19,7 @@
 			$res = false;
 			$query = "SELECT `id`,`groupName` FROM `table_Aframework_css_property_groups`";
 
-			if($this = $this -> _link -> query($query))
+			if($stmt = $this -> _link -> query($query))
 			{
 				while($row = $stmt -> fetch_assoc())
 				{
