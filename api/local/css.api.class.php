@@ -70,7 +70,7 @@
 
 			if($stmt = $this -> _link -> prepare($query))
 			{
-				$stmt -> bind_param("i"	,$pId);
+				$stmt -> bind_param("i"	,$gId);
 				$stmt -> execute();
 				$result = $stmt -> get_result();
 
@@ -108,29 +108,54 @@
 			return $res;
 		}
 
-		public function getAllValuesByPropertyId($pId)
+		public function getValueByValueId($vId)
 		{
 			$res = false;
-			$query = "SELECT `value`,`inputId`
-					  FROM `table_Aframework_css_values`
-					  GROUP BY pId HAVING pId = ?;";
+			$query = "SELECT `value` FROM `table_Aframework_css_values` WHERE `id` = ?";
 
-			if($stmt = $this -> _link -> prepare($query))
-			{
-				$stmt -> bind_param("i"	,$pId);
-				$stmt -> execute();
-				$result = $stmt -> get_result();
+				if($stmt = $this -> _link -> prepare($query))
+				{
+					$stmt -> bind_param("i",$vId);
+					$stmt -> execute();
+					$result = $stmt -> get_result();
 
-				while($row = $result -> fetch_assoc())
-					$res[] = $row;
+					while($row = $result -> fetch_assoc())
+						$res[] = $row;
 
-				$stmt -> close();
-			}
-			else
-				die($this -> _link -> error);
+					$stmt -> close();
+				}
+				else
+					die($this -> _link -> error);
 
-			return $res;
+				return $res;
 		}
+
+		/**
+		 * @todo  fix this shit
+		 */
+		// public function getAllValuesByPropertyId($pId)
+		// {
+		// 	$res = false;
+		// 	$query = "SELECT `value`
+		// 			  FROM `table_Aframework_css_values`
+		// 			  GROUP BY `pId` having (SELECT `id` FROM `table_Aframework_css_properties` WHERE `id` = ?);";
+
+		// 	if($stmt = $this -> _link -> prepare($query))
+		// 	{
+		// 		$stmt -> bind_param("is",$pId,$pId);
+		// 		$stmt -> execute();
+		// 		$result = $stmt -> get_result();
+
+		// 		while($row = $result -> fetch_assoc())
+		// 			$res[] = $row;
+
+		// 		$stmt -> close();
+		// 	}
+		// 	else
+		// 		die($this -> _link -> error);
+
+		// 	return $res;
+		// }
 
 		private function matchPropertyValue($class = "", $classId = 0)
 		{

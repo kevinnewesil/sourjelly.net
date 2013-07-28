@@ -19,6 +19,34 @@
 		{
 			$tmp = \Template('aframework/index.html.tpl');
 
+			foreach(\getApiCss() -> getAllGroups() as $key => $group)
+			{
+				#do shit met groups
+				# $group['id'] == group id
+				# $group['groupName'] = group name
+
+				foreach(\getApiCss() -> getAllPropertiesByGroupId($group['id']) as $property)
+				{
+					# do shit met je properties
+					# $property['pId'] id van je property
+					# $property['vId'] comma geschijden lijst van je values
+					# $property['property'] naam van de property
+					# $property['groupname'] Groep waar property onder valt als niet null is anders geen groep
+					
+					if($property['vIds'] != "")
+					{
+						$valueArray = explode(',', $property['vIds']);
+						foreach($valueArray as $valueId)
+						{
+							$values[] = \getApiCss() -> getValueByValueId($valueId);
+						}
+					}
+
+					# $values = array met alle values die bij de property kunnen. success!
+					
+				}
+			}
+
 			\SjHtml() -> assign('{content}',$tmp);
 		}
 
