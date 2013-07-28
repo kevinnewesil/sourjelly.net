@@ -111,7 +111,7 @@
 		public function getAllValuesByPropertyId($pId)
 		{
 			$res = false;
-			$query = "SELECT `value`
+			$query = "SELECT `value`,`inputId`
 					  FROM `table_Aframework_css_values`
 					  GROUP BY pId HAVING pId = ?;";
 
@@ -122,7 +122,7 @@
 				$result = $stmt -> get_result();
 
 				while($row = $result -> fetch_assoc())
-					$res[] = $row['value'];
+					$res[] = $row;
 
 				$stmt -> close();
 			}
