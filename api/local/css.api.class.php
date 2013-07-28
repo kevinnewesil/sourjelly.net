@@ -38,6 +38,14 @@
 			return $res;
 		}
 
+		public function getAllValuesByPropertyId($pId)
+		{
+			$res = false;
+			$query = "SELECT GROUP_CONCAT(`value`)
+					  FROM `table_Aframework_css_values`
+					  GROUP BY id HAVING id = (SELECT `vId` FROM `table_Aframework_css_properties` WHERE `id` = ?);";
+		}
+
 		private function matchPropertyValue($class = "", $classId = 0)
 		{
 
