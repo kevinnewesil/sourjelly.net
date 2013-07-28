@@ -3,6 +3,8 @@
 		<abbr title="{proppertiesLoopName}"> {proppertiesLoopName} </abbr>
 	</label>
 	<div class="settings">
-		<input type="text" name="top" id="{proppertiesLoopName}" value="" placeholder="Enter {proppertiesLoopName} please">
+		<select name="position">
+			{selectSettingsLoop}
+		</select>
 	</div>
 </div>
