@@ -45,6 +45,7 @@
 	if(!function_exists("getApiThemes")) { function getApiThemes(){ return \api\Api::getThemes(); } }
 	if(!function_exists("getApiUsers")) { function getApiUsers(){ return \api\Api::getUsers(); }}
 	if(!function_exists("getApiLayout")) { function getApiLayout(){ return \api\Api::getLayout(); }}
+	if(!function_exists("getApiCss")) { function getApiCss(){ return \api\Api::getCss(); }}
 
 	if(!function_exists("getApiLayoutNavigation")) { function getApiLayoutNavigation(){ return \api\Api::getLayout() -> getNavigation(); }}
 	if(!function_exists("getApiLayoutHeader")) { function getApiLayoutHeader(){ return \api\Api::getLayout() -> getHeader(); }}

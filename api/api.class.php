@@ -78,6 +78,11 @@
 			return self::$_layout;
 		}
 
+		public static function getCss()
+		{
+			return self::$_css;
+		}
+
 		/**
 		 * This function gets all non deprecated menu items, and returns a (2D) array with the titles of the items.
 		 * @return array 	$return 	A 2D array with the titles of the menu Items as keys, and a 2nd array with submenu items as keys etc.

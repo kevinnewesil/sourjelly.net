@@ -12,7 +12,27 @@
 		public function __construct($link)
 		{
 			$this -> _link = $link;
+		}
 
+		public function getAllProperties()
+		{
+			$res = false;
+			$query = "SELECT table_Aframework_css_properties.`property` , table_Aframework_css_property_groups.`groupName`
+					  FROM `table_Aframework_css_properties`
+					  INNER JOIN `table_Aframework_css_property_groups`
+					  ON `table_Aframework_css_properties`.`gId` = `table_Aframework_css_property_groups`.`id`; ";
+
+			if($stmt = $this -> _link -> query($query))
+			{
+				while($row = $stmt -> fetch())
+				{
+					$res[] = $row;
+				}
+
+				$stmt -> close();
+			}
+
+			return $res;
 		}
 
 		private function matchPropertyValue($class = "", $classId = 0)
