@@ -17,7 +17,6 @@
 
 		final public function index()
 		{
-			$parent    = '';
 			$tmp       = \Template('aframework/index.html.tpl');
 
 			\SjHtml() -> assign('{content}',$tmp);
