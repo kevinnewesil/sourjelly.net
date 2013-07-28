@@ -33,16 +33,20 @@
 					# $property['property'] naam van de property
 					# $property['groupname'] Groep waar property onder valt als niet null is anders geen groep
 					
+					$values = array();
+
 					if($property['vIds'] != "")
 					{
 						$valueArray = explode(',', $property['vIds']);
+
 						foreach($valueArray as $valueId)
 						{
 							$values[] = \getApiCss() -> getValueByValueId($valueId);
 						}
 					}
 
-					# $values = array met alle values die bij de property kunnen. success!
+					// $values = array met alle values die bij de property kunnen. success!
+					echo('<pre> property id: ' . $property['pId'] . '<br> property name: ' . $property['property'] . '<br>'); var_dump($values); echo ('</pre>');
 					
 				}
 			}
