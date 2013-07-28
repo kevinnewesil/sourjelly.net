@@ -88,11 +88,8 @@
 			$res = false;
 			$query = "SELECT table_Aframework_css_properties.`id` as pId,
 							 table_Aframework_css_properties.`vId` as vIds,
-							 table_Aframework_css_properties.`property`,
-							 table_Aframework_css_property_groups.`groupName`
+							 table_Aframework_css_properties.`property`
 					  FROM `table_Aframework_css_properties`
-					  INNER JOIN `table_Aframework_css_property_groups`
-					  ON `table_Aframework_css_properties`.`gId` = `table_Aframework_css_property_groups`.`id`
 					  WHERE `gId` = 0; ";
 
 			if($stmt = $this -> _link -> query($query))

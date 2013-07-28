@@ -24,6 +24,7 @@
 				#do shit met groups
 				# $group['id'] == group id
 				# $group['groupName'] = group name
+				# Dit volgende geld alleen voor properties die onder een groep vallen hierna volg een loop voor properties zonder group
 
 				foreach(\getApiCss() -> getAllPropertiesByGroupId($group['id']) as $property)
 				{
@@ -33,7 +34,7 @@
 					# $property['property'] naam van de property
 					# $property['groupname'] Groep waar property onder valt als niet null is anders geen groep
 					
-					$values = array();
+					$values = NULL;
 
 					if($property['vIds'] != "")
 					{
@@ -46,9 +47,33 @@
 					}
 
 					// $values = array met alle values die bij de property kunnen. success!
-					echo('<pre> property id: ' . $property['pId'] . '<br> property name: ' . $property['property'] . '<br>'); var_dump($values); echo ('</pre>');
+					echo('<pre>Group name: ' . $group['groupName'] . '<br>property id: ' . $property['pId'] . '<br>property name: ' . $property['property'] . '<br>'); var_dump($values); echo ('</pre>');
 					
 				}
+			}
+
+			foreach (\getApiCss() -> getAllPropertiesWithoutGroup() as $noGroupProperty) {
+				# do shit met je properties
+					# $property['pId'] id van je property
+					# $property['vId'] comma geschijden lijst van je values
+					# $property['property'] naam van de property
+					# $property['groupname'] Groep waar property onder valt als niet null is anders geen groep
+					
+					$values = array();
+
+					if($noGroupProperty['vIds'] != "")
+					{
+						$valueArray = explode(',', $noGroupProperty['vIds']);
+
+						foreach($valueArray as $valueId)
+						{
+							$values[] = \getApiCss() -> getValueByValueId($valueId);
+						}
+					}
+
+					// $values = array met alle values die bij de property kunnen. success!
+					echo('<pre>property id: ' . $property['pId'] . '<br>property name: ' . $property['property'] . '<br>'); var_dump($values); echo ('</pre>');
+					
 			}
 
 			\SjHtml() -> assign('{content}',$tmp);
