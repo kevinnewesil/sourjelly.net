@@ -230,6 +230,7 @@
 					'class' => 'string',
 					'sId' => 'string',
 					'pId' => 'string',
+					'gId' => 'string',
 				)
 			);
 
@@ -243,6 +244,7 @@
 			\core\build\Sourjelly::getDb() -> createTable("table_Aframework_css_properties",
 				array(
 					'property' => 'string',
+					'gId' => 'int',
 					'vId' => 'string',
 				)
 			);
@@ -258,6 +260,12 @@
 					'cId' => 'int',
 					'pId' => 'int',
 					'vId' => 'int',
+				)
+			);
+
+			\core\build\Sourjelly::getDb() -> createTable("table_Aframework_css_property_groups",
+				array(
+					'groupName' => 'string',
 				)
 			);
 
