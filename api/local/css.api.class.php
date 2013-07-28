@@ -27,7 +27,7 @@
 
 			if($stmt = $this -> _link -> query($query))
 			{
-				while($row = $stmt -> fetch())
+				while($row = $stmt -> fetch_assoc())
 				{
 					$res[] = $row;
 				}

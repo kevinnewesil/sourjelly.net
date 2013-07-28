@@ -19,7 +19,7 @@
 		{
 			$parent    = '';
 			$tmp       = \Template('aframework/index.html.tpl');
-
+			
 			\SjHtml() -> assign('{content}',$tmp);
 		}
 
