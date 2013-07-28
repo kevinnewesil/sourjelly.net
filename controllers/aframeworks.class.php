@@ -18,8 +18,6 @@
 		final public function index()
 		{
 			$tmp       = \Template('aframework/index.html.tpl');
-			
-			die(var_dump(\getApiCss() -> getAllValuesByPropertyId(3)));
 
 			\SjHtml() -> assign('{content}',$tmp);
 		}
