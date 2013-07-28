@@ -41,9 +41,25 @@
 		public function getAllValuesByPropertyId($pId)
 		{
 			$res = false;
-			$query = "SELECT GROUP_CONCAT(`value`)
+			$query = "SELECT `value`
 					  FROM `table_Aframework_css_values`
-					  GROUP BY id HAVING id = (SELECT `vId` FROM `table_Aframework_css_properties` WHERE `id` = ?);";
+					  GROUP BY pId HAVING pId = ?;";
+
+			if($stmt = $this -> _link -> prepare($query))
+			{
+				$stmt -> bind_param("i"	,$pId);
+				$stmt -> execute();
+				$result = $stmt -> get_result();
+
+				while($row = $result -> fetch_assoc())
+					$res[] = $row['value'];
+
+				$stmt -> close();
+			}
+			else
+				die($this -> _link -> error);
+
+			return $res;
 		}
 
 		private function matchPropertyValue($class = "", $classId = 0)
