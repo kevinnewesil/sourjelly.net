@@ -1,1 +1,1 @@
-<option value="{propertyValue}" id="properties">{propertyName}</option>
+<option value="{value}" id="properties">{name}</option>

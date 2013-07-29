@@ -20,7 +20,10 @@
 			$tmp          = \Template('aframework/index.html.tpl');
 			$groupTmp     = \Template('aframework/groupTab.html.tpl');
 			$groupOptions = \Template('aframework/groupNameOptionsTab.html.tpl');
-			$selectBox    = '';
+			$selectBox    = \Template('aframework/selectSettings.html.tpl');
+			$options      = \Template('aframework/propertieValueOptionsLoop.html.tpl');
+			$tabOptions   = '';
+			$tabValues	  = '';
 
 			foreach(\getApiCss() -> getAllGroups() as $key => $group)
 			{
@@ -29,7 +32,7 @@
 				# $group['groupName'] = group name
 				# Dit volgende geld alleen voor properties die onder een groep vallen hierna volg een loop voor properties zonder group
 
-				$valueOptions = '';
+				$tabOptions .= str_replace(array('{groupName}'),array($group['groupName']),$groupOptions);
 
 				foreach(\getApiCss() -> getAllPropertiesByGroupId($group['id']) as $property)
 				{
@@ -39,7 +42,8 @@
 					# $property['property'] naam van de property
 					# $property['groupname'] Groep waar property onder valt als niet null is anders geen groep
 					
-					$values 	  = NULL;
+					$values = NULL;
+					$valueOptions = '';
 
 					if($property['vIds'] != "")
 					{
@@ -47,6 +51,7 @@
 
 						foreach($valueArray as $valueId)
 						{
+							$valueOptions .= str_replace(array('{value}','{name}'),array($valueId,\getApiCss() -> getValueByValueId($valueId)),$options);
 							$values[] = \getApiCss() -> getValueByValueId($valueId);
 						}
 					}
@@ -54,11 +59,15 @@
 					// $values = array met alle values die bij de property kunnen. success!
 					// echo('<pre>Group name: ' . $group['groupName'] . '<br>property id: ' . $property['pId'] . '<br>property name: ' . $property['property'] . '<br>'); var_dump($values); echo ('</pre>');
 					
-					$valueOptions .= str_replace(array('{propertyValue}','{propertyName}'),array($property['pId'],$property['property']),$groupOptions);
+					$tabValues .= str_replace(
+						array('{groupName}','{propertiesLoopName}','{optionsSettingsLoop}'),
+						array($group['groupName'],$property['property'],$valueOptions),
+						$selectBox
+					);
 
 				}
 
-				$selectBox .= str_replace(array('{propertiesLoopName}','{selectSettingsLoop}'),array($group['groupName'],$valueOptions),$groupTmp);
+				
 
 			}
 
@@ -86,6 +95,7 @@
 					
 			}
 
+			$selectBox = str_replace(array('{groupTabOptions}','{propertyValueOptions}'),array($tabOptions,$tabValues),$groupTmp);
 			\sjHtml() -> assign('{content}',str_replace('{properties}',$selectBox,$tmp));
 		}
 

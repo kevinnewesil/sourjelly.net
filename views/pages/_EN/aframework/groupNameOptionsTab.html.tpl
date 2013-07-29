@@ -1,3 +1,3 @@
 <li>
-	<a data-toggle="tabs" href="#{groupName}">{goupName}</a>
+	<a data-toggle="tabs" href="#{groupName}">{groupName}</a>
 </li>

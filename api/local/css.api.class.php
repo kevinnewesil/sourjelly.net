@@ -117,14 +117,14 @@
 					$result = $stmt -> get_result();
 
 					while($row = $result -> fetch_assoc())
-						$res[] = $row;
+						$res[] = $row['value'];
 
 					$stmt -> close();
 				}
 				else
 					die($this -> _link -> error);
-
-				return $res;
+				
+				return $res[0];
 		}
 
 		/**
