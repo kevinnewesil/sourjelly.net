@@ -1,6 +1,6 @@
 <div class="settingsGroupe">
 	<label for="{proppertiesLoopName}" class="settingsLabel">
-		<abbr title="{proppertiesLoopName}"> {proppertiesLoopName} </abbr>
+		<abbr title="{proppertiesLoopName}"> {propertiesLoopName} </abbr>
 	</label>
 	<div class="settings">
 		<select name="position">
