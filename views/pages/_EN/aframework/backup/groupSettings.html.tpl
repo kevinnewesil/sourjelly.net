@@ -4,7 +4,7 @@
 	</label>
 	<div class="settings">
 		<select name="position">
-			{selectSettingsLoop}
+			{optionsSettingsLoop}
 		</select>
 	</div>
 </div>
