@@ -18,6 +18,8 @@
 		final public function index()
 		{
 			$tmp = \Template('aframework/index.html.tpl');
+			$tmp = \Template('aframework/groupSettings.html.tpl');
+			$tmp = \Template('aframework/optionsSettingsLoop.html.tpl');
 
 			foreach(\getApiCss() -> getAllGroups() as $key => $group)
 			{
