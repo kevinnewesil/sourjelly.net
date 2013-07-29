@@ -17,9 +17,10 @@
 
 		final public function index()
 		{
-			$tmp = \Template('aframework/index.html.tpl');
-			$groupTmp = \Template('aframework/groupSettings.html.tpl');
-			$groupOptions = \Template('aframework/optionSettingsLoop.html.tpl');
+			$tmp          = \Template('aframework/index.html.tpl');
+			$groupTmp     = \Template('aframework/groupSettings.html.tpl');
+			$groupOptions = \Template('aframework/optionsSettingsLoop.html.tpl');
+			$selecBox     = '';
 
 			foreach(\getApiCss() -> getAllGroups() as $key => $group)
 			{
@@ -53,6 +54,9 @@
 					// echo('<pre>Group name: ' . $group['groupName'] . '<br>property id: ' . $property['pId'] . '<br>property name: ' . $property['property'] . '<br>'); var_dump($values); echo ('</pre>');
 					
 				}
+
+				$selectBox .= str_replace(array('{propertiesLoopName}','{selectSettingsLoop}'),array($group['groupName'],$valueOptions),$groupTmp);
+
 			}
 
 			foreach (\getApiCss() -> getAllPropertiesWithoutGroup() as $noGroupProperty) {
@@ -79,7 +83,7 @@
 					
 			}
 
-			\SjHtml() -> assign('{content}',$tmp);
+			\sjHtml() -> assign('{content}',str_replace('{properties}',$selectBox,$tmp));
 		}
 
 		
