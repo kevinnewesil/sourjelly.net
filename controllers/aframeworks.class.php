@@ -33,6 +33,7 @@
 					# $property['vId'] comma geschijden lijst van je values
 					# $property['property'] naam van de property
 					# $property['groupname'] Groep waar property onder valt als niet null is anders geen groep
+						
 					
 					$values = NULL;
 
@@ -47,7 +48,7 @@
 					}
 
 					// $values = array met alle values die bij de property kunnen. success!
-					echo('<pre>Group name: ' . $group['groupName'] . '<br>property id: ' . $property['pId'] . '<br>property name: ' . $property['property'] . '<br>'); var_dump($values); echo ('</pre>');
+					// echo('<pre>Group name: ' . $group['groupName'] . '<br>property id: ' . $property['pId'] . '<br>property name: ' . $property['property'] . '<br>'); var_dump($values); echo ('</pre>');
 					
 				}
 			}
