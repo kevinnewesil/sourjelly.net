@@ -20,7 +20,7 @@
 			$tmp          = \Template('aframework/index.html.tpl');
 			$groupTmp     = \Template('aframework/groupSettings.html.tpl');
 			$groupOptions = \Template('aframework/optionsSettingsLoop.html.tpl');
-			$selecBox     = '';
+			$selectBox    = '';
 
 			foreach(\getApiCss() -> getAllGroups() as $key => $group)
 			{
@@ -29,6 +29,8 @@
 				# $group['groupName'] = group name
 				# Dit volgende geld alleen voor properties die onder een groep vallen hierna volg een loop voor properties zonder group
 
+				$properties   = '';
+				
 				foreach(\getApiCss() -> getAllPropertiesByGroupId($group['id']) as $property)
 				{
 					# do shit met je properties
@@ -36,9 +38,8 @@
 					# $property['vId'] comma geschijden lijst van je values
 					# $property['property'] naam van de property
 					# $property['groupname'] Groep waar property onder valt als niet null is anders geen groep
-						
 					
-					$values = NULL;
+					$values 	  = NULL;
 
 					if($property['vIds'] != "")
 					{
@@ -53,9 +54,11 @@
 					// $values = array met alle values die bij de property kunnen. success!
 					// echo('<pre>Group name: ' . $group['groupName'] . '<br>property id: ' . $property['pId'] . '<br>property name: ' . $property['property'] . '<br>'); var_dump($values); echo ('</pre>');
 					
+					$properties .= str_replace(array('{propertyValue}','{propertyName}'),array($property['pId'],$property['property']),$groupOptions);
+
 				}
 
-				$selectBox .= str_replace(array('{propertiesLoopName}','{selectSettingsLoop}'),array($group['groupName'],$valueOptions),$groupTmp);
+				$selectBox .= str_replace(array('{propertiesLoopName}','{selectSettingsLoop}'),array($group['groupName'],$properties),$groupTmp);
 
 			}
 
@@ -79,7 +82,7 @@
 					}
 
 					// $values = array met alle values die bij de property kunnen. success!
-					echo('<pre>property id: ' . $property['pId'] . '<br>property name: ' . $property['property'] . '<br>'); var_dump($values); echo ('</pre>');
+					// echo('<pre>property id: ' . $property['pId'] . '<br>property name: ' . $property['property'] . '<br>'); var_dump($values); echo ('</pre>');
 					
 			}
 
