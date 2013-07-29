@@ -29,8 +29,8 @@
 				# $group['groupName'] = group name
 				# Dit volgende geld alleen voor properties die onder een groep vallen hierna volg een loop voor properties zonder group
 
-				$properties   = '';
-				
+				$valueOptions = '';
+
 				foreach(\getApiCss() -> getAllPropertiesByGroupId($group['id']) as $property)
 				{
 					# do shit met je properties
@@ -54,11 +54,11 @@
 					// $values = array met alle values die bij de property kunnen. success!
 					// echo('<pre>Group name: ' . $group['groupName'] . '<br>property id: ' . $property['pId'] . '<br>property name: ' . $property['property'] . '<br>'); var_dump($values); echo ('</pre>');
 					
-					$properties .= str_replace(array('{propertyValue}','{propertyName}'),array($property['pId'],$property['property']),$groupOptions);
+					$valueOptions .= str_replace(array('{propertyValue}','{propertyName}'),array($property['pId'],$property['property']),$groupOptions);
 
 				}
 
-				$selectBox .= str_replace(array('{propertiesLoopName}','{selectSettingsLoop}'),array($group['groupName'],$properties),$groupTmp);
+				$selectBox .= str_replace(array('{propertiesLoopName}','{selectSettingsLoop}'),array($group['groupName'],$valueOptions),$groupTmp);
 
 			}
 
