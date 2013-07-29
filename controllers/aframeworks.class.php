@@ -18,8 +18,8 @@
 		final public function index()
 		{
 			$tmp          = \Template('aframework/index.html.tpl');
-			$groupTmp     = \Template('aframework/groupSettings.html.tpl');
-			$groupOptions = \Template('aframework/optionsSettingsLoop.html.tpl');
+			$groupTmp     = \Template('aframework/groupTab.html.tpl');
+			$groupOptions = \Template('aframework/groupNameOptionsTab.html.tpl');
 			$selectBox    = '';
 
 			foreach(\getApiCss() -> getAllGroups() as $key => $group)
