@@ -108,7 +108,7 @@
 		public function getValueByValueId($vId)
 		{
 			$res = false;
-			$query = "SELECT `value` FROM `table_Aframework_css_values` WHERE `id` = ?";
+			$query = "SELECT `value`,`type` FROM `table_Aframework_css_values` WHERE `id` = ?";
 
 				if($stmt = $this -> _link -> prepare($query))
 				{
@@ -116,14 +116,20 @@
 					$stmt -> execute();
 					$result = $stmt -> get_result();
 
+					$i = 0;
+
 					while($row = $result -> fetch_assoc())
-						$res[] = $row['value'];
+					{
+						$res[$i]['value'] = $row['value'];
+						$res[$i]['type']  = $row['type'];
+						++$i;
+					}
 
 					$stmt -> close();
 				}
 				else
 					die($this -> _link -> error);
-				
+
 				return $res[0];
 		}
 

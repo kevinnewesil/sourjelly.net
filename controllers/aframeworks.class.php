@@ -20,8 +20,13 @@
 			$tmp          = \Template('aframework/index.html.tpl');
 			$groupTmp     = \Template('aframework/groupTab.html.tpl');
 			$groupOptions = \Template('aframework/groupNameOptionsTab.html.tpl');
+
+			$inputColour  = \Template('aframework/inputColour.html.tpl');
+			$inputNumeric = \Template('aframework/inputNumeric.html.tpl');
+
 			$selectBox    = \Template('aframework/selectSettings.html.tpl');
 			$options      = \Template('aframework/propertieValueOptionsLoop.html.tpl');
+			
 			$tabOptions   = '';
 			$tabValues	  = '';
 
@@ -44,6 +49,7 @@
 					
 					$values = NULL;
 					$valueOptions = '';
+					$select = false;
 
 					if($property['vIds'] != "")
 					{
@@ -51,19 +57,39 @@
 
 						foreach($valueArray as $valueId)
 						{
-							$valueOptions .= str_replace(array('{value}','{name}'),array($valueId,\getApiCss() -> getValueByValueId($valueId)),$options);
-							$values[] = \getApiCss() -> getValueByValueId($valueId);
+							$value = \getApiCss() -> getValueByValueId($valueId);
+							
+							switch ($value['type']) {
+								case '0':
+									
+									break;
+								
+								case '1':
+								default:
+									$valueOptions .= str_replace(array('{value}','{name}'),array($valueId,$value['value']),$options);
+									$select = true;
+									break;
+
+								case '2':
+									$tabValues .= $inputNumeric;
+									break;
+
+								case '3':
+									$tabValues .= $inputColour;
+									break;
+							}
+							
 						}
 					}
 
 					// $values = array met alle values die bij de property kunnen. success!
 					// echo('<pre>Group name: ' . $group['groupName'] . '<br>property id: ' . $property['pId'] . '<br>property name: ' . $property['property'] . '<br>'); var_dump($values); echo ('</pre>');
-					
-					$tabValues .= str_replace(
-						array('{groupName}','{propertiesLoopName}','{optionsSettingsLoop}'),
-						array($group['groupName'],$property['property'],$valueOptions),
-						$selectBox
-					);
+					if($select)
+						$tabValues .= str_replace(
+							array('{groupName}','{propertiesLoopName}','{optionsSettingsLoop}'),
+							array($group['groupName'],$property['property'],$valueOptions),
+							$selectBox
+						);
 
 				}
 
