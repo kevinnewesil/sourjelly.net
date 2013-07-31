@@ -3,8 +3,6 @@
 		<abbr title="{propertiesLoopName}"> {propertiesLoopName} </abbr>
 	</label>
 	<div class="settings">
-		<select name="position">
-			{optionsSettingsLoop}
-		</select>
+		{formElement}
 	</div>
 </div>
