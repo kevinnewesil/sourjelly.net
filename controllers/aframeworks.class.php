@@ -55,15 +55,11 @@
 									$select = true;
 									break;
 
-								case '0':
-									
-									break;
-<<<<<<< HEAD
+								// case '0':
 
-=======
+								// 	break;
 								
 								# Select box and option
->>>>>>> fd0be583a52f5333c8d8e22b5287d0283642c148
 								case '1':
 									// select option
 									$tabValues .= $inputNumeric;
@@ -81,25 +77,24 @@
 									$tabValues .= $inputColour;
 									break;
 
-<<<<<<< HEAD
-								case '4':
-									// cubic bezier value
+								// case '4':
+								// 	// cubic bezier value
 				
-									break;
+								// 	break;
 
-								case '5':
-									// url value 
+								// case '5':
+								// 	// url value 
 
-									break;
+								// 	break;
 
-								case '6':
-									// atrr value
+								// case '6':
+								// 	// atrr value
 
-									break;
+								// 	break;
 
 								case '7':
 									// dubble float
-									for($i = 0; ++$i; $i < 2) $valueOptions .= str_replace(array('{value}','{name}'),array($valueId,$value['value'] . "[" . $i . "]"),$options);
+									for($i = 0; $i++; $i < 2) $valueOptions .= str_replace(array('{value}','{name}'),array($valueId,$value['value'] . "[" . $i . "]"),$options);
 									break;
 
 								case '8':
@@ -109,50 +104,13 @@
 								
 								case '9':
 									// triple float
-									for($i = 0; ++$i; $i < 3) $valueOptions .= str_replace(array('{value}','{name}'),array($valueId,$value['value'] . "[" . $i . "]"),$options);
+									for($i = 0; $i++; $i < 3) $valueOptions .= str_replace(array('{value}','{name}'),array($valueId,$value['value'] . "[" . $i . "]"),$options);
 									break;
 
 								case '10':
 									// quad float
-									for($i = 0; ++$i; $i < 4) $valueOptions .= str_replace(array('{value}','{name}'),array($valueId,$value['value'] . "[" . $i . "]"),$options);
+									for($i = 0; $i++; $i < 4) $valueOptions .= str_replace(array('{value}','{name}'),array($valueId,$value['value'] . "[" . $i . "]"),$options);
 									break;
-=======
-								# 
-								case '4':
-
-									break;
-
-								#
-								case '5':
-
-									break;
-
-								#
-								case '6':
-
-									break;
-
-								#
-								case '7':
-
-									break;
-
-								#
-								case '8':
-
-									break;
-
-								#
-								case '9':
-
-									break;
-
-								#
-								case '10':
-
-									break;
-
->>>>>>> fd0be583a52f5333c8d8e22b5287d0283642c148
 							}
 							
 						}
