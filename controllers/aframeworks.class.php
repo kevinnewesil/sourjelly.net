@@ -52,6 +52,10 @@
                         					$select  = true;
                         					break;
                         				
+                        				case '2':
+                        					$inputs .= $inputNumeric;
+                        					break;
+
                         				default:
                         					# code...
                         					break;
