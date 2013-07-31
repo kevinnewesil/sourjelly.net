@@ -39,7 +39,6 @@
                                        
                                         $values = NULL;
                                         $valueOptions = '';
-                                        $select = false;
  
                                         if($property['vIds'] != "")
                                         {
@@ -48,7 +47,9 @@
                                                 foreach($valueArray as $valueId)
                                                 {
                                                         $value = \getApiCss() -> getValueByValueId($valueId);
-                                                       
+
+                                                        $select = false;
+
                                                         switch ($value['type']) {
                                                                 default:
                                                                         $valueOptions .= str_replace(array('{value}','{name}'),array($valueId,$value['value']),$options);
@@ -94,7 +95,7 @@
  
                                                                 case '7':
                                                                         // dubble float
-                                                                        for($i = 0; $i++; $i < 2) $valueOptions .= str_replace(array('{value}','{name}'),array($valueId,$value['value'] . "[" . $i . "]"),$options);
+                                                                        for($i = 0; $i++; $i < 2) $tabValues .= str_replace(array('{value}','{name}'),array($valueId,$value['value'] . "[" . $i . "]"),$options);
                                                                         break;
  
                                                                 case '8':
@@ -104,12 +105,12 @@
                                                                
                                                                 case '9':
                                                                         // triple float
-                                                                        for($i = 0; $i++; $i < 3) $valueOptions .= str_replace(array('{value}','{name}'),array($valueId,$value['value'] . "[" . $i . "]"),$options);
+                                                                        for($i = 0; $i++; $i < 3) $tabValues .= str_replace(array('{value}','{name}'),array($valueId,$value['value'] . "[" . $i . "]"),$options);
                                                                         break;
  
                                                                 case '10':
                                                                         // quad float
-                                                                        for($i = 0; $i++; $i < 4) $valueOptions .= str_replace(array('{value}','{name}'),array($valueId,$value['value'] . "[" . $i . "]"),$options);
+                                                                        for($i = 0; $i++; $i < 4) $tabValues .= str_replace(array('{value}','{name}'),array($valueId,$value['value'] . "[" . $i . "]"),$options);
                                                                         break;
                                                         }
                                                        
