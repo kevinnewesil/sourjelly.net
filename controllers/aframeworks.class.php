@@ -1,10 +1,11 @@
 <?php namespace controllers; if(!defined("DS")) die('no direct script access!');
 
 	/** 
-	* @author  Kevin Newesil <kevin@sourjelly.net>
+	* @author  {YOUR_NAME} <{YOUR_EMAIL}>
 	* @version  1.0 
-	* @package  Controllers
+	* @package  {PACKAGE}
 	* 
+	* @var {PROPERTIE_NAME} {PROPERTY_TYPE} {PROPERTY_DESCRIPTION}
 	*/
 	final class AFrameworks extends \core\system\Controller
 	{
@@ -32,10 +33,20 @@
 
 			foreach(\getApiCss() -> getAllGroups() as $key => $group)
 			{
+				#do shit met groups
+				# $group['id'] == group id
+				# $group['groupName'] = group name
+				# Dit volgende geld alleen voor properties die onder een groep vallen hierna volg een loop voor properties zonder group
+
 				$tabOptions .= str_replace(array('{groupName}'),array($group['groupName']),$groupOptions);
 
 				foreach(\getApiCss() -> getAllPropertiesByGroupId($group['id']) as $property)
 				{
+					# do shit met je properties
+					# $property['pId'] id van je property
+					# $property['vId'] comma geschijden lijst van je values
+					# $property['property'] naam van de property
+					# $property['groupname'] Groep waar property onder valt als niet null is anders geen groep
 					
 					$values = NULL;
 					$valueOptions = '';
@@ -58,30 +69,22 @@
 								case '0':
 									
 									break;
-<<<<<<< HEAD
 
-=======
-								
-								# Select box and option
->>>>>>> fd0be583a52f5333c8d8e22b5287d0283642c148
 								case '1':
 									// select option
 									$tabValues .= $inputNumeric;
 									break;
 
-								# Numeric input
 								case '2':
 									// numeric value
 									$tabValues .= $inputNumeric;
 									break;
 
-								# Colour input
 								case '3':
 									// color value rgba()
 									$tabValues .= $inputColour;
 									break;
 
-<<<<<<< HEAD
 								case '4':
 									// cubic bezier value
 				
@@ -116,59 +119,32 @@
 									// quad float
 									for($i = 0; ++$i; $i < 4) $valueOptions .= str_replace(array('{value}','{name}'),array($valueId,$value['value'] . "[" . $i . "]"),$options);
 									break;
-=======
-								# 
-								case '4':
-
-									break;
-
-								#
-								case '5':
-
-									break;
-
-								#
-								case '6':
-
-									break;
-
-								#
-								case '7':
-
-									break;
-
-								#
-								case '8':
-
-									break;
-
-								#
-								case '9':
-
-									break;
-
-								#
-								case '10':
-
-									break;
-
->>>>>>> fd0be583a52f5333c8d8e22b5287d0283642c148
 							}
 							
 						}
 					}
 
+					// $values = array met alle values die bij de property kunnen. success!
+					// echo('<pre>Group name: ' . $group['groupName'] . '<br>property id: ' . $property['pId'] . '<br>property name: ' . $property['property'] . '<br>'); var_dump($values); echo ('</pre>');
 					if($select)
 						$tabValues .= str_replace(
 							array('{groupName}','{propertiesLoopName}','{optionsSettingsLoop}'),
 							array($group['groupName'],$property['property'],$valueOptions),
 							$selectBox
 						);
+
 				}
+
+				
+
 			}
 
 			foreach (\getApiCss() -> getAllPropertiesWithoutGroup() as $noGroupProperty) {
-				
+				# do shit met je properties
+					# $property['pId'] id van je property
+					# $property['vId'] comma geschijden lijst van je values
+					# $property['property'] naam van de property
+					# $property['groupname'] Groep waar property onder valt als niet null is anders geen groep
 					
 					$values = array();
 
@@ -181,6 +157,9 @@
 							$values[] = \getApiCss() -> getValueByValueId($valueId);
 						}
 					}
+
+					// $values = array met alle values die bij de property kunnen. success!
+					// echo('<pre>property id: ' . $property['pId'] . '<br>property name: ' . $property['property'] . '<br>'); var_dump($values); echo ('</pre>');
 					
 			}
 
