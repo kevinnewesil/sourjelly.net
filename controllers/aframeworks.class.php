@@ -48,16 +48,60 @@
 
                         			switch ($valueProperties['type']) {
                         				case '1':
+                        					//select options
                         					$options .= str_replace(array('{value}','{name}'), array($valueProperties['value'],$valueProperties['value']), $optionsHtml);
                         					$select  = true;
                         					break;
                         				
                         				case '2':
+                        					//numeric
                         					$inputs .= $inputNumeric;
                         					break;
                         				
                         				case '3':
+                        					//rgba
                         					$inputs .= $inputColour;
+                        					break;
+
+                        				case '4':
+                        					//cubic bezier
+                        					$inputs .= '';
+                        					break;
+
+                        				case '5':
+                        					//url
+                        					$inputs .= $inputNormal;
+                        					break;
+
+                        				case '6':
+                        					//attr
+                        					$inputs .= '';
+                        					break;
+
+                        				case '7':
+                        					//float float
+                        					$inputs .= $inputNumeric;
+                        					$inputs .= $inputNumeric;
+                        					break;
+
+                        				case '8':
+                        					//float
+                        					$inputs .= $inputNumeric;
+                        					break;
+
+                        				case '9':
+                        					//float float float
+                        					$inputs .= $inputNumeric;
+                        					$inputs .= $inputNumeric;
+                        					$inputs .= $inputNumeric;
+                        					break;
+
+                        				case '10':
+                        					//float float float float
+                        					$inputs .= $inputNumeric;
+                        					$inputs .= $inputNumeric;
+                        					$inputs .= $inputNumeric;
+                        					$inputs .= $inputNumeric;
                         					break;
 
                         				default:
