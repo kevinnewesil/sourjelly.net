@@ -55,6 +55,10 @@
                         				case '2':
                         					$inputs .= $inputNumeric;
                         					break;
+                        				
+                        				case '3':
+                        					$inputs .= $inputColour;
+                        					break;
 
                         				default:
                         					# code...
