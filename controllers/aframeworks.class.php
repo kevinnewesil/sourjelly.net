@@ -16,135 +16,62 @@
  
                 final public function index()
                 {
-                        $tmp          = \Template('aframework/index.html.tpl');
-                        $groupTmp     = \Template('aframework/groupTab.html.tpl');
-                        $groupOptions = \Template('aframework/groupNameOptionsTab.html.tpl');
-                       
-                        $inputColour  = \Template('aframework/inputColour.html.tpl');
-                        $inputNumeric = \Template('aframework/inputNumeric.html.tpl');
-                        $inputNormal  = \Template('aframework/inputNumeric.html.tpl');
-                       
-                        $selectBox    = \Template('aframework/selectSettings.html.tpl');
-                        $options      = \Template('aframework/propertieValueOptionsLoop.html.tpl');
-                       
-                        $tabOptions   = '';
-                        $tabValues    = '';
- 
-                        foreach(\getApiCss() -> getAllGroups() as $key => $group)
-                        {
-                                $tabOptions .= str_replace(array('{groupName}'),array($group['groupName']),$groupOptions);
- 
-                                foreach(\getApiCss() -> getAllPropertiesByGroupId($group['id']) as $property)
-                                {
-                                       
-                                        $values = NULL;
-                                        $valueOptions = '';
- 
-                                        if($property['vIds'] != "")
-                                        {
-                                                $valueArray = explode(',', $property['vIds']);
- 
-                                                foreach($valueArray as $valueId)
-                                                {
-                                                        $value = \getApiCss() -> getValueByValueId($valueId);
+                        $tmp              = \Template('aframework/index.html.tpl');
 
-                                                        $select = false;
+                        $groupTmp         = \Template('aframework/groupTab.html.tpl');
+                        $groupOptions     = \Template('aframework/groupNameOptionsTab.html.tpl');
 
-                                                        switch ($value['type']) {
-                                                                default:
-                                                                        $valueOptions .= str_replace(array('{value}','{name}'),array($valueId,$value['value']),$options);
-                                                                        $select = true;
-                                                                        break;
- 
-                                                                // case '0':
- 
-                                                                //      break;
-                                                               
-                                                                # Select box and option
-                                                                case '1':
-                                                                        // select option
-                                                                        $tabValues .= $inputNumeric;
-                                                                        break;
- 
-                                                                # Numeric input
-                                                                case '2':
-                                                                        // numeric value
-                                                                        $tabValues .= $inputNumeric;
-                                                                        break;
- 
-                                                                # Colour input
-                                                                case '3':
-                                                                        // color value rgba()
-                                                                        $tabValues .= $inputColour;
-                                                                        break;
- 
-                                                                // case '4':
-                                                                //      // cubic bezier value
-                               
-                                                                //      break;
- 
-                                                                // case '5':
-                                                                //      // url value
- 
-                                                                //      break;
- 
-                                                                // case '6':
-                                                                //      // atrr value
- 
-                                                                //      break;
- 
-                                                                case '7':
-                                                                        // dubble float
-                                                                        for($i = 0; $i++; $i < 2) $tabValues .= str_replace(array('{value}','{name}'),array($valueId,$value['value'] . "[" . $i . "]"),$options);
-                                                                        break;
- 
-                                                                case '8':
-                                                                        // float
-                                                                        $tabValues .= $inputNumeric;
-                                                                        break;
-                                                               
-                                                                case '9':
-                                                                        // triple float
-                                                                        for($i = 0; $i++; $i < 3) $tabValues .= str_replace(array('{value}','{name}'),array($valueId,$value['value'] . "[" . $i . "]"),$options);
-                                                                        break;
- 
-                                                                case '10':
-                                                                        // quad float
-                                                                        for($i = 0; $i++; $i < 4) $tabValues .= str_replace(array('{value}','{name}'),array($valueId,$value['value'] . "[" . $i . "]"),$options);
-                                                                        break;
-                                                        }
-                                                       
-                                                }
-                                        }
- 
-                                        if($select)
-                                                $tabValues .= str_replace(
-                                                        array('{groupName}','{propertiesLoopName}','{optionsSettingsLoop}'),
-                                                        array($group['groupName'],$property['property'],$valueOptions),
-                                                        $selectBox
-                                                );
-                                }
+                        $formElement      = \Template('aframework/formControl.html.tpl');
+                       
+                        $inputColour      = \Template('aframework/inputColour.html.tpl');
+                        $inputNumeric     = \Template('aframework/inputNumeric.html.tpl');
+                       
+                        $selectBoxHtml    = \Template('aframework/formElementSelect.html.tpl');
+                        $optionsHtml      = \Template('aframework/formElementSelectOption.html.tpl');
+                       
+                        $groupTabOptions  = '';
+                        $formElements     = '';
+
+                        foreach (\getApiCss() -> getAllGroups() as $groupKey => $groupData) {
+                        	
+                        	$groupTabOptions .= str_replace('{groupName}', $groupData['groupName'], $groupOptions);
+
+                        	foreach (\getApiCss() -> getAllPropertiesByGroupId($groupData['id']) as $propertyKey => $propertyValue) {
+                        		$values  = explode(',',$propertyValue['vIds']);
+                        		$select  = false;
+                        		$options = '';
+								$inputs  = '';
+
+                        		foreach($values as $valueId)
+                        		{
+                        			$valueProperties = \getApiCss() -> getValueByValueId($valueId);
+
+                        			switch ($valueProperties['type']) {
+                        				case '1':
+                        					$options .= str_replace(array('{value}','{name}'), array($valueProperties['value'],$valueProperties['value']), $optionsHtml);
+                        					$select  = true;
+                        					break;
+                        				
+                        				default:
+                        					# code...
+                        					break;
+                        			}
+                        		}
+
+                        		if($select === true)
+                        		{
+                        			$inputs .= str_replace('{optionsSettingsLoop}', $options, $selectBoxHtml);
+                        		}
+
+                        		$formElements .= str_replace(array('{propertiesLoopName}','{formElement}'), array($propertyValue['property'],$inputs), $formElement);
+                        	}
                         }
- 
-                        foreach (\getApiCss() -> getAllPropertiesWithoutGroup() as $noGroupProperty) {
-                               
-                                       
-                                        $values = array();
- 
-                                        if($noGroupProperty['vIds'] != "")
-                                        {
-                                                $valueArray = explode(',', $noGroupProperty['vIds']);
- 
-                                                foreach($valueArray as $valueId)
-                                                {
-                                                        $values[] = \getApiCss() -> getValueByValueId($valueId);
-                                                }
-                                        }
-                                       
-                        }
- 
-                        $selectBox = str_replace(array('{groupTabOptions}','{propertyValueOptions}'),array($tabOptions,$tabValues),$groupTmp);
-                        \sjHtml() -> assign('{content}',str_replace('{properties}',$selectBox,$tmp));
+
+                        $groupTmp = str_replace(array('{groupTabOptions}','{propertyValueOptions}'), array($groupTabOptions,$formElements), $groupTmp);
+
+                        $tmp = str_replace('{properties}',$groupTmp,$tmp);
+
+                        \sjHtml() -> assign('{content}',$tmp);
                 }
  
                

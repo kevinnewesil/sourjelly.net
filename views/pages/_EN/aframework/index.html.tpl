@@ -1,9 +1,9 @@
 <form action="">
 	<fieldset>
 		<div class="settingsGroup">
-			<label for="" class="settingsLabel"></label>
+			<label for="className" class="settingsLabel">Class name</label>
 			<div class="settings">
-				<input type="text" name="" id="className">
+				<input type="text" name="className" id="className">
 			</div>
 		</div>
 		{properties}
