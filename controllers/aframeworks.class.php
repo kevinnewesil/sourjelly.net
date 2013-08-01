@@ -25,6 +25,7 @@
                        
                         $inputColour      = \Template('aframework/inputColour.html.tpl');
                         $inputNumeric     = \Template('aframework/inputNumeric.html.tpl');
+                        $inputNormal	  = \Template('aFramework/inputNormal.html.tpl');
                        
                         $selectBoxHtml    = \Template('aframework/formElementSelect.html.tpl');
                         $optionsHtml      = \Template('aframework/formElementSelectOption.html.tpl');
