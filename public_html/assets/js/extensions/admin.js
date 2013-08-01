@@ -350,7 +350,7 @@ $(document).ready(function(){
 		return false;
 	});
 
-	$(".select-group").change(function(){
+	$(".select-group").hange(function(){
 		// console.log('changed');
 		 alert( "Handler for .change() called." );
 	});
