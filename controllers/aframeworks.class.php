@@ -25,6 +25,7 @@
                        
                         $inputColour      = \Template('aframework/inputColour.html.tpl');
                         $inputNumeric     = \Template('aframework/inputNumeric.html.tpl');
+                        $inputNormal      = \Template('aframework/inputNormal.html.tpl');
                        
                         $selectBoxHtml    = \Template('aframework/formElementSelect.html.tpl');
                         $optionsHtml      = \Template('aframework/formElementSelectOption.html.tpl');
@@ -42,6 +43,8 @@
                         		$options = '';
 								$inputs  = '';
 
+								// die(var_dump($propertyValue));
+
                         		foreach($values as $valueId)
                         		{
                         			$valueProperties = \getApiCss() -> getValueByValueId($valueId);
@@ -49,7 +52,16 @@
                         			switch ($valueProperties['type']) {
                         				case '1':
                         					//select options
-                        					$options .= str_replace(array('{value}','{name}'), array($valueProperties['value'],$valueProperties['value']), $optionsHtml);
+                        					$options .= str_replace(
+                        						array('{value}','{name}','{selected}'),
+                        						array(
+                        							$valueProperties['value'],
+                        							$valueProperties['value'],
+
+                        						),
+                        						$optionsHtml
+                        					);
+
                         					$select  = true;
                         					break;
                         				
