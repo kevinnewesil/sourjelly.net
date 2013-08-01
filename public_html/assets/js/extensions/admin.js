@@ -347,8 +347,11 @@ $(document).ready(function(){
 
 	$(".addCssProperty").click(function(){
 		admin.aFramework('group');
-
 		return false;
+	});
+
+	$(".select-group").change(function(){
+		console.log('changed');
 	});
 
 	// ---------------------------------------------------------------------------------------------- ||

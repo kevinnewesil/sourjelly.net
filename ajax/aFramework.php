@@ -28,7 +28,13 @@
 
 			$options .= str_replace(array('{value}','{name}'),array('unordered','Un-ordered properties'),$tmpOption);
 
-			$ret[] = (str_replace(array('{propertiesLoopName}','{optionsSettingsLoop}'),array('Group select',$options),$tmp));
+			$ret[] = '<div class="propertyGroups">' .
+					 (str_replace(array('{propertiesLoopName}','{optionsSettingsLoop}','{type}'),array('Group select',$options,$post -> type),$tmp)) .
+					 '</div>';
+
+			break;
+
+		case 'property':
 
 			break;
 	}
