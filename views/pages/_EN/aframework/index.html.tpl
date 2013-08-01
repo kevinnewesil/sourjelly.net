@@ -39,6 +39,7 @@
 }
 
 </style>
+
 <form action="">
 	<fieldset>
 		<div class="settingsGroup">
@@ -48,6 +49,9 @@
 			</div>
 		</div>
 		<hr>
-		{properties}
+		<button class="addCssProperty">+</button>
+		<div class="classProperties">
+			
+		</div>
 	</fieldset>
 </form>
