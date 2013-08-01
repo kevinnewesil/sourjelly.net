@@ -399,7 +399,7 @@ var admin = {
 				type : type
 			},
 			success : function(data){
-				console.log(data);
+				$(".classProperties").append(data);
 			},
 		});
 	},

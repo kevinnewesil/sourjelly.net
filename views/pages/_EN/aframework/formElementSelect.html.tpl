@@ -1,4 +1,4 @@
-<div class="settingsGroup" id="{groupName}">
+<div class="settingsGroup">
 	<label for="{propertiesLoopName}" class="settingsLabel">
 		<abbr title="{propertiesLoopName}"> {propertiesLoopName} </abbr>
 	</label>
