@@ -35,7 +35,7 @@
 			break;
 
 		case 'property':
-
+			die(var_dump($post));
 			break;
 	}
 

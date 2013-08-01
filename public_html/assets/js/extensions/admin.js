@@ -350,11 +350,6 @@ $(document).ready(function(){
 		return false;
 	});
 
-	$(".select-group").hange(function(){
-		// console.log('changed');
-		 alert( "Handler for .change() called." );
-	});
-
 	// ---------------------------------------------------------------------------------------------- ||
 	// End of document.ready function
 	// ---------------------------------------------------------------------------------------------- ||
@@ -393,19 +388,38 @@ var admin = {
 		inputValueGlobal : '',
 	},
 
-	aFramework : function(type)
+	aFramework : function(type, group)
 	{
-		$.ajax({
-			url : ajaxPath + 'aFramework.php',
-			type : "post",
-			dataType : "json",
-			data : {
-				type : type
-			},
-			success : function(data){
-				$(".classProperties").append(data);
-			},
-		});
+		if(typeof group == 'undefined')
+		{
+			$.ajax({
+				url : ajaxPath + 'aFramework.php',
+				type : "post",
+				dataType : "json",
+				data : {
+					type : type
+				},
+				success : function(data){
+					$(".classProperties").append(data);
+					$('.select-group').bind('change',function(){
+						admin.aFramework('property',$(this).val())
+					});
+				},
+			});
+		}else{
+			$.ajax({
+				url : ajaxPath + 'aFramework.php',
+				type : "post",
+				dataType : "json",
+				data : {
+					type : type,
+					group : group
+				},
+				success : function(data){
+					console.log(data);
+				}
+			})
+		}
 	},
 
 	// ---------------------------------------------------------------------------------------------- ||
