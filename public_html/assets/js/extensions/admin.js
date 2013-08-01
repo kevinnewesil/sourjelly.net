@@ -351,7 +351,8 @@ $(document).ready(function(){
 	});
 
 	$(".select-group").change(function(){
-		console.log('changed');
+		// console.log('changed');
+		 alert( "Handler for .change() called." );
 	});
 
 	// ---------------------------------------------------------------------------------------------- ||
