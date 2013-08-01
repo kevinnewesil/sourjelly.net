@@ -11,3 +11,11 @@
 	new \core\build\Sourjelly(true);
 
 	$post = \Post();
+
+	switch($post -> type)
+	{
+		default:
+		case 'group':
+			die(var_dump('group'));
+			break;
+	}
