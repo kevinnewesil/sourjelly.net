@@ -342,6 +342,16 @@ $(document).ready(function(){
 	});
 
 	// ---------------------------------------------------------------------------------------------- ||
+	// aFramework
+	// ---------------------------------------------------------------------------------------------- ||
+
+	$(".addCssProperty").click(function(){
+		admin.aFramework('group');
+
+		return false;
+	});
+
+	// ---------------------------------------------------------------------------------------------- ||
 	// End of document.ready function
 	// ---------------------------------------------------------------------------------------------- ||
 
@@ -377,6 +387,21 @@ var admin = {
 		prompt : false,
 		inputNameGlobal : '',
 		inputValueGlobal : '',
+	},
+
+	aFramework : function(type)
+	{
+		$.ajax({
+			url : ajaxPath + 'aFramework.php',
+			type : "post",
+			dataType : "json",
+			data : {
+				type : type
+			},
+			success : function(data){
+				console.log(data);
+			},
+		});
 	},
 
 	// ---------------------------------------------------------------------------------------------- ||
