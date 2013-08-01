@@ -27,7 +27,7 @@
 
 			$options .= str_replace(array('{value}','{name}'),array('unordered','Un-ordered properties'),$tmpOption);
 
-			$ret[] = '<div class="propertyGroup-' . $groupData['id'] . '">' .
+			$ret[] = '<div class="propertyGroup">' .
 					 (str_replace(array('{propertiesLoopName}','{optionsSettingsLoop}','{type}'),array('Group select',$options,$post -> type),$tmp)) .
 					 '</div>';
 
