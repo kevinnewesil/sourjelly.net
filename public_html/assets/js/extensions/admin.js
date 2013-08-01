@@ -417,6 +417,11 @@ var admin = {
 				},
 				success : function(data){
 					console.log(data);
+					console.log(".propertyGroup-" + group);
+					$(".propertyGroup-" + group).append(data);
+					// $('.select-group').bind('change',function(){
+					// 	admin.aFramework('property',$(this).val())
+					// });
 				}
 			})
 		}
