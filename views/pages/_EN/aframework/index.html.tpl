@@ -38,6 +38,18 @@
 	float:left;
 }
 
+.addCssProperty{
+	background-image: url('{assets}img/icons/add-interface-HR-SJ.png');
+	background-size: 32px;
+	width: 32px;
+	height:32px;
+	border: none;
+	background-color:white!important; 
+}
+.addCssProperty:hover{
+	background-image: url('{assets}img/icons/add-ro-interface-HR-SJ.png');
+}
+
 </style>
 
 <form action="">
@@ -49,7 +61,7 @@
 			</div>
 		</div>
 		<hr>
-		<button class="addCssProperty">+</button>
+		<button class="addCssProperty"></button>
 		<div class="classProperties">
 			
 		</div>
