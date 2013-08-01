@@ -388,7 +388,7 @@ var admin = {
 		inputValueGlobal : '',
 	},
 
-	aFramework : function(type, group)
+	aFramework : function(type, group, clickedEvt)
 	{
 		if(typeof group == 'undefined')
 		{
@@ -402,7 +402,7 @@ var admin = {
 				success : function(data){
 					$(".classProperties").append(data);
 					$('.select-group').bind('change',function(){
-						admin.aFramework('property',$(this).val())
+						admin.aFramework('property',$(this).val(),$(this))
 					});
 				},
 			});
@@ -416,7 +416,7 @@ var admin = {
 					group : group
 				},
 				success : function(data){
-					console.log(data);
+					$(clickedEvt.parent().parent().parent().append(data[0]));
 				}
 			})
 		}

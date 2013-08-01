@@ -10,6 +10,10 @@
 	// Start up the system
 	new \core\build\Sourjelly(true);
 
+	$tmp       = \Template('aframework/formElementSelect.html.tpl');
+	$tmpOption = \Template('aframework/formElementSelectOption.html.tpl');
+	$options   = '';
+
 	$post = \Post();
 	$ret = array();
 
@@ -17,25 +21,25 @@
 	{
 		default:
 		case 'group':
-			
-			$tmp       = \Template('aframework/formElementSelect.html.tpl');
-			$tmpOption = \Template('aframework/formElementSelectOption.html.tpl');
-			$options   = '';
 
-			foreach (\getApiCss() -> getAllGroups() as $groupKey => $groupData) {
-				$options .= str_replace(array('{value}','{name}'),array($groupData['groupName'],$groupData['groupName']),$tmpOption);
-			}
+			foreach (\getApiCss() -> getAllGroups() as $groupKey => $groupData)
+				$options .= str_replace(array('{value}','{name}'),array($groupData['id'],$groupData['groupName']),$tmpOption);
 
 			$options .= str_replace(array('{value}','{name}'),array('unordered','Un-ordered properties'),$tmpOption);
 
-			$ret[] = '<div class="propertyGroups">' .
+			$ret[] = '<div class="propertyGroup">' .
 					 (str_replace(array('{propertiesLoopName}','{optionsSettingsLoop}','{type}'),array('Group select',$options,$post -> type),$tmp)) .
 					 '</div>';
 
 			break;
 
 		case 'property':
-			die(var_dump($post));
+
+			foreach(\getApiCss() -> getAllPropertiesByGroupId($post -> group) as $key => $value)
+				$options .= str_replace(array('{value}','{name}'),array($value['pId'],$value['property']),$tmpOption);
+
+			$ret[] = str_replace(array('{propertiesLoopName}','{optionsSettingsLoop}','{type}'),array('Group select',$options,$post -> type),$tmp);
+
 			break;
 	}
 
