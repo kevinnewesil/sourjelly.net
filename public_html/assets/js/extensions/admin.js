@@ -394,6 +394,8 @@ var admin = {
 
 	aFramework : function(type)
 	{
+		var instant = '';
+
 		$.ajax({
 			url : ajaxPath + 'aFramework.php',
 			type : "post",
@@ -402,8 +404,15 @@ var admin = {
 				type : type
 			},
 			success : function(data){
-				$(".classProperties").append(data[0]);
 
+				instant = $(".classProperties").append(data);
+
+				console.log(instant.children().children().children(".settings").children(".select-group").attr("id"));
+
+				admin.aFramework_properties(
+					instant.children().children().children(".settings").children(".select-group").val(),
+					instant.children().children().children(".settings").children(".select-group").attr("id")
+				);
 			},
 		});
 
