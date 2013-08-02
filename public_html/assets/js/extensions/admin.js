@@ -350,6 +350,10 @@ $(document).ready(function(){
 		return false;
 	});
 
+	$(".select-group").live("change",function(){
+		admin.aFramework_properties($(this).val(),$(this).attr('id'));
+	});
+
 	// ---------------------------------------------------------------------------------------------- ||
 	// End of document.ready function
 	// ---------------------------------------------------------------------------------------------- ||
@@ -388,38 +392,39 @@ var admin = {
 		inputValueGlobal : '',
 	},
 
-	aFramework : function(type, group, clickedEvt)
+	aFramework : function(type)
 	{
-		if(typeof group == 'undefined')
-		{
-			$.ajax({
-				url : ajaxPath + 'aFramework.php',
-				type : "post",
-				dataType : "json",
-				data : {
-					type : type
-				},
-				success : function(data){
-					$(".classProperties").append(data);
-					$('.select-group').bind('change',function(){
-						admin.aFramework('property',$(this).val(),$(this))
-					});
-				},
-			});
-		}else{
-			$.ajax({
-				url : ajaxPath + 'aFramework.php',
-				type : "post",
-				dataType : "json",
-				data : {
-					type : type,
-					group : group
-				},
-				success : function(data){
-					$(clickedEvt.parent().parent().parent().append(data[0]));
-				}
-			})
-		}
+		$.ajax({
+			url : ajaxPath + 'aFramework.php',
+			type : "post",
+			dataType : "json",
+			data : {
+				type : type
+			},
+			success : function(data){
+				$(".classProperties").append(data[0]);
+
+			},
+		});
+
+	},
+
+	aFramework_properties : function(group,id)
+	{
+		$.ajax({
+			url : ajaxPath + 'aFramework.php',
+			type : "post",
+			dataType : "json",
+			data : {
+				type : 'property',
+				group : group
+			},
+			success : function(data){
+				$("#" + id).parent().parent().parent().find(".select-property").parent().parent().remove();
+				$("#" + id).parent().parent().parent().append(data);
+			},
+		});
+
 	},
 
 	// ---------------------------------------------------------------------------------------------- ||

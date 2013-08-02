@@ -28,7 +28,11 @@
 			$options .= str_replace(array('{value}','{name}'),array('unordered','Un-ordered properties'),$tmpOption);
 
 			$ret[] = '<div class="propertyGroup">' .
-					 (str_replace(array('{propertiesLoopName}','{optionsSettingsLoop}','{type}'),array('Group select',$options,$post -> type),$tmp)) .
+					 str_replace(
+					 	array('{propertiesLoopName}','{optionsSettingsLoop}','{selectId}','{type}'),
+					 	array('Group select',$options,sha1(time()),$post -> type),
+					 	$tmp
+					 ) .
 					 '</div>';
 
 			break;
@@ -38,7 +42,7 @@
 			foreach(\getApiCss() -> getAllPropertiesByGroupId($post -> group) as $key => $value)
 				$options .= str_replace(array('{value}','{name}'),array($value['pId'],$value['property']),$tmpOption);
 
-			$ret[] = str_replace(array('{propertiesLoopName}','{optionsSettingsLoop}','{type}'),array('Group select',$options,$post -> type),$tmp);
+			$ret[] = str_replace(array('{propertiesLoopName}','{optionsSettingsLoop}','{type}'),array('Property select',$options,$post -> type),$tmp);
 
 			break;
 	}
