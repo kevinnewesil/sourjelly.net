@@ -409,10 +409,10 @@ var admin = {
 
 				console.log(instant.children().children().children(".settings").children(".select-group").attr("id"));
 
-				admin.aFramework_properties(
-					instant.children().children().children(".settings").children(".select-group").val(),
-					instant.children().children().children(".settings").children(".select-group").attr("id")
-				);
+				// admin.aFramework_properties(
+				// 	instant.children().children().children(".settings").children(".select-group").val(),
+				// 	instant.children().children().children(".settings").children(".select-group").attr("id")
+				// );
 			},
 		});
 
