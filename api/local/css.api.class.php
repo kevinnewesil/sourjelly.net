@@ -136,29 +136,49 @@
 		/**
 		 * @todo  fix this shit
 		 */
-		// public function getAllValuesByPropertyId($pId)
-		// {
-		// 	$res = false;
-		// 	$query = "SELECT `value`
-		// 			  FROM `table_Aframework_css_values`
-		// 			  GROUP BY `pId` having (SELECT `id` FROM `table_Aframework_css_properties` WHERE `id` = ?);";
+		public function getAllValuesByPropertyId($pId)
+		{
+			$res = false;
 
-		// 	if($stmt = $this -> _link -> prepare($query))
-		// 	{
-		// 		$stmt -> bind_param("is",$pId,$pId);
-		// 		$stmt -> execute();
-		// 		$result = $stmt -> get_result();
+			$query = "SELECT `vId`
+					  FROM `table_Aframework_css_properties`
+					  WHERE `id` = ?;";
 
-		// 		while($row = $result -> fetch_assoc())
-		// 			$res[] = $row;
+			if($stmt = $this -> _link -> prepare($query))
+			{
+				$stmt -> bind_param("i",$pId);
+				$stmt -> execute();
+				$result = $stmt -> get_result();
 
-		// 		$stmt -> close();
-		// 	}
-		// 	else
-		// 		die($this -> _link -> error);
+				while($row = $result -> fetch_assoc())
+					$values = $row;
 
-		// 	return $res;
-		// }
+				$stmt -> close();
+			}
+			else
+				die($this -> _link -> error);
+
+			$vIds = explode(',', $values['vId']);
+
+			$query = "SELECT `id`,`value`,`type` FROM `table_Aframework_css_values` WHERE `id` = ?";
+
+			foreach($vIds as $vId)
+			{
+				if($stmt = $this -> _link -> prepare($query))
+				{
+					$stmt -> bind_param("i",$vId);
+					$stmt -> execute();
+					$result = $stmt -> get_result();
+
+					while($row = $result -> fetch_assoc())
+						$res[] = $row;
+
+					$stmt -> close();
+				}
+			}
+
+			return $res;
+		}
 
 		private function matchPropertyValue($class = "", $classId = 0)
 		{

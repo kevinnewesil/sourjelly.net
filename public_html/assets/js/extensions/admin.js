@@ -354,6 +354,10 @@ $(document).ready(function(){
 		admin.aFramework_properties($(this).val(),$(this).attr('id'));
 	});
 
+	$(".select-property").live("change",function(){
+		admin.aFramework_values($(this).val(),$(this).attr('id'));
+	});
+
 	// ---------------------------------------------------------------------------------------------- ||
 	// End of document.ready function
 	// ---------------------------------------------------------------------------------------------- ||
@@ -407,7 +411,7 @@ var admin = {
 
 				instant = $(".classProperties").append(data);
 
-				console.log(instant.children().children().children(".settings").children(".select-group").attr("id"));
+				// console.log(instant.children().children().children(".settings").children(".select-group").attr("id"));
 
 				// admin.aFramework_properties(
 				// 	instant.children().children().children(".settings").children(".select-group").val(),
@@ -434,6 +438,23 @@ var admin = {
 			},
 		});
 
+	},
+
+	aFramework_values : function(property,id)
+	{
+		$.ajax({
+			url : ajaxPath + 'aFramework.php',
+			type : "post",
+			dataType : "json",
+			data : {
+				type : 'value',
+				property : property
+			},
+			success : function(data){
+				$("#" + id).parent().parent().parent().find(".select-value").parent().parent().remove();
+				$("#" + id).parent().parent().parent().append(data);
+			},
+		});
 	},
 
 	// ---------------------------------------------------------------------------------------------- ||
