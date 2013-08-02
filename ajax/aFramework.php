@@ -39,7 +39,12 @@
 
 		case 'property':
 
-			foreach(\getApiCss() -> getAllPropertiesByGroupId($post -> group) as $key => $value)
+			if($post -> group == 'unordered')
+				$properties = \getApiCss() -> getAllPropertiesWithoutGroup();
+			else
+				$properties = \getApiCss() -> getAllPropertiesByGroupId($post -> group);
+
+			foreach($properties as $key => $value)
 				$options .= str_replace(array('{value}','{name}'),array($value['pId'],$value['property']),$tmpOption);
 
 			$ret[] = str_replace(
