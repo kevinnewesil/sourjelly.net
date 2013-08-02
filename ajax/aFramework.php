@@ -52,12 +52,13 @@
 
 		case 'value':
 
+            $formControl      = \Template('aframework/formControl.html.tpl');
             $inputColour      = \Template('aframework/inputColour.html.tpl');
             $inputNumeric     = \Template('aframework/inputNumeric.html.tpl');
 
             $inputNormal      = \Template('aframework/inputNormal.html.tpl');
            
-            $selectBoxHtml    = \Template('aframework/formElementSelect.html.tpl');
+            $selectBoxHtml    = \Template('aframework/formElementSelectValue.html.tpl');
             $optionsHtml      = \Template('aframework/formElementSelectOption.html.tpl');
             $inputs 		  = '';
 
@@ -72,7 +73,7 @@
 								$value['value'],
 
 							),
-							$optionsHtml
+							$tmpOption
 						);
 
 						$select  = true;
@@ -136,10 +137,10 @@
 
 				if($select === true)
         		{
-        			$inputs .= str_replace(array('{optionsSettingsLoop}','{propertiesLoopName}'), array($options,'Value select'), $selectBoxHtml);
+        			$inputs .= str_replace(array('{optionsSettingsLoop}'), array($options), $selectBoxHtml);
         		}
 
-			$ret[] = $inputs;
+			$ret[] = str_replace(array('{propertiesLoopName}','{formElement}','{type}'),array('Value select',$inputs,'value'),$formControl);
 
 			break;
 	}
