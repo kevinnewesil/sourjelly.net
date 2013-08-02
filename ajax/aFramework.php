@@ -140,7 +140,7 @@
         			$inputs .= str_replace(array('{optionsSettingsLoop}'), array($options), $selectBoxHtml);
         		}
 
-			$ret[] = str_replace(array('{propertiesLoopName}','{formElement}'),array('Value select',$inputs),$formControl);
+			$ret[] = str_replace(array('{propertiesLoopName}','{formElement}','{type}'),array('Value select',$inputs,'value'),$formControl);
 
 			break;
 	}

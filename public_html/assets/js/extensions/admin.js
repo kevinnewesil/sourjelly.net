@@ -451,6 +451,7 @@ var admin = {
 				property : property
 			},
 			success : function(data){
+
 				$("#" + id).parent().parent().parent().find(".select-value").parent().parent().remove();
 				$("#" + id).parent().parent().parent().append(data);
 			},
