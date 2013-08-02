@@ -1,31 +1,4 @@
 <style>
-.SettingsTabWrapper{
-	width:30%;
-}
-
-.SettingsTabWrapper ul{
-	list-style: none;
-}
-
-.SettingsTabWrapper ul li{
-	padding:4% 0 4% 4%;
-	border:1px solid #ccc;
-	border-right: 0px;
-	border-radius: 5px 0px 0px 5px;
-	margin-bottom: 2%;
-
-}
-.SettingsTabWrapper ul li:hover{
-	font-color:rgba(255,255,255,1);
-	background-color: rgba(255,102,0,1);
-}
-
-.SettingsTabContentWrapper{
-	padding-left: 4%;
-	border-left: 1px solid #ccc;
-	width:65%;
-}
-
 .fRight{
 	float:right;
 }
@@ -50,11 +23,29 @@
 	background-image: url('{assets}img/icons/add-ro-interface-HR-SJ.png');
 }
 
+.propertyGroup{
+	width:100%;
+}
+.classProperties{
+	width:100%;
+	float:left;
+}
+
+.settingsGroup{
+	width:25%;
+	float:left;
+}
+
+.className{
+	width:100%;
+	float: none;
+}
+
 </style>
 
 <form action="">
 	<fieldset>
-		<div class="settingsGroup">
+		<div class="className settingsGroup">
 			<label for="className" class="settingsLabel">Class name</label>
 			<div class="settings">
 				<input type="text" name="className" id="className">
