@@ -18,18 +18,28 @@
 .wQuater{
 	width:25%;
 }
+
 .w3Quater{
 	width:75%;
 }
 
 .addCssProperty{
 	background-image: url('{assets}img/icons/add-interface-HR-SJ.png');
-	background-size: 32px;
-	width: 32px;
-	height:32px;
 	border: none;
 	background-color:white!important; 
 	float:right;
+}
+
+.wIconL{
+	width: 32px;
+	height:32px;
+	background-size: 32px 32px;
+}
+
+.wIconS{
+	width: 16px;
+	height:16px;
+	background-size: 16px 16px;
 }
 
 .settings{
@@ -66,8 +76,6 @@
 	float: none;
 }
 
-
-
 </style>
 
 <form action="">
@@ -79,7 +87,7 @@
 					<input type="text" name="className" id="className">
 				</div>
 				<div class="fRight wHalf">
-					<button class="addCssProperty fRight"></button>
+					<button class="addCssProperty fRight wIconL"></button>
 				</div>
 				<hr>
 			</div>
