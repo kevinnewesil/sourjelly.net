@@ -62,6 +62,10 @@
 			</a>
 			<ul class="dropdown-menu" aria-labelledby="themes">
 				<li><a href="{base}/aFrameworks/index/?ns=controllers&amp;path=controller_path" title="Pick existing theme">Create class</a></li>
+				<li><a href="{base}/aFrameworks/overview/?ns=controllers&amp;path=controller_path" title="Pick existing theme">Class overview</a></li>
+
+				<li class="divider"></li>
+
 				<li><a href="{base}/themes/index/?ns=controllers&amp;path=controller_path" title="Pick existing theme">Theme selection</a></li>
 				<li><a href="{base}/themes/upload/?ns=controllers&amp;path=controller_path" title="Upload theme">Upload theme</a></li>
 				<li><a href="{base}/themes/newTheme/?ns=controllers&amp;path=controller_path" title="Create new theme">Create theme</a></li>
