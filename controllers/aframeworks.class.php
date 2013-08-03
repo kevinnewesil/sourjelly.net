@@ -24,16 +24,20 @@
              */
            	final public function overview()
            	{
-           		\sjHtml() -> assign('{content}', \Template('aframework/overview.html.tpl'));
 
            		$tmp  = \Template('aframework/overview.html.tpl');
-           		$row  = \Template('aframework/overview.html.tpl');
+           		$row  = \Template('aframework/overviewItems.html.tpl');
            		$rows = '';
 
            		$classes = \getApiCss() -> getAllClasses();
 
+           		foreach($classes as $class)
+           			$rows .= str_replace(
+           				array('{className}','{classDescription}','{classTimestamp}'),
+           				array($class['class'],$class['desc'],$class['created_at']),
+           				$row
+           			);
 
-
-           		die(var_dump($classes));
+           		\sjHtml() -> assign('{content}', str_replace('{rows}',$rows,$tmp));
            	}
         }
