@@ -184,15 +184,16 @@
 		{
 			$res = false;
 
-			if($stmt = $this -> _link -> query("SELECT `id`,`vId`,`class`,`sId`,`pId`,`gId` FROM `table_Aframework_css"))
+			if($stmt = $this -> _link -> query("SELECT `id`,`class`,`desc`,`created_at` FROM `table_Aframework_css_class`"))
 			{
-				$stmt -> bind_result($id,$vId,$class,$sId,$pId,$gId);
 
-				while($row = $stmt -> fetch())
+				while($row = $stmt -> fetch_assoc())
 					$res[] = $row;
 
 				$stmt -> close();
 			}
+			else
+				die($this -> _link -> error);
 
 			return $res;
 		}

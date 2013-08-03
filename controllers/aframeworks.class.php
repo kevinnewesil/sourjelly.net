@@ -26,7 +26,13 @@
            	{
            		\sjHtml() -> assign('{content}', \Template('aframework/overview.html.tpl'));
 
+           		$tmp  = \Template('aframework/overview.html.tpl');
+           		$row  = \Template('aframework/overview.html.tpl');
+           		$rows = '';
+
            		$classes = \getApiCss() -> getAllClasses();
+
+
 
            		die(var_dump($classes));
            	}
