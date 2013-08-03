@@ -8,18 +8,26 @@
         */
         final class AFrameworks extends \core\system\Controller
         {
- 
-                final public function __construct()
-                {
-                        parent::__construct();
-                }
- 
-                final public function index() { \sjHtml() -> assign('{content}',\Template('aframework/index.html.tpl')); }
- 
-               	final public function overview()
-               	{
-               		\sjHtml() -> assign('{content}', \Template('aframework/overview.html.tpl'));
+			
+			/**
+			 * Function to load main controller
+			 */
+            final public function __construct(){ parent::__construct(); }
 
-               		// $classes = \getApiCss() -> getAllClasses();
-               	}
+            /**
+             * Function to get basic class creation page
+             */
+            final public function index() { \sjHtml() -> assign('{content}',\Template('aframework/index.html.tpl')); }
+
+            /**
+             * Function to get an overview of all currently enabled classes.
+             */
+           	final public function overview()
+           	{
+           		\sjHtml() -> assign('{content}', \Template('aframework/overview.html.tpl'));
+
+           		$classes = \getApiCss() -> getAllClasses();
+
+           		die(var_dump($classes));
+           	}
         }

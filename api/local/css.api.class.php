@@ -180,6 +180,26 @@
 			return $res;
 		}
 
+		public function getAllClasses()
+		{
+			$res = false;
+
+			if($stmt = $this -> _link -> query("SELECT `id`,`vId`,`class`,`sId`,`pId`,`gId` FROM `table_Aframework_css"))
+			{
+				$stmt -> bind_result($id,$vId,$class,$sId,$pId,$gId);
+
+				while($row = $stmt -> fetch())
+					$res[] = $row;
+
+				$stmt -> close();
+			}
+
+			return $res;
+		}
+
+		/**
+		 * @todo :
+		 */
 		private function matchPropertyValue($class = "", $classId = 0)
 		{
 
@@ -187,6 +207,6 @@
 
 		private function matchPropertyGroup($class = "", $classId = 0)
 		{
-			$query = "SELECT `groupName` FROM `table_Aframework_css_property_groups` WHERE `gId` = (SELECT ``) ";
+			
 		}
 	}
