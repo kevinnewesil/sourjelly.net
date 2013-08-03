@@ -1,1 +1,1 @@
-<input type="color">
+<input type="color" class="colourpicker">
