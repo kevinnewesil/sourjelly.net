@@ -1,3 +1,3 @@
-<select name="position" class="select-{type}" id="{selectId}">
+<select name="{name}" class="select-{type}" id="">
 	{optionsSettingsLoop}
 </select>

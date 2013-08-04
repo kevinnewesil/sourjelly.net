@@ -14,6 +14,9 @@
 	$tmpOption = \Template('aframework/formElementSelectOption.html.tpl');
 	$options   = '';
 
+	if(!isset($_SESSION['count']))
+		$_SESSION['count'] = array('group' => 0, 'property' => 0 ,'value' => 0);
+
 	$post = \Post();
 	$ret = array();
 
@@ -29,11 +32,13 @@
 
 			$ret[] = '<div class="propertyGroup">' .
 					 str_replace(
-					 	array('{propertiesLoopName}','{optionsSettingsLoop}','{selectId}','{type}'),
-					 	array('Group select',$options,sha1(time()),$post -> type),
+					 	array('{propertiesLoopName}','{optionsSettingsLoop}','{selectId}','{type}','{name}'),
+					 	array('Group select',$options,sha1(time()),$post -> type, 'group[' . $_SESSION['count']['group'] . ']'),
 					 	$tmp
 					 ) .
 					 '</div>';
+
+			$_SESSION['count']['group']++;
 
 			break;
 
@@ -48,10 +53,12 @@
 				$options .= str_replace(array('{value}','{name}'),array($value['pId'],$value['property']),$tmpOption);
 
 			$ret[] = str_replace(
-				array('{propertiesLoopName}','{optionsSettingsLoop}','{selectId}','{type}'),
-				array('Property select',$options,sha1(time()),$post -> type),
+				array('{propertiesLoopName}','{optionsSettingsLoop}','{selectId}','{type}','{name}'),
+				array('Property select',$options,sha1(time()),$post -> type, 'property[' . $post -> group .'][' . $_SESSION['count']['property'] . ']'),
 				$tmp
 			);
+
+			$_SESSION['count']['property']++;
 
 			break;
 
@@ -68,6 +75,7 @@
             $inputs 		  = '';
 
 			foreach(\getApiCss() -> getAllValuesByPropertyId($post -> property) as $key => $value)
+			{
 				switch ($value['type']) {
 					case '1':
 						//select options
@@ -87,62 +95,90 @@
 					case '2':
 						//numeric
 						$inputs .= $inputNumeric;
+						$_SESSION['count']['value']++;
+
+						// $inputs .= str_replace(
+						// 	array(),
+						// 	array(),	
+						// 	$inputNumeric;
+						// );
 						break;
 					
 					case '3':
 						//rgba
 						$inputs .= $inputColour;
+						$_SESSION['count']['value']++;
 						break;
 
 					case '4':
 						//cubic bezier
 						$inputs .= '';
+						$_SESSION['count']['value']++;
 						break;
 
 					case '5':
 						//url
 						$inputs .= $inputNormal;
+						$_SESSION['count']['value']++;
 						break;
 
 					case '6':
 						//attr
 						$inputs .= '';
+						$_SESSION['count']['value']++;
 						break;
 
 					case '7':
 						//float float
 						$inputs .= $inputNumeric;
+						$_SESSION['count']['value']++;
 						$inputs .= $inputNumeric;
+						$_SESSION['count']['value']++;
 						break;
 
 					case '8':
 						//float
 						$inputs .= $inputNumeric;
+						$_SESSION['count']['value']++;
 						break;
 
 					case '9':
 						//float float float
 						$inputs .= $inputNumeric;
+						$_SESSION['count']['value']++;
 						$inputs .= $inputNumeric;
+						$_SESSION['count']['value']++;
 						$inputs .= $inputNumeric;
+						$_SESSION['count']['value']++;
 						break;
 
 					case '10':
 						//float float float float
 						$inputs .= $inputNumeric;
+						$_SESSION['count']['value']++;
 						$inputs .= $inputNumeric;
+						$_SESSION['count']['value']++;
 						$inputs .= $inputNumeric;
+						$_SESSION['count']['value']++;
 						$inputs .= $inputNumeric;
+						$_SESSION['count']['value']++;
 						break;
 
 					default:
 						# code...
 						break;
 				}
+			}
 
 				if($select === true)
         		{
-        			$inputs .= str_replace(array('{optionsSettingsLoop}'), array($options), $selectBoxHtml);
+        			$inputs .= str_replace(
+        				array('{optionsSettingsLoop}','{name}'),
+        				array($options, 'value[' . $post -> group . '][' . $post -> property . '][' . $_SESSION['count']['value'] . ']'),
+        				$selectBoxHtml
+        			);
+
+        			$_SESSION['count']['value']++;
         		}
 
 			$ret[] = str_replace(array('{propertiesLoopName}','{formElement}','{type}'),array('Value select',$inputs,'value'),$formControl);

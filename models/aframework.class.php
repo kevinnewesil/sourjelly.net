@@ -10,10 +10,10 @@
 	final class AFramework extends \core\system\Model
 	{
 
-		final public function __construct()
-		{
-			parent::__construct();
-		}
+		final public function __construct() { parent::__construct(); }
 
-		
+		final public function create()
+		{
+			die(var_dump($this -> _post));
+		}
 	}

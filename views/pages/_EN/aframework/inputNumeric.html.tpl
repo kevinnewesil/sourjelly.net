@@ -1,1 +1,1 @@
-<input type="text" name="" id="" value="" placeholder="">
+<input type="text" name="{name}" id="{id}" value="{value}" placeholder="{placeholder}">

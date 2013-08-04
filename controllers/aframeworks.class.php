@@ -12,7 +12,10 @@
 			/**
 			 * Function to load main controller
 			 */
-            final public function __construct(){ parent::__construct(); }
+            final public function __construct(){ 
+            	parent::__construct();
+            	unset($_SESSION['count']);
+            }
 
             /**
              * Function to get basic class creation page
@@ -39,5 +42,13 @@
            			);
 
            		\sjHtml() -> assign('{content}', str_replace('{rows}',$rows,$tmp));
+           	}
+
+           	final public function create()
+           	{
+           		if($this -> _model -> create())
+           			\Redirect('Class created','success');
+           		else
+           			\Redirect('Error');
            	}
         }

@@ -78,7 +78,7 @@
 
 </style>
 
-<form action="">
+<form action="{base}/aFrameworks/create/?ns=controllers&amp;path=controller_path" method="post">
 	<fieldset>
 		<div class="className settingsGroup">
 			<label for="className" class="settingsLabel">Class name</label>
@@ -96,5 +96,7 @@
 		<div class="classProperties">
 			
 		</div>
+
+		<input type="submit" name="submit" value="submit">
 	</fieldset>
 </form>

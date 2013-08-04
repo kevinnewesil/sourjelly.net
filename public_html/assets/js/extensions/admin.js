@@ -355,7 +355,7 @@ $(document).ready(function(){
 	});
 
 	$(".select-property").live("change",function(){
-		admin.aFramework_values($(this).val(),$(this).attr('id'));
+		admin.aFramework_values($(this).val(),$(this).attr('id'),$(this).parent().parent().parent().find('.select-group').val());
 	});
 
 	// ---------------------------------------------------------------------------------------------- ||
@@ -440,7 +440,7 @@ var admin = {
 
 	},
 
-	aFramework_values : function(property,id)
+	aFramework_values : function(property,id,group)
 	{
 		$.ajax({
 			url : ajaxPath + 'aFramework.php',
@@ -448,7 +448,8 @@ var admin = {
 			dataType : "json",
 			data : {
 				type : 'value',
-				property : property
+				property : property,
+				group : group
 			},
 			success : function(data){
 
