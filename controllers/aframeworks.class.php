@@ -47,8 +47,8 @@
            	final public function create()
            	{
            		if($this -> _model -> create())
-           			\Redirect('Class created','success');
+           			\Go(HOME_PATH . '/aFrameworks/index/?ns=controllers&path=controller_path', 'Class created','success');
            		else
-           			\Redirect('Error');
+           			\Go(HOME_PATH . '/aFrameworks/index/?ns=controllers&path=controller_path', 'Error');
            	}
         }
