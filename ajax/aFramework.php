@@ -82,7 +82,7 @@
 						$options .= str_replace(
 							array('{value}','{name}'),
 							array(
-								$value['id'],
+								$value['value'],
 								$value['value'],
 
 							),
