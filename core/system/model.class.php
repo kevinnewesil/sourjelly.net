@@ -13,6 +13,8 @@
 		protected static $_post;
 		protected static $_get;
 
+		protected static $_link;
+
 		/**
 		 * Gets the name of the model, cleans it, and uses the the name, to render the table.
 		 */
@@ -23,6 +25,8 @@
 
 			$this -> _post    = \Post();
 			$this -> _get     = \Get();
+
+			$this -> _link	  = $link = \SjConfig() -> getLink();
 		}
 
 		/**

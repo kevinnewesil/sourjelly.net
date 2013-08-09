@@ -1,11 +1,9 @@
 <?php namespace models; if(!defined("DS")) die('no direct script access!');
 
 	/** 
-	* @author  {YOUR_NAME} <{YOUR_EMAIL}>
+	* @author  Kevin Newesil <kevin@sourjelly.net>
 	* @version  1.0 
-	* @package  {PACKAGE}
-	* 
-	* @var {PROPERTIE_NAME} {PROPERTY_TYPE} {PROPERTY_DESCRIPTION}
+	* @package  Models
 	*/
 	final class AFramework extends \core\system\Model
 	{
@@ -14,8 +12,6 @@
 
 		final public function create()
 		{
-
-			$link = \SjConfig() -> getLink();
 
 			$inserted = array();
 			$query = "INSERT INTO `table_Aframework_css_class_rows` VALUES(NULL,(SELECT `property` FROM `table_Aframework_css_properties` WHERE `id` = ?),?)";
@@ -26,27 +22,27 @@
 				{
 					foreach($values as  $value)
 					{
-						if($stmt = $link -> prepare($query))
+						if($stmt = $this -> _link -> prepare($query))
 						{
 							$stmt -> bind_param('is',$propertyId,$value);
 							$stmt -> execute();
 
-							$inserted[] = $link -> insert_id;
+							$inserted[] = $this -> _link -> insert_id;
 
 							$stmt -> close();
 						}
 						else
-							die($link -> error);
+							die($this -> _link -> error);
 					}
 				}
 			}
 
-			if($stmt = $link -> prepare("INSERT INTO `table_Aframework_css_class` VALUES(NULL,?,?,?,?)"))
+			if($stmt = $this -> _link -> prepare("INSERT INTO `table_Aframework_css_class` (`id`,`class`,`desc`,`rowId`,`created_at`) VALUES(NULL,?,?,?,?)"))
 			{
 				$ids = implode(',', $inserted);
 				$date = date('Y-m-d H:i:s');
 				$className = $this -> _post -> className;
-				
+
 				$desc = 'desc';
 
 				$stmt -> bind_param('ssss',$className, $desc ,$ids,$date);
@@ -59,10 +55,13 @@
 				}
 				else
 				{
+					die($this -> _link -> error);
 					$stmt -> close();
 					return false;
 				}
 			}
+			else
+				die($this -> _link -> error);
 
 			return false;
 		}
