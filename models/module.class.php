@@ -106,6 +106,8 @@
 		public function upload($filesInstaller = NULL)
 		{
 
+			$zipExtractor = new \ZipArchive;
+
 			if($filesInstaller === NULL)
 				$files = $_FILES;
 			else
@@ -117,12 +119,9 @@
 
 			$name          = explode(".", $fileName);
 			$path          = MODULES_PATH . $name[0];
-			$acceptedTypes = array('application/zip', 'application/x-zip-compressed', 'multipart/x-zip', 'application/x-compressed');
-			
-			// if($filesInstaller !== NULL)
-				die(var_dump($fileType));
+			$acceptedTypes = array('application/zip', 'application/x-zip-compressed', 'multipart/x-zip', 'application/x-compressed','zip');
 
-			if(!in_array($fileType, $acceptedTypes,true) || strtolower($name[1]) !== 'zip' || $fileType !== 'zip')
+			if(!in_array($fileType, $acceptedTypes) || strtolower($name[1]) !== 'zip')
 				\core\access\Redirect::Refresh('file does not have right extension');
 
 			if(is_dir($path))
@@ -133,23 +132,19 @@
 
 			if($filesInstaller === NULL)
 			{
-				if(!rename($source, $path . DS . $fileName))
-				{
-					rmdir($path);
-					\Refresh("Could not move downloaded modules into modules folder");
-				}
-			}
-			else
-			{
 				if(!move_uploaded_file($source, $path . DS . $fileName))
 				{
 					rmdir($path);
 					\core\access\Redirct::Refresh('Could not re-locate uploaded file to destination folder.');
 				}
 			}
-
-
-			$zipExtractor = new \ZipArchive;
+			else
+			{
+				if(!rename($source, $path . DS . $fileName))
+				{
+					\core\access\REdirect::Refresh('could not move downloaded folder in the desegnated area');
+				}
+			}
 
 			$extracted = $zipExtractor->open($path . DS . $fileName);
 
@@ -158,8 +153,9 @@
 
 			if($zipExtractor->extractTo(MODULES_PATH));
 			{
-				if(!$this -> checkInstaller($name[0]))
-					\Refresh("could not run installer");
+				if(is_dir(MODULES_PATH . $name[0] . DS . 'installer'))
+					if(!$this -> checkInstaller($name[0]))
+						\Refresh("could not run installer");
 
 				if($filesInstaller !== NULL)
 					$desc = $name[0];
@@ -175,7 +171,7 @@
 
 				unlink(MODULES_PATH . $name[0] . DS . $fileName);
 
-				if($filesInstaller === NULL)
+				if($filesInstaller !== NULL)
 					return true;
 				else
 					\core\access\Redirect::Refresh('Module succesfully installed','success');

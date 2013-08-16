@@ -95,11 +95,16 @@
 
 					curl_close($ch);
 
+					$destination = MODULES_PATH . $include['name'] . '.' . $include['ext'];
+					$file = fopen($destination, "w+");
+					fputs($file, $data);
+					fclose($file);
+
 					$files = array(
 						'file' => array(
 							'name' 	   => $include['name'] . '.' . $include['ext'],
 							'type' 	   => $include['ext'],
-							'tmp_name' => $include['name'],
+							'tmp_name' => $destination,
 						),
 					);
 
