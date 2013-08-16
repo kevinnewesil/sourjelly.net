@@ -1,0 +1,141 @@
+ 	<script type="text/javascript">
+
+	$(document).ready(function(){
+
+		var amount = 1;
+
+		$("#addInput").click(function(){
+			$(".formControls").append("\
+				<div class=\"control-group\">\
+					<label for=\"\" class=\"control-label\">label</label>\
+					<div class=\"controls\">\
+						<input type=\"text\" name=\"input[input][name]\" value=\"\" class=\"input-added input-" + amount + "\">\
+					</div>\
+				</div>\
+				<div class=\"control-group\">\
+					<label for=\"\" class=\"control-label\">placeholder</label>\
+					<div class=\"controls\">\
+						<input type=\"text\" name=\"input[input][placeholder]\" value=\"\">\
+					</div>\
+				</div>\
+			");
+
+			amount = amount + 1;
+		});
+
+		$("#addTextarea").click(function(){
+			$(".formControls").append("\
+				<div class=\"control-group\">\
+					<label for=\"\" class=\"control-label\">label</label>\
+					<div class=\"controls\">\
+						<textarea name=\"input[textarea][name]\" value=\"\" class=\"input-added input-" + amount + "\"></textarea>\
+					</div>\
+				</div>\
+			");
+
+			amount = amount + 1;
+		});
+
+		$("#addFileField").click(function(){
+			$(".formControls").append("\
+				<div class=\"control-group\">\
+					<label for=\"\" class=\"control-label\">Attachement</label>\
+					<div class=\"controls\">\
+						<input type=\"text\" name=\"input[file][name]\" value=\"\" class=\"input-added input-" + amount + "\">\
+					</div>\
+				</div>\
+			");
+
+			amount = amount + 1;
+		});
+
+		$(".input-added").live('keyup',function(){
+			val = $(this)[0].value;
+			$(this).parent().siblings('label').html(val);
+		});
+	});
+</script>
+
+<form method="post" action="/sourjelly.net/public_html/index.php/modules/settings/{moduleId}/?ns=controllers&amp;path=controller_path" class="form form-horizontal">
+	<fieldset>
+		<legend>Common settings</legend>
+
+		<div class="control-group">
+			<label class="control-label" for="email">Your e-mail account</label>
+			<div class="controls">
+				<input type="text" name="email" value="{email}" id="email" placeholder="you@yourdomain.com">
+				<p class="help">Note: You can add multiple e-mail, split them by comma</p>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label" for="saveMail">Mails before send</label>
+			<div class="controls">
+				<input type="text" name="saveMail" value="{saveMail}" id="saveMail" placeholder="10">
+			</div>
+		</div>
+	</fieldset>
+
+	<fieldset class="formControls">
+		<legend>Form controls</legend>
+		
+		<!-- Add input field -->
+		<div class="control-group">
+			<label for="addInput" class="control-label">Add input field</label>
+			<div class="controls input">
+				<a href="#" class="btn btn-primary btn-large" id="addInput">Add input</a>
+			</div>
+		</div>
+		
+		<!-- Add textarea -->
+		<div class="control-group">
+			<label for="addInput" class="control-label">Add textarea</label>
+			<div class="controls textarea">
+				<a href="#" class="btn btn-primary btn-large" id="addTextarea">Add textarea</a>
+			</div>
+		</div>
+
+		<!-- Add file input -->
+		<div class="control-group">
+			<label for="addInput" class="control-label">Add file field</label>
+			<div class="controls file">
+				<a href="#" class="btn btn-primary btn-large" id="addFileField">Add file field</a>
+			</div>
+		</div>
+
+		
+
+	</fieldset>
+
+<div id="tabs">
+<ul>
+<li><a href="#fragment-1"><span>One</span></a></li>
+<li><a href="#fragment-2"><span>Two</span></a></li>
+<li><a href="#fragment-3"><span>Three</span></a></li>
+</ul>
+<div id="fragment-1">
+{allready_added_fields}
+</div>
+<div id="fragment-2">
+{allready_added_fields_2}
+</div>
+<div id="fragment-3">
+{allready_added_fields_3	}
+</div>
+</div><script>
+$( "#tabs" ).tabs();
+</script>
+
+	<fieldset>
+		
+		<legend>Save</legend>
+
+		<div class="control-group">
+			<div class="controls">
+				<input type="submit" name="contact_form_submit" value="Save" class="btn btn-primary btn-large">
+			</div>
+		</div>
+
+	</fieldset>
+</form>
+		

@@ -184,9 +184,9 @@
 		{
 			$data = new \stdClass();
 			
-			$data -> front = "1";
+			$data -> front = "on";
 			$data -> back = "0";
-			$data -> menuVisibility = "1";
+			$data -> menuVisibility = "on";
 			$data -> created_at = date('Y-m-d h:I:s');
 			$data -> public = "1";
 			$data -> deprecated = "0";

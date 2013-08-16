@@ -106,17 +106,19 @@
 			{
 				foreach($modulesIncluded as $include)
 				{
-					$downloadLink = self::$_downloadUri . $include['name'] . '.' . $include['ext'];
+					$downloadLink = 'Http://sourjelly.net/assets/files/modules/' . $include['name'] . '.' . $include['ext'];
+					$destination = MODULES_PATH . $include['name'] . '.' . $include['ext'];
+
 					$ch = curl_init();
 
 					curl_setopt($ch, CURLOPT_URL, $downloadLink);
-					curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-					$data = curl_exec($ch);
+					if(!$data = curl_exec($ch))
+						die(curl_error($ch));
 
 					curl_close($ch);
 
-					$destination = MODULES_PATH . $include['name'] . '.' . $include['ext'];
 					$file = fopen($destination, "w+");
 					fputs($file, $data);
 					fclose($file);
