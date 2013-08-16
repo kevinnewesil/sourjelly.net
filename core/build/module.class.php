@@ -11,7 +11,7 @@
 
 		protected $_includeClean = array();
 
-		protected $_downloadUri = NULL;
+		protected static $_downloadUri = NULL;
 
 		/**
 		 * parses if any module is called for, and includes the module.
@@ -77,15 +77,36 @@
 			if(!class_exists("\\models\\Modules"))
 				require_once(MODEL_PATH . 'module.class.php');
 
-			$model = new \models\Module;
-
 			require(MODULES_PATH . $filename . DS . 'installer/installer.php');
+		}
+
+		/**
+		 * [getSettings description]
+		 * @return [type] [description]
+		 */
+		final public function getSettings()
+		{
+			return 'settings';
+		}
+
+		/**
+		 * [saveSettings description]
+		 * @return [type] [description]
+		 */
+		final public function saveSettings()
+		{
+			
+		}
+
+		final public static function getModulesViaSourjelly($modulesIncluded)
+		{
+			$model = new \models\Module;
 
 			if(isset($modulesIncluded) && is_array($modulesIncluded))
 			{
 				foreach($modulesIncluded as $include)
 				{
-					$downloadLink = $this -> _downloadUri . $include['name'] . '.' . $include['ext'];
+					$downloadLink = self::$_downloadUri . $include['name'] . '.' . $include['ext'];
 					$ch = curl_init();
 
 					curl_setopt($ch, CURLOPT_URL, $downloadLink);
@@ -108,32 +129,8 @@
 						),
 					);
 
-					if(!$model -> upload($files))
-						die('kluns');
-
+					$model -> upload($files);
 				}
 			}
-			else
-			{
-				die('stupid');
-			}
-		}
-
-		/**
-		 * [getSettings description]
-		 * @return [type] [description]
-		 */
-		final public function getSettings()
-		{
-			return 'settings';
-		}
-
-		/**
-		 * [saveSettings description]
-		 * @return [type] [description]
-		 */
-		final public function saveSettings()
-		{
-			
 		}
 	}

@@ -271,7 +271,7 @@
 			}
 			else
 			{
-				\SetNotice('Could not fetch column value.. getIdFromTitle<br> error: ' . self::$_link -> error);
+				\Refresh('Could not fetch column value.. getIdFromTitle<br> error: ' . self::$_link -> error);
 				return false;
 			}
 

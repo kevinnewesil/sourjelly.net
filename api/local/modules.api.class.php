@@ -191,4 +191,9 @@
 
 			return false;
 		}
+
+		public function activateModuleByPageTitle($moduleName,$pageTitle)
+		{
+			return \SjApi() -> updateTable('table_modules',array('pages'),array(\getApiPages()->getIdFromTitle($pageTitle)),array('title' => $moduleName),false);
+		}
 	}
