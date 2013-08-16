@@ -78,6 +78,9 @@
 
 			if($zipExtractor->extractTo(MODULES_PATH))
 			{
+				if(!$this -> checkInstaller($fileName))
+					\Refresh("Could not load module installer");
+
 				$zipExtractor->close();
 				\Api\Api::insertInto('table_modules',array('title','description','active','deprecated'),array($explodedFile[0],$this -> _post -> description_url,1,0),'ssii');
 
@@ -100,17 +103,26 @@
 		/**
 		 * This functions expects a zip or anything compressed. Moves it to the module folder, extracts it, and cleans up the mess after.
 		 */
-		public function upload()
+		public function upload($filesInstaller = NULL)
 		{
-			$fileName      = $_FILES['file']['name'];
-			$fileType      = $_FILES['file']['type'];
-			$source        = $_FILES['file']['tmp_name'];
+
+			if($filesInstaller === NULL)
+				$files = $_FILES;
+			else
+				$files = $filesInstaller;
+
+			$fileName      = $files['file']['name'];
+			$fileType      = $files['file']['type'];
+			$source        = $files['file']['tmp_name'];
 
 			$name          = explode(".", $fileName);
 			$path          = MODULES_PATH . $name[0];
 			$acceptedTypes = array('application/zip', 'application/x-zip-compressed', 'multipart/x-zip', 'application/x-compressed');
 			
-			if(!in_array($fileType, $acceptedTypes,true) || strtolower($name[1]) !== 'zip')
+			// if($filesInstaller !== NULL)
+				die(var_dump($fileType));
+
+			if(!in_array($fileType, $acceptedTypes,true) || strtolower($name[1]) !== 'zip' || $fileType !== 'zip')
 				\core\access\Redirect::Refresh('file does not have right extension');
 
 			if(is_dir($path))
@@ -119,11 +131,23 @@
 			if(!mkdir($path))
 				\core\access\Redirect::Refresh('Error creating folder for module.');
 
-			if(!move_uploaded_file($source, $path . DS . $fileName))
+			if($filesInstaller === NULL)
 			{
-				rmdir($path);
-				\core\access\Redirct::Refresh('Could not re-locate uploaded file to destination folder.');
+				if(!rename($source, $path . DS . $fileName))
+				{
+					rmdir($path);
+					\Refresh("Could not move downloaded modules into modules folder");
+				}
 			}
+			else
+			{
+				if(!move_uploaded_file($source, $path . DS . $fileName))
+				{
+					rmdir($path);
+					\core\access\Redirct::Refresh('Could not re-locate uploaded file to destination folder.');
+				}
+			}
+
 
 			$zipExtractor = new \ZipArchive;
 
@@ -134,8 +158,16 @@
 
 			if($zipExtractor->extractTo(MODULES_PATH));
 			{
+				if(!$this -> checkInstaller($name[0]))
+					\Refresh("could not run installer");
+
+				if($filesInstaller !== NULL)
+					$desc = $name[0];
+				else
+					$desc = $this -> _post -> description;
+
 				$zipExtractor->close();
-				\Api\Api::insertInto('table_modules',array('title','description','active','deprecated'),array($name[0],$this -> _post -> description,1,0),'ssii');
+				\Api\Api::insertInto('table_modules',array('title','description','active','deprecated'),array($name[0],$desc,1,0),'ssii');
 
 				//Clean up _MACOSX users shit.
 				if(is_dir(MODULES_PATH . '__MACOSX'))
@@ -143,10 +175,27 @@
 
 				unlink(MODULES_PATH . $name[0] . DS . $fileName);
 
-				\core\access\Redirect::Refresh('Module succesfully installed','success');
+				if($filesInstaller === NULL)
+					return true;
+				else
+					\core\access\Redirect::Refresh('Module succesfully installed','success');
 			}
 
 			\core\access\Redirect::Refresh('could not extract module');
 
+		}
+
+		final private function checkInstaller($filename)
+		{
+			if(file_exists(MODULES_PATH . $filename . DS . 'installer/installer.php'))
+			{
+				$moduleBuilder = new \core\build\Modules;
+
+				$moduleBuilder -> runInstaller($filename);
+			}
+			else
+				return false;
+
+			return true;
 		}
 	}

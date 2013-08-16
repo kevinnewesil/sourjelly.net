@@ -11,12 +11,16 @@
 
 		protected $_includeClean = array();
 
+		protected $_downloadUri = NULL;
+
 		/**
 		 * parses if any module is called for, and includes the module.
 		 * @param [type] $modules [description]
 		 */
-		public function __construct($modules)
+		public function __construct($modules = NULL)
 		{
+
+			$this -> _downloadUri = "http://sourjelly.net/assets/files/modules/";
 
 			if($modules == NULL)
 				return false;
@@ -65,6 +69,48 @@
 			else
 			{
 				\core\build\Sourjelly::getHtml()->assign('{moduleHtml}','');
+			}
+		}
+
+		final public function runInstaller($filename)
+		{
+			if(!class_exists("\\models\\Modules"))
+				require_once(MODEL_PATH . 'module.class.php');
+
+			$model = new \models\Module;
+
+			require(MODULES_PATH . $filename . DS . 'installer/installer.php');
+
+			if(isset($modulesIncluded) && is_array($modulesIncluded))
+			{
+				foreach($modulesIncluded as $include)
+				{
+					$downloadLink = $this -> _downloadUri . $include['name'] . '.' . $include['ext'];
+					$ch = curl_init();
+
+					curl_setopt($ch, CURLOPT_URL, $downloadLink);
+					curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+					$data = curl_exec($ch);
+
+					curl_close($ch);
+
+					$files = array(
+						'file' => array(
+							'name' 	   => $include['name'] . '.' . $include['ext'],
+							'type' 	   => $include['ext'],
+							'tmp_name' => $include['name'],
+						),
+					);
+
+					if(!$model -> upload($files))
+						die('kluns');
+
+				}
+			}
+			else
+			{
+				die('stupid');
 			}
 		}
 
