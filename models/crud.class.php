@@ -22,10 +22,13 @@
 		 * @param  object $create the values of the create request.
 		 * @return boolean       return true if row was inserted correctly.
 		 */
-		final public function create()
+		final public function create($quick = false)
 		{
 
-			$create = $this -> _post;
+			if($quick !== false)
+				$create = $quick;
+			else
+				$create = $this -> _post;
 
 			// Check if data exists, if not, refresh with error message.
 			if(empty($create->title) || empty($create->content))
@@ -79,8 +82,10 @@
 				// hardcoded public for now.. Need to edit this later for custom level premission of content.
 				if(!\api\Api::insertInto('table_content_roles',array('cid','roleId'),array($contentId,'1'),'ii')) return false;
 
-				// Return true on success
-				\setNoticeSuccess("Page created successfully");
+				// Return true on success if not quick
+				if($quick === false);
+					\setNoticeSuccess("Page created successfully");
+
 				return true;
 			}
 
@@ -173,5 +178,31 @@
 			$parts = explode('/',$rawUrl[1]);
 			
 			return is_numeric($parts[2]) ? $parts[2] : NULL ;
+		}
+
+		final public function createPageQuick($title,$content)
+		{
+			$data = new \stdClass();
+			
+			$data -> front = "on";
+			$data -> back = "0";
+			$data -> menuVisibility = "on";
+			$data -> created_at = date('Y-m-d h:I:s');
+			$data -> public = "1";
+			$data -> deprecated = "0";
+			$data -> title = $title;
+			$data -> content = $content;
+			$data -> parent = "-";
+			$data -> parentId = "0";
+			$data -> metaTags = "";
+			$data -> metaDescription = "";
+			$data -> contentClass = "";
+			$data -> contentId = "";
+			$data -> contentTextAlignment = "left";
+			$data -> titleTextAlignment = "left";
+			$data -> titleFontSize = "";
+			$data -> titleVisibility = "";
+
+			return $this -> create($data);
 		}
 	}

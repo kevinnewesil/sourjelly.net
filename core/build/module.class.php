@@ -11,7 +11,7 @@
 
 		protected $_includeClean = array();
 
-		protected $_downloadUri = NULL;
+		protected static $_downloadUri = NULL;
 
 		/**
 		 * parses if any module is called for, and includes the module.
@@ -77,46 +77,7 @@
 			if(!class_exists("\\models\\Modules"))
 				require_once(MODEL_PATH . 'module.class.php');
 
-			$model = new \models\Module;
-
 			require(MODULES_PATH . $filename . DS . 'installer/installer.php');
-
-			if(isset($modulesIncluded) && is_array($modulesIncluded))
-			{
-				foreach($modulesIncluded as $include)
-				{
-					$downloadLink = $this -> _downloadUri . $include['name'] . '.' . $include['ext'];
-					$ch = curl_init();
-
-					curl_setopt($ch, CURLOPT_URL, $downloadLink);
-					curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-					$data = curl_exec($ch);
-
-					curl_close($ch);
-
-					$destination = MODULES_PATH . $include['name'] . '.' . $include['ext'];
-					$file = fopen($destination, "w+");
-					fputs($file, $data);
-					fclose($file);
-
-					$files = array(
-						'file' => array(
-							'name' 	   => $include['name'] . '.' . $include['ext'],
-							'type' 	   => $include['ext'],
-							'tmp_name' => $destination,
-						),
-					);
-
-					if(!$model -> upload($files))
-						die('kluns');
-
-				}
-			}
-			else
-			{
-				die('stupid');
-			}
 		}
 
 		/**
@@ -135,5 +96,43 @@
 		final public function saveSettings()
 		{
 			
+		}
+
+		final public static function getModulesViaSourjelly($modulesIncluded)
+		{
+			$model = new \models\Module;
+
+			if(isset($modulesIncluded) && is_array($modulesIncluded))
+			{
+				foreach($modulesIncluded as $include)
+				{
+					$downloadLink = 'Http://sourjelly.net/assets/files/modules/' . $include['name'] . '.' . $include['ext'];
+					$destination = MODULES_PATH . $include['name'] . '.' . $include['ext'];
+
+					$ch = curl_init();
+
+					curl_setopt($ch, CURLOPT_URL, $downloadLink);
+					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+					if(!$data = curl_exec($ch))
+						die(curl_error($ch));
+
+					curl_close($ch);
+
+					$file = fopen($destination, "w+");
+					fputs($file, $data);
+					fclose($file);
+
+					$files = array(
+						'file' => array(
+							'name' 	   => $include['name'] . '.' . $include['ext'],
+							'type' 	   => $include['ext'],
+							'tmp_name' => $destination,
+						),
+					);
+
+					$model -> upload($files);
+				}
+			}
 		}
 	}

@@ -137,21 +137,17 @@
 					rmdir($path);
 					\core\access\Redirct::Refresh('Could not re-locate uploaded file to destination folder.');
 				}
+				$extracted = $zipExtractor->open($path . DS . $fileName);
 			}
 			else
 			{
-				if(!rename($source, $path . DS . $fileName))
-				{
-					\core\access\REdirect::Refresh('could not move downloaded folder in the desegnated area');
-				}
+				$extracted = $zipExtractor->open($source);
 			}
-
-			$extracted = $zipExtractor->open($path . DS . $fileName);
 
 			if(!$extracted)
 				\core\access\Redirect::Refresh('could not open compressed file');
 
-			if($zipExtractor->extractTo(MODULES_PATH));
+			if($zipExtractor->extractTo(MODULES_PATH))
 			{
 				if(is_dir(MODULES_PATH . $name[0] . DS . 'installer'))
 					if(!$this -> checkInstaller($name[0]))

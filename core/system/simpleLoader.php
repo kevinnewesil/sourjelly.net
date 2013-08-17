@@ -40,7 +40,7 @@
 	 */
 
 	if(!function_exists("getApiPages")) { function getApiPages(){ return \api\Api::getPages(); } }
-	if(!function_exists("getApiModules")) { function getApiModules(){ return \api\Api::getModule(); } }
+	if(!function_exists("getApiModules")) { function getApiModules(){ return \api\Api::getModules(); } }
 	if(!function_exists("getApiSettings")) { function getApiSettings(){ return \api\Api::getSettings(); } }
 	if(!function_exists("getApiThemes")) { function getApiThemes(){ return \api\Api::getThemes(); } }
 	if(!function_exists("getApiUsers")) { function getApiUsers(){ return \api\Api::getUsers(); }}
