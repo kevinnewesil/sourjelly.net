@@ -1,1 +1,0 @@
-include: MODULES_PATH/newsfeed/code/newsfeed.php
