@@ -1,0 +1,21 @@
+<form action="" method="post" class="form form-horizontal">
+	<fieldset>
+		<legend>Create new post</legend>
+
+		<div class="control-group">
+			<label for="title" class="control-label">title</label>
+			<div class="controls"><input type="text" name="post[{count}][title]" id="title"></div>
+		</div>
+
+		<div class="control-group">
+			<label for="content" class="control-label">content</label>
+			<div class="controls"><textarea class="redactor" name="post[{count}][content]" id="content"></textarea></div>
+		</div>
+
+		<div class="control-group">
+			<label for="submit" class="control-label">Create item</label>
+			<div class="controls"><input type="submit" name="submit" id="submit" class="btn btn-primary btn-large"></div>
+		</div>
+
+	</fieldset>
+</form>
