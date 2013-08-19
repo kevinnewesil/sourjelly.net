@@ -1,7 +1,35 @@
-<form action="" method="post">
-	<fieldset>
-		<legend>je moeder</legend>
+<script type="text/javascript">
 
-		<div><label for="input">the game</label><input type="text"></div>
+	$(document).ready(function(){
+		var i = 0; // Create int for count of number of catagories
+
+		$("#add-catagory").on("click",function(){
+
+			alert('clicked');
+
+			$("#image-gallery-form fieldset").append("\
+				<div id=\"catagory-\" " + i + ">\
+					Add group\
+					<button class=\"add-group\"> + </button>\
+					Select images in catagory\
+					<div class=\"image-well\">\
+						\
+					</div>\
+				</div>\
+			");
+
+			return false;
+		});
+	
+	});
+</script>
+
+<form action="" method="post" id="image-gallery-form">
+	<fieldset>
+		<legend>Image gallery</legend>
+		
+		Create catagory
+		<button id="add-catagory">+</button>
+
 	</fieldset>
 </form>
