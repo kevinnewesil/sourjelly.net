@@ -9,6 +9,10 @@
 
 			$("#image-gallery-form fieldset").append("\
 				<div id=\"catagory-\" " + i + ">\
+					<div class=\"control-group\">\
+						<label for=\"\" class=\"control-label\">Catagory name</label>\
+						<div class=\"controls\"><input type=\"text\" name=\"catagory[" + i + "]\" id=\"\"></div>\
+					</div>\
 					Add group\
 					<button class=\"add-group\"> + </button>\
 					Select images in catagory\
@@ -17,6 +21,8 @@
 					</div>\
 				</div>\
 			");
+
+			i++;
 
 			return false;
 		});
@@ -30,6 +36,6 @@
 		
 		Create catagory
 		<button id="add-catagory">+</button>
-
+		
 	</fieldset>
 </form>
