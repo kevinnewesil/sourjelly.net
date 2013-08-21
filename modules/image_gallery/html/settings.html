@@ -5,8 +5,6 @@
 
 		$("#add-catagory").on("click",function(){
 
-			alert('clicked');
-
 			$("#image-gallery-form fieldset").append("\
 				<div id=\"catagory-\" " + i + ">\
 					<div class=\"control-group\">\
@@ -15,10 +13,6 @@
 					</div>\
 					Add group\
 					<button class=\"add-group\"> + </button>\
-					Select images in catagory\
-					<div class=\"image-well\">\
-						\
-					</div>\
 				</div>\
 			");
 
@@ -26,16 +20,40 @@
 
 			return false;
 		});
+
+		$(".add-group").click(function(){
+
+			// Add input for groupname under catagory name
+			$(this).parent().append("\
+				<div class=\"control-group\">\
+					<label for=\"\" class=\"control-label\">Group name</label>\
+					<div class=\"controls\"><input type=\"text\" name=\"group[catagory-id][" + i + "]\" id=\"\"></div>\
+				</div>\
+			");
+		});
 	
 	});
 </script>
 
-<form action="" method="post" id="image-gallery-form">
-	<fieldset>
-		<legend>Image gallery</legend>
+<div class="wrapper">
+
+	<!-- Deze moet links staan -->
+	<form action="" method="post" id="image-gallery-form">
+		<fieldset>
+			<legend>Image gallery</legend>
+			
+			Create catagory
+			<button id="add-catagory">+</button>
+			
+		</fieldset>
+	</form>
+	
+	<!-- Deze moet rechts staan -->
+	<div class="well">
 		
-		Create catagory
-		<button id="add-catagory">+</button>
-		
-	</fieldset>
-</form>
+		<!-- Images met input veld boven elke image, voor elke input veld krijg je select box, met catagory en onder catagory group names, image toevoegbaar
+		aan catagory en group -->
+		{images} 
+
+	</div>
+</div>
