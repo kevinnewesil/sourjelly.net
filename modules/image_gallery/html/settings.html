@@ -2,14 +2,15 @@
 
 	$(document).ready(function(){
 		var i = 0; // Create int for count of number of catagories
+		var j = 0; // Create int for count of groups
 
 		$("#add-catagory").on("click",function(){
 
 			$("#image-gallery-form fieldset").append("\
-				<div id=\"catagory-\" " + i + ">\
+				<div id=\"catagory-" + i + "\">\
 					<div class=\"control-group\">\
 						<label for=\"\" class=\"control-label\">Catagory name</label>\
-						<div class=\"controls\"><input type=\"text\" name=\"catagory[" + i + "]\" id=\"\"></div>\
+						<div class=\"controls\"><input type=\"text\" name=\"catagory[" + i + "]\" class=\"catagory\" id=\"" + i + "\"></div>\
 					</div>\
 					Add group\
 					<button class=\"add-group\"> + </button>\
@@ -21,15 +22,19 @@
 			return false;
 		});
 
-		$(".add-group").click(function(){
-
+		$(document).on("click",".add-group",function(){
+			
 			// Add input for groupname under catagory name
 			$(this).parent().append("\
 				<div class=\"control-group\">\
 					<label for=\"\" class=\"control-label\">Group name</label>\
-					<div class=\"controls\"><input type=\"text\" name=\"group[catagory-id][" + i + "]\" id=\"\"></div>\
+					<div class=\"controls\"><input type=\"text\" name=\"group[" + $(this).parent().find(".catagory").attr("id") + "][" + j + "]\" id=\"\"></div>\
 				</div>\
 			");
+
+			j++;
+			
+			return false; 
 		});
 	
 	});
