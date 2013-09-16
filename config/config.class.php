@@ -119,10 +119,11 @@
 			$subsubplaceholders = array( '{varname}', '{subvarname}','{subsubvarname}' , '{varvalue}' );
 			$dimension4placeholders = array( '{varname}', '{subvarname}','{subsubvarname}' ,'{4thDimensionVar}', '{varvalue}' );
 
-			//Check the folder permissions of the Module
-			//$info = \core\access\System::getpermissionss( MODULES_PATH . $moduleInfo[0][0] );
+			// Check the folder permissions of the Module
+			// $info = \core\access\System::getpermissionss( MODULES_PATH . $moduleInfo[0][0] );
 
-			//Foreach user inputted variables for the config file, make a string with the config variables set in the config layout
+			// Foreach user inputted variables for the config file, make a string with the config variables set in the config layout
+			// Please do not alter nor update this piece of valueable code, as this is living hell.
 			foreach ($vars as $varname => $varvalue)
 			{
 				if(is_array($varvalue))

@@ -5,7 +5,8 @@
 	 * @version 1.0
 	 * @package default
 	 * 
-	 * this is where the magic happens. All the system shit is loaded here, the system actions are defined here, everything is saved and parsed here.
+	 * this is where the magic happens. All the system functionality is loaded here, the system actions are defined here, 
+	 * everything is saved and parsed through here.
 	 * There's no other possibility then to go via this file. if you manage to invade this file and get into the system you're an idiot.
 	 * You'll ruin the whole system. Please keep using the f*cking Sourjelly class to save our lives.
 	 * 
@@ -96,7 +97,7 @@
 				self::$_api    = new \api\Api;
 			}
 
-			//self::$_secure = new \core\access\Secure;
+			// self::$_secure = new \core\access\Secure;
 
 			//Set user language.
 			$_SESSION['user_language'] = \api\Api::getUsers() -> getUserLanguageBySession();
@@ -243,8 +244,10 @@
 		final protected function finishSourjelly()
 		{	
 			if(!$this -> _ajax && PHP_SAPI !== 'cli')
+			{
 				// build the html!
 				self::getHtml()->Build();
+			}
 		}
 
 		/**
@@ -256,7 +259,7 @@
 
 			if(isset($_SESSION['login']) && \getApiUsers() -> getUserpermissionsBySession() > 1)
 				$return = true;
-			else if( isset(self::$_get -> login) && self::$_get -> login != 'login' || $fun[0] != 'auth' || $fun[1] != 'login' )
+			else if(isset(self::$_get -> login) && self::$_get -> login != 'login' || $fun[0] != 'auth' || isset($fun[1]) && $fun[1] != 'login' )
 				$return = false;
 			else
 				$return = true;

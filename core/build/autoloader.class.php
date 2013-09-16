@@ -133,8 +133,8 @@
 		}
 
 		/**
-		 * [buildIndex description]
-		 * @return [type] [description]
+		 * Loads the basic html layout and assigns the content into the layout for the home page;
+		 * @return void
 		 */
 		final public function buildIndex()
 		{
